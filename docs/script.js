@@ -4,6 +4,6 @@ var page = queryParams.get('page');
 
 if (page === null) {
    page = "index.md";
-else
+} else {
    page = page + ".md";
 }
