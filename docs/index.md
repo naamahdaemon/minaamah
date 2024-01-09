@@ -7,11 +7,11 @@ This page is dedicated to Mina Protocole blockchain (<a href="https://minaprotoc
 
 **More information here**
 - [ ] Mina official discord<br/>
-https://discord.gg/minaprotocol <br/>
+<a href="https://discord.gg/minaprotocol" target="_blank">https://discord.gg/minaprotocol</a> <br/>
 The main source of information and assistance on Mina. The Discord server is filled with extraordinary people always ready to help (hopefully, I'm one of them!). Feel free to drop by!
 
 - [ ] Other Online communities<br/>
-https://docs.minaprotocol.com/participate/online-communities <br/>
+<a href="https://docs.minaprotocol.com/participate/online-communities" target="_blank">https://docs.minaprotocol.com/participate/online-communities</a> <br/>
 Is the official list of links provided by Mina team.
 
 
