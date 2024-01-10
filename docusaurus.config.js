@@ -12,18 +12,18 @@ const config = {
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
 
-  trailingSlash: false,
+  trailingSlash: true,
 
   // Set the production url of your site here
-  url: 'https://mina.naamahdaemon.eu/',
+  url: 'https://naamahdaemon.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: '', // Usually your GitHub org/user name.
-  projectName: '', // Usually your repo name.
+  organizationName: 'naamahdaemon', // Usually your GitHub org/user name.
+  projectName: 'minaamah', // Usually your repo name.
   deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'throw',
