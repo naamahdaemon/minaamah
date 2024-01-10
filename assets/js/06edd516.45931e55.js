@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[1711],{5706:a=>{a.exports=JSON.parse('{"label":"hola","permalink":"/minnamah/minaamah/blog/tags/hola","allTagsPath":"/minnamah/minaamah/blog/tags","count":1,"unlisted":false}')}}]);
