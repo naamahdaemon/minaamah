@@ -12,7 +12,7 @@ const config = {
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
 
-  trailingSlash: true,
+  trailingSlash: false,
 
   // Set the production url of your site here
   url: 'https://naamahdaemon.github.io',
