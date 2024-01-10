@@ -4,10 +4,6 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-export default {
-  baseUrl: '/',
-};
-
 import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
@@ -22,11 +18,11 @@ const config = {
   url: 'https://mina.naamahdaemon.eu/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'naamahdaemon', // Usually your GitHub org/user name.
+  organizationName: '', // Usually your GitHub org/user name.
   projectName: '', // Usually your repo name.
   deploymentBranch: 'gh-pages',
 
