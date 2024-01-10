@@ -12,10 +12,10 @@ const config = {
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
 
-  trailingSlash: true,
+  trailingSlash: false,
 
   // Set the production url of your site here
-  url: 'https://mina.naamahdaemon.eu',
+  url: 'https://naamahdaemon.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
