@@ -15,15 +15,15 @@ const config = {
   trailingSlash: false,
 
   // Set the production url of your site here
-  url: 'https://naamahdaemon.github.io',
+  url: 'https://mina.naamahdaemon.eu',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/minaamah/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'naamahdaemon', // Usually your GitHub org/user name.
-  projectName: 'minaamah', // Usually your repo name.
+  organizationName: '', // Usually your GitHub org/user name.
+  projectName: '', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
