@@ -11,7 +11,10 @@ const config = {
   title: 'Naamah Mina Stake',
   tagline: 'All about Mina Protocol',
   favicon: 'img/favicon.ico',
-
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   trailingSlash: false,
 
   // Set the production url of your site here
