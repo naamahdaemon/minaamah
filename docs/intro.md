@@ -28,7 +28,7 @@ Mina incorporates zk-SNARKS, allowing transaction confirmation without revealing
 
 **MINA Token Value**
 
-MINA serves as Mina Protocol's transaction token, exchangeable like any cryptocurrency. It can be staked for rewards, securing the network. MINA is also used in Snapps (DApps) interactions, enhancing utility
+MINA serves as Mina Protocol's transaction token, exchangeable like any cryptocurrency. It can be staked for rewards, securing the network. MINA is also used in ZKApps (DApps) interactions, enhancing utility of the Blockchain. ZKApps will be available in the next major release / hardfork of the Blockchain  planned on early 2024.
 
 **More information here**
 - [ ] Mina official discord<br/>
