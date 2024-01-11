@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
-sidebar_label: Usefull links
+sidebar_label: Useful links
 sidebar_class_name: green
 ---
-# Usefull links
+# Useful links
 Here is a list of usefull links, tools related to mina protocol.
 (There is an equivalent list at https://awesome.mina.tools/, but it is no longer updated.)
 
