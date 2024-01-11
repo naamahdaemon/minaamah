@@ -10,6 +10,26 @@ This page is dedicated to Mina Protocole blockchain (<a href="https://minaprotoc
 > for the secure, democratic future we all deserve.
 
 
+**Mina Protocol Overview**
+
+*Mina Protocol* aims to be a lightweight blockchain, maintaining a constant size of only 22 KB, regardless of transaction volume. This allows easy node operation and network participation without requiring sophisticated hardware. The native cryptocurrency, MINA, facilitates network transactions and fee distribution.
+
+*Blockchain Size Challenges*
+
+Traditional blockchains face size challenges with Ethereum growing from 5 GB (April 2016) to over 220 GB (April 2021). Mina addresses this with zk-SNARKS cryptography, reducing the need for each node to store entire transaction histories, promoting decentralization.
+
+**Who Created Mina Protocol?**
+
+Mina Protocol was created by O(1) Labs, founded by Evan Shapiro and Izaak Meckler in 2017. After four years of development, the mainnet launched on March 23, 2021. The Mina Foundation oversees community token sales and network assets.
+
+**How Does Mina Protocol Work?**
+
+Mina incorporates zk-SNARKS, allowing transaction confirmation without revealing data. This, combined with Proof-of-Stake consensus, significantly reduces processing and recording resources. Nodes and specialized Snark workers are essential for efficient network operation.
+
+**MINA Token Value**
+
+MINA serves as Mina Protocol's transaction token, exchangeable like any cryptocurrency. It can be staked for rewards, securing the network. MINA is also used in Snapps (DApps) interactions, enhancing utility
+
 **More information here**
 - [ ] Mina official discord<br/>
 <a href="https://discord.gg/minaprotocol" target="_blank">https://discord.gg/minaprotocol</a> <br/>
