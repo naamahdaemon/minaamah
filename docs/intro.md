@@ -1,4 +1,9 @@
-# Naamah Mina Home
+---
+sidebar_position: 1
+sidebar_label: Intro
+sidebar_class_name: green
+---
+# Introduction
 This page is dedicated to Mina Protocole blockchain (<a href="https://minaprotocol.com" target="_blank">https://minaprotocol.com</a>).<br/>
 > Mina is the world’s lightest blockchain, powered by participants.<br/>
 > Using zero knowledge proofs, Mina is creating the infrastructure<br/>
