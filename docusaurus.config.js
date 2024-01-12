@@ -135,7 +135,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Naamah Mina, Inc.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Naamah`,
       },
       prism: {
         theme: prismThemes.github,
