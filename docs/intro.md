@@ -3,7 +3,7 @@ sidebar_position: 1
 sidebar_label: Introduction
 sidebar_class_name: green
 ---
-# Introduction
+# Why Mina ?
 This page is dedicated to Mina Protocole blockchain (<a href="https://minaprotocol.com" target="_blank">https://minaprotocol.com</a>).<br/>
 > Mina is the world’s lightest blockchain, powered by participants.<br/>
 > Using zero knowledge proofs, Mina is creating the infrastructure<br/>
@@ -32,6 +32,9 @@ MINA serves as Mina Protocol's transaction token, exchangeable like any cryptocu
 
 ## **More information**
 You'll find more information about Mina Protocol on official discord server and web sites. I highly encourage everyone to join the discord server. You'll always find a helping hand there !
+
+- [ ] Mina official website<br/>
+[https://minaprotocol.com](https://minaprotocol.com)
 
 - [ ] Mina official discord<br/>
 <a href="https://discord.gg/minaprotocol" target="_blank">https://discord.gg/minaprotocol</a> <br/>
