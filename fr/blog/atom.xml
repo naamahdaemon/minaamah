@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://naamahdaemon.github.io/fr/blog</id>
+    <title>Naamah Mina Stake Blog</title>
+    <updated>2024-01-10T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://naamahdaemon.github.io/fr/blog"/>
+    <subtitle>Naamah Mina Stake Blog</subtitle>
+    <icon>https://naamahdaemon.github.io/fr/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Welcome]]></title>
+        <id>https://naamahdaemon.github.io/fr/blog/welcome</id>
+        <link href="https://naamahdaemon.github.io/fr/blog/welcome"/>
+        <updated>2024-01-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Welcome to this website.]]></summary>
+        <content type="html"><![CDATA[<p>Welcome to this website.
+I will post here some information and share my experience regarding Mina protocol - the smallest blockchain.</p>
+<p>This site is under construction. Be Patient.</p>
+<p>Stay tuned for more information</p>]]></content>
+        <author>
+            <name>Naamah</name>
+            <uri>https://github.com/naamahdaemon</uri>
+        </author>
+        <category label="hello" term="hello"/>
+        <category label="mina" term="mina"/>
+    </entry>
+</feed>
