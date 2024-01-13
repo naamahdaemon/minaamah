@@ -1,11 +1,11 @@
 ---
 sidebar_position: 2
-sidebar_label: Useful links
+sidebar_label: Liens Utiles
 sidebar_class_name: green
 ---
 import roadmap from './assets/roadmap.png';
 
-# Useful links
+# Liens Utiles
 Here is a list of usefull links, tools related to mina protocol.
 (There is an equivalent list at https://awesome.mina.tools/, but it is no longer updated.)
 
