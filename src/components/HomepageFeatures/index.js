@@ -1,14 +1,17 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
+import Translate, {translate} from '@docusaurus/Translate';
+
+//const title={}
 
 const FeatureList = [
   {
-    title: 'Welcome to my Mina Protocol Validator Web  Site',
+    title: translate({message: 'Welcome to my Mina Protocol Validator Web Site'}),
     Svg: require('@site/static/img/mina_logo.svg').default,
     description: (
       <>
-        This web site is about Mina Protocol.<br/>
+        <Translate>This web site is about Mina Protocol</Translate><br/>
 		<br/>
 		(In Construction)
       </>

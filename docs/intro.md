@@ -45,7 +45,7 @@ The main source of information and assistance on Mina. The Discord server is fil
 Is the official list of links provided by Mina team.
 
 
-## Who am I
+## **Who am I ?**
 I am a mina validator/block producer.  
 I run a bunch of powerfull servers producing blocks, SNARKs and securing the Mina network.  
 
