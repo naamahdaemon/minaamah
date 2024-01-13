@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "Naamah Mina Stake",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Naamah",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Introduction": {
+    "message": "Introduction",
+    "description": "Navbar item with label Introduction"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}
