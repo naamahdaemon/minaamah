@@ -2,5 +2,9 @@
   "version.label": {
     "message": "Next",
     "description": "The label for version current"
+  },
+  "sidebar.mainSidebar.category.General Information": {
+    "message": "General Information",
+    "description": "The label for category General Information in sidebar mainSidebar"
   }
 }
