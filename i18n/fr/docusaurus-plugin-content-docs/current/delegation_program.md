@@ -4,23 +4,23 @@ sidebar_label: Programme de délégation
 sidebar_class_name: green
 ---
 # Programme de délégation
-The Mina Foundation's delegation program (there is also a delegation program operated by o1labs) allows, under certain conditions, delegation of approximately 800k-1M Mina from the Mina Foundation. 
-This enables independent validators to produce blocks and receive rewards (coinbase) for the production of these blocks.
+Le programme de délégation de la Fondation Mina (il existe également un programme de délégation opéré par o1labs) permet, sous certaines conditions, la délégation d'environ 800k-1M de Mina de la part de la Fondation Mina. 
+Cela permet aux validateurs indépendants de produire des blocs et de recevoir des récompenses (coinbase) pour la production de ces blocs.
 
-Information about how to join and program conditions are available here :
+Les informations sur la manière de rejoindre le programme et les conditions du programme sont disponibles ici :
 
 - [https://www.minafoundation.com/#delegation](https://www.minafoundation.com/#delegation)
 
-In practice, the conditions to be met to qualify for a delegation from the foundation are as follows:
+Dans les faits, les conditions à respecter pour prétendre à une délégation de la fondation sont les suivantes :
 
-* Operate one or more servers running a Mina validation node.
-* Maintain a global server uptime of 100% for a minimum of 3 months (90 days), after which the first eligibility condition will be met (uptime = 100%).
-* Provide the KYC (Know Your Customer) information requested by the program initiators (Mina Foundation / o1Labs) through one of their approved partners (Coinlist / Synaps).
-* Be among the top 240 validators with the highest uptime score (100% being the standard; there are approximately 340 operators with 100% uptime today).
-	* In case of a tie, the foundation or o1labs conducts a random draw.
+* Opérer un ou plusieurs serveurs faisant tourner un nœud de validation Mina.
+* Maintenir un temps de disponibilité global du serveur de 100 % pendant au minimum 3 mois (90 jours), à l'issue desquels la première condition d'éligibilité sera remplie (temps de disponibilité = 100 %).
+* Fournir les informations KYC (Know Your Customer) demandées par les initiateurs du programme (Fondation Mina / o1Labs) via l'un de leurs partenaires agréés (Coinlist / Synaps).
+* Faire partie des 240 premiers validateurs avec le score de temps de disponibilité le plus élevé (100 % étant la norme ; il y a environ 340 opérateurs avec 100 % de disponibilité aujourd'hui).
+  * En cas d'égalité, la fondation ou o1labs procède à un tirage au sort.
 
-Once the delegation is obtained, adhere to the rules imposed by the foundation:
+Une fois la délégation obtenue, respecter les règles imposées par la fondation :
 
-* Calculate the reward amount to be returned to each delegator accurately (there is a script to automate this process).
-* Return the required reward amount within the specified timeframe (block 3500 of epoch n+1 at the latest) 
-* Follow the rules (transaction memo containing the MD5 hash of the block producer's public address, amount, and repayment deadline) 
+* Calculer avec précision le montant de récompense à retourner à chaque délégataire (il existe un script pour automatiser ce processus).
+* Retourner le montant de récompense requis dans le délai spécifié (bloc 3500 de l'epoch n+1 au plus tard).
+* Suivre les règles (mémo de transaction contenant le hash MD5 de l'adresse publique du producteur de bloc, montant et délai de remboursement).
