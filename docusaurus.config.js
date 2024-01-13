@@ -16,7 +16,11 @@ const config = {
   },
   themes: ['@docusaurus/theme-mermaid'],
   trailingSlash: false,
-
+  
+  plugins: [[ require.resolve('docusaurus-lunr-search'), {
+      languages: ['en', 'de'] // language codes
+  }]],
+  
   // Set the production url of your site here
   url: 'https://naamahdaemon.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
