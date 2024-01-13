@@ -3,7 +3,7 @@ sidebar_position: 2
 sidebar_label: Liens utiles
 sidebar_class_name: green
 ---
-import roadmap from './assets/roadmap.png';
+import roadmap from '../assets/roadmap.png';
 
 # Liens utiles
 Voici une liste de liens utiles et d'outils liés au protocole Mina.
