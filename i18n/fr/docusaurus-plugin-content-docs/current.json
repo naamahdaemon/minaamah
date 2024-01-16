@@ -6,5 +6,9 @@
   "sidebar.mainSidebar.category.General Information": {
     "message": "Informations Génériques",
     "description": "The label for category General Information in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.Wallet owner guide": {
+    "message": "Guide de l'utilisateur",
+    "description": "The label for category Wallet owner guide in sidebar mainSidebar"
   }
 }
