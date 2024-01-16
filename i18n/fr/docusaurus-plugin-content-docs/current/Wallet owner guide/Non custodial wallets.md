@@ -29,7 +29,9 @@ Il y a de nombreux désavantages à laisser ses tokens sur une plateforme centra
 
 * Le premier est que c'est en totale contradiction avec le principe même de la blockchain qui est d'être décentralisée.
 * Le second inconvénient est que vous n'avez aucun contrôle en théorie sur vos fonds. Si la plateforme met la clé sous la porte, vous perdez alors 100% de vos investissements !!
-* Le troisième inconvénient concerne le **staking**. Le staking dans le contexte d'une blockchain basée sur le **P**roof **O**f **S**take (PoS) comme Mina consiste à **déléguer<sup>1</sup>** ses token à un **validateur<sup>2</sup>** de confiance afin de lui octroyer des chances supplémentaires de **produire des blocs<sup>3</sup>** générant des récompenses (**coinbase<sup>4</sup>**)
+* Le troisième inconvénient concerne le **staking**. Le staking dans le contexte d'une blockchain basée sur le **P**roof **O**f **S**take (PoS) comme Mina consiste à **déléguer<sup>1</sup>** ses token à un **validateur<sup>2</sup>** de confiance afin de lui octroyer des chances supplémentaires de **produire des blocs<sup>3</sup>** générant des récompenses (**coinbase<sup>4</sup>**).
+Ces récompenses sont ensuite distribuées aux délégateurs au prorata du nombre de mina délégués moins la commission prise par le validateur (En théorie entre 0% et 10%, la majorité appliquant un taux de 5%).
+Lorsque vos minas sont stockées sur une plateforme, dans le meilleur des cas, celle-ci propose leurs propres conditions de staking a des taux de commission élevés mais la plupart des plateformes ne propose tout simplement pas de staking, vous privant alors d'une source de revenu passive loin d'être négligeable (entre 12% et 24% d'APR)
 * Le quatrième inconvénient est qu'un wallet _non custodial_ ne permet pas l'utilisation de ce wallet sur des applications spécifiques de la blockchain (DApps ou **zkApps<sup>5</sup>** dans le contexte Mina).
 
 :::note[<sup>1</sup> Staking]
