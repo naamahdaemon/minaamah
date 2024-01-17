@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 import Translate, {translate} from '@docusaurus/Translate';
+import Link from '@docusaurus/Link';
 
 //const title={}
 
@@ -13,6 +14,8 @@ const FeatureList = [
       <>
         <Translate>This web site is about Mina Protocol</Translate><br/>
 		<br/>
+		<b>🚪<Link to="/docs/intro"> ENTER </Link>🚪</b>
+		<br/><br/>
 		🚧Under Construction🚧
       </>
     ),
