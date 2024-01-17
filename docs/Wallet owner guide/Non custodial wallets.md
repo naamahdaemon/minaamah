@@ -18,15 +18,15 @@ Instead, the wallet addresses on exchanges are assigned by the platform, and mos
 :::
 
 :::danger[CONCLUSION]
-Your tokens stored on an exchange **do not belong to you** !!!
+Your tokens stored on an exchange **do not belong to you** !!!  
 !! Not your key, not your tokens !!
 :::
 
-**Advantages of Keeping Your Tokens on an Exchange Platform**
-The advantage of storing on an exchange platform (and there is only one!) is the ability to quickly trade (=exchange/buy/sell) your tokens.
+**Advantages of Keeping Your Tokens on an Exchange Platform**  
+The advantage of storing on an exchange platform (and there is only one!) is the ability to quickly trade (=exchange/buy/sell) your tokens.  
 
-**Disadvantages of Keeping Your Tokens on an Exchange Platform**
-There are numerous disadvantages to leaving your tokens on a centralized platform:
+**Disadvantages of Keeping Your Tokens on an Exchange Platform**  
+There are numerous disadvantages to leaving your tokens on a centralized platform:  
 
 * The first is that it is in complete contradiction with the very principle of blockchain, which is to be decentralized.  
 * The second disadvantage is that, theoretically, you have no control over your funds. If the platform goes out of business, you lose 100% of your investments!  
