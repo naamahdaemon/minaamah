@@ -36,19 +36,25 @@ When your Minas are stored on a platform, at best, it offers its own staking con
 * The fourth disadvantage is that a non-custodial wallet does not allow the use of the wallet on specific applications of the blockchain (DApps or zkApps<sup>5</sup> in the context of Mina).
 
 :::note[<sup>1</sup> Staking]
-More information on staking in the dedicated section.
+More information on staking in the dedicated section.  
+Go to 🔗[Staking Guide](<./Staking guide.md> )
 :::
 
 :::note[<sup>2</sup> Validator]
-
+A validator is a participants who locks up a certain amount of cryptocurrency as collateral.   
+This collateral serves as a security deposit and ensures that validators have a vested interest in maintaining the integrity of the network.  
+It’s important to note that funds staked on Mina are not locked up. This means you can re-delegate, un-delegate, transfer, sell, or donate your Mina tokens anytime you want.
 :::
 
 :::note[<sup>3</sup> Blocks]
-
+Validators take turns creating new blocks and validating transactions based on the amount of cryptocurrency they have staked.  
+The more cryptocurrency a validator has at stake, the higher the chances they have of being chosen to create a new block.
 :::
 
 :::note[<sup>4</sup> Coinbase]
-
+Validators are rewarded with additional cryptocurrency for successfully creating and validating blocks.  
+The **coinbase** is a special transaction in a newly produced block that contains the reward owed to the validator who produced the new block.  
+Currently, the base reward for producing a block on Mina is 720 Mina, to which an additional 720 Mina (supercharged reward) is added if the production slot was won by an unlocked address.
 :::
 
 :::note[<sup>5</sup> zkApps]
