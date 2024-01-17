@@ -32,6 +32,8 @@ Vous trouverez la passionnante feuille de route Mina sur le site web officiel ic
 
 - [ ] Programme de délégation de la Fondation Mina : [https://www.minafoundation.com/#delegation](https://www.minafoundation.com/#delegation) 
 
+- [ ] Le consensus de Preuve d'enjeu de Mina (POS : Proof of stake) expliqué : [https://docs.minaprotocol.com/mina-protocol/proof-of-stake](https://docs.minaprotocol.com/mina-protocol/proof-of-stake)
+
 ## Site Web maintenu par la communauté
 - [ ] Partenaires Mina / répertoire des ressources et des zkApps : [https://zkok.io/](https://zkok.io/)   
 *Annuaire de l'écosystème Mina financé par zkIgnite*
