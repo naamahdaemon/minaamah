@@ -32,6 +32,8 @@ You will find the exciting Mina roadmap on official web site here :
 
 - [ ] Mina Foundation Delegation program : [https://www.minafoundation.com/#delegation](https://www.minafoundation.com/#delegation) 
 
+- [ ] Mina Proof of Stake consensus explained : [https://docs.minaprotocol.com/mina-protocol/proof-of-stake](https://docs.minaprotocol.com/mina-protocol/proof-of-stake)
+
 ## Community maintained Web site
 - [ ] Mina Partners / resources and zkApps directory : [https://zkok.io/](https://zkok.io/)   
 *zkIgnite funded Mina Ecosystem directory*

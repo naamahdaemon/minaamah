@@ -35,19 +35,27 @@ Lorsque vos minas sont stockées sur une plateforme, dans le meilleur des cas, c
 * Le quatrième inconvénient est qu'un wallet _non custodial_ ne permet pas l'utilisation de ce wallet sur des applications spécifiques de la blockchain (DApps ou **zkApps<sup>5</sup>** dans le contexte Mina).
 
 :::note[<sup>1</sup> Staking]
-Plus d'info sur le staking dans la section dédiée.
+Plus d'info sur le staking dans la section dédiée.  
+Cliquez ici : 🔗[Staking Guide](<./Staking guide.md> )
 :::
 
 :::note[<sup>2</sup> Validateur]
+Généralement, dans une blockchain basée sur du Proof of Stake, un validateur est un participant à la blockchain qui bloque un certain montant de token  en garantie.  
+Cette garantie sert de dépôt de sécurité et garantit que les validateurs ont un intérêt financier à maintenir l'intégrité du réseau.  
+Dans le contexte de Mina, il est important de noter que **les fonds mis en jeu pour le staking ne sont pas vérouillés**  
+Cela signifie que les fonds des délégateurs utilisés pour le staking peuvent être déplacés, re-délégués, un-délégués, transférés, échangés, vendus librement à tout moment.
 
 :::
 
 :::note[<sup>3</sup> Blocs]
-
+Les validateurs se relaient pour créer de nouveaux blocs et valider des transactions en fonction de la quantité de cryptomonnaie qu'ils ont mise en jeu (en propre ou via des délégations).  
+Plus un validateur a de cryptomonnaie en jeu (ou de token délégués) , plus il a de chances d'être choisi pour créer un nouveau bloc.
 :::
 
 :::note[<sup>4</sup> Coinbase]
-
+Les validateurs sont récompensés par des cryptomonnaies supplémentaires pour avoir créé et validé avec succès des blocs.  
+Le **coinbase** est une transaction spéciale dans un bloc nouvellement créé qui contient la récompense due au validateur ayant produit le nouveau bloc.
+Actuellement la base de la récompense pour la production d'un bloc sur mina est des 720 minas, auquel s'ajoute 720 minas supplémentaires (supercharged reward) si le slot de production a été gagné par une adresse **non lockée**.
 :::
 
 :::note[<sup>5</sup> zkApps]
