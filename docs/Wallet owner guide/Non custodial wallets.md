@@ -62,6 +62,58 @@ Currently, the base reward for producing a block on Mina is 720 Mina, to which a
 :::
 
 ## What are the "non custodial" mina wallets avaliable ?
+### Auro Wallet
+_official website_ : https://www.aurowallet.com/
+
+![Auro Wallet](../assets/auro.svg)
+
+**Description (from official website)**  
+Available as a browser extension and as a mobile App, Auro Wallet has multiple languages version, perfectly supports Mina Protocol and is completely open-source. With it, you can easily send, receive or stake your MINA, and view the transaction records anytime. 
+It also supports send zkApp transactions (once available on mainnet)  
+
+[//]: # (ALIGN)
 
 
+**My Opinion**  
 
+[//]: # (ALIGN)
+
+Auro Wallet strengths :  
+
+* Available on Android and iOS
+* Available as a browser extension (Chrome, Edge, Firefox)
+* Compatible pour Ledger hardware wallet
+* zkApps ready
+* Multi-account, wallets management
+* Easy inApp staking
+* Open source
+
+[//]: # (ALIGN)
+
+### Clorio Wallet
+_official website_ : https://clor.io/
+
+![Clorio Wallet](../assets/clorio.png)
+
+**Description (from official website)**  
+Clorio is an open-source wallet for Mina Protocol, built with Javascript.  
+With Clorio you can interact with the Mina blockchain by generating/using your private key or by using the Ledger hardware wallet.  
+Clorio wallet doesn't send your private key out of the client app, all the transactions are signed in local or on your Ledger device.  
+The nature of Clorio is self-custodian, this means that you are the only one responsible for safe-keeping your private key.  
+We have no possibility to recover your lost keys, block transactions and we don't take any responsibility over software malfunction.  
+You are essentially your own bank.  
+
+[//]: # (ALIGN)
+
+
+**My Opinion**  
+
+[//]: # (ALIGN)
+
+Clorio Wallet strengths :  
+
+* Available as a desktop application (windows, Mac OSX and Linux)
+* Compatible pour Ledger hardware wallet
+* Multi-account, wallets management
+* Easy inApp staking
+* Open source

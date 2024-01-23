@@ -19,6 +19,7 @@ Au lieu de cela, les adresses de vos wallet sur les échanges vous sont attribu�
 
 :::danger[CONCLUSION]
 Vos tokens stockés sur un échange **ne vous appartiennent pas** !!!
+                                   
 :::
 
 **Les avantages de conserver ses token sur une plateforme d'échange**  
@@ -63,5 +64,53 @@ Actuellement la base de la récompense pour la production d'un bloc sur mina est
 :::
 
 ## Quels sont les wallets "non-custodial" Mina disponibles ?
+### Auro Wallet
+_site officiel_ : https://www.aurowallet.com/
 
+![Auro Wallet](../assets/auro.svg)
 
+**Description (Site Web Officiel)**  
+Disponible sous la forme d'une extension de navigateur et d'une application mobile, Auro Wallet est disponible dans plusieurs langues, prend en charge parfaitement le protocole Mina et est entièrement open-source. Avec lui, vous pouvez facilement envoyer, recevoir ou staker vos MINA, et consulter votre historique de transactions à tout moment. 
+Il prend également en charge l'envoi de transactions zkApp (lorque les apps seront disponibles sur le mainnet (_ndlr_))  
+
+[//]: # (ALIGN)
+
+**Mon Avis**  
+
+[//]: # (ALIGN)
+
+Les avantages de Auro Wallet :
+* Disponible sous la forme d'une application Android ou iOS
+* Disponible sous la forme d'une extension de navigateur (Chrome, Edge, Firefox)
+* Compatible Hardware Wallet Ledger
+* Prêt pour les zkApps
+* Gestion de plusieurs Wallet
+* Staking inApp
+* Open Source  
+
+[//]: # (ALIGN)
+
+### Clorio Wallet
+_site officiel_ : https://clor.io/
+
+![Clorio Wallet](../assets/clorio.png)
+
+**Description (Site Web Officiel)**  
+Clorio est un wallet open source pour le protocole Mina, écrit en JavaScript.  
+Avec Clorio, vous pouvez interagir avec la blockchain Mina en générant/utilisant votre clé privée ou en utilisant le wallet matériel Ledger.  
+Le portefeuille Clorio ne transmet pas votre clé privée en dehors de l'application client, toutes les transactions sont signées localement ou sur votre appareil Ledger.  
+Clorio est un wallet non-custodial, ce qui signifie que vous êtes le seul responsable de la conservation sécurisée de votre clé privée.  
+Vous êtes essentiellement votre propre banque.  
+[//]: # (ALIGN)
+
+**Mon Avis**  
+
+[//]: # (ALIGN)
+
+Les avantages de Clorio :  
+
+* Disponible en tant qu'application de bureau (windows, Mac OSX and Linux)
+* Compatible pour Ledger hardware wallet
+* Multi-account, wallets management
+* Easy inApp staking
+* Open source
