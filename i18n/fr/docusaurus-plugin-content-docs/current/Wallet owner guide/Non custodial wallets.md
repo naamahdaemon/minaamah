@@ -101,6 +101,7 @@ Avec Clorio, vous pouvez interagir avec la blockchain Mina en générant/utilisa
 Le portefeuille Clorio ne transmet pas votre clé privée en dehors de l'application client, toutes les transactions sont signées localement ou sur votre appareil Ledger.  
 Clorio est un wallet non-custodial, ce qui signifie que vous êtes le seul responsable de la conservation sécurisée de votre clé privée.  
 Vous êtes essentiellement votre propre banque.  
+
 [//]: # (ALIGN)
 
 **Mon Avis**  
