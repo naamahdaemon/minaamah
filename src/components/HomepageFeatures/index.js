@@ -14,7 +14,7 @@ const FeatureList = [
       <>
         <Translate>This web site is about Mina Protocol</Translate><br/>
 		<br/>
-		<b>🚪<Link to="/docs/intro"> ENTER </Link>🚪</b>
+		<b><Link to="/docs/intro"> ENTER </Link></b>
 		<br/><br/>
 		🚧Under Construction🚧
       </>
