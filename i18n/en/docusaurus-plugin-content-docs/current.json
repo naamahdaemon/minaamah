@@ -10,5 +10,9 @@
   "sidebar.mainSidebar.category.Wallet owner guide": {
     "message": "Wallet owner guide",
     "description": "The label for category Wallet owner guide in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.Node operator guide": {
+    "message": "Node operator guide",
+    "description": "The label for category Node operator guide in sidebar mainSidebar"
   }
 }
