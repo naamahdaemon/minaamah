@@ -12,7 +12,11 @@
     "description": "The label for category Wallet owner guide in sidebar mainSidebar"
   },
   "sidebar.mainSidebar.category.Node operator guide": {
-    "message": "Node operator guide",
+    "message": "Guide du validateur",
     "description": "The label for category Node operator guide in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.Monitoring": {
+    "message": "Monitoring",
+    "description": "The label for category Monitoring in sidebar mainSidebar"
   }
 }

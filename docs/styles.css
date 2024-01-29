@@ -12,6 +12,10 @@ body {
 	color: #aaa;
 }
 
+table {
+  width: 100%;
+}
+
 .simple-container {
 	max-width: 675px;
 	margin: 0 auto;
