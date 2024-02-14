@@ -31,7 +31,7 @@ Open your telegram app on either your mobile phone or your computer
 BotFather is a bot/special user created by Telegram that allows you to create and manage your own bots.  
 To connect to BotFather, search for "@BotFather" in the Telegram app and click on the result to start a conversation.
 
-![BotFather](assets/botfather.png)
+![BotFather](Assets/botfather.png)
 
 ### Step 3. Select the New Bot option
 In the conversation with BotFather, select the "New Bot" option to start creating your new bot or simple type `/newbot` in the message panel.  
@@ -47,7 +47,7 @@ Choose a username that is easy to remember and related to your bot's purpose.
 ### Step 5. Test your bot token
 Finally, your bot is created !
 
-![botname](assets/createbot.png)  
+![botname](Assets/createbot.png)  
 
 After obtaining your token, try pasting this URL into your browser:
 
@@ -74,7 +74,7 @@ You'll get the information for your newly created bot :
 Last step consists of initiating a private chat with your bot so we can get a `chatId` we will adress to send message to.  
 Just open a chat with your bot and click on `Start`   
 
-| ![Chat1](assets/chat1.png) | ![Chat2](assets/chat2.png) |
+| ![Chat1](Assets/chat1.png) | ![Chat2](Assets/chat2.png) |
 |  -  |  -  |
 
 Then finally head over  
@@ -173,7 +173,7 @@ You will get the following response from telegram :
 
 And in your telegram private chat with your bot  :  
 
-![message](assets/message.png)
+![message](Assets/message.png)
 
 ...**So .... Cool !!!**
 :::
