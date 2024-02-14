@@ -18,5 +18,9 @@
   "sidebar.mainSidebar.category.Monitoring": {
     "message": "Monitoring",
     "description": "The label for category Monitoring in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.Telegram_bot": {
+    "message": "Bot Telegram",
+    "description": "The label for category Telegram_bot in sidebar mainSidebar"
   }
 }
