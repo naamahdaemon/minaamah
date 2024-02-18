@@ -22,5 +22,9 @@
   "sidebar.mainSidebar.category.Telegram_bot": {
     "message": "Telegram Bot",
     "description": "The label for category Telegram_bot in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.Running_Docker_Berkeley_Node": {
+    "message": "Running a Docker Berkeley Node",
+    "description": "The label for category Running_Docker_Berkeley_Node in sidebar mainSidebar"
   }
 }
