@@ -52,7 +52,7 @@ const formattedLastDayOfCurrentMonth = lastDayOfCurrentMonth.toISOString().split
   const { siteConfig } = useDocusaurusContext()
 
 
-  const serverUrl = 'http://akirion.com' //siteConfig.themeConfig.serverUrl
+  const serverUrl = 'https://akirion.com' //siteConfig.themeConfig.serverUrl
 
   const fetchAPI = async () => {
     const fullAPIUrl = isRelative

@@ -1,12 +1,12 @@
 ---
-title: System Status
-sidebar_label: System Status
+title: Node Status
+sidebar_label: Node Status
 hide_table_of_contents: true
 ---
 
-# System Health Check
+# Node Status
 
 import NodeStatus from "@site/src/components/NodeStatus"
 
-<NodeStatus apiUrl="/health" isRelative="true">
+<NodeStatus apiUrl="node_info.json" isRelative="true">
 </NodeStatus>
