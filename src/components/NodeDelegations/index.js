@@ -78,7 +78,7 @@ useEffect(() => {
     tableData = tableData.sort((a, b) => {
       // Sort by epoch
       if (a.epoch !== b.epoch) {
-        return a.epoch - b.epoch;
+        return b.epoch - a.epoch;
       }
       // If epochs are the same, sort by balance in descending order
       return b.balance - a.balance;
