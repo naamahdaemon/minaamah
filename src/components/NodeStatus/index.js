@@ -256,7 +256,7 @@ const chartOptions = {
 
   return (
     <div>	
-		<h2>Blocks by B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</h2>
+		<h2>B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</h2>
 		<div>
 		  <div style={{ display: 'inline-block', marginRight: '10px' }}>
 			<label htmlFor="startDate">Start Date: </label>
@@ -284,9 +284,7 @@ const chartOptions = {
 		  <thead>
 			<tr>
 			  <th>Block Height</th>
-			  <th>Creator</th>
 			  <th>Date Time</th>
-			  <th>Received Time</th>
 			  <th>Transaction Fees</th>
 			  <th>Snark Fees</th>
 			</tr>
@@ -295,9 +293,7 @@ const chartOptions = {
 			{data.data.blocks.map((block, index) => (
 			  <tr key={index}>
 				<td>{block.blockHeight}</td>
-				<td>{block.creator}</td>
 				<td>{block.dateTime}</td>
-				<td>{block.receivedTime}</td>
 				<td>{block.txFees/1000000000}</td>
 				<td>{block.snarkFees/1000000000}</td>
 			  </tr>
