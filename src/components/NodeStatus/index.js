@@ -289,16 +289,22 @@ const chartOptions = {
 			  <th>Snark Fees</th>
 			</tr>
 		  </thead>
-		  <tbody>
-			{data.data.blocks.map((block, index) => (
+		<tbody>
+		  {data.data.blocks
+			.filter((block) => {
+			  // Parse the block date to compare with the startDate and endDate
+			  const blockDate = new Date(block.dateTime);
+			  return blockDate.toISOString().split('T')[0] >= startDate && blockDate.toISOString().split('T')[0] <= endDate;
+			})
+			.map((block, index) => (
 			  <tr key={index}>
 				<td>{block.blockHeight}</td>
 				<td>{block.dateTime}</td>
-				<td>{block.txFees/1000000000}</td>
-				<td>{block.snarkFees/1000000000}</td>
+				<td>{block.txFees / 1000000000}</td>
+				<td>{block.snarkFees / 1000000000}</td>
 			  </tr>
 			))}
-		  </tbody>
+		</tbody>
 		</table>
     </div>
   );  
