@@ -1,6 +1,5 @@
 ---
 title: Block Production
-sidebar_position: 1
 sidebar_label: Block Production
 hide_table_of_contents: true
 ---
