@@ -26,5 +26,17 @@
   "sidebar.mainSidebar.category.Running_Docker_Berkeley_Node": {
     "message": "Berkeley Node avec Docker",
     "description": "The label for category Running_Docker_Berkeley_Node in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.Node Statistics": {
+    "message": "Node Statistics",
+    "description": "The label for category Node Statistics in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.01b-Node Statistics": {
+    "message": "01b-Node Statistics",
+    "description": "The label for category 01b-Node Statistics in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.00b-Node Statistics": {
+    "message": "00b-Node Statistics",
+    "description": "The label for category 00b-Node Statistics in sidebar mainSidebar"
   }
 }
