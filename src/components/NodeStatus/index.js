@@ -285,6 +285,7 @@ const chartOptions = {
 			<tr>
 			  <th>Block Height</th>
 			  <th>Date Time</th>
+			  <th>Coinbase</th>
 			  <th>Transaction Fees</th>
 			  <th>Snark Fees</th>
 			</tr>
@@ -300,6 +301,7 @@ const chartOptions = {
 			  <tr key={index}>
 				<td>{block.blockHeight}</td>
 				<td>{block.dateTime}</td>
+				<td>{block.transactions.coinbase/1000000000}</td>
 				<td>{block.txFees / 1000000000}</td>
 				<td>{block.snarkFees / 1000000000}</td>
 			  </tr>
