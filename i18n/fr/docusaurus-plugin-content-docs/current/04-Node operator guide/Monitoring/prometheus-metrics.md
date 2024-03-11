@@ -4,30 +4,31 @@ sidebar_label: Prometheus Metrics
 sidebar_class_name: green
 ---
 
-# What is prometheus ?
-Prometheus is an open-source monitoring and tracking system that allows for collecting, storing, and querying metrics related to a computer system.  
+# Qu'est-ce que Prometheus ?  
+Prometheus est un système de surveillance et de suivi open source qui permet de collecter, stocker et consulter des métriques relatives à un système informatique.  
 
-Prometheus allows, for example, to:  
-* Retrieve CPU usage
-* Retrieve memory usage
-* Retrieve disk usage
-* Retrieve metrics from databases
-* Retrieve metrics from custom indicators
+Prometheus permet par exemple de :
+* Récupérer l'utilisation CPU
+* Récupérer l'utilisatation de la mémoire
+* Récupérer l'utilisation des disques
+* Récupérer des métriques issues de bases de données
+* Récupérer des métriques issues d'incateurs personnalisés
 * ...
 
-and then make these data available to visualization tools like Grafana, enabling the user-friendly and efficient presentation of this data history.
+pour ensuite mettre ces données à disposition d'outils de visualiation comme Grafana permettant de restituer de manière conviviale et efficace l'historique de ces données.
 
-## Mina exposed metrics
 
-## Metrics Table
-The following table contains all the metrics exposed by the Mina Node.
+## Métriques Mina exposées
+
+## Tableau des métriques
+Le tableau ci-dessous contient l'ensemble des métriques exposées par le serveur Mina.
 
 :::info
-For offline reading, a file containing all metrics is available as a Google Sheets here to download :  
+Le fichier contenant toutes les métriques est aussi disponible ici dans Google Sheets :  
 
 [Mina Metrics Web Version](https://docs.google.com/spreadsheets/d/e/2PACX-1vSsepZjMPuRa-nNneIEiSumbQw00ZFb9TV8GfGG84HNXtRD2K1Sdz-VKRXqTtktt62V3L0uDYAxBRc0/pubhtml?gid=742518671&single=true)  
 
-[Mina Metrics Google Sheet (read only)](https://docs.google.com/spreadsheets/d/1Dw43gEzv2u8p3vOC6ujheIqt-xkCBCulD9_9R2BZXNY/edit?usp=sharing)
+[Mina Metrics Google Sheet (lecture seule)](https://docs.google.com/spreadsheets/d/1Dw43gEzv2u8p3vOC6ujheIqt-xkCBCulD9_9R2BZXNY/edit?usp=sharing)
 :::
 
 | METRIC | DESCRIPTION | TYPE | EXEMPLE | ADDITIONAL INFORMATION |
