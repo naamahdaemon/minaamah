@@ -38,5 +38,13 @@
   "sidebar.mainSidebar.category.00b-Node Statistics": {
     "message": "00b-Node Statistics",
     "description": "The label for category 00b-Node Statistics in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.My Block Producer Statistics": {
+    "message": "My Block Producer Statistics",
+    "description": "The label for category My Block Producer Statistics in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.Block Producer Statistics": {
+    "message": "Block Producer Statistics",
+    "description": "The label for category Block Producer Statistics in sidebar mainSidebar"
   }
 }
