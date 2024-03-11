@@ -1,33 +1,33 @@
 ---
 sidebar_position: 9
-sidebar_label: Monitoring with Grafana
+sidebar_label: Monitoring avec Grafana
 sidebar_class_name: green
 ---
 import grafana from '../../assets/grafana_dashboard.png';
 
-# Monitoring with Grafana  
+# Monitoring avec Grafana  
 | <img src={grafana} alt="grafana" style={{width: 2000}} /> | 
 | -- |
-| A grafana dashboard example |
+| Un exemple de dashboard Grafana | 
 
-## Pre-requisites - what will you need ?
+## Pre-requis - de quoi avez-vous besoin ?
 
-## What is Grafana ?
+## Qu'est-ce que Grafana ?
 
-## What is Prometheus ?
+## Qu'est ce que Prometheus ?
 
-## What is Loki ?
+## Qu'est-ce que Loki ?
 
-## What is Node Exporter ?
-
-## Installing Grafana
+## Qu'est-ce que Node Exporter ?
 
 * * *
-## Setting up Grafana
+## Installer Grafana
+
+## Configurer Grafana
 
 ## Architecture
-### Why and how to centralize monitoring of distant hosted nodes securely ?
+### Pourquoi et comment Centraliser le monitoring de ses noeuds distants en toute sécurité ?
 
-### Pre-requisites
+### Pré-requis
 
-### Principles
+### Principes

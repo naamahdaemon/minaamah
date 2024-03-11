@@ -1,58 +1,58 @@
 ---
 sidebar_position: 2
-sidebar_label: Useful links
+sidebar_label: Liens utiles
 sidebar_class_name: green
 ---
 import roadmap from '../assets/roadmap.png';
 
-# Useful links
-Here is a list of usefull links, tools related to mina protocol.
-(There is an equivalent list at https://awesome.mina.tools/, but it is no longer updated.)
+# Liens utiles
+Voici une liste de liens utiles et d'outils liés au protocole Mina.
+(Il existe une liste équivalente sur https://awesome.mina.tools/, mais elle n'est plus mise à jour.)
 
-## Mina Roadmap
-You will find the exciting Mina roadmap on official web site here :
+## Feuille de route Mina
+Vous trouverez la passionnante feuille de route Mina sur le site web officiel ici :
 <a href="https://minaprotocol.com/mina-roadmap" target="\_blank"><img src={roadmap} style={{width: 300}} /></a>
 
-## Mina Official links
-- [ ] Mina official website : [https://minaprotocol.com](https://minaprotocol.com)   
+## Liens officiels de Mina
+- [ ] Site web officiel de Mina : [https://minaprotocol.com](https://minaprotocol.com)   
 
-- [ ] Mina discord server : [Mina discord server](https://discord.com/invite/Vexf4ED)   
+- [ ] Serveur Discord de Mina : [Serveur Discord Mina](https://discord.com/invite/Vexf4ED)   
 
-- [ ] Mina official documentation : [https://docs.minaprotocol.com/en](https://docs.minaprotocol.com/en)   
-*You'll find here how to run a node and many other information.*  
+- [ ] Documentation officielle de Mina : [https://docs.minaprotocol.com/fr](https://docs.minaprotocol.com/fr)   
+*Vous y trouverez comment exécuter un nœud et de nombreuses autres informations.*  
 
-- [ ] Mina Github : [https://github.com/MinaProtocol](https://github.com/MinaProtocol)   
+- [ ] Github de Mina : [https://github.com/MinaProtocol](https://github.com/MinaProtocol)   
 
-- [ ] Mina forums : [https://forums.minaprotocol.com/](https://forums.minaprotocol.com/)   
+- [ ] Forums de Mina : [https://forums.minaprotocol.com/](https://forums.minaprotocol.com/)   
 
-- [ ] Mina Twitter : [https://twitter.com/minaprotocol](https://twitter.com/minaprotocol)   
+- [ ] Twitter de Mina : [https://twitter.com/minaprotocol](https://twitter.com/minaprotocol)   
 
-- [ ] Mina Telegram : [https://t.me/minaprotocol](https://t.me/minaprotocol)   
-*Additional non-official localized telegram channel are provided by the community*  
+- [ ] Telegram de Mina : [https://t.me/minaprotocol](https://t.me/minaprotocol)   
+*Des canaux Telegram additionnels non officiels localisés sont fournis par la communauté*  
 
-- [ ] Mina Foundation Delegation program : [https://www.minafoundation.com/#delegation](https://www.minafoundation.com/#delegation) 
+- [ ] Programme de délégation de la Fondation Mina : [https://www.minafoundation.com/#delegation](https://www.minafoundation.com/#delegation) 
 
-- [ ] Mina Proof of Stake consensus explained : [https://docs.minaprotocol.com/mina-protocol/proof-of-stake](https://docs.minaprotocol.com/mina-protocol/proof-of-stake)
+- [ ] Le consensus de Preuve d'enjeu de Mina (POS : Proof of stake) expliqué : [https://docs.minaprotocol.com/mina-protocol/proof-of-stake](https://docs.minaprotocol.com/mina-protocol/proof-of-stake)
 
-## Community maintained Web site
-- [ ] Mina Partners / resources and zkApps directory : [https://zkok.io/](https://zkok.io/)   
-*zkIgnite funded Mina Ecosystem directory*
+## Site Web maintenu par la communauté
+- [ ] Partenaires Mina / répertoire des ressources et des zkApps : [https://zkok.io/](https://zkok.io/)   
+*Annuaire de l'écosystème Mina financé par zkIgnite*
 
-## Wallets
-Although there is no -official- mina wallet (you still can use the command line if your a true warrior 😁), there are a few community provided wallets.
-Those wallets have undergone an independent security audit (but do not believe me, do your own research !). Nevertheless, they are widely used by the community. There may be other wallets out there but as I don't know them, I won't list them here (again, do your own research)
+## Portefeuilles
+Bien qu'il n'y ait pas de portefeuille mina officiel (vous pouvez toujours utiliser la ligne de commande si vous êtes un vrai guerrier 😁), quelques portefeuilles sont fournis par la communauté.
+Ces portefeuilles ont fait l'objet d'un audit de sécurité indépendant (mais ne me croyez pas, faites votre propre recherche !). Néanmoins, ils sont largement utilisés par la communauté. Il peut y avoir d'autres portefeuilles là-bas, mais comme je ne les connais pas, je ne les répertorie pas ici (encore une fois, faites votre propre recherche)
 
-- [ ] AURO wallet : https://www.aurowallet.com/  
-_Maybe one of the most popular wallet. Auro is available as and Android or iOS application as well as a browser extension. It supports ledger hardware wallet too._
+- [ ] Portefeuille AURO : https://www.aurowallet.com/  
+*Peut-être l'un des portefeuilles les plus populaires. Auro est disponible en tant qu'application Android ou iOS ainsi qu'en tant qu'extension de navigateur. Il prend également en charge le portefeuille matériel Ledger.*
 
-- [ ] Clorio wallet : https://clor.io/  
-_Another popular wallet available as a desktop application or a browser extension. Clorio is not available on mobile (from my knowledge)._
+- [ ] Portefeuille Clorio : https://clor.io/  
+*Un autre portefeuille populaire disponible en tant qu'application de bureau ou extension de navigateur. Clorio n'est pas disponible sur mobile (à ma connaissance).*
 
-## Explorers
-- [ ] Mina Explorer : https://minaexplorer.com/
+## Explorateurs
+- [ ] Explorateur Mina : https://minaexplorer.com/
 - [ ] Minataur : https://minataur.net
 - [ ] Minascan : https://minascan.io
 
 ## Bots
 - [ ] Mina notifier : https://t.me/MinaNotifierBot  
-_A Telegram bot providing alerts on whales transaction, wallet monitoring, .._
+*Un bot Telegram fournissant des alertes sur les transactions des baleines, la surveillance des portefeuilles, ..*
