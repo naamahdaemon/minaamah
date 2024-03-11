@@ -1,6 +1,5 @@
 ---
 title: Delegations
-sidebar_position: 1
 sidebar_label: Delegations
 hide_table_of_contents: true
 ---
