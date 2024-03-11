@@ -1,100 +1,100 @@
 ---
 sidebar_position: 8
-sidebar_label: How to Run a node
+sidebar_label: Opérer un noeud de réseau Mina
 sidebar_class_name: green
 ---
-# How to run a node  
-You can find the official documentation on how to install, configure and run a node here :  
+# Opérer un noeud de réseau Mina
+Le lien vers la documentation officielle pour installer, configurer et faire tourner un noeud de validation se trouve ici :  
 
 https://docs.minaprotocol.com/node-operators/getting-started  
 
-The official documentation is complete and well explained. 
+La documentation officiel est très bien écrite, didactique et très claire.
 
-:::note
-This page do not aim at replicating this documentation so I highly recommand you follow the official documentation.  
-You will find here some additional information regarding some question I had initially when configuring and running a node the first time.  
-As well as recurent questions asked on the official Mina discord.
+:::info
+Cette page n'a pas pour vocation de reproduire cette documentation, je vous recommande fortement de suivre la documentation officielle.  
+Vous trouverez ici des informations complémentaires concernant certaines questions que je me suis posées lors de la configuration initiale et de l'exécution d'un nœud pour la première fois.  
+Anisi que des questions très souvent posées sur le discord officiel de Mina.
 :::
 
-## Prerequisites
-Official documentation states the following hardware and software requirements to run a node :  
+## Pré-requis
+La documentation officielle précise les exigences matérielles et logicielles suivantes pour exécuter un nœud :
 
-> **Software**: Supported environments include macOS, Linux (Debian 10, 11 and Ubuntu 20.04 LTS), and any host machine with Docker. 
+> **Logiciel** : Les environnements pris en charge incluent macOS, Linux (Debian 10, 11 et Ubuntu 20.04 LTS), et toute machine hôte avec Docker.  
 > 
-> **Processor**: Only AMD64 CPU architecture is supported.  
+> **Processeur** : Seule l'architecture CPU AMD64 est prise en charge.  
 >  
-> **Hardware**: Sending and receiving MINA does not require any special hardware.  
+> **Matériel** : L'envoi et la réception de MINA ne nécessitent aucun matériel spécial.  
 >  
-> Running a block producer on the Mina network requires at least:  
+> Pour exécuter un producteur de blocs sur le réseau Mina, vous aurez besoin d'au moins :  
 > 
->* 8-core processor  
->* 16 GB of RAM  
+>- Processeur 8 cœurs  
+>- 16 Go de RAM  
 >  
-> :::note[Executing one or more Snarks worker]
-> More RAM is required to run a SNARK worker node at the same time as a block producer.  
+> :::note[Exécution d'un ou plusieurs Snarks Worker]  
+> Une quantité supplémentaire de RAM est nécessaire pour exécuter un ou plusieurs SNARK workers en même temps qu'un producteur de blocs.  
 > :::
 > 
-> **Network**: At least 1 Mbps connection  
+> **Réseau** : Au moins une connexion de 1 Mbps.  
 >  
-> **Officially Tested VM Instances :**  
+> **Instances VM officiellement testées :**  
 > 
-> O(1) Labs has tested running nodes on several cloud providers. We recommend the following instances for basic node operator needs.  
-> Custom requirements and different cost constraints might require a different instance type.
+> O(1) Labs a testé l'exécution de nœuds sur plusieurs fournisseurs de cloud et recommande les instances suivantes pour les besoins de base des opérateurs de nœuds.  
+> Des exigences personnalisées et des contraintes de coût différentes peuvent nécessiter un type d'instance différent.  
 > 
->* AWS c5.2xlarge  
->* GCP c2-standard-8  
->* Azure Standard_F8s_v2  
->* Digital Ocean c-8-16gib  
+>- AWS c5.2xlarge  
+>- GCP c2-standard-8  
+>- Azure Standard_F8s_v2  
+>- Digital Ocean c-8-16gib  
 
-:::info[Additional Note on Prerequisites]  
-Regarding the official recommendations, I would add some remarks below.
+:::info[Remarque complémentaire sur les pré-requis]
+Concernant les recommandations officielles, j'ajouterais un certain nombre de remarques ci-dessous.
 :::
 
-* Regarding supported hardware  
-Note that only Intel/AMD 64-bit processors are supported.  
-Don't try to run Mina on a Raspberry Pi, **it won't work !!**.
+* Concernant le matériel supporté  
+A noter que seul les processeurs Intel/AMD 64 sont supportés.  
+Inutile d'essayer de faire tourner Mina sur un Raspberry Pi !!  
 
-* Regarding supported operating systems  
-In addition to the official list, it's worth mentioning that a Linux distribution (e.g., Ubuntu 20.04) installed via WSL2 (Windows Linux Subsystem) allows you to run a validation node and all associated features (Snark Worker, etc.) without any issues as easily as on a native Linux machine.  
-It is also possible to use Docker™ on Windows to install and run Mina.
+* Concernant les systèmes d'exploitation supportés  
+A la liste officielle, il est bon de rajouter qu'une distribution linux (ex: Ubuntu 20.04) installée via WSL2 (Windows Linux Sub-System) permet de faire tourner un noeud de validation ainsi que l'ensemble des fonctionnalités associées (Snark Worker, ..) sans aucun souci aussi facilement que sur une machine Linux nativement.  
+Il est bien entendu aussi possible d'utiliser Docker™ sur Windows pour installer Mina.  
 
-* Regarding machine power / required memory quantity  
-While it is possible to run Mina, according to the official recommendations, on a machine with an 8-core processor and 16GB of RAM, from experience, I **strongly recommend** a machine with a 16-core CPU and 32GB of RAM.
+* Concernant la puissance de la machine / quantité de mémoire requises  
+S'il est possible de faire tourner Mina, d'après les recommandations officielles sur une machine équipée d'un processeur 8 coeurs et de 16Go de RAM. Par expérience, je recommande **très fortement** une machine équipée d'un CPU 16 coeurs et de 32Go de RAM.  
 
 :::note
-I have **never** been able to produce and broadcast a block on time with a machine equipped with an 8-core processor and 16GB of RAM!!
+Je ne suis **jamais** parvenu à produire et broadcaster un bloc dans les temps avec une machine équipée d'un processeur 8 coeurs et de 16Go de RAM !!
 :::
 
 :::note
-Mina does not (yet) leverage the power of graphics cards for validation.  
-Therefore, being a gamer is unnecessary to run a validation node.  
-Only the CPU power is utilized.  
+Mina n'exploite pas (encore) la puissance des cartes graphiques pour la validation.  
+Inutile donc d'être un Gamer pour faire tourner un noeud de validation.  
+Seule la puissance du CPU est utilisée.  
 :::
 
-:::note[Processor Generation]
-Furthermore, the CPU generation also plays a significant role. An older processor, with the same number of cores/threads, will be much less powerful than a recent processor.
+:::note[génération de processeurs]
+D'autre part la génération du CPU revêt aussi une importance significative. Un processeur datant de plusieurs années, à nombre de coeurs/threads égaux sera beaucoup moins puissant qu'un processeur récent.  
 
-**I recommend a Ryzen 7 7700 which will provide more than sufficient power for block production and Snarks generation.**
+**Je recommande un Ryzen 7 7700 qui vous assurera une puissance plus que suffisante pour la production de blocs et de Snarks**
 :::
 
-* Regarding cloud providers / VPS / VMs and dedicated servers    
-In addition to the official list provided by Mina, which includes major cloud providers (AWS, Azure, GCP, Digital Ocean), it is possible to find other providers offering dedicated servers and/or VMs capable of running a validation node.  
-However, it should be noted that the usage policy of these providers may prohibit the use of machines for any blockchain-related purposes, particularly the implementation of a validation node, whether in PoW or PoS.  
+* Concernant les fournisseurs cloud / VPS / VM et serveurs dédiés
+En plus de la liste officielle fournie par Mina qui comprend les acteurs majeurs du Cloud (AWS, Azure, GCP, Digital Ocean), il est possible de trouver d'autres fournisseurs proposant des serveurs dédiés et/ou VM permettant de faire tourner un noeud de validation.  
+A noter toutefois que la politique d'utilisation de ces fournisseurs peut interdire l'utilisation des machines pour tout usage concernant la blockchain et en particulier la mise en oeuvre d'un noeud de validation qu'il soit en PoW ou en PoS.  
 
-It is also worth noting that the operating cost of a rented machine or dedicated VM in a cloud environment can be extremely prohibitive and ultimately not profitable.  
-This cost can range from tens of Euros per month (€50-90) for a dedicated server to several hundred Euros per month (€300-800) for the most expensive cloud services (GCP, Azure, AWS, etc.).  
+Il est bon de préciser aussi que le coût de fonctionnement d'une machine louée ou d'une VM dédiée dans un environnement cloud peut être extrêmement prohibitif et au final ne pas s'avérer rentable.
+Ce coût peut aller de plusieurs dizaine d'Euros par mois (50-90) pour un serveur dédié à plusieurs centaines d'Euros par mois (300-800) pour les services cloud les plus chers (GCP, Azure, AWS, ..)  
 
 :::danger
-It is therefore very important to assess the profitability of the project before committing to recurring costs that can be very high.  
-Especially since it is often desirable/necessary to ensure redundancy at the machine level (between 2 and 3 servers), which multiplies costs, to ensure continuous blockchain operation.  
+Il est donc très important de mesurer la rentabilité du projet avant de s'engager dans des frais récurrents qui peuvent s'avérer très élevés.  
+D'autant qu'il est souvent souhaitable/indispensable d'assurer une redondance au niveau des machines (entre 2 et 3 serveurs) -ce qui multiplie les coûts- afin d'assurer le fonctionnement de la blockchain en continue.  
 :::
 
 :::tip[Alternative]
-The best alternative in terms of cost, service, blockchain philosophy, and decentralization is of course running a local validation node, not hosted by a third-party provider.  
-For this, any sufficiently powerful computer can suffice provided that this machine can remain connected to the network 24/7.  
-There are sufficiently powerful mini-PCs (Ryzen 7, Core i7/i9) that are very affordable and can run a local validation node from home.  
-Example: the Geekom A5 equipped with a Ryzen 7 5800H and 32GB of RAM (between €400 and €450)  
+La meilleure alternative en terme de coût, service, philosophie de la blockchain et décentralisation reste bien entendu le fonctionnement d'un noeud de validation local, non déporté chez un fournisseur tiers.  
+Pour cela, n'importe quel ordinateur suffisament puissant peut faire l'affaire à la condition que cette machine puisse rester connectée au réseau 24/7.  
+Il existe des mini-PC suffisament puissant (Ryzen 7, Core i7/i9) très abordable permettant de faire tourner un noeud de validation local de chez soi.  
+Exemple : le Geekm A5 équipé d'u Ryzen 7 5800H et 32Go de RAM (entre 400€ et 450€)  
 | ![Geekom A5](../assets/geekom_a5.png) | https://www.geekom.fr/geekom-a5-mini-pc |
 | -- | -- |
-:::
 
+:::
