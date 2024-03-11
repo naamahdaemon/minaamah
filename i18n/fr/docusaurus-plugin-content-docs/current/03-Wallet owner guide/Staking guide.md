@@ -1,5 +1,5 @@
 ---
 sidebar_position: 7
-sidebar_label: Staking guide
+sidebar_label: Guide du staking
 sidebar_class_name: green
 ---

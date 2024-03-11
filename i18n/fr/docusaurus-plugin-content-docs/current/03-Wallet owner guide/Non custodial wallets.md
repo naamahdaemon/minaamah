@@ -1,118 +1,116 @@
 ---
 sidebar_position: 5
-sidebar_label: Non custodial wallets
+sidebar_label: Wallets "non custodial"
 sidebar_class_name: green
 ---
 [//]: # (Non custodial wallets)
-# Non custodial wallets
-## What is a non-custodial wallet ?
-By definition, a "non-custodial" wallet is in contrast to a "custodial" wallet and represents a wallet for which you **own the private key** and have sole control over. 
+# Wallets "Non custodial"
+## Qu'est-ce qu'un wallet non-custodial ?
+Par définition, un wallet "non custodial" s'oppose à un wallet "custodial" et représente un wallet dont vous **possédez la clé privée** et sur lequel vous et vous seul avez la maitrise.
 
-Buying Mina requires connecting to a trading platform that allows exchanging a currency (Euro, USD, other crypto, etc.) for Minas.
+L'achat de mina nécessite de se connecter à une plateforme d'échange qui permet d'échanger une devise (Euro, USD, autre crypto, ..) contre des minas.
 
-Once you have acquired Minas, they are accessible through the trading platform, and you can potentially engage in trades (short, long) with your tokens on the exchange pairs available on the platform.
+Une fois les minas en votre possession, ils sont disponibles via la plateforme d'échange et vous pouvez éventuellement procéder à des trades (short, long) sur vos token sur les paires d'échanges disponibles sur la plateforme.
 
 :::info
-There are virtually no exchange platforms today that allow you to access your private key, which is from the blockchain's perspective the sole proof of ownership of your tokens. 
-Instead, the wallet addresses on exchanges are assigned by the platform, and most of the time, you only have access to the public key of the wallet (which allows you to deposit funds) without ever being granted access to the private key (which enables you to operate, withdraw funds, control, etc.) of your wallet.
+Il n'existe quasiment aucune plateforme d'échange aujourd'hui qui vous permette d'accéder à votre clé privée qui est _du point de vue de la blockchain_ la seule preuve que vos token vous appartiennent.  
+Au lieu de cela, les adresses de vos wallet sur les échanges vous sont attribués par la plateforme qui ne vous donne accès la plupart du temps qu'à la clé publique du wallet (qui vous permet de déposer des fonds) sans jamais vous donner accès à la clé privée (qui vous permet d'opérer, de sortir des fonds, de contrôler, ....) votre wallet.
 :::
 
 :::danger[CONCLUSION]
-Your tokens stored on an exchange **do not belong to you** !!!  
-!! Not your key, not your tokens !!
+Vos tokens stockés sur un échange **ne vous appartiennent pas** !!!
+                                   
 :::
 
-**Advantages of Keeping Your Tokens on an Exchange Platform**  
-The advantage of storing on an exchange platform (and there is only one!) is the ability to quickly trade (=exchange/buy/sell) your tokens.  
+**Les avantages de conserver ses token sur une plateforme d'échange**  
+L'avantage de stocker sur une plateforme d'échange (et il n'y en a qu'un !) est de pouvoir trader (=échanger / acheter / vendre) rapidement vos token.
 
-**Disadvantages of Keeping Your Tokens on an Exchange Platform**  
-There are numerous disadvantages to leaving your tokens on a centralized platform:  
+**Les inconvénients de conserver ses tokens sur une plateforme d'échange**  
+Il y a de nombreux désavantages à laisser ses tokens sur une plateforme centralisée :
 
-* The first is that it is in complete contradiction with the very principle of blockchain, which is to be decentralized.  
-* The second disadvantage is that, theoretically, you have no control over your funds. If the platform goes out of business, you lose 100% of your investments!  
-* The third disadvantage concerns staking. Staking in the context of a Proof of Stake (PoS) blockchain like Mina involves delegating<sup>1</sup> your tokens to a trusted validator<sup>2</sup> to give them additional chances to produce blocks<sup>3</sup> that generate rewards (coinbase<sup>4</sup>).  
-These rewards are then distributed to the delegators proportionally to the number of delegated mina minus the commission taken by the validator (typically between 0% and 10%, with most applying a 5% rate).  
-When your Minas are stored on a platform, at best, it offers its own staking conditions at high commission rates. However, most platforms simply do not offer staking, depriving you of a significant source of passive income (between 12% and 24% APR).  
-* The fourth disadvantage is that a non-custodial wallet does not allow the use of the wallet on specific applications of the blockchain (DApps or zkApps<sup>5</sup> in the context of Mina).
+* Le premier est que c'est en totale contradiction avec le principe même de la blockchain qui est d'être décentralisée.
+* Le second inconvénient est que vous n'avez aucun contrôle en théorie sur vos fonds. Si la plateforme met la clé sous la porte, vous perdez alors 100% de vos investissements !!
+* Le troisième inconvénient concerne le **staking**. Le staking dans le contexte d'une blockchain basée sur le **P**roof **O**f **S**take (PoS) comme Mina consiste à **déléguer<sup>1</sup>** ses token à un **validateur<sup>2</sup>** de confiance afin de lui octroyer des chances supplémentaires de **produire des blocs<sup>3</sup>** générant des récompenses (**coinbase<sup>4</sup>**).
+Ces récompenses sont ensuite distribuées aux délégateurs au prorata du nombre de mina délégués moins la commission prise par le validateur (En théorie entre 0% et 10%, la majorité appliquant un taux de 5%).
+Lorsque vos minas sont stockées sur une plateforme, dans le meilleur des cas, celle-ci propose leurs propres conditions de staking a des taux de commission élevés mais la plupart des plateformes ne propose tout simplement pas de staking, vous privant alors d'une source de revenu passive loin d'être négligeable (entre 12% et 24% d'APR)
+* Le quatrième inconvénient est qu'un wallet _non custodial_ ne permet pas l'utilisation de ce wallet sur des applications spécifiques de la blockchain (DApps ou **zkApps<sup>5</sup>** dans le contexte Mina).
 
 :::note[<sup>1</sup> Staking]
-More information on staking in the dedicated section.  
-Go to 🔗[Staking Guide](<./Staking guide.md> )
+Plus d'info sur le staking dans la section dédiée.  
+Cliquez ici : 🔗[Staking Guide](<./Staking guide.md> )
 :::
 
-:::note[<sup>2</sup> Validator]
-A validator is a participants who locks up a certain amount of cryptocurrency as collateral.   
-This collateral serves as a security deposit and ensures that validators have a vested interest in maintaining the integrity of the network.  
-It’s important to note that funds staked on Mina are not locked up. This means you can re-delegate, un-delegate, transfer, sell, or donate your Mina tokens anytime you want.
+:::note[<sup>2</sup> Validateur]
+Généralement, dans une blockchain basée sur du Proof of Stake, un validateur est un participant à la blockchain qui bloque un certain montant de token  en garantie.  
+Cette garantie sert de dépôt de sécurité et garantit que les validateurs ont un intérêt financier à maintenir l'intégrité du réseau.  
+Dans le contexte de Mina, il est important de noter que **les fonds mis en jeu pour le staking ne sont pas vérouillés**  
+Cela signifie que les fonds des délégateurs utilisés pour le staking peuvent être déplacés, re-délégués, un-délégués, transférés, échangés, vendus librement à tout moment.
+
 :::
 
-:::note[<sup>3</sup> Blocks]
-Validators take turns creating new blocks and validating transactions based on the amount of cryptocurrency they have staked.  
-The more cryptocurrency a validator has at stake, the higher the chances they have of being chosen to create a new block.
+:::note[<sup>3</sup> Blocs]
+Les validateurs se relaient pour créer de nouveaux blocs et valider des transactions en fonction de la quantité de cryptomonnaie qu'ils ont mise en jeu (en propre ou via des délégations).  
+Plus un validateur a de cryptomonnaie en jeu (ou de token délégués) , plus il a de chances d'être choisi pour créer un nouveau bloc.
 :::
 
 :::note[<sup>4</sup> Coinbase]
-Validators are rewarded with additional cryptocurrency for successfully creating and validating blocks.  
-The **coinbase** is a special transaction in a newly produced block that contains the reward owed to the validator who produced the new block.  
-Currently, the base reward for producing a block on Mina is 720 Mina, to which an additional 720 Mina (supercharged reward) is added if the production slot was won by an unlocked address.
+Les validateurs sont récompensés par des cryptomonnaies supplémentaires pour avoir créé et validé avec succès des blocs.  
+Le **coinbase** est une transaction spéciale dans un bloc nouvellement créé qui contient la récompense due au validateur ayant produit le nouveau bloc.
+Actuellement la base de la récompense pour la production d'un bloc sur mina est des 720 minas, auquel s'ajoute 720 minas supplémentaires (supercharged reward) si le slot de production a été gagné par une adresse **non lockée**.
 :::
 
 :::note[<sup>5</sup> zkApps]
 
 :::
 
-## What are the "non custodial" mina wallets avaliable ?
+## Quels sont les wallets "non-custodial" Mina disponibles ?
 ### Auro Wallet
-_official website_ : https://www.aurowallet.com/
+_site officiel_ : https://www.aurowallet.com/
 
 ![Auro Wallet](../assets/auro.svg)
 
-**Description (from official website)**  
-Available as a browser extension and as a mobile App, Auro Wallet has multiple languages version, perfectly supports Mina Protocol and is completely open-source. With it, you can easily send, receive or stake your MINA, and view the transaction records anytime. 
-It also supports send zkApp transactions (once available on mainnet)  
+**Description (Site Web Officiel)**  
+Disponible sous la forme d'une extension de navigateur et d'une application mobile, Auro Wallet est disponible dans plusieurs langues, prend en charge parfaitement le protocole Mina et est entièrement open-source. Avec lui, vous pouvez facilement envoyer, recevoir ou staker vos MINA, et consulter votre historique de transactions à tout moment. 
+Il prend également en charge l'envoi de transactions zkApp (lorque les apps seront disponibles sur le mainnet (_ndlr_))  
 
 [//]: # (ALIGN)
 
-
-**My Opinion**  
+**Mon Avis**  
 
 [//]: # (ALIGN)
 
-Auro Wallet strengths :  
-
-* Available on Android and iOS
-* Available as a browser extension (Chrome, Edge, Firefox)
-* Compatible pour Ledger hardware wallet
-* zkApps ready
-* Multi-account, wallets management
-* Easy inApp staking
+Les avantages de Auro Wallet :
+* Disponible sous la forme d'une application Android ou iOS
+* Disponible sous la forme d'une extension de navigateur (Chrome, Edge, Firefox)
+* Compatible Hardware Wallet Ledger
+* Prêt pour les zkApps
+* Gestion de plusieurs Wallet
+* Staking inApp
 * Open source
 
 [//]: # (ALIGN)
 
 ### Clorio Wallet
-_official website_ : https://clor.io/
+_site officiel_ : https://clor.io/
 
 ![Clorio Wallet](../assets/clorio.png)
 
-**Description (from official website)**  
-Clorio is an open-source wallet for Mina Protocol, built with Javascript.  
-With Clorio you can interact with the Mina blockchain by generating/using your private key or by using the Ledger hardware wallet.  
-Clorio wallet doesn't send your private key out of the client app, all the transactions are signed in local or on your Ledger device.  
-The nature of Clorio is self-custodian, this means that you are the only one responsible for safe-keeping your private key.  
-We have no possibility to recover your lost keys, block transactions and we don't take any responsibility over software malfunction.  
-You are essentially your own bank.  
+**Description (Site Web Officiel)**  
+Clorio est un wallet open source pour le protocole Mina, écrit en JavaScript.  
+Avec Clorio, vous pouvez interagir avec la blockchain Mina en générant/utilisant votre clé privée ou en utilisant le wallet matériel Ledger.  
+Le portefeuille Clorio ne transmet pas votre clé privée en dehors de l'application client, toutes les transactions sont signées localement ou sur votre appareil Ledger.  
+Clorio est un wallet non-custodial, ce qui signifie que vous êtes le seul responsable de la conservation sécurisée de votre clé privée.  
+Vous êtes essentiellement votre propre banque.  
 
 [//]: # (ALIGN)
 
-
-**My Opinion**  
+**Mon Avis**  
 
 [//]: # (ALIGN)
 
-Clorio Wallet strengths :  
+Les avantages de Clorio :  
 
-* Available as a desktop application (windows, Mac OSX and Linux)
+* Disponible en tant qu'application de bureau (windows, Mac OSX and Linux)
 * Compatible pour Ledger hardware wallet
 * Multi-account, wallets management
 * Easy inApp staking

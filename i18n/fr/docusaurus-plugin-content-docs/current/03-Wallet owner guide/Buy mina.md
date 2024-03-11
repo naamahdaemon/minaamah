@@ -1,16 +1,16 @@
 ---
 sidebar_position: 4
-sidebar_label: Buying Mina
+sidebar_label: Acheter des Minas
 sidebar_class_name: green
 ---
 [//]: # (How to buy Mina ?)
-# How to buy Mina ?  
-Mina is available to buy on all major exchanges.  
-You can find a list of exchanges availabitily on cointmarketcap here : 
+# Comment se procurer des minas ?
+Mina est disponible à l'achat sur la plupart des échanges crypto.  
+La liste qui propose le Mina à  l'achat est disponible sur coinmarketcap : 
 
 https://coinmarketcap.com/rankings/exchanges/
 
-The top 10 exchanges that offer the purchase of Mina are :
+Les 10 échanges principaux proposant l'achat de Mina sont : 
 
 * Binance
 * Coinbase Exchange
