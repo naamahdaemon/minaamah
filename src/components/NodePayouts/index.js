@@ -7,10 +7,8 @@ import { useQuery } from 'react-query'
 import axios from 'axios'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { Line } from 'react-chartjs-2';
-//import { CategoryScale } from 'chart.js';
 import Chart from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
-//import Loader from '@theme/Loaders'
 import './styles.module.css'
 
 const queryClient = new QueryClient()
@@ -19,31 +17,10 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
   
   const [selectedApi, setSelectedApi] = useState(
     apiUrl
-  );  
-  
-  const DateCourante = new Date();
-  const AnneeCourante = DateCourante.getFullYear();
-  const MoisCourant = DateCourante.getMonth();
-
-  // First day of the previous month
-  const firstDayOfPreviousMonth = new Date(AnneeCourante, MoisCourant - 1, 1);
-  const formattedFirstDayOfPreviousMonth = firstDayOfPreviousMonth.toISOString().split('T')[0];
-  // End
-
-  // Last day of the current month
-  const lastDayOfCurrentMonth = new Date(AnneeCourante, MoisCourant + 1, 0);
-  const formattedLastDayOfCurrentMonth = lastDayOfCurrentMonth.toISOString().split('T')[0];
-  const [startDate, setStartDate] = useState(formattedFirstDayOfPreviousMonth);
-  const [endDate, setEndDate] = useState(formattedLastDayOfCurrentMonth);  
-  // End
-
-  const handleStartDateChange = (event) => {
-    setStartDate(event.target.value);
-  };
-
-  const handleEndDateChange = (event) => {
-    setEndDate(event.target.value);
-  };
+  );    
+     
+  const { isDarkTheme } = useColorMode()
+  const { siteConfig } = useDocusaurusContext()
 
   // State variables to hold selected values
   const [blockHeightGt, setBlockHeightGt] = useState('');
@@ -53,62 +30,49 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
   const [delegationsData, setDelegationsData] = useState(''); 
   const [epochData, setEpochData] = useState(''); 
   const [currentEpoch, setCurrentEpoch] = useState('');   
-  
-  
+  const [epochsArray, setEpochsArray] = useState([]);   
 
-  // Function to handle changes in the combo boxes
-/*  const handleBlockHeightGtChange = (event) => {
-    setBlockHeightGt(event.target.value);
-  };
-
-  const handleBlockHeightLtChange = (event) => {
-    setBlockHeightLt(event.target.value);
-  };*/
-    
   const handleApiChange = (event) => {
     const selectedValue = event.target.value;
     setSelectedApi(selectedValue);
   };  
-  
-  useEffect(() => {
-    // Call getEpoch function when the component mounts to set default values
-    /*const fetchData = async () => {
-      const { epochData, blocksBegin, blocksEnd } = await getEpoch();
-      console.log("useEffect blockHeightGt: ", blockHeightGt);
-      console.log("useEffect blockHeightLt: ", blockHeightLt);
-      console.log("useEffect blocksBegin: ", blocksBegin);
-      console.log("useEffect blocksEnd: ", blocksEnd);
-      setBlockHeightGt(blocksBegin);
-      setBlockHeightLt(blocksEnd);
-      
-  };
 
-  fetchData();*/
-  //getEpoch();
-  //getBlocks();
-  
-  const fetchData = async () => {
-    // Call getEpoch function and wait for it to finish
-    const  {epochData, blocksBegin, blocksEnd  } = await getEpoch();
-    //console.log ("FETCHDATA");
-    // Once getEpoch() is finished, call getBlocks
-    const { params } = await getBlocks(epochData.epoch,blocksBegin,blocksEnd);
-    console.log("************************** USE EFFECT PARAM : " + JSON.stringify(params, null, 2) + "**************************");
-    getDelegations(epochData.epoch,params);  
-  };
+  // useEffect at component initialization
+  useEffect(() => {
+    const fetchData = async () => {
+      // Call getEpoch function and wait for it to finish
+      // Get Current eopch data, start block and end block
+      const  {epochData, blocksBegin, finBlock, epochs  } = await getEpoch();
+      //console.log ("FETCHDATA");
+      // Once getEpoch() is finished, call getBlocks
+      const { params } = await getBlocks(epochData.epoch,blocksBegin,finBlock);
+      //console.log("************************** USE EFFECT PARAM : " + JSON.stringify(params, null, 2) + "**************************");
+      getDelegations(epochData.epoch,params);  
+      setCurrentEpoch(epochData.epoch)
+      setEpochsArray(epochs);
+    };
 
   // Call the async function
-  fetchData();  
-    
+    fetchData();  
+      
   }, []); // Empty dependency array ensures it only runs once on component mount
-  
     
-  const { isDarkTheme } = useColorMode()
-  const { siteConfig } = useDocusaurusContext()
+  useEffect(() => {
+    const fetchData = async () => {
+      if (currentEpoch !== '') {
+        const  {epochData, blocksBegin, finBlock, epochs  } = await getEpoch(currentEpoch);
+        const { params } = await getBlocks(currentEpoch,blocksBegin,finBlock);
+        getDelegations(currentEpoch,params);
+        //setCurrentEpoch(currentEpoch)
+      }
+    };
+
+  // Call the async function
+    fetchData();  
+  }, [currentEpoch]);
 
 
   const serverUrl = 'https://graphql.minaexplorer.com'
-  var body={"query": "query{  blocks(sortBy: DATETIME_DESC, query: {creatorAccount: {publicKey: \"B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr\"}, blockHeight_gt: 335622 blockHeight_lt: 400000, canonical: true}) {    blockHeight    canonical    creator    dateTime    receivedTime    snarkFees    txFees  transactions {coinbase}}}"}
 
   const fetchAPI = async (body) => {
     const fullAPIUrl = isRelative
@@ -144,19 +108,43 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
     const epoch = responseData.data.blocks[0].protocolState.consensusState.epoch;
     const blocksEnd = responseData.data.blocks[0].protocolState.consensusState.blockHeight;
 
+    // Initialize an array to store the epochs
+    let epochsArray = [];
+
+    // Loop to fetch epochs from current epoch to 10 epochs before
+    for (let i = 0; i <= 10; i++) {
+      // Calculate the epoch value to query
+      const previousEpoch = epoch - i;
+      epochsArray.push(previousEpoch);
+    }
+    
+    const epochs=epochsArray
+    
+    setEpochsArray(epochsArray);
+
+    //console.log(epochsArray);
     //console.log("L'epoch courante dans getCurrentEpoch est : " + epoch)
 
-    setCurrentEpoch(epoch);
+    //setCurrentEpoch(epoch);
     
-    return { epoch, blocksEnd };
+    return { epoch, blocksEnd, epochs };
   };
 
-  const getEpoch = async () => {
-    const { epoch, blocksEnd } = await getCurrentEpoch();
+  const getEpoch = async (selectedEpoch=currentEpoch) => {
+    const { epoch, blocksEnd, epochs } = await getCurrentEpoch();
     //console.log("getEpoch blockHeightGt" + blockHeightGt);
     //console.log("getEpoch blockHeightLt" + blockHeightLt);   
     
-    const previousEpoch=epoch-1;
+    let previousEpoch;
+    let finBlock=blocksEnd;
+    
+    if (selectedEpoch){
+       previousEpoch = selectedEpoch - 1;
+    }
+    else {
+      selectedEpoch=epoch
+      previousEpoch = epoch - 1;
+    }
     
     console.log ("**************************** getEpoch ****************************");
     
@@ -164,7 +152,17 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
     //console.log("L'epoch précédente dans getEpoch est : " + previousEpoch)
     
     const query = `query {
-      blocks(sortBy: DATETIME_DESC, limit: 1, query: {protocolState: {consensusState: {epoch: ${previousEpoch}}}}) {
+      block1: blocks(sortBy: DATETIME_DESC, limit: 1, query: {protocolState: {consensusState: {epoch: ${previousEpoch}}}}) {
+        protocolState {
+          consensusState {
+            epoch
+            epochCount
+            blockHeight
+            slot
+          }
+        }
+      }
+      block2: blocks(sortBy: DATETIME_DESC, limit: 1, query: {protocolState: {consensusState: {epoch: ${selectedEpoch}}}}) {
         protocolState {
           consensusState {
             epoch
@@ -180,38 +178,49 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
 
     // Call the fetchAPI function with the constructed query body
     const responseData = await fetchAPI(body);
+
+
+    //console.log(JSON.stringify(query, null, 2));
+    //console.log(JSON.stringify(responseData, null, 2));
     
     // Calculate the sums of coinbase, snarkFees, and txFees divided by 1e9
     //const epoch = responseData.data.blocks[0].protocolState.consensusState.epoch+1;
-    const blocksBegin = responseData.data.blocks[0].protocolState.consensusState.blockHeight+1;
+    const blocksBegin = responseData.data.block1[0].protocolState.consensusState.blockHeight+1;
+    finBlock = responseData.data.block2[0].protocolState.consensusState.blockHeight;
     
     //console.log("############" + blocksBegin + "############");
     //console.log("############" + parseInt(blocksBegin) + "############");
     
-    //const blocksEnd = blocksBegin+7200;
+  
+    const nbslots=finBlock-blocksBegin;
+    
+    //console.log ("EPOCH " + selectedEpoch)
+    //console.log ("BLOCK START " + blocksBegin)
+    //console.log ("BLOCK END " + finBlock)
+    //console.log ("NB SLOT " + nbslots)
     
     // Construct the JSON structure
     const epochData = {
-      epoch: epoch,
+      epoch: selectedEpoch,
       begin: blocksBegin,
-      end: blocksEnd
+      end: finBlock
     };    
 
     setEpochData(epochData);
     setBlockHeightGt(blocksBegin);
     //console.log ("***********************************" + blocksBegin + "***********************************")
-    setBlockHeightLt(blocksEnd);
+    setBlockHeightLt(finBlock);
 
     // Do whatever you need with paramData
     //console.log(JSON.stringify(epochData, null, 2));
     //console.log("blockHeightGt: " + blockHeightGt); // Log blockHeightGt
     //console.log("blockHeightLt: " + blockHeightLt); // Log blockHeightLt
     
-    return { epochData, blocksBegin, blocksEnd  };
+    return { epochData, blocksBegin, finBlock, epochs  };
     
   };
 
-  const getBlocks = async (epoch=epochData.epoch, blocksDebut = parseInt(blockHeightGt), blocksEnd = parseInt(blockHeightLt)) => {
+  const getBlocks = async (epoch=currentEpoch, blocksDebut = parseInt(blockHeightGt), blocksEnd = parseInt(blockHeightLt)) => {
     //await getEpoch();
     
     //console.log("GET BLOCKS BLOCK HEIGHT LT = " + blockHeightLt);
@@ -296,11 +305,11 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
     //console.log(blockData); // Handle response data as needed
   };
 
-  const getDelegations = async (currentEpoch = epochData.epoch, param = paramData) => {
+  const getDelegations = async (currentEpoch = currentEpoch, param = paramData) => {
     //await getEpoch();
     const burnt_pk = ["B62qn9zWo5HcC2RRRi5P8278Hq5RoKgQWqFvXRYxsbVQeDCsAJP7aop", "B62qjeFLiBdA94f9AAznCqBUJKNpo5BEYf5hUydp1sXyLwic6RQWMg2", "B62qrzDMYjLf2opTM3KSozahGGKkQhVhQmiAfVZ39FZoKa4WGgcdaAq"];
 
-    console.log ("**************************** getDelegations epoch = " + currentEpoch + " / param = " + JSON.stringify(param, null, 2) + "****************************");
+    //console.log ("**************************** getDelegations epoch = " + currentEpoch + " / param = " + JSON.stringify(param, null, 2) + "****************************");
    
     const query = `query {
       stakes(limit: 1000,query: {
@@ -370,7 +379,7 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
     // Sort the array by totalDue
     updatedDelegationsData.sort((a, b) => b.totalDue - a.totalDue);    
  
-    console.log(JSON.stringify(updatedDelegationsData, null, 2));
+    //console.log(JSON.stringify(updatedDelegationsData, null, 2));
     
     setDelegationsData(updatedDelegationsData);
     
@@ -494,7 +503,7 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
     );
   };
 
-  const { isLoading, isError, data, error } = useQuery(
+/*  const { isLoading, isError, data, error } = useQuery(
     ['fetchAPI', { selectedApi,body }],
     () => fetchAPI(body),
     {
@@ -503,28 +512,36 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
       refetchOnWindowFocus: false,
     },
   )
+*/
   
   const getStatusColor = (status) => {
     return status === 'Healthy' ? 'green' : 'red';
   }
   
-  if (isLoading) {
+/*  if (isLoading) {
     return <div>Loading...</div>;
   }
 
   if (isError) {
     return <div>Error: {error.message}</div>;
   }
+*/
 
   //await getEpoch();
 
-  const blocks = data?.data?.blocks;
+  //const blocks = data?.data?.blocks;
 
   //[ { "txFees": "440172211", "blockHeight": 338159, "canonical": true, "creator": "B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr", "dateTime": "2024-03-17T11:33:00Z", "receivedTime": "2024-03-17T11:34:31.274Z", "snarkFees": "0", "transactions": { "coinbase": "1440000000000" } }, { "txFees": "1490472213", "blockHeight": 336944, "canonical": true, "creator": "B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr", "dateTime": "2024-03-12T19:45:00Z", "receivedTime": "2024-03-12T19:47:22.236Z", "snarkFees": "0", "transactions": { "coinbase": "1440000000000" } }, { "txFees": "4141758798", "blockHeight": 336462, "canonical": true, "creator": "B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr", "dateTime": "2024-03-10T15:06:00Z", "receivedTime": "2024-03-10T15:08:28.167Z", "snarkFees": "393880140", "transactions": { "coinbase": "1440000000000" } }, { "txFees": "5714672204", "blockHeight": 336281, "canonical": true, "creator": "B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr", "dateTime": "2024-03-09T15:30:00Z", "receivedTime": "2024-03-09T15:31:38.951Z", "snarkFees": "0", "transactions": { "coinbase": "1440000000000" } }, { "txFees": "243272211", "blockHeight": 336160, "canonical": true, "creator": "B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr", "dateTime": "2024-03-09T02:15:00Z", "receivedTime": "2024-03-09T02:17:08.536Z", "snarkFees": "13160552", "transactions": { "coinbase": "1440000000000" } } ]
 
   return (
     <div>	
       <h2>B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</h2>
+      <select value={currentEpoch} onChange={(e) => setCurrentEpoch(e.target.value)}>
+        <option value="">Select an Epoch</option>
+        {epochsArray.map((epoch, index) => (
+          <option key={index} value={epoch}>{epoch}</option>
+        ))}
+      </select>      
       <input
         type="number"
         placeholder="Please Wait ..."
