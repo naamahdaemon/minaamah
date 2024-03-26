@@ -4,10 +4,31 @@
         <title>Naamah Mina Stake Blog</title>
         <link>https://naamahdaemon.github.io/fr/blog</link>
         <description>Naamah Mina Stake Blog</description>
-        <lastBuildDate>Sat, 24 Feb 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 26 Mar 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>fr</language>
+        <item>
+            <title><![CDATA[Mina Payout Calculator added]]></title>
+            <link>https://naamahdaemon.github.io/fr/blog/Mina Payout Calculator added</link>
+            <guid>https://naamahdaemon.github.io/fr/blog/Mina Payout Calculator added</guid>
+            <pubDate>Tue, 26 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[You can now retieve the current (or selected) epooch due payouts to my delegators in real time here :]]></description>
+            <content:encoded><![CDATA[<p>You can now retieve the current (or selected) epooch due payouts to my delegators in real time here :</p>
+<ul>
+<li><a href="https://naamahdaemon.github.io/fr/docs/Node%20Statistics/payouts">Payouts</a></li>
+</ul>
+<p>You'll find also additional realtime information on my Block Producer here :</p>
+<ul>
+<li><a href="https://naamahdaemon.github.io/fr/docs/Node%20Statistics/block_production">Block Production</a></li>
+<li><a href="https://naamahdaemon.github.io/fr/docs/Node%20Statistics/delegations">Delegations</a></li>
+</ul>]]></content:encoded>
+            <category>mina</category>
+            <category>payouts</category>
+            <category>producer</category>
+            <category>validator</category>
+            <category>delegators</category>
+        </item>
         <item>
             <title><![CDATA[Mina Contributions]]></title>
             <link>https://naamahdaemon.github.io/fr/blog/Mina Contributions</link>

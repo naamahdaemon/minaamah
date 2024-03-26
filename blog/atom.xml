@@ -2,11 +2,36 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://naamahdaemon.github.io/blog</id>
     <title>Naamah Mina Stake Blog</title>
-    <updated>2024-02-24T00:00:00.000Z</updated>
+    <updated>2024-03-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://naamahdaemon.github.io/blog"/>
     <subtitle>Naamah Mina Stake Blog</subtitle>
     <icon>https://naamahdaemon.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Mina Payout Calculator added]]></title>
+        <id>https://naamahdaemon.github.io/blog/Mina Payout Calculator added</id>
+        <link href="https://naamahdaemon.github.io/blog/Mina Payout Calculator added"/>
+        <updated>2024-03-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[You can now retieve the current (or selected) epooch due payouts to my delegators in real time here :]]></summary>
+        <content type="html"><![CDATA[<p>You can now retieve the current (or selected) epooch due payouts to my delegators in real time here :</p>
+<ul>
+<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/payouts">Payouts</a></li>
+</ul>
+<p>You'll find also additional realtime information on my Block Producer here :</p>
+<ul>
+<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/block_production">Block Production</a></li>
+<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/delegations">Delegations</a></li>
+</ul>]]></content>
+        <author>
+            <name>Naamah</name>
+            <uri>https://github.com/naamahdaemon</uri>
+        </author>
+        <category label="mina" term="mina"/>
+        <category label="payouts" term="payouts"/>
+        <category label="producer" term="producer"/>
+        <category label="validator" term="validator"/>
+        <category label="delegators" term="delegators"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Mina Contributions]]></title>
         <id>https://naamahdaemon.github.io/blog/Mina Contributions</id>
