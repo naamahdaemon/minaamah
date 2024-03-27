@@ -4,10 +4,18 @@
         <title>Naamah Mina Stake Blog</title>
         <link>https://naamahdaemon.github.io/fr/blog</link>
         <description>Naamah Mina Stake Blog</description>
-        <lastBuildDate>Tue, 26 Mar 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 27 Mar 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>fr</language>
+        <item>
+            <title><![CDATA[test]]></title>
+            <link>https://naamahdaemon.github.io/fr/blog/2024/03/27/test</link>
+            <guid>https://naamahdaemon.github.io/fr/blog/2024/03/27/test</guid>
+            <pubDate>Wed, 27 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[test]]></description>
+            <content:encoded><![CDATA[<p>test</p>]]></content:encoded>
+        </item>
         <item>
             <title><![CDATA[Mina Payout Calculator added]]></title>
             <link>https://naamahdaemon.github.io/fr/blog/Mina Payout Calculator added</link>
