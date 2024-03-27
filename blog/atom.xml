@@ -8,12 +8,14 @@
     <subtitle>Naamah Mina Stake Blog</subtitle>
     <icon>https://naamahdaemon.github.io/img/favicon.ico</icon>
     <entry>
-        <title type="html"><![CDATA[test]]></title>
-        <id>https://naamahdaemon.github.io/blog/2024/03/27/test</id>
-        <link href="https://naamahdaemon.github.io/blog/2024/03/27/test"/>
+        <title type="html"><![CDATA[Follow me on twitter]]></title>
+        <id>https://naamahdaemon.github.io/blog/2024/03/27/twitter</id>
+        <link href="https://naamahdaemon.github.io/blog/2024/03/27/twitter"/>
         <updated>2024-03-27T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[test]]></summary>
-        <content type="html"><![CDATA[<p>test</p>]]></content>
+        <summary type="html"><![CDATA[Like this website ?]]></summary>
+        <content type="html"><![CDATA[<p>Like this website ?
+Follow me on twitter to get some live news on mina protocole.</p>
+<p><a href="https://x.com/naamahdaemon" target="_blank" rel="noopener noreferrer">https://x.com/naamahdaemon</a></p>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Mina Payout Calculator added]]></title>
