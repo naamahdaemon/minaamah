@@ -10,13 +10,17 @@
         <language>en</language>
         <item>
             <title><![CDATA[Follow me on twitter]]></title>
-            <link>https://naamahdaemon.github.io/blog/2024/03/27/twitter</link>
-            <guid>https://naamahdaemon.github.io/blog/2024/03/27/twitter</guid>
+            <link>https://naamahdaemon.github.io/blog/Follow me on twitter</link>
+            <guid>https://naamahdaemon.github.io/blog/Follow me on twitter</guid>
             <pubDate>Wed, 27 Mar 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Like this website ?]]></description>
             <content:encoded><![CDATA[<p>Like this website ?
 Follow me on twitter to get some live news on mina protocol.</p>
 <p><a href="https://x.com/naamahdaemon" target="_blank" rel="noopener noreferrer">https://x.com/naamahdaemon</a></p>]]></content:encoded>
+            <category>mina</category>
+            <category>social</category>
+            <category>twitter</category>
+            <category>news</category>
         </item>
         <item>
             <title><![CDATA[Mina Payout Calculator added]]></title>
