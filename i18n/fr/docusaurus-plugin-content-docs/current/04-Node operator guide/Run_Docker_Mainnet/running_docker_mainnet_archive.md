@@ -39,9 +39,27 @@ echo "\dt" | docker exec -i postgres psql -U postgres -d archive
 
 ## Installing Mina Archive Node
 ### Get docker image
+As for the mina-daemon github image, you can look for the latest version of `mina-archive` matching your `mina-daemon` version from docker hub :
+
+```bash
+curl -sN "https://registry.hub.docker.com/v2/repositories/minaprotocol/mina-archive/tags?ordering=last_updated&name=1.4.1" | jq -r '.results[] | select(.name | contains("focal")) | " \(.last_updated) \t \(.name)"'
+```
+
+This command will look for the latest `1.4.1` `focal` release of mina-archive. it will return the following :
+
+```
+ 2024-03-28T06:00:26.05546Z      1.4.1-e76fc1c-focal
+ 2024-03-14T21:13:27.723574Z     1.4.1-master-ad8ed6e-focal
+ 2024-03-14T16:51:27.896839Z     1.4.1-21acbdc-focal
+ 2024-03-12T21:57:15.389135Z     1.4.1beta1-21acbdc-focal
+```
+
+Then you will just have to pick the latest version available which is in this case `1.4.1-e76fc1c-focal`.
+
 ```bash
 docker pull minaprotocol/mina-archive:1.4.1-e76fc1c-focal
 ```
+
 ### Create temporary directory
 ```bash
 mkdir -p /tmp/archive
@@ -50,13 +68,58 @@ mkdir -p /tmp/archive
 ```bash
 mkdir archive_node
 cd archive_node/
-wget --inet4-only https://storage.googleapis.com/mina-archive-dumps/mainnet-archive-dump-2024-03-21_0001.sql.tar.gz
-tar xvf mainnet-archive-dump-2024-03-21_0001.sql.tar.gz
+wget --inet4-only https://storage.googleapis.com/mina-archive-dumps/mainnet-archive-dump-2024-03-28_0001.sql.tar.gz
+tar xvf mainnet-archive-dump-2024-03-28_0001.sql.tar.gz
 ```
+
+:::info  How to get the latest database dump available ?
+From a google cloud console, you can look for the latest database dump available using the following command line :
+
+```bash
+gsutil ls -l gs://mina-archive-dumps/mainnet* | grep mainnet-archive-dump | grep 2024-03
+```
+
+This will search for all `mainnet` archive dumps available for March, 2024.
+
+```
+1037223471  2024-03-01T00:09:00Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-01_0001.sql.tar.gz
+1038036714  2024-03-02T00:09:27Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-02_0001.sql.tar.gz
+1038705304  2024-03-03T00:09:12Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-03_0001.sql.tar.gz
+1040347494  2024-03-04T00:09:28Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-04_0001.sql.tar.gz
+1041544668  2024-03-05T00:09:07Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-05_0001.sql.tar.gz
+1042530101  2024-03-06T00:09:16Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-06_0001.sql.tar.gz
+1043968663  2024-03-07T00:09:20Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-07_0001.sql.tar.gz
+1046183259  2024-03-08T00:09:21Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-08_0001.sql.tar.gz
+1048471704  2024-03-09T00:12:17Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-09_0003.sql.tar.gz
+1050222256  2024-03-10T00:09:04Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-10_0001.sql.tar.gz
+1052718697  2024-03-11T00:09:06Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-11_0001.sql.tar.gz
+1054899270  2024-03-12T00:09:22Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-12_0001.sql.tar.gz
+1056512846  2024-03-13T00:09:14Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-13_0001.sql.tar.gz
+1058309593  2024-03-14T00:09:12Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-14_0001.sql.tar.gz
+1059496578  2024-03-15T00:09:40Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-15_0001.sql.tar.gz
+1060379733  2024-03-16T00:09:25Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-16_0001.sql.tar.gz
+1061349319  2024-03-17T00:09:39Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-17_0001.sql.tar.gz
+1063031545  2024-03-18T00:09:30Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-18_0001.sql.tar.gz
+1064066717  2024-03-19T00:10:01Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-19_0001.sql.tar.gz
+1064937270  2024-03-20T00:09:13Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-20_0001.sql.tar.gz
+1066622955  2024-03-21T00:08:56Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-21_0001.sql.tar.gz
+1067571505  2024-03-22T00:08:54Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-22_0001.sql.tar.gz
+1069661202  2024-03-23T00:09:05Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-23_0001.sql.tar.gz
+1071691612  2024-03-24T00:09:06Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-24_0001.sql.tar.gz
+1073968497  2024-03-25T00:08:56Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-25_0001.sql.tar.gz
+1075411684  2024-03-26T00:09:19Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-26_0001.sql.tar.gz
+1076374149  2024-03-27T00:09:14Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-27_0001.sql.tar.gz
+1078286270  2024-03-28T00:09:15Z  gs://mina-archive-dumps/mainnet-archive-dump-2024-03-28_0001.sql.tar.gz
+```
+
+**The latest dump available is `mainnet-archive-dump-2024-03-28_0001.sql.tar.gz`**
+
+:::
+
 ### Import the dump into postgres
 ```bash
-docker cp mainnet-archive-dump-2024-03-21_0001.sql postgres:/mainnet-archive-dump-2024-03-21_0001.sql
-docker exec -i postgres psql -U postgres -d archive -f /mainnet-archive-dump-2024-03-21_0001.sql
+docker cp mainnet-archive-dump-2024-03-28_0001.sql postgres:/mainnet-archive-dump-2024-03-28_0001.sql
+docker exec -i postgres psql -U postgres -d archive -f /mainnet-archive-dump-2024-03-28_0001.sql
 ```
 
 :::info  checking everything is ok after the dump is imported
@@ -237,7 +300,7 @@ docker exec -it mina-archive bash
 
 ##### Copy a local file to a container
 ```bash
-docker cp mainnet-archive-dump-2024-03-21_0001.sql postgres:/mainnet-archive-dump-2024-03-21_0001.sql
+docker cp mainnet-archive-dump-2024-03-28_0001.sql postgres:/mainnet-archive-dump-2024-03-28_0001.sql
 docker cp download-missing-blocks.sh mina-archive:/
 ```
 
