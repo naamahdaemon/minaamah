@@ -4,10 +4,26 @@
         <title>Naamah Mina Stake Blog</title>
         <link>https://naamahdaemon.github.io/blog</link>
         <description>Naamah Mina Stake Blog</description>
-        <lastBuildDate>Thu, 28 Mar 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 22 Apr 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Epoch 75 Payouts]]></title>
+            <link>https://naamahdaemon.github.io/blog/Epoch 75 Payouts</link>
+            <guid>https://naamahdaemon.github.io/blog/Epoch 75 Payouts</guid>
+            <pubDate>Mon, 22 Apr 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Epoch 75 payouts have been sent on April, 21th.]]></description>
+            <content:encoded><![CDATA[<p>Epoch 75 payouts have been sent on April, 21th.
+Only 5 slots were assigned this epoch but hopefully all of the 5 blocks have been successfully included into the canonical chain.</p>
+<p>As a reminder, you can find all payouts in realtime on this page :</p>
+<ul>
+<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/payouts">Payouts</a></li>
+</ul>]]></content:encoded>
+            <category>mina</category>
+            <category>payouts</category>
+            <category>epoch</category>
+        </item>
         <item>
             <title><![CDATA[Join my discord server]]></title>
             <link>https://naamahdaemon.github.io/blog/Join my discord server</link>
