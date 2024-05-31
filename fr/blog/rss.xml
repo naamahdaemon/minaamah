@@ -4,10 +4,29 @@
         <title>Naamah Mina Stake Blog</title>
         <link>https://naamahdaemon.github.io/fr/blog</link>
         <description>Naamah Mina Stake Blog</description>
-        <lastBuildDate>Mon, 22 Apr 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 31 May 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>fr</language>
+        <item>
+            <title><![CDATA[Epoch 78 Payouts]]></title>
+            <link>https://naamahdaemon.github.io/fr/blog/Epoch 78 Payouts</link>
+            <guid>https://naamahdaemon.github.io/fr/blog/Epoch 78 Payouts</guid>
+            <pubDate>Fri, 31 May 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Epoch 78 payouts may be a little late this Time.]]></description>
+            <content:encoded><![CDATA[<p>Epoch 78 payouts may be a little late this Time.</p>
+<p>As you surely know already, the Mina Hard-Fork (dedicated blog post to come) will occur on June, 4th in only 4 days !!</p>
+<p>Epoch 78 ends the same day (around 3AM) few hours before the network stops for 15 hours (starting at 9AM until 12AM on June, 5th).</p>
+<p>For this reason, payouts may be a little bit delayed this epoch.</p>
+<p>Until now 7 blocks have been won (on 11 assigned block production slots). That's better than last epoch 😉</p>
+<p>As a reminder, you can find all payouts in realtime on this page :</p>
+<ul>
+<li><a href="https://naamahdaemon.github.io/fr/docs/Node%20Statistics/payouts">Payouts</a></li>
+</ul>]]></content:encoded>
+            <category>mina</category>
+            <category>payouts</category>
+            <category>epoch</category>
+        </item>
         <item>
             <title><![CDATA[Epoch 75 Payouts]]></title>
             <link>https://naamahdaemon.github.io/fr/blog/Epoch 75 Payouts</link>
