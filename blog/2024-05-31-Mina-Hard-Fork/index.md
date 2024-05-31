@@ -20,6 +20,7 @@ The progress of the upgrade and the timeline are documented here:
   [https://minaprotocol.com/blog/minas-berkeley-upgrade-what-to-expect](https://minaprotocol.com/blog/minas-berkeley-upgrade-what-to-expect)  
   
 and here  
+
   [https://minaprotocol.com/mainnet-upgrade-status](https://minaprotocol.com/mainnet-upgrade-status)
 
 # The Block producer timeline
@@ -28,19 +29,22 @@ Every block producer will have to update their nodes in order to ensure the resu
 
 Here is a simplified overview of the tasks that every block producer will have to achieve on June, 4th.
 
-**Before June, 4th**
+**Before June, 4th**  
 
 The only action required by block producer is to update their nodes to version 2.0.0. (All my nodes are upgraded already obviously !)
 
 **On June, 4th**
 
 * **STEP 1**
+
 No specific action is required until the stop network slot is reached (**14:00 UTC**). At least one node must still be active and connected to the network until the stop slot is reached (ideally, all nodes of an operator can remain online). The calculation of uptime will be taken into account until the stop slot is reached (**14:00 UTC**).
 
 * **STEP 2**
+
 Until the upgrade package is released (**20:00 UTC**): No action required.
 
 * **STEP 3**
+
 Once the upgrade package is available: All operators update and restart their nodes (**20:00 UTC - 00:00 UTC**). Uptime calculation will resume at **00:01 UTC** with a tolerance until **01:01 UTC**.
 
 :::info
@@ -48,6 +52,7 @@ During this period, no block will be produced.
 :::
 
 * **STEP 4**
+
 From 00:00 UTC, the blockchain will restart on Berkeley fully operational: block production, snarks production, uptime, ...
 
 
