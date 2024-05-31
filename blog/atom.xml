@@ -2,11 +2,34 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://naamahdaemon.github.io/blog</id>
     <title>Naamah Mina Stake Blog</title>
-    <updated>2024-04-22T00:00:00.000Z</updated>
+    <updated>2024-05-31T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://naamahdaemon.github.io/blog"/>
     <subtitle>Naamah Mina Stake Blog</subtitle>
     <icon>https://naamahdaemon.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Epoch 78 Payouts]]></title>
+        <id>https://naamahdaemon.github.io/blog/Epoch 78 Payouts</id>
+        <link href="https://naamahdaemon.github.io/blog/Epoch 78 Payouts"/>
+        <updated>2024-05-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Epoch 78 payouts may be a little late this Time.]]></summary>
+        <content type="html"><![CDATA[<p>Epoch 78 payouts may be a little late this Time.</p>
+<p>As you surely know already, the Mina Hard-Fork (dedicated blog post to come) will occur on June, 4th in only 4 days !!</p>
+<p>Epoch 78 ends the same day (around 3AM) few hours before the network stops for 15 hours (starting at 9AM until 12AM on June, 5th).</p>
+<p>For this reason, payouts may be a little bit delayed this epoch.</p>
+<p>Until now 7 blocks have been won (on 11 assigned block production slots). That's better than last epoch 😉</p>
+<p>As a reminder, you can find all payouts in realtime on this page :</p>
+<ul>
+<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/payouts">Payouts</a></li>
+</ul>]]></content>
+        <author>
+            <name>Naamah</name>
+            <uri>https://github.com/naamahdaemon</uri>
+        </author>
+        <category label="mina" term="mina"/>
+        <category label="payouts" term="payouts"/>
+        <category label="epoch" term="epoch"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Epoch 75 Payouts]]></title>
         <id>https://naamahdaemon.github.io/blog/Epoch 75 Payouts</id>
