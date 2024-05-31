@@ -11,4 +11,4 @@ People all around the world welcome !
 
 Délégateurs français ? On parle français là-bas aussi 😊
 
-https://discord.gg/JpB9jwuZ
+https://discord.com/invite/ZkqQw8dK4E
