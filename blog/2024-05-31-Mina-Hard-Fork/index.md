@@ -47,7 +47,7 @@ Until the upgrade package is released (**20:00 UTC**): No action required.
 
 Once the upgrade package is available: All operators update and restart their nodes (**20:00 UTC - 00:00 UTC**). Uptime calculation will resume at **00:01 UTC** with a tolerance until **01:01 UTC**.
 
-:::info
+:::note
 During this period, no block will be produced.
 :::
 
