@@ -66,6 +66,6 @@ After the Hard Fork (if all goes well):
 
 Finally, there will certainly be impacts on tools, explorers, and websites concerning Mina. Some blockchain explorers may experience disruptions or become non-functional or display inconsistent information. Other services will be completely stopped (e.g., Mina Explorer's GraphQL APIs), which may also cause interruptions to some services that use them (my site, for example, uses the Mina Explorer GraphQL API, which I will have to replace eventually to display produced blocks, delegations, and payouts).
 
-In summary, be patient, do not hesitate to contact your validator if you have any questions or problems, and do not panic if the rewards for the epoch post-hard fork take a little time to arrive ;-)
+In summary, be patient, do not hesitate to contact your validator if you have any questions or problems, and do not panic if the rewards for the epoch post-hard fork take a little time to arrive 😉
 
-This update is going to be epic. It is important to realize the amount of work and investment that goes into not only updating but also synchronizing all the actors, which are ultimately the key to the success of updating a fully decentralized application.
+**This update is going to be epic. It is important to realize the amount of work and investment that goes into not only updating but also synchronizing all the actors, which are ultimately the key to the success of updating a fully decentralized application.**
