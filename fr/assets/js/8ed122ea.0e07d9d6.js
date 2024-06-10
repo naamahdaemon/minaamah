@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[5807],{1197:a=>{a.exports=JSON.parse('{"label":"validator","permalink":"/fr/blog/tags/validator","allTagsPath":"/fr/blog/tags","count":1,"unlisted":false}')}}]);
