@@ -110,11 +110,23 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
 
     // Initialize an array to store the epochs
     let epochsArray = [];
+    let previousEpoch = 0;
 
     // Loop to fetch epochs from current epoch to 10 epochs before
     for (let i = 0; i <= 10; i++) {
       // Calculate the epoch value to query
-      const previousEpoch = epoch - i;
+      console.log ("epoch:" + epoch);
+      console.log ("epoch-i:" + (epoch-i));
+      if (epoch-i<0)
+        previousEpoch = 80 - epoch - i;
+      else 
+        if (epoch == 0) {
+          console.log ("EPOCH 0");
+          previousEpoch = 0;
+        }
+        else
+          previousEpoch = epoch - i;
+      console.log ("epochArray:" + previousEpoch);
       epochsArray.push(previousEpoch);
     }
     
@@ -139,17 +151,27 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
     let finBlock=blocksEnd;
     
     if (selectedEpoch){
-       previousEpoch = selectedEpoch - 1;
+       //previousEpoch = selectedEpoch - 1;
+       console.log("selectedEpoch=" + selectedEpoch)
+       if (selectedEpoch==0)
+          previousEpoch = 79;
+       else 
+          previousEpoch = selectedEpoch - 1;      
+          console.log("previousEpoch=" + previousEpoch)
     }
     else {
+      console.log("selectedEpoch==false")
       selectedEpoch=epoch
-      previousEpoch = epoch - 1;
+      if (epoch==0)
+          previousEpoch = 79;
+        else 
+          previousEpoch = epoch - 1;    
     }
     
     console.log ("**************************** getEpoch ****************************");
     
-    //console.log("L'epoch courante dans getEpoch est : " + epoch)
-    //console.log("L'epoch précédente dans getEpoch est : " + previousEpoch)
+    console.log("L'epoch courante dans getEpoch est : " + epoch)
+    console.log("L'epoch précédente dans getEpoch est : " + previousEpoch)
     
     const query = `query {
       block1: blocks(sortBy: DATETIME_DESC, limit: 1, query: {protocolState: {consensusState: {epoch: ${previousEpoch}}}}) {
@@ -288,7 +310,7 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
       numberOfBlocks: numBlocks,
       sumCoinbase: sumCoinbase,
       sumFeeTransferViaCoinbase: sumFeeTransferViaCoinbase / 1e9,
-      sumToBurn: sumCoinbase/2,
+      sumToBurn: epoch <= 10 ? 0 : sumCoinbase / 2,
       sumSnarkFees: sumSnarkFees,
       sumTxFees: sumTxFees
     };    
