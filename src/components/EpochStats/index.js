@@ -165,7 +165,7 @@ const EpochStats = ({ apiUrl, isRelative }) => {
                           position: 'absolute',
                           top: '0',
                           left: `${slotPercentage}%`,
-                          transform: 'translateX(-60%)',
+                          transform: 'translateX(-30%)',
                           fontSize: '14px',
                           color: 'white',
                           backgroundColor: '#25c2a0',
