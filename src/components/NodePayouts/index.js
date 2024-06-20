@@ -118,7 +118,7 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
       console.log ("epoch:" + epoch);
       console.log ("epoch-i:" + (epoch-i));
       if (epoch-i<0)
-        previousEpoch = 80 - epoch - i;
+        previousEpoch = (80+epoch) - i;
       else 
         if (epoch == 0) {
           console.log ("EPOCH 0");
@@ -372,6 +372,10 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
         const shareUnlockedPercentage=0;
         // If found, add the 'locked' attribute with a value of true
         let totalDue = (param.sumCoinbase-param.sumToBurn) * sharePercentage;
+        // Add this with the forked network
+        totalDue += param.sumTxFees * sharePercentage
+        totalDue -= param.sumSnarkFees * sharePercentage
+        // End
         totalDue *= 0.92
         return { ...delegation, 
           locked: true ,
@@ -384,9 +388,9 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
         const sharePercentage = delegation.balance / totalBalance;
         const shareUnlockedPercentage = delegation.balance / totalUnlockedBalance;
         let totalDue = (param.sumCoinbase-param.sumToBurn) * sharePercentage;
+        totalDue += param.sumTxFees * sharePercentage
+        totalDue -= param.sumSnarkFees * sharePercentage
         totalDue *= 0.99; // Apply 0.99 multiplier for unlocked accounts        
-        totalDue += param.sumTxFees * shareUnlockedPercentage * 0.99
-        totalDue -= param.sumSnarkFees * shareUnlockedPercentage * 0.99
         // If not found, return the original delegation object
         return { ...delegation, 
         locked: false,
