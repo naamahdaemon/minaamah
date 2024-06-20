@@ -158,7 +158,7 @@ const EpochStats = ({ apiUrl, isRelative }) => {
                 <td className="legend">Slot in Epoch</td>
                 <td className="value digital-watch blanc">
                   <div className={styles.progressbarcontainer}>
-                    <div style={{ position: 'relative', width: '100%' }}>
+                    <div style={{ position: 'relative', width: '80%' }}>
                       <progress className={styles.progressbar} value={blockData.slot} max="7140"
                         style={{
                           background: `linear-gradient(to right, #1a8870 ${slotPercentage}%, #e0e0e0 ${slotPercentage}%)`,
@@ -168,7 +168,7 @@ const EpochStats = ({ apiUrl, isRelative }) => {
                           position: 'absolute',
                           top: '0',
                           left: `${slotPercentage}%`,
-                          transform: 'translateX(-90%)',
+                          transform: 'translateX(-60%)',
                           fontSize: '14px',
                           color: 'white',
                           backgroundColor: '#25c2a0',
