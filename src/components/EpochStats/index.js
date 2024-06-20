@@ -154,8 +154,9 @@ const EpochStats = ({ apiUrl, isRelative }) => {
               <tr>
                 <td className="legend">Slot in Epoch</td>
                 <td className="value digital-watch blanc">
-                {blockData.slot} / 7140  &nbsp;
-                <progress style={{width: '100%', height: '80%'}}  value={blockData.slot} max="7140"/>
+                {blockData.slot} / 7140
+                <br/>
+                <progress className="progress-bar" value={blockData.slot} max="7140"/>
                 </td>
               </tr>
               <tr>
