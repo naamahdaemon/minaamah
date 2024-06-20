@@ -25,6 +25,6 @@ table {
 .progress-bar {
   width: 100%;
   margin-left: -11.5%;
-  height: 50px;
+  height: 100%;
   background-color: #0091EA;
 }
