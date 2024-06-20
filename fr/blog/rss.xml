@@ -4,10 +4,47 @@
         <title>Naamah Mina Stake Blog</title>
         <link>https://naamahdaemon.github.io/fr/blog</link>
         <description>Naamah Mina Stake Blog</description>
-        <lastBuildDate>Mon, 10 Jun 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 20 Jun 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>fr</language>
+        <item>
+            <title><![CDATA[Epoch 0 Mina Payouts]]></title>
+            <link>https://naamahdaemon.github.io/fr/blog/Mina Payouts for Epoch 0</link>
+            <guid>https://naamahdaemon.github.io/fr/blog/Mina Payouts for Epoch 0</guid>
+            <pubDate>Thu, 20 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Epoch 0 payouts have been sent]]></description>
+            <content:encoded><![CDATA[<p>Epoch 0 payouts have been sent</p>
+<p>9 blocks have been produced this epoch.</p>
+<p>As a reminder, you can find all payouts in realtime on this page :</p>
+<ul>
+<li><a href="https://naamahdaemon.github.io/fr/docs/Node%20Statistics/payouts">Payouts</a></li>
+</ul>]]></content:encoded>
+            <category>mina</category>
+            <category>payouts</category>
+            <category>june</category>
+        </item>
+        <item>
+            <title><![CDATA[Epoch Calculator tool available]]></title>
+            <link>https://naamahdaemon.github.io/fr/blog/Epoch Calculator Tool</link>
+            <guid>https://naamahdaemon.github.io/fr/blog/Epoch Calculator Tool</guid>
+            <pubDate>Thu, 20 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[You need some information about the ongoing epoch ?]]></description>
+            <content:encoded><![CDATA[<p>You need some information about the ongoing epoch ?</p>
+<p>I made this little tool available so that you can get :</p>
+<ul>
+<li>Epoch in progress</li>
+<li>Current epoch slot</li>
+<li>Current epoch block height</li>
+<li>Current epoch end date and remaining time</li>
+</ul>
+<p><img loading="lazy" alt="Mina Epoch Calculator" src="https://naamahdaemon.github.io/fr/assets/images/epoch-787a4abb464dbea7500e0fc8dc6a4c17.png" width="650" height="751" class="img_ev3q"></p>
+<p>Find the tool here :</p>
+<p><a href="https://naamahdaemon.github.io/mina_epoch.html" target="_blank" rel="noopener noreferrer">https://naamahdaemon.github.io/mina_epoch.html</a></p>]]></content:encoded>
+            <category>mina</category>
+            <category>epoch</category>
+            <category>tool</category>
+        </item>
         <item>
             <title><![CDATA[Mina Payout Calculator updated]]></title>
             <link>https://naamahdaemon.github.io/fr/blog/Mina Payout Calculator updated</link>
