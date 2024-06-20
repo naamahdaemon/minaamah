@@ -161,7 +161,7 @@ const EpochStats = ({ apiUrl, isRelative }) => {
                     <div style={{ position: 'relative', width: '100%' }}>
                       <progress className={styles.progressbar} value={blockData.slot} max="7140"
                         style={{
-                          background: `linear-gradient(to right, #0000FF ${slotPercentage}%, #e0e0e0 ${slotPercentage}%)`,
+                          background: `linear-gradient(to right, #1a8870 ${slotPercentage}%, #e0e0e0 ${slotPercentage}%)`,
                         }}></progress>
                       <div
                         style={{
@@ -171,7 +171,7 @@ const EpochStats = ({ apiUrl, isRelative }) => {
                           transform: 'translateX(-90%)',
                           fontSize: '14px',
                           color: 'white',
-                          backgroundColor: '#0000AA',
+                          backgroundColor: '#25c2a0',
                           padding: '2px 5px',
                           borderRadius: '3px',
                           height: '50px'
