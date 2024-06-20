@@ -9,7 +9,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
-import './styles.module.css';
+import styles from './styles.module.css';
 import naamah_bp_qrcode from './img/naamah_bp_qrcode.png';
 
 const queryClient = new QueryClient()
@@ -46,6 +46,7 @@ const EpochStats = ({ apiUrl, isRelative }) => {
 
   const [dateTime, setDateTime] = useState('');
   const [blockData, setBlockData] = useState(null);
+
 
   useEffect(() => {
     const updateTime = () => {
@@ -138,6 +139,8 @@ const EpochStats = ({ apiUrl, isRelative }) => {
     };
   }, []);
   
+  const slotPercentage = blockData ? (blockData.slot / 7140) * 100 : 0;
+  
   return (
     <div className="App">
       <p className="digital-watch2">{dateTime}</p>
@@ -154,9 +157,35 @@ const EpochStats = ({ apiUrl, isRelative }) => {
               <tr>
                 <td className="legend">Slot in Epoch</td>
                 <td className="value digital-watch blanc">
-                {blockData.slot} / 7140
-                <br/>
-                <progress className="progress-bar" value={blockData.slot} max="7140"/>
+                  <div className={styles.progressbarcontainer}>
+                    <div style={{ position: 'relative', width: '100%' }}>
+                      <progress className={styles.progressbar} value={blockData.slot} max="7140"
+                        style={{
+                          background: `linear-gradient(to right, #1a8870 ${slotPercentage}%, #e0e0e0 ${slotPercentage}%)`,
+                        }}></progress>
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '0',
+                          left: `${slotPercentage}%`,
+                          transform: 'translateX(-90%)',
+                          fontSize: '14px',
+                          color: 'white',
+                          backgroundColor: '#25c2a0',
+                          padding: '2px 5px',
+                          borderRadius: '3px',
+                          height: '50px'
+                        }}
+                      >
+                        {blockData.slot}
+                      </div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', position: 'relative', top: '-5px', width: '100%' }}>
+                        <span>0</span>
+                        <span>7140</span>
+                      </div>
+                    </div>  
+                  </div>
+                  <br/>
                 </td>
               </tr>
               <tr>
