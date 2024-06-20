@@ -2,11 +2,56 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://naamahdaemon.github.io/fr/blog</id>
     <title>Naamah Mina Stake Blog</title>
-    <updated>2024-06-10T00:00:00.000Z</updated>
+    <updated>2024-06-20T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://naamahdaemon.github.io/fr/blog"/>
     <subtitle>Naamah Mina Stake Blog</subtitle>
     <icon>https://naamahdaemon.github.io/fr/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Epoch 0 Mina Payouts]]></title>
+        <id>https://naamahdaemon.github.io/fr/blog/Mina Payouts for Epoch 0</id>
+        <link href="https://naamahdaemon.github.io/fr/blog/Mina Payouts for Epoch 0"/>
+        <updated>2024-06-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Epoch 0 payouts have been sent]]></summary>
+        <content type="html"><![CDATA[<p>Epoch 0 payouts have been sent</p>
+<p>9 blocks have been produced this epoch.</p>
+<p>As a reminder, you can find all payouts in realtime on this page :</p>
+<ul>
+<li><a href="https://naamahdaemon.github.io/fr/docs/Node%20Statistics/payouts">Payouts</a></li>
+</ul>]]></content>
+        <author>
+            <name>Naamah</name>
+            <uri>https://github.com/naamahdaemon</uri>
+        </author>
+        <category label="mina" term="mina"/>
+        <category label="payouts" term="payouts"/>
+        <category label="june" term="june"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Epoch Calculator tool available]]></title>
+        <id>https://naamahdaemon.github.io/fr/blog/Epoch Calculator Tool</id>
+        <link href="https://naamahdaemon.github.io/fr/blog/Epoch Calculator Tool"/>
+        <updated>2024-06-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[You need some information about the ongoing epoch ?]]></summary>
+        <content type="html"><![CDATA[<p>You need some information about the ongoing epoch ?</p>
+<p>I made this little tool available so that you can get :</p>
+<ul>
+<li>Epoch in progress</li>
+<li>Current epoch slot</li>
+<li>Current epoch block height</li>
+<li>Current epoch end date and remaining time</li>
+</ul>
+<p><img loading="lazy" alt="Mina Epoch Calculator" src="https://naamahdaemon.github.io/fr/assets/images/epoch-787a4abb464dbea7500e0fc8dc6a4c17.png" width="650" height="751" class="img_ev3q"></p>
+<p>Find the tool here :</p>
+<p><a href="https://naamahdaemon.github.io/mina_epoch.html" target="_blank" rel="noopener noreferrer">https://naamahdaemon.github.io/mina_epoch.html</a></p>]]></content>
+        <author>
+            <name>Naamah</name>
+            <uri>https://github.com/naamahdaemon</uri>
+        </author>
+        <category label="mina" term="mina"/>
+        <category label="epoch" term="epoch"/>
+        <category label="tool" term="tool"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Mina Payout Calculator updated]]></title>
         <id>https://naamahdaemon.github.io/fr/blog/Mina Payout Calculator updated</id>
