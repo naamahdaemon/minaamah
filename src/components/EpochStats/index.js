@@ -156,19 +156,16 @@ const EpochStats = ({ apiUrl, isRelative }) => {
               </tr>
               <tr>
                 <td className="legend">Slot in Epoch</td>
-                <td className="value digital-watch blanc">
+                <td className="value digital-watch blanc"  style={{ marginLeft: '40px' }}>
                   <div className={styles.progressbarcontainer}>
                     <div style={{ position: 'relative', width: '100%' }}>
-                      <progress className={styles.progressbar} value={blockData.slot} max="7140"
-                        style={{
-                          background: `linear-gradient(to right, #1a8870 ${slotPercentage}%, #e0e0e0 ${slotPercentage}%)`,
-                        }}></progress>
+                      <progress className={styles.progressbar} value={blockData.slot} max="7140"></progress>
                       <div
                         style={{
                           position: 'absolute',
                           top: '0',
                           left: `${slotPercentage}%`,
-                          transform: 'translateX(-90%)',
+                          transform: 'translateX(-30%)',
                           fontSize: '14px',
                           color: 'white',
                           backgroundColor: '#25c2a0',
