@@ -4,10 +4,32 @@
         <title>Naamah Mina Stake Blog</title>
         <link>https://naamahdaemon.github.io/blog</link>
         <description>Naamah Mina Stake Blog</description>
-        <lastBuildDate>Thu, 20 Jun 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 22 Jun 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Mina Pool Payout script updated]]></title>
+            <link>https://naamahdaemon.github.io/blog/Updated Mina Pool Payout Script</link>
+            <guid>https://naamahdaemon.github.io/blog/Updated Mina Pool Payout Script</guid>
+            <pubDate>Sat, 22 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[The Jonathan's Mina Pool Payout Script has been updated.]]></description>
+            <content:encoded><![CDATA[<p>The Jonathan's Mina Pool Payout Script has been updated.<br>
+<!-- -->All BP should update to the new v1.7.0 payout script.</p>
+<p>This version fixes a discrepancy in the way Foundation and o1Labs delegation payouts are computed compared to the old script.</p>
+<p>It adds a new environment variable <code>PAYOUT_CALCULATOR</code> to drive the behavior of the transaction fees share.</p>
+<p>Valid calculators include for the post-fork rewards :</p>
+<ul>
+<li><code>postSuperChargeShareFees</code> : Share the fees between all delegates including foundation, investors and o1labs</li>
+<li><code>postSuperChargeKeepFees</code> : Validator keeps all the fees</li>
+<li><code>postSuperChargeCommonShareFees</code> : Share the fees between delegates excluding foundation, investors and o1labs (<strong>this was the old behaviour and the default one</strong>)</li>
+</ul>
+<p>Update your script here : <a href="https://github.com/jrwashburn/mina-pool-payout" target="_blank" rel="noopener noreferrer">https://github.com/jrwashburn/mina-pool-payout</a></p>]]></content:encoded>
+            <category>mina</category>
+            <category>payouts</category>
+            <category>script</category>
+            <category>tool</category>
+        </item>
         <item>
             <title><![CDATA[Epoch 0 Mina Payouts]]></title>
             <link>https://naamahdaemon.github.io/blog/Mina Payouts for Epoch 0</link>
