@@ -9,4 +9,5 @@ You'll find here some important information and statistics about my Block Produc
 
 * [Block Production](block_production.md)
 * [Delegations](delegations.md)
+* [Epoch Statistics](epoch_stats.md)
 * [Payouts](payouts.md)
