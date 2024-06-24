@@ -17,6 +17,9 @@ const FeatureList = [
 		<b><Link to="/docs/intro"> ENTER </Link></b>
 		<br/><br/>
 		🚧Under Construction🚧
+    <br/>
+    <br/>
+    <b>NEW here ?</b>&nbsp;<Link to="/blog/welcome"> READ THIS </Link>
       </>
     ),
   }
