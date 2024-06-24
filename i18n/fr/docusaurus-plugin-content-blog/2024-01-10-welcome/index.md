@@ -48,7 +48,9 @@ N'hésitez pas à me contacter si vous avez des questions.
 
 **Réseaux sociaux**  
 * Discord  
-naamah#8064
+naamah#8064 
+* Serveur Discord de Naamah  
+https://discord.com/invite/ZkqQw8dK4E
 * Telegram  
 https://t.me/naamahdaemon
 * Github  
