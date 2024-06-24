@@ -152,6 +152,7 @@ const EpochStats = ({ apiUrl, isRelative }) => {
       <h2>BLOCKCHAIN INFORMATION</h2>
       <div>
         <b>EPOCH PROGRESS</b><br/>
+        <br/>
         {testData.map((item, idx) => (
           <ProgressBar key={idx} bgcolor={item.bgcolor} completed={item.completed} />
         ))}
