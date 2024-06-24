@@ -284,11 +284,72 @@ Follow me on twitter to get some live news on mina protocol.</p>
             <link>https://naamahdaemon.github.io/blog/welcome</link>
             <guid>https://naamahdaemon.github.io/blog/welcome</guid>
             <pubDate>Wed, 10 Jan 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[Welcome to this website.]]></description>
-            <content:encoded><![CDATA[<p>Welcome to this website.
-I will post here some information and share my experience regarding Mina protocol - the smallest blockchain.</p>
-<p>This site is under construction. Be Patient.</p>
-<p>Stay tuned for more information</p>]]></content:encoded>
+            <description><![CDATA[As an active participant in the Mina Protocol community, I take great pride in operating a validation node.]]></description>
+            <content:encoded><![CDATA[<p>As an active participant in the Mina Protocol community, I take great pride in operating a validation node.<br>
+<!-- -->My involvement extends beyond just maintaining the node; I am an enthusiastic member of the community Discord, always eager to offer my assistance to anyone in need.<br>
+<!-- -->By sharing my knowledge and providing support, I strive to contribute to the growth and success of the Mina Protocol ecosystem.</p>
+<h1>What is Mina Protocol?</h1>
+<p>Mina Protocol is a revolutionary blockchain platform designed to offer scalability and security through its unique succinct blockchain technology.<br>
+<!-- -->Unlike traditional blockchains, which grow in size as more transactions are added, Mina maintains a constant size of only a few kilobytes, thanks to its innovative use of zk-SNARKs (zero-knowledge succinct non-interactive arguments of knowledge).<br>
+<!-- -->This ensures that Mina remains lightweight and accessible, making it possible for anyone to operate a full node without requiring extensive computational resources.</p>
+<h1>ZK Programmability and o1js SDK</h1>
+<p>One of Mina Protocol's standout features is its zero-knowledge (ZK) programmability.<br>
+<!-- -->This allows developers to create and deploy smart contracts that preserve privacy and security while remaining efficient and scalable.<br>
+<!-- -->The o1js SDK (Software Development Kit) is a powerful tool that enables developers to easily build ZK-powered applications on Mina.<br>
+<!-- -->With this SDK, creating secure, private, and performant decentralized applications becomes straightforward, empowering developers to innovate without the typical limitations of traditional blockchain platforms.</p>
+<h1>About This Website</h1>
+<p>This website is a comprehensive resource for everything related to Mina Protocol. Here, you'll find:</p>
+<p><strong>General Information:</strong><br>
+<!-- -->An overview of Mina Protocol, its unique features, and the benefits it offers.</p>
+<p><strong>Technical Details:</strong><br>
+<!-- -->In-depth guides and documentation for individuals interested in running their own Mina validation node, covering everything from setup to maintenance.</p>
+<p><strong>Blog:</strong><br>
+<!-- -->Regular updates on the latest news about Mina Protocol, as well as insights and progress reports about my validation node.<br>
+<!-- -->Whether you're a seasoned developer or a newcomer to blockchain technology, this site aims to provide valuable information to help you navigate the Mina Protocol ecosystem.</p>
+<h1>Delegation Terms</h1>
+<p>I offer a highly competitive delegation service with a fee of just 1%, one of the lowest rates available.</p>
+<p>By delegating to my node, you can maximize your rewards while supporting a dedicated and community-focused validator.<br>
+<!-- -->My commitment to maintaining high uptime and providing ongoing support ensures that your delegation is in good hands.</p>
+<h1>Contact me</h1>
+<p>Don't hesitate to contact me if you have any question.</p>
+<p><strong>Social Networks</strong></p>
+<ul>
+<li>Discord<br>
+<!-- -->naamah#8064</li>
+<li>Telegram<br>
+<a href="https://t.me/naamahdaemon" target="_blank" rel="noopener noreferrer">https://t.me/naamahdaemon</a></li>
+<li>Github<br>
+<a href="https://github.com/naamahdaemon" target="_blank" rel="noopener noreferrer">https://github.com/naamahdaemon</a></li>
+<li>Twitter<br>
+<a href="https://twitter.com/NaamahDaemon" target="_blank" rel="noopener noreferrer">https://twitter.com/NaamahDaemon</a></li>
+</ul>
+<p><strong>Block Explorers</strong><br>
+<!-- -->You can check my validator information on any mina explorer available :</p>
+<ul>
+<li>Mina Explorer<br>
+<a href="https://minaexplorer.com/wallet/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr" target="_blank" rel="noopener noreferrer">https://minaexplorer.com/wallet/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</a></li>
+<li>Minascan<br>
+<a href="https://minascan.io/mainnet/validator/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr/delegations" target="_blank" rel="noopener noreferrer">https://minascan.io/mainnet/validator/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr/delegations</a></li>
+<li>Minataur<br>
+<a href="https://minataur.net/account/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr" target="_blank" rel="noopener noreferrer">https://minataur.net/account/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</a></li>
+</ul>
+<h1>Node Real Time information</h1>
+<p>You will also find some real time information on my nodes on this web site !</p>
+<ul>
+<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/payouts">Payouts</a><br>
+<!-- -->Real time due payouts</li>
+<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/block_production">Block Production</a><br>
+<!-- -->Real time block production</li>
+<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/epoch_stats">Epoch Calculator</a><br>
+<!-- -->Real time epoch statistics</li>
+<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/delegations">Delegations</a><br>
+<!-- -->Real Time delegations (number of delegates / amount)</li>
+</ul>
+<br>
+<h1>Support me by delegating to my Block Producer !</h1>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>My Validator Address</div><div class="admonitionContent_BuS1"><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div></div>
+<div class="text--center"><img src="https://naamahdaemon.github.io/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>Fees</div><div class="admonitionContent_BuS1"><p>My commission fees for regular blocks will be <strong>as low as 1%</strong> until total independent delegators stake reach <strong>500k</strong> Mina.</p></div></div>]]></content:encoded>
             <category>hello</category>
             <category>mina</category>
         </item>
