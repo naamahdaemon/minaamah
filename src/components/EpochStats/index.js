@@ -11,6 +11,7 @@ import Chart from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
 import styles from './styles.module.css';
 import naamah_bp_qrcode from './img/naamah_bp_qrcode.png';
+import ProgressBar from '@site/src/components/ProgressBar/progress-bar.component';
 
 const queryClient = new QueryClient()
 
@@ -141,10 +142,21 @@ const EpochStats = ({ apiUrl, isRelative }) => {
   
   const slotPercentage = blockData ? (blockData.slot / 7140) * 100 : 0;
   
+  const testData = [
+    { bgcolor: "#128062", completed: Math.round(slotPercentage)}
+  ];  
+  
   return (
     <div className="App">
       <p className="digital-watch2">{dateTime}</p>
       <h2>BLOCKCHAIN INFORMATION</h2>
+      <div>
+        <b>EPOCH PROGRESS</b><br/>
+        {testData.map((item, idx) => (
+          <ProgressBar key={idx} bgcolor={item.bgcolor} completed={item.completed} />
+        ))}
+      </div>
+      <br/>
       <div id="graphql-data">
         {blockData ? (
         <>
@@ -167,8 +179,9 @@ const EpochStats = ({ apiUrl, isRelative }) => {
                           left: `${slotPercentage}%`,
                           transform: 'translateX(-30%)',
                           fontSize: '14px',
+                          fontWeight: 'bold',
                           color: 'white',
-                          backgroundColor: '#25c2a0',
+                          backgroundColor: '#128062',
                           padding: '2px 5px',
                           borderRadius: '3px',
                           height: '50px'
@@ -208,7 +221,6 @@ const EpochStats = ({ apiUrl, isRelative }) => {
           <p>Loading...</p>
         )}
       </div>
-
       <h2>Delegate to my validator</h2>
       <div style={{ display: 'flex', justifyContent: 'center', border: 'none' }}>
         <table style={{ border: 'none' }}>
