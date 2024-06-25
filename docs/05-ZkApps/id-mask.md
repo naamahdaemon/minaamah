@@ -114,6 +114,8 @@ Let's try with the first one : **Proof of Age**
 ![Get Data](./img/idmask4.png)
 
 #### STEP 2 - Create the Proof
+**Let's say we want to proove that we are above 8.**  
+
 ![Create Age Proof](./img/idmask5.png)
 
 If you required from the settings that your wallet signed the generated proof then your web extension wallet should open and let you sign the request.  

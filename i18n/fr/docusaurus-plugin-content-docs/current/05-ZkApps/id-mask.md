@@ -113,6 +113,8 @@ Essayons avec la première : **Preuve d'âge**
 ![Obtenir des données](./img/idmask4.png)
 
 #### ÉTAPE 2 - Créer la preuve
+**Nous voulons prouver que nous avons plus de 8 ans**  
+
 ![Créer la preuve d'âge](./img/idmask5.png)
 
 Si vous avez demandé dans les paramètres que votre portefeuille signe la preuve générée, alors votre portefeuille web extension devrait s'ouvrir et vous permettre de signer la demande.  
