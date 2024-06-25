@@ -50,5 +50,9 @@
   "sidebar.mainSidebar.category.Run_Docker_Mainnet": {
     "message": "Running Mina Mainnet with Docker",
     "description": "The label for category Run_Docker_Mainnet in sidebar mainSidebar"
+  },
+  "sidebar.mainSidebar.category.Available ZKApps": {
+    "message": "Available ZKApps",
+    "description": "The label for category Available ZKApps in sidebar mainSidebar"
   }
 }
