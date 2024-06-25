@@ -3,7 +3,7 @@ import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 import Translate, {translate} from '@docusaurus/Translate';
 import Link from '@docusaurus/Link';
-import TwitterFeed from '@site/src/components/TwitterFeed/TwitterFeed';
+//import TwitterFeed from '@site/src/components/TwitterFeed/TwitterFeed';
 
 //const title={}
 
@@ -21,9 +21,6 @@ const FeatureList = [
         <br/>
         <br/>
         <b>NEW here ?</b>&nbsp;<Link to="/blog/welcome"> READ THIS </Link>
-        <br/><br/><hr/>
-        <h2>Latest Tweets from Mina Protocol</h2>
-        <TwitterFeed hashtag="@minaprotocol" />
       </>
     ),
   }
