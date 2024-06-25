@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
 .features {
   display: flex;
   align-items: center;
@@ -14,6 +16,31 @@ table {
     width:100%;
 	  display: table;
     border: none;
+}
+
+td.legend, td.value {
+  font-size: 1em; /* Adjust font size of table cells for smaller screens */
+}
+
+.digitalwatch {
+  /*font-size: 1em;
+  font-family: 'Orbitron', sans-serif;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: block;
+  width: 100%;*/
+}
+.addresse {
+  font-size: 1em;
+  font-family: 'Orbitron', sans-serif;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: block;
+  color: #FFFFFF;
+  word-wrap: break-word; /* Allow long words to wrap */
+  white-space: pre-wrap; /* Preserve formatting and allow wrapping */
+  max-width: 100%; /* Ensure it doesn't overflow container */
+  line-height: 1.5; /* Increase line height for better readability */
 }
 
 .progressbarcontainer {

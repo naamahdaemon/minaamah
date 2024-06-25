@@ -148,7 +148,7 @@ const EpochStats = ({ apiUrl, isRelative }) => {
   
   return (
     <div className="App">
-      <p className="digital-watch2">{dateTime}</p>
+      <p className={styles.digitalwatch}>{dateTime}</p>
       <h2>BLOCKCHAIN INFORMATION</h2>
       <div>
         <b>EPOCH PROGRESS</b><br/>
@@ -164,12 +164,12 @@ const EpochStats = ({ apiUrl, isRelative }) => {
           <table>
             <tbody>
               <tr>
-                <td className="legend">Epoch</td>
-                <td className="value digital-watch blanc">{blockData.epoch}</td>
+                <td className={styles.legend}>Epoch</td>
+                <td className={`${styles.digitalwatch} ${styles.value}`}>{blockData.epoch}</td>
               </tr>
               <tr>
-                <td className="legend">Slot in Epoch</td>
-                <td className="value digital-watch blanc"  style={{ marginLeft: '40px' }}>
+                <td className={styles.legend}>Slot in Epoch</td>
+                <td className="value digital-watch"  style={{ marginLeft: '40px' }}>
                   <div className={styles.progressbarcontainer}>
                     <div style={{ position: 'relative', width: '100%' }}>
                       <progress className={styles.progressbar} value={blockData.slot} max="7140"></progress>
@@ -200,20 +200,20 @@ const EpochStats = ({ apiUrl, isRelative }) => {
                 </td>
               </tr>
               <tr>
-                <td className="legend">Block Height</td>
-                <td className="value digital-watch blanc">{blockData.blockHeight}</td>
+                <td className={styles.legend}>Block Height</td>
+                <td className={`${styles.digitalwatch} ${styles.value}`}>{blockData.blockHeight}</td>
               </tr>
               <tr>
-                <td className="legend">Slot Since Genesis</td>
-                <td className="value digital-watch blanc">{blockData.slotSinceGenesis}</td>
+                <td className={styles.legend}>Slot Since Genesis</td>
+                <td className={`${styles.digitalwatch} ${styles.value}`}>{blockData.slotSinceGenesis}</td>
               </tr>
               <tr>
-                <td className="legend">Remaining time in epoch (approx.)</td>
-                <td className="value digital-watch vert">{blockData.remainingTime}</td>
+                <td className={styles.legend}>Remaining time in epoch (approx.)</td>
+                <td className={`${styles.digitalwatch} ${styles.value}`}>{blockData.remainingTime}</td>
               </tr>
               <tr>
-                <td className="legend">Epoch {blockData.epoch} will end on (approx.)</td>
-                <td className="value digital-watch vert">{blockData.futureDateTime}</td>
+                <td className={styles.legend}>Epoch {blockData.epoch} will end on (approx.)</td>
+                <td className={`${styles.digitalwatch} ${styles.value}`}>{blockData.futureDateTime}</td>
               </tr>
             </tbody>
           </table>
@@ -233,7 +233,7 @@ const EpochStats = ({ apiUrl, isRelative }) => {
              </tr>
              <tr>
               <td style={{ textAlign: 'center', border: 'none', whiteSpace: 'pre-wrap', wordWrap: 'break-word', maxWidth: '200px' }}>
-                <div style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }} className="addresse">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</div>
+                <div style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }} className={styles.addresse}>B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</div>
               </td>
             </tr>
           </tbody>
