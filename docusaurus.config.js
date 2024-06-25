@@ -120,13 +120,21 @@ const config = {
                 href: 'https://stackoverflow.com/questions/tagged/docusaurus',
               },*/
               {
-                label: 'Discord',
+                label: 'Mina Official Discord',
                 href: 'https://discord.gg/minaprotocol',
-              }/*,
+              },
+              {
+                label: 'Naamah Discord',
+                href: 'https://discord.com/invite/ZkqQw8dK4E',
+              },              
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },*/
+                href: 'https://twitter.com/naamahdaemon',
+              },
+              {
+                label: 'Telegram',
+                href: 'https://t.me/naamahdaemon',
+              },       
             ],
           },
           {
