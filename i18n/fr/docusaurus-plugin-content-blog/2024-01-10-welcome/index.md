@@ -42,6 +42,12 @@ J'offre un service de délégation très compétitif avec des frais de seulement
 En déléguant à mon nœud, vous pouvez maximiser vos récompenses tout en soutenant un validateur dédié et axé sur la communauté.  
 
 Mon engagement à maintenir une haute disponibilité et à fournir un soutien continu garantit que votre délégation est entre de bonnes mains.  
+  
+:::note  Performance de mon Validateur
+**Comparez la performance de votre Validateur actuel avec le mien grâce à mon outil de comparaison des payout ici :**
+
+https://naamahdaemon.github.io/payout.html
+:::
 
 # Contactez-moi
 N'hésitez pas à me contacter si vous avez des questions.  
