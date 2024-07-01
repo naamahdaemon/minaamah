@@ -41,6 +41,12 @@ I offer a highly competitive delegation service with a fee of just 1%, one of th
 
 By delegating to my node, you can maximize your rewards while supporting a dedicated and community-focused validator.  
 My commitment to maintaining high uptime and providing ongoing support ensures that your delegation is in good hands.  
+  
+:::note  Validator Performance
+**Compare the performance of your current block producer with my block producer thanks to my payout simulator available here :**
+
+https://naamahdaemon.github.io/payout.html
+:::
 
 # Contact me
 Don't hesitate to contact me if you have any question.  
