@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAAMAH'S BP PERFORMANCE COMPARISON</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        body {
+            //font-family: Arial, sans-serif;
+            font-family: 'Fira Code', monospace;
+            background-color: #f0f8f7; /* light green background */
+            margin: 5px;
+            padding: 5px;
+        }
+
+        h1, h2 {
+            color: #0a7161; /* dark green text */
+        }
+
+        label {
+            display: inline-block;
+            width: 300px;
+            margin-bottom: 5px;
+            color: #0a7161; /* dark green label */
+        }
+
+        input[type="number"], input[type="text"], button {
+            padding: 8px;
+            font-size: 16px;
+            width: 100%;
+            //max-width: 600px; /* adjust as needed */
+            border: 1px solid #0a7161; /* dark green border */
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .wrapped-text {
+            //max-width: 200px; /* Adjust max-width as needed */
+            word-wrap: break-word;
+            text-align: center;
+            border-radius: 10px; /* Adjust border-radius to control the roundness of corners */
+            background-color: white;
+            padding: 10px; /* Add padding to give some space around the text */
+            margin: 0 auto; /* Centers the div horizontally */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+        }
+        
+        button {
+            background-color: #0a7161; /* dark green button */
+            color: white;
+            cursor: pointer;
+            font-family: 'Fira Code', monospace;
+        }
+
+        button:hover {
+            background-color: #0d9c84; /* lighter green on hover */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid #0a7161; /* dark green border */
+            border-radius: 5px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #0a7161; /* dark green border */
+        }
+
+        th {
+            background-color: #0d9c84; /* lighter green header */
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e6f3f0; /* very light green */
+        }
+
+        tr:hover {
+            background-color: #d1ede1; /* light green on hover */
+        }
+        
+        /* CSS for the warning box */
+        .warning-box {
+            background-color: #ffdddd; /* Light red background */
+            border-left: 6px solid #f44336; /* Red left border */
+            padding: 16px;
+            margin: 20px 0; /* Space around the warning box */
+            border-radius: 4px;
+            color: #333; /* Text color */
+            font-family: Arial, sans-serif;
+        }
+
+        .warning-box strong {
+            font-weight: bold;
+            color: #d8000c; /* Darker red for emphasis */
+        }
+        
+        /* CSS for the info box */
+        .info-box {
+            background-color: #ddffdd; /* Light green background */
+            border-left: 6px solid #43f436; /* green left border */
+            padding: 16px;
+            margin: 20px 0; /* Space around the warning box */
+            border-radius: 4px;
+            color: #333; /* Text color */
+            font-family: Arial, sans-serif;
+        }
+
+        .info-box strong {
+            font-weight: bold;
+            color: #00880c; /* Darker red for emphasis */
+        }        
+        .table-container {
+            width: 100%; /* Set the desired width of the container */
+            overflow-x: auto; /* Enable horizontal scrolling */
+        }
+        
+        .copy-emoji {
+            cursor: pointer;
+            margin-left: 10px;
+        }        
+    </style>
+</head>
+<body>
+    <h1>NAAMAH'S BP PERFORMANCE COMPARISON</h1>
+    <h2>Compare the performance of your actual validator with mine 😊</h2>
+    <div class="warning-box">
+        <!--<strong>🚨 Warning!</strong><br/>
+        This is an early pre-release that may be unstable, stop working or deliver innacurate results.<br/>-->
+        <b>Only the epochs post hardfork (>0) on the new chain are taken into account.</b>
+    </div>    
+    <label for="epoch">Epoch (since hardfork)</label>
+    <input type="number" id="epoch" value="1" min="0"><br>
+
+    <label for="publicKey1">Naamah's validator</label>
+    <input type="text" id="publicKey1" value="B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr" style="background-color:lightgrey"><br>
+
+    <label for="fee1">Naamah's Fees (%)</label>
+    <input type="number" style="background-color:lightgrey" id="fee1" value=1 min="0" max="100"><br>
+
+    <label for="fee2">Enter your validator's fee (%)</label>
+    <input type="number" id="fee2" value=5 value="5" min="0" max="100"><br>
+
+    <label for="publicKey3">Enter your public Key</label>
+    <input type="text" id="publicKey3"><br/>
+    
+    <label for="publicKey2">Your current validator address</label>
+    <input type="text" id="publicKey2" style="background-color:lightgrey"><br>    
+    
+    <br/><br/>
+    <input type="checkbox" id="showPublicKey3" checked onchange="fetchData()">Filter to display your public key only<br>
+    <br/><br/>
+    
+    <center><button onclick="fetchData()">Compare</button></center>
+
+    <hr/>
+
+    <h2>Account Information</h2>
+    <div class="table-container">
+    <table id="accountTable">
+        <tr>
+            <th>Public Key</th>
+            <th>Balance</th>
+            <th>Delegate Key</th>
+        </tr>
+    </table>
+    </div>
+
+    <h2>Naamah's Block Stats</h2>
+    <div class="table-container">
+    <table id="delegator1Table">
+        <tr>
+            <th>Key</th>
+            <th>#Blocks</th>
+            <th>Rewards</th>
+            <th>Snarks Fee</th>
+            <th>Trans. Fee</th>
+            <th>#Del</th>
+            <th>Stake</th>
+        </tr>
+    </table>
+    </div>
+
+    <h2>Your Validator Block Stats</h2>
+    <div class="table-container">
+    <table id="delegator2Table">
+        <tr>
+            <th>Key</th>
+            <th>#Blocks</th>
+            <th>Rewards</th>
+            <th>Snarks Fee</th>
+            <th>Trans. Fee</th>
+            <th>#Del</th>
+            <th>Stake</th>            
+        </tr>
+    </table>
+    </div>
+    <h2>Naamah's Validator</h2>
+    <div class="table-container">
+    <table id="delegatorsTable">
+        <tr>
+            <th>Key</th>
+            <th>Lock</th>
+            <th>Bal.</th>
+            <th>O</th>
+            <th>F</th>
+            <th>I</th>
+            <th>Share</th>
+            <th>Payout</th>
+        </tr>
+    </table>
+    </div>
+
+    <h2>Your current validator</h2>
+    <div class="table-container">
+    <table id="delegatorsTable2">
+        <tr>
+            <th>Key</th>
+            <th>Lock</th>
+            <th>Bal.</th>
+            <th>O</th>
+            <th>F</th>
+            <th>I</th>
+            <th>Share</th>
+            <th>Payout</th>
+        </tr>
+    </table>
+    </div>
+
+    <script>
+async function fetchData() {
+    let epoch = document.getElementById('epoch').value;
+    epoch = Number(epoch)+80;
+    let epoch_since_hardfork = 0;
+    let beforeHF = false;
+    const publicKey1 = document.getElementById('publicKey1').value;
+    const fee1 = document.getElementById('fee1').value;
+    let publicKey2Input = document.getElementById('publicKey2');  // Get reference to publicKey2 input element
+    let publicKey2 = publicKey2Input.value;  // Get current value of publicKey2 input field
+    const fee2 = document.getElementById('fee2').value;
+    const publicKey3 = document.getElementById('publicKey3').value;
+    const showPublicKey3 = document.getElementById('showPublicKey3').checked;
+    const cors_proxy=true;
+    
+    //if (Number(epoch) > 79) {
+      //epoch_since_hardfork = Number(epoch)-80;
+      epoch_since_hardfork = Number(epoch);
+      beforeHF=false;
+      //}
+    //else {
+      //epoch_since_hardfork = Number(epoch);
+      //beforeHF=true;
+      //}
+
+    console.log(epoch);
+    console.log(epoch_since_hardfork);
+
+    const auth = "my_secret";
+    const apiUrl = "https://minataur.net/api/v1";
+    const proxyUrl = "https://www.akirion.com:4664/proxy?url=";
+    let accountRoute = apiUrl + "/account";
+    let delegatorsRoute = apiUrl + "/delegators"
+    let workRoute = apiUrl + "/work";
+    // Headers for the proxy request
+    let headers = {
+        'Content-Type': 'application/json',
+        'Minataur-Authorization': 'minataur-token:ede9adcaec633f3290865e0f85faddbb:4d8801b69d7870786620996ddcb14e551719693200945',
+    };
+    
+    if (cors_proxy) {
+      accountRoute = proxyUrl + encodeURIComponent(`${apiUrl}/account`);
+      delegatorsRoute = proxyUrl + encodeURIComponent(`${apiUrl}/delegators`);
+      workRoute = proxyUrl + encodeURIComponent(`${apiUrl}/work`);
+      headers = {
+      'Content-Type': 'application/json',
+      'x-api-key': 'e0d9da01-c1c5-4c44-b4fa-3cbdb4982ed3',
+      };
+    }
+
+    const accountPayload = { auth, publicKey: publicKey3 };
+    const delegatorsPayload = { auth, epoch: Number(epoch), publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false };
+    let delegatorsPayload2;
+
+
+
+    // Clear existing tables before populating
+    clearTable('accountTable');
+    clearTable('delegatorsTable');
+    clearTable('delegatorsTable2');
+    clearTable('delegator1Table');
+    clearTable('delegator2Table');
+    try {
+        // Fetch account data first
+        const accountResponse = await fetch(accountRoute , {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(accountPayload)
+        }).then(res => res.json());
+
+        // Update publicKey2 input field with delegate_key if it's empty
+        if (publicKey2 === '' || false) {
+          let delegateKey = "B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr";
+          if (accountResponse.payload.account.ledger && accountResponse.payload.account.ledger.delegate_key) {
+              delegateKey = accountResponse.payload.account.ledger.delegate_key;
+          }
+          publicKey2 = delegateKey;
+          publicKey2Input.value = publicKey2;  // Update the input field
+        }
+
+        // Update delegatorsPayload2 with the correct publicKey2
+        delegatorsPayload2 = { auth, epoch: Number(epoch), publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false };
+
+        // Fetch all other necessary data
+        const [delegatorsResponse, workResponse, delegatorsResponse2, workResponse2] = await Promise.all([
+            fetch(delegatorsRoute, {
+                method: 'POST',
+                headers,
+                body: JSON.stringify(delegatorsPayload)
+            }).then(res => res.json()),
+            fetch(workRoute, {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({ auth, epoch: epoch_since_hardfork, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: beforeHF })
+            }).then(res => res.json()),
+            fetch(delegatorsRoute, {
+                method: 'POST',
+                headers,
+                body: JSON.stringify(delegatorsPayload2)
+            }).then(res => res.json()),
+            fetch(workRoute, {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({ auth, epoch: epoch_since_hardfork, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: beforeHF })
+            }).then(res => res.json())
+        ]);
+
+        // Populate tables with fetched data
+        populateAccountTable(accountResponse.payload.account);
+
+        if (showPublicKey3) {
+            populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, showPublicKey3, fee1);
+            populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, showPublicKey3, fee2);
+        } else {
+            populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, false, fee1);
+            populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, false, fee2);
+        }
+
+        populateDelegatorTable('delegator1Table', delegatorsResponse.payload.ledger, workResponse.payload.work);
+        populateDelegatorTable('delegator2Table', delegatorsResponse2.payload.ledger, workResponse2.payload.work);
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+function createTruncatedKeyCell(key) {
+    const fullKey = key;
+    const truncatedKey = `${fullKey.slice(0, 6)}...${fullKey.slice(-6)}`;
+
+    const cell = document.createElement('td');
+    cell.innerText = truncatedKey;
+    cell.style.whiteSpace = 'nowrap'; // Prevent wrapping of content
+
+    // Create a span element for the copy emoji
+    const copyEmoji = document.createElement('span');
+    copyEmoji.textContent = ' 📋';
+    copyEmoji.style.cursor = 'pointer';
+    copyEmoji.title = 'Click to copy full key';
+
+    // Add click event listener to copy the full key
+    copyEmoji.addEventListener('click', () => {
+        navigator.clipboard.writeText(fullKey).then(() => {
+            alert(fullKey + ' copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy full key: ', err);
+        });
+    });
+
+    // Append copy emoji span to the cell
+    cell.appendChild(copyEmoji);
+
+    return cell;
+}
+
+function populateAccountTable(account) {
+    const accountTable = document.getElementById('accountTable');
+    const row = accountTable.insertRow();
+
+    const keyCell = createTruncatedKeyCell(account.info.key);
+    row.appendChild(keyCell);
+
+    const balanceCell = row.insertCell(1);
+    balanceCell.innerText = (Number(account.info.balance) / 1000000000).toFixed(4);
+
+    let delegateKeyCell;
+    if (account.ledger && account.ledger.delegate_key) {
+      delegateKeyCell = createTruncatedKeyCell(account.ledger.delegate_key);
+    }
+
+    if (!delegateKeyCell) {
+      const cell = row.insertCell(2);
+      cell.innerHTML = "<span style='color: red;'><i>Key is not in staking ledger yet</i></span>";
+    } else {    
+      row.appendChild(delegateKeyCell);
+    }
+
+}
+
+function populateDelegatorsTable(ledger, work, account, tableId, publicKey3, showPublicKey3, fee) {
+    const delegatorsTable = document.getElementById(tableId);
+    //const totalStake = (Number(ledger.stake) + Number(account.info.balance));
+    
+    let totalStake = Number(ledger.stake);
+    if (!ledger.delegators.some(d => d.public_key === account.info.key)) {
+        totalStake += Number(account.info.balance);
+    }
+    
+    
+    const totalRewards = (Number(work.rewards) + Number(work.transactions_fee)) / 1000000000;
+
+    // Add the third public key as a delegator only if it's not already in the list
+    const thirdDelegator = {
+        public_key: account.info.key,
+        balance: account.info.balance,
+        locked: false,
+        is_olabs: account.info.is_olabs,
+        is_found: account.info.is_found,
+        is_investor: account.info.is_investor
+    };
+
+    if (!ledger.delegators.some(d => d.public_key === thirdDelegator.public_key)) {
+        // Add thirdDelegator to ledger.delegators
+        ledger.delegators.push(thirdDelegator);
+    }
+
+    // Sort the delegators array by balance in descending order
+    const sortedDelegators = ledger.delegators.sort((a, b) => Number(b.balance) - Number(a.balance));
+
+    let totalBalance = 0;
+    let totalShares = 0;
+    let totalDueAmount = 0;
+
+    sortedDelegators.forEach(delegator => {
+        if (!showPublicKey3 || delegator.public_key === publicKey3) { // Check if publicKey3 is empty or matches current delegator.public_key
+            const row = delegatorsTable.insertRow();
+            const keyCell = createTruncatedKeyCell(delegator.public_key); // Use createTruncatedKeyCell for public_key
+            row.appendChild(keyCell);
+
+            row.insertCell(1).innerText = delegator.locked;
+            
+            const balance = (Number(delegator.balance) / 1000000000).toFixed(4);
+            const balanceCell = row.insertCell(2);
+            balanceCell.innerText = balance;
+            balanceCell.style.textAlign = 'right';
+            totalBalance += parseFloat(balance);
+
+            const isO1labsCell = row.insertCell(3);
+            const isO1labsCheckbox = document.createElement('input');
+            isO1labsCheckbox.type = 'checkbox';
+            isO1labsCheckbox.checked = delegator.is_olabs;
+            isO1labsCheckbox.disabled = true;
+            isO1labsCell.appendChild(isO1labsCheckbox);
+
+            const isFoundCell = row.insertCell(4);
+            const isFoundCheckbox = document.createElement('input');
+            isFoundCheckbox.type = 'checkbox';
+            isFoundCheckbox.checked = delegator.is_found;
+            isFoundCheckbox.disabled = true;
+            isFoundCell.appendChild(isFoundCheckbox);
+
+            const isInvestorCell = row.insertCell(5);
+            const isInvestorCheckbox = document.createElement('input');
+            isInvestorCheckbox.type = 'checkbox';
+            isInvestorCheckbox.checked = delegator.is_investor;
+            isInvestorCheckbox.disabled = true;
+            isInvestorCell.appendChild(isInvestorCheckbox);
+
+
+            const share = Number(delegator.balance) / Number(totalStake);
+            const sharePercent = (share * 100).toFixed(8);
+            const sharePercentCell = row.insertCell(6);
+            sharePercentCell.innerText = parseFloat(sharePercent).toFixed(2) + '%'; // Display with 2 decimal places
+            sharePercentCell.style.textAlign = 'right';
+            totalShares += parseFloat(sharePercent);
+
+            let totalDue = totalRewards * share;
+            if (delegator.is_found || delegator.is_investor) {
+                totalDue *= 0.92;
+            } else if (delegator.is_olabs) {
+                totalDue *= 0.95;
+            } else {
+                totalDue *= (100 - fee) / 100;
+            }
+            const totalDueRounded = totalDue.toFixed(4);
+            const totalDueCell = row.insertCell(7);
+            totalDueCell.innerText = totalDueRounded;
+            totalDueCell.style.textAlign = 'right';
+            totalDueAmount += parseFloat(totalDueRounded);
+
+            if (publicKey3 && publicKey3 === delegator.public_key) {
+                row.style.backgroundColor = 'yellow';
+            }
+        }
+    });
+
+
+    // Add the total row
+    const totalRow = delegatorsTable.insertRow();
+    totalRow.insertCell(0).innerText = 'Total';
+    totalRow.insertCell(1).innerText = '';
+
+    const totalBalanceCell = totalRow.insertCell(2);
+    totalBalanceCell.innerText = totalBalance.toFixed(4);
+    totalBalanceCell.style.textAlign = 'right';
+
+    totalRow.insertCell(3).innerText = '';
+    totalRow.insertCell(4).innerText = '';
+    totalRow.insertCell(5).innerText = '';
+
+    const totalSharesCell = totalRow.insertCell(6);
+    totalSharesCell.innerText = totalShares.toFixed(2) + '%';
+    totalSharesCell.style.textAlign = 'right';
+
+    const totalDueAmountCell = totalRow.insertCell(7);
+    totalDueAmountCell.innerText = totalDueAmount.toFixed(4);
+    totalDueAmountCell.style.textAlign = 'right';
+
+}
+
+
+function populateDelegatorTable(tableId, delegators, work) {
+    const delegatorTable = document.getElementById(tableId);
+    const row = delegatorTable.insertRow();
+
+    const keyCell = createTruncatedKeyCell(work.publicKey); // Use createTruncatedKeyCell for publicKey
+    row.appendChild(keyCell);
+
+    row.insertCell(1).innerText = work.count;
+    row.insertCell(2).innerText = (Number(work.rewards) / 1000000000).toFixed(4);
+    row.insertCell(3).innerText = (Number(work.snarks_fee) / 1000000000).toFixed(4);
+    row.insertCell(4).innerText = (Number(work.transactions_fee) / 1000000000).toFixed(4);
+    row.insertCell(5).innerText = delegators.delegators_count;
+    row.insertCell(6).innerText = (Number(delegators.stake) / 1000000000).toFixed(2);
+
+}
+
+
+function clearTable(tableId) {
+    const table = document.getElementById(tableId);
+    // Remove all rows except the header row
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+}
+
+function copyText() {
+    const textToCopy = document.getElementById('bp-address').textContent;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        alert(textToCopy + ' copied to clipboard');
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+    });
+}
+
+</script>
+  <footer>
+      <p><center>&copy; 2024 Naamah - <a href='https://mina.naamahdaemon.eu/blog/welcome' target=_blank>https://mina.naamahdaemon.eu</a></center></p>
+      <br/>
+      <center><img src="./naamah_bp_qrcode.png" width=240/></center><br/>
+      <div class="wrapped-text">
+          <b id="bp-address">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</b><span class="copy-emoji" onclick="copyText()">📋</span>
+      </div><br/><br/>
+      <div class="info-box">
+          Big 👍 to Serhii Pimenov for providing the API and for his great work on Minataur mina explorer : <a href='https://minataur.net' target=_blank>https://minataur.net</a>
+      </div>  
+  </footer>
+</body>
+</html>
