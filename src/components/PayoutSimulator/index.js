@@ -18,8 +18,8 @@ const PayoutSimulator = () => {
     const [validatorTable2, setValidatorTable2] = useState(null);
     const [fee1, setFee1] = useState(1);
     const [fee2, setFee2] = useState(5);
-    const [publicKey3, setPublicKey3] = useState('B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr');
-    const [publicKey2, setPublicKey2] = useState('B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr');
+    const [publicKey3, setPublicKey3] = useState('');
+    const [publicKey2, setPublicKey2] = useState('');
     const [showPublicKey3, setShowPublicKey3] = useState(true);
 
     // Define fetchData function
@@ -70,7 +70,7 @@ const PayoutSimulator = () => {
 
             // Update publicKey2 input field with delegate_key if it's empty
             if (!publicKey2) {
-                let delegateKey = "B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr";
+                let delegateKey = "";
                 if (accountData && accountData.payload && accountData.payload.account && accountData.payload.account.ledger && accountData.payload.account.ledger.delegate_key) {
                     delegateKey = accountData.payload.account.ledger.delegate_key;
                 }
@@ -135,7 +135,11 @@ const PayoutSimulator = () => {
               // Update state with combined data
 
                 setValidatorTable1(combineData());
-            }   
+            }  else {
+              console.error("Invalid validator data");
+              // Optionally, you can set accountTable to null or a default value
+              setValidatorTable1(null);
+            } 
             
             // Build second validator table
             if (delegatorsResponse2 && workResponse2 && accountData) {
@@ -154,7 +158,11 @@ const PayoutSimulator = () => {
               // Update state with combined data
             
                 setValidatorTable2(combineData());
-            }
+            } else {
+              console.error("Invalid validator data");
+              // Optionally, you can set accountTable to null or a default value
+              setValidatorTable2(null);
+            } 
  
             if (delegatorsResponse && workResponse && accountData) {
               combineData = () => {
@@ -180,6 +188,10 @@ const PayoutSimulator = () => {
                 console.log (workResponse);
                 console.log(accountData);
                 setDelegatorTable1(combineData());
+            }  else {
+              console.error("Invalid delegator data");
+              // Optionally, you can set accountTable to null or a default value
+              setDelegatorTable1(null);
             }              
 
             if (delegatorsResponse2 && workResponse2 && accountData) {
@@ -206,7 +218,11 @@ const PayoutSimulator = () => {
                 console.log (workResponse2);
                 console.log(accountData);
                 setDelegatorTable2(combineData());
-            }
+            } else {
+              console.error("Invalid delegator data");
+              // Optionally, you can set accountTable to null or a default value
+              setDelegatorTable2(null);
+            }     
             console.log("****FIN DU FETCH DATA****");
             //console.log("DELEGATORS TABLE");
             //console.log (delegatorTable1);
@@ -257,7 +273,12 @@ const PayoutSimulator = () => {
     const renderValidatorTable = (validatorTable, titre) => {
         console.log("*** VALIDATOR TABLE ***");
         console.log(validatorTable);
-        if (!validatorTable) return null; // If accountTable is null or undefined, return null
+        if (!validatorTable) return (
+            <>
+              <h2>{titre}</h2>
+              <p className={styles.rouge}>Validator information is not available</p>
+            </>
+          );
 
         // Convert object keys to an array for iteration
         const { ledger, work } = validatorTable;
@@ -304,7 +325,12 @@ const PayoutSimulator = () => {
     };
 
     const renderAccountTable = () => {
-        if (!accountTable) return null; // If accountTable is null or undefined, return null
+        if (!accountTable) return (
+            <>
+              <h2>Account Information</h2>
+              <p className={styles.rouge}>Account information is not available</p>
+            </>
+          );
         console.log("*** ACCOUNT TABLE ***");
         console.log(accountTable);
         // Convert object keys to an array for iteration
@@ -351,7 +377,12 @@ const PayoutSimulator = () => {
     };
 
 const renderDelegatorTable = (delegatorTable, titre) => {
-        if (!delegatorTable) return null; // If delegatorTable1 is null or undefined, return null
+        if (!delegatorTable) return (
+            <>
+              <h2>{titre}</h2>
+              <p className={styles.rouge}>Delegator information is not available</p>
+            </>
+          );
         console.log("*** DELEGATOR TABLE ***");
         console.log(delegatorTable);
         // Convert object keys to an array for iteration
@@ -522,10 +553,7 @@ const renderDelegatorTable = (delegatorTable, titre) => {
 
             <br /><br />
             <input type="checkbox" id="showPublicKey3" checked={showPublicKey3} onChange={() => setShowPublicKey3(!showPublicKey3)} /> Filter to display your public key only<br />
-            <br /><br />
-
-            <center><button  className={styles.entree} onClick={fetchData}>Compare</button></center>
-
+ 
             <hr />
             
             <div className={styles.tablecontainer}>
