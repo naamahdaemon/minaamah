@@ -55,7 +55,7 @@ const PayoutSimulator = () => {
             console.log("****DEBUT DU FETCH DATA****");
 
             const accountPayload = { auth, publicKey: publicKey3 };
-            const delegatorsPayload = { auth, epoch: epochSinceHardfork, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: beforeHF };
+            const delegatorsPayload = { auth, epoch: epochSinceHardfork, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: beforeHF, limit: 25000 };
             //let delegatorsPayload2 = { auth, epoch: epochSinceHardfork, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: beforeHF };
 
             // Clear existing tables before populating (you need to implement clearTable function)
@@ -81,7 +81,7 @@ const PayoutSimulator = () => {
                setPublicKey3(publicKey3);
             
             // Update delegatorsPayload2 with the correct publicKey2
-            const delegatorsPayload2 = { auth, epoch: epochSinceHardfork, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: beforeHF };
+            const delegatorsPayload2 = { auth, epoch: epochSinceHardfork, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: beforeHF, limit:25000 };
 
             // Fetch all other necessary data
             const [delegatorsResponse, workResponse, delegatorsResponse2, workResponse2] = await Promise.all([
