@@ -285,7 +285,7 @@ async function fetchData() {
     }
 
     const accountPayload = { auth, publicKey: publicKey3 };
-    const delegatorsPayload = { auth, epoch: Number(epoch), publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false };
+    const delegatorsPayload = { auth, epoch: Number(epoch), publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false, limit:25000 };
     let delegatorsPayload2;
 
 
@@ -315,7 +315,7 @@ async function fetchData() {
         }
 
         // Update delegatorsPayload2 with the correct publicKey2
-        delegatorsPayload2 = { auth, epoch: Number(epoch), publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false };
+        delegatorsPayload2 = { auth, epoch: Number(epoch), publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false, limit:25000 };
 
         // Fetch all other necessary data
         const [delegatorsResponse, workResponse, delegatorsResponse2, workResponse2] = await Promise.all([
