@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NAAMAH'S BP PERFORMANCE COMPARISON</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
     <style>
         body {
             //font-family: Arial, sans-serif;
@@ -18,9 +20,15 @@
             color: #0a7161; /* dark green text */
         }
 
+        .label-container {
+            display: inline-flex;
+            align-items: center;
+            //white-space: nowrap; /* Prevent wrapping */
+        }
+
         label {
             display: inline-block;
-            width: 300px;
+            //width: 300px;
             margin-bottom: 5px;
             color: #0a7161; /* dark green label */
         }
@@ -125,7 +133,47 @@
         .copy-emoji {
             cursor: pointer;
             margin-left: 10px;
-        }        
+        }      
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            margin-left: auto; /* Push the tooltip to the end of the container */
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: left;
+            font-size: 10px;
+            border-radius: 5px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            position: absolute;
+            z-index: 1;
+            left: 100%; /* Position to the right of the emoji */
+            top: 50%;
+            transform: translateY(-50%); /* Center vertically */
+            margin-left: 10px; /* Space between emoji and tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: normal; /* Allow text wrapping */
+            //width: calc(100vw - 30px - 100%); /* Adjust width based on remaining space */
+            width: auto;
+            max-width: 600px; /* Optional: limit the maximum width */
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            font-size: 10px;
+            opacity: 1;
+        }
+
+        .info-emoji {
+            cursor: pointer;
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body>
@@ -150,6 +198,33 @@
 
     <label for="publicKey3">Enter your public Key</label>
     <input type="text" id="publicKey3"><br/>
+
+    <div class="label-container">
+        <label for="addBlocks1">Naamah's additional expected blocks</label>
+        <div class="tooltip">
+            <span class="info-emoji">ℹ️</span>
+            <div class="tooltiptext">This field computes additional blocks that would have been produced by the validator if the additional public key had delegated to the validator.<br/>
+            It is used to calculate additional validator blocks and coinbase, which are taken into account in the rewards/payouts computations.<br/>
+            This calculation is based on the probability of winning a block from the following formula: : 
+            <p>
+                \( 2^{c} \cdot \left( 1 - (1 - f)^{\frac{\text{balance}}{\text{total}}} \right) \)
+            </p>   
+            where c=0, f=0.75, balance is the balance of the delegate, total is the total amount of mina staked.<br/>
+            <p><b>Leave blank to let the simulator automatically compute or choose a value</b></p>
+            </div>
+        </div>
+    </div>   
+    <input type="number" min=0 id="addBlocks1"><br/>
+
+    <div class="label-container">
+        <label for="addBlocks2">Your validator additional expected blocks</label>
+        <div class="tooltip">
+            <span class="info-emoji">ℹ️</span>
+            <div class="tooltiptext">See Above. Same thing for the other validator.</div>
+        </div>
+    </div>       
+    
+    <input type="number" min=0 id="addBlocks2"><br/>
     
     <label for="publicKey2">Your current validator address</label>
     <input type="text" id="publicKey2" style="background-color:lightgrey"><br>    
@@ -239,8 +314,13 @@ async function fetchData() {
     let epoch = document.getElementById('epoch').value;
     epoch = Number(epoch)+80;
     let epoch_since_hardfork = 0;
+    let totalCurrency=1;
     let beforeHF = false;
     const publicKey1 = document.getElementById('publicKey1').value;
+    const addBlocksInput1 = document.getElementById('addBlocks1');  // Get reference to publicKey2 input element
+    let addBlocks1 = document.getElementById('addBlocks1').value;
+    const addBlocksInput2 = document.getElementById('addBlocks2');  // Get reference to publicKey2 input element
+    let addBlocks2 = document.getElementById('addBlocks2').value;
     const fee1 = document.getElementById('fee1').value;
     let publicKey2Input = document.getElementById('publicKey2');  // Get reference to publicKey2 input element
     let publicKey2 = publicKey2Input.value;  // Get current value of publicKey2 input field
@@ -268,6 +348,7 @@ async function fetchData() {
     let accountRoute = apiUrl + "/account";
     let delegatorsRoute = apiUrl + "/delegators"
     let workRoute = apiUrl + "/work";
+    let epochRoute = apiUrl + "/epoch";
     // Headers for the proxy request
     let headers = {
         'Content-Type': 'application/json',
@@ -278,6 +359,7 @@ async function fetchData() {
       accountRoute = proxyUrl + encodeURIComponent(`${apiUrl}/account`);
       delegatorsRoute = proxyUrl + encodeURIComponent(`${apiUrl}/delegators`);
       workRoute = proxyUrl + encodeURIComponent(`${apiUrl}/work`);
+      epochRoute = proxyUrl + encodeURIComponent(`${apiUrl}/epoch`);
       headers = {
       'Content-Type': 'application/json',
       'x-api-key': 'e0d9da01-c1c5-4c44-b4fa-3cbdb4982ed3',
@@ -298,6 +380,14 @@ async function fetchData() {
     clearTable('delegator2Table');
     try {
         // Fetch account data first
+        const epochResponse = await fetch(epochRoute , {
+            method: 'GET',
+            headers
+        }).then(res => res.json());
+
+        if (epochResponse && epochResponse.payload && epochResponse.payload.epoch)
+          totalCurrency = epochResponse.payload.epoch.total_currency;
+
         const accountResponse = await fetch(accountRoute , {
             method: 'POST',
             headers,
@@ -344,16 +434,21 @@ async function fetchData() {
         // Populate tables with fetched data
         populateAccountTable(accountResponse.payload.account);
 
+        populateDelegatorTable('delegator1Table', delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, addBlocksInput1, publicKey1, totalCurrency);
+        populateDelegatorTable('delegator2Table', delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, addBlocksInput2, publicKey2, totalCurrency);
+
+        addBlocks1 = addBlocksInput1.value;
+        addBlocks2 = addBlocksInput2.value;
+
         if (showPublicKey3) {
-            populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, showPublicKey3, fee1);
-            populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, showPublicKey3, fee2);
+            populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, showPublicKey3, fee1, addBlocks1);
+            populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, showPublicKey3, fee2, addBlocks2);
         } else {
-            populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, false, fee1);
-            populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, false, fee2);
+            populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, false, fee1, addBlocks1);
+            populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, false, fee2, addBlocks2);
         }
 
-        populateDelegatorTable('delegator1Table', delegatorsResponse.payload.ledger, workResponse.payload.work);
-        populateDelegatorTable('delegator2Table', delegatorsResponse2.payload.ledger, workResponse2.payload.work);
+
 
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -413,7 +508,7 @@ function populateAccountTable(account) {
 
 }
 
-function populateDelegatorsTable(ledger, work, account, tableId, publicKey3, showPublicKey3, fee) {
+function populateDelegatorsTable(ledger, work, account, tableId, publicKey3, showPublicKey3, fee, addBlocks) {
     const delegatorsTable = document.getElementById(tableId);
     //const totalStake = (Number(ledger.stake) + Number(account.info.balance));
     
@@ -422,8 +517,21 @@ function populateDelegatorsTable(ledger, work, account, tableId, publicKey3, sho
         totalStake += Number(account.info.balance);
     }
     
+    console.log ("addBlocks=" + addBlocks)
     
-    const totalRewards = (Number(work.rewards) + Number(work.transactions_fee)) / 1000000000;
+    const addCoinbase = Number(addBlocks)*720*1e9;
+    
+    console.log ("Added Coinbase : " + addCoinbase);
+    
+    const totalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(work.transactions_fee)) / 1000000000;
+    
+    console.log ("Total Rewards : " + totalRewards)
+
+    /* Formula to compute the odds of winning a block
+      def stake_likelyhood(balance=None, total=None, c=0, f=0.75):
+          """Returns probability of stake"""
+          return 2**c * (1 - (1 - f)**(balance / total))
+    */    
 
     // Add the third public key as a delegator only if it's not already in the list
     const thirdDelegator = {
@@ -491,6 +599,7 @@ function populateDelegatorsTable(ledger, work, account, tableId, publicKey3, sho
             totalShares += parseFloat(sharePercent);
 
             let totalDue = totalRewards * share;
+            
             if (delegator.is_found || delegator.is_investor) {
                 totalDue *= 0.92;
             } else if (delegator.is_olabs) {
@@ -534,16 +643,55 @@ function populateDelegatorsTable(ledger, work, account, tableId, publicKey3, sho
 
 }
 
+function stakeLikelyhood(balance = 0, total = 1, c = 0, f = 0.75) {
+    // Vérifier que total n'est pas zéro pour éviter la division par zéro
+    if (total === 0) {
+        console.error("Le total ne peut pas être zéro.");
+        return 0;
+    }
+    // Calculer la probabilité du stake
+    const probability = Math.pow(2, c) * (1 - Math.pow((1 - f), (balance / total)));   
+    console.log ("total : " + total);
+    console.log ("stake : " + balance);    
+    console.log ("probability : " + probability);
+    return probability;
+}
 
-function populateDelegatorTable(tableId, delegators, work) {
+function populateDelegatorTable(tableId, delegators, work, account, addBlocksInput, pubkey, totalCurrency) {
     const delegatorTable = document.getElementById(tableId);
     const row = delegatorTable.insertRow();
+    let delegate=null;
+    let addblock="";
+    let addCoinbase="";
+    let additionalBalance=0;
+
+    console.log(account);
+
+    if (account && account.ledger) {
+      if (account.ledger.delegate_key)
+        delegate=account.ledger.delegate_key
+      additionalBalance = account.ledger.balance;
+      } else if (account && account.info)
+        additionalBalance=account.info.balance;
+      
+      
+    console.log (pubkey);
+    console.log (delegate);
+      
+    if (delegate != pubkey) {
+      if (addBlocksInput.value==="") {
+        const additionalblocks = (stakeLikelyhood(Number(additionalBalance), Number(totalCurrency))*7140).toFixed(0);
+        addBlocksInput.value=additionalblocks;
+      }
+      addblock= " <b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
+      addCoinbase= " <b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
+     }
 
     const keyCell = createTruncatedKeyCell(work.publicKey); // Use createTruncatedKeyCell for publicKey
     row.appendChild(keyCell);
 
-    row.insertCell(1).innerText = work.count;
-    row.insertCell(2).innerText = (Number(work.rewards) / 1000000000).toFixed(4);
+    row.insertCell(1).innerHTML = work.count + addblock;
+    row.insertCell(2).innerHTML = (Number(work.rewards) / 1000000000).toFixed(0) + addCoinbase;
     row.insertCell(3).innerText = (Number(work.snarks_fee) / 1000000000).toFixed(4);
     row.insertCell(4).innerText = (Number(work.transactions_fee) / 1000000000).toFixed(4);
     row.insertCell(5).innerText = delegators.delegators_count;
