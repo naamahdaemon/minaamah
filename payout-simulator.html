@@ -174,7 +174,38 @@
             cursor: pointer;
             margin-left: 5px;
         }
+
+        /* CSS for the warning box */
+        .tooltip-box {
+            background-color: #ffffe0; /* Light red background */
+            border-left: 6px solid #8B8000; /* Red left border */
+            padding: 16px;
+            margin: 20px 0; /* Space around the warning box */
+            border-radius: 4px;
+            color: #333; /* Text color */
+            font-family: Arial, sans-serif;
+            display: none;
+        }
+
+        .tooltip-box strong {
+            font-weight: bold;
+            color: #dddddd; /* Darker red for emphasis */
+        }
     </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var inputField = document.getElementById('addBlocks1');
+        var warningBox = document.getElementById('infobulle');
+
+        inputField.addEventListener('focus', function() {
+          warningBox.style.display = 'block';
+        });
+
+        inputField.addEventListener('blur', function() {
+          warningBox.style.display = 'none';
+        });
+      });
+    </script>      
 </head>
 <body>
     <h1>NAAMAH'S BP PERFORMANCE COMPARISON</h1>
@@ -199,9 +230,23 @@
     <label for="publicKey3">Enter your public Key</label>
     <input type="text" id="publicKey3"><br/>
 
-    <div class="label-container">
-        <label for="addBlocks1">Naamah's additional expected blocks</label>
-        <div class="tooltip">
+   
+    <label for="publicKey2">Your current validator address</label>
+    <input type="text" id="publicKey2" style="background-color:lightgrey"><br>    
+    
+    <!--<div class="label-container">-->
+        <div class="tooltip-box" id="infobulle">
+          The two fields below compute additional blocks that would have been produced by the validator if the additional public key had delegated to the validator.<br/>
+          They are used to calculate additional validator blocks and coinbase, which are taken into account in the rewards/payouts computations.<br/>
+          This calculation is based on the probability of winning a block from the following formula: : 
+          <p>
+              \( 2^{c} \cdot \left( 1 - (1 - f)^{\frac{\text{balance}}{\text{total}}} \right) \)
+          </p>   
+          where c=0, f=0.75, balance is the balance of the delegate, total is the total amount of mina staked.<br/>
+          <p><b>Leave blank to let the simulator automatically compute or choose a value</b></p>
+        </div>    
+        <label for="addBlocks1" id="warning-label">Naamah's additional expected blocks</label>
+    <!--    <div class="tooltip">
             <span class="info-emoji">ℹ️</span>
             <div class="tooltiptext">This field computes additional blocks that would have been produced by the validator if the additional public key had delegated to the validator.<br/>
             It is used to calculate additional validator blocks and coinbase, which are taken into account in the rewards/payouts computations.<br/>
@@ -213,22 +258,19 @@
             <p><b>Leave blank to let the simulator automatically compute or choose a value</b></p>
             </div>
         </div>
-    </div>   
+    </div>   -->
     <input type="number" min=0 id="addBlocks1"><br/>
 
-    <div class="label-container">
-        <label for="addBlocks2">Your validator additional expected blocks</label>
-        <div class="tooltip">
+    <!--<div class="label-container">-->
+        <label for="addBlocks2" id="warning-label">Your validator additional expected blocks</label>
+    <!--    <div class="tooltip">
             <span class="info-emoji">ℹ️</span>
             <div class="tooltiptext">See Above. Same thing for the other validator.</div>
         </div>
-    </div>       
+    </div>       -->
     
     <input type="number" min=0 id="addBlocks2"><br/>
-    
-    <label for="publicKey2">Your current validator address</label>
-    <input type="text" id="publicKey2" style="background-color:lightgrey"><br>    
-    
+     
     <br/><br/>
     <input type="checkbox" id="showPublicKey3" checked onchange="fetchData()">Filter to display your public key only<br>
     <br/><br/>
