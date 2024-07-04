@@ -725,8 +725,8 @@ function populateDelegatorTable(tableId, delegators, work, account, addBlocksInp
         const additionalblocks = (stakeLikelyhood(Number(additionalBalance), Number(totalCurrency))*7140).toFixed(0);
         addBlocksInput.value=additionalblocks;
       }
-      addblock= " <b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
-      addCoinbase= " <b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
+      addblock= "<b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
+      addCoinbase= "<b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
      }
 
     const keyCell = createTruncatedKeyCell(work.publicKey); // Use createTruncatedKeyCell for publicKey
