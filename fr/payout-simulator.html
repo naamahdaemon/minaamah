@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
+
     <style>
         body {
             //font-family: Arial, sans-serif;
@@ -170,6 +172,10 @@
             opacity: 1;
         }
 
+        .chart-container {
+           display: none;
+        }
+
         .info-emoji {
             cursor: pointer;
             margin-left: 5px;
@@ -279,6 +285,10 @@
 
     <hr/>
 
+    <div class="chart-container">
+        <canvas id="performanceChart"></canvas>
+    </div>
+
     <h2>Account Information</h2>
     <div class="table-container">
     <table id="accountTable">
@@ -352,314 +362,728 @@
     </div>
 
     <script>
-async function fetchData() {
-    let epoch = document.getElementById('epoch').value;
-    epoch = Number(epoch)+80;
-    let epoch_since_hardfork = 0;
-    let totalCurrency=1;
-    let beforeHF = false;
-    const publicKey1 = document.getElementById('publicKey1').value;
-    const addBlocksInput1 = document.getElementById('addBlocks1');  // Get reference to publicKey2 input element
-    let addBlocks1 = document.getElementById('addBlocks1').value;
-    const addBlocksInput2 = document.getElementById('addBlocks2');  // Get reference to publicKey2 input element
-    let addBlocks2 = document.getElementById('addBlocks2').value;
-    const fee1 = document.getElementById('fee1').value;
-    let publicKey2Input = document.getElementById('publicKey2');  // Get reference to publicKey2 input element
-    let publicKey2 = publicKey2Input.value;  // Get current value of publicKey2 input field
-    const fee2 = document.getElementById('fee2').value;
-    const publicKey3 = document.getElementById('publicKey3').value;
-    const showPublicKey3 = document.getElementById('showPublicKey3').checked;
-    const cors_proxy=true;
-    
-    //if (Number(epoch) > 79) {
-      //epoch_since_hardfork = Number(epoch)-80;
-      epoch_since_hardfork = Number(epoch);
-      beforeHF=false;
-      //}
-    //else {
-      //epoch_since_hardfork = Number(epoch);
-      //beforeHF=true;
-      //}
 
-    console.log(epoch);
-    console.log(epoch_since_hardfork);
+    let performanceChart; // Declare the chart variable in a scope accessible to both the updateCharts function and destroy logic
+    let epochList = [];
+    let blockCounts1 = [];
+    let blockCounts2 = [];
+    let delegatorsNumbers1 = [];
+    let delegatorsNumbers2 = [];
+    let stake1 = [];
+    let stake2 = [];
+    let payouts1 = [];
+    let payouts2 = [];
+        
+    async function buildEpochLists() {
+        const cors_proxy=true;
 
-    const auth = "my_secret";
-    const apiUrl = "https://minataur.net/api/v1";
-    const proxyUrl = "https://www.akirion.com:4664/proxy?url=";
-    let accountRoute = apiUrl + "/account";
-    let delegatorsRoute = apiUrl + "/delegators"
-    let workRoute = apiUrl + "/work";
-    let epochRoute = apiUrl + "/epoch";
-    // Headers for the proxy request
-    let headers = {
-        'Content-Type': 'application/json',
-        'Minataur-Authorization': 'minataur-token:ede9adcaec633f3290865e0f85faddbb:4d8801b69d7870786620996ddcb14e551719693200945',
-    };
+        epochList = [];
+        blockCounts1 = [];
+        blockCounts2 = [];
+        delegatorsNumbers1 = [];
+        delegatorsNumbers2 = [];
+        stake1 = [];
+        stake2 = [];
+        payouts1 = [];
+        payouts2 = [];
+        
+        let epoch = document.getElementById('epoch').value;
+        epoch = Number(epoch) + 80;
+        
+        const auth = "my_secret";
+        const apiUrl = "https://minataur.net/api/v1";
+        const proxyUrl = "https://www.akirion.com:4664/proxy?url=";
+        let accountRoute = apiUrl + "/account";
+        let delegatorsRoute = apiUrl + "/delegators"
+        let workRoute = apiUrl + "/work";
+        let epochRoute = apiUrl + "/epoch";
+        // Headers for the proxy request
+        let headers = {
+            'Content-Type': 'application/json',
+            'Minataur-Authorization': 'minataur-token:ede9adcaec633f3290865e0f85faddbb:4d8801b69d7870786620996ddcb14e551719693200945',
+        };
+        
+        if (cors_proxy) {
+          accountRoute = proxyUrl + encodeURIComponent(`${apiUrl}/account`);
+          delegatorsRoute = proxyUrl + encodeURIComponent(`${apiUrl}/delegators`);
+          workRoute = proxyUrl + encodeURIComponent(`${apiUrl}/work`);
+          epochRoute = proxyUrl + encodeURIComponent(`${apiUrl}/epoch`);
+          headers = {
+          'Content-Type': 'application/json',
+          'x-api-key': 'e0d9da01-c1c5-4c44-b4fa-3cbdb4982ed3',
+          };
+        }
+
+
+        const publicKey1 = document.getElementById('publicKey1').value;
+        const publicKey2 = document.getElementById('publicKey2').value;
+        const publicKey3 = document.getElementById('publicKey3').value;
+        const addBlocks1 = document.getElementById('addBlocks1').value;
+        const addBlocks2 = document.getElementById('addBlocks2').value;  
+        const fee1 = document.getElementById('fee1').value;
+        const fee2 = document.getElementById('fee2').value;        
+        
+        const accountPayload = { auth, publicKey: publicKey3 };
+
+        for (let i = Math.max(80, epoch - 10); i <= epoch; i++) {
+            const delegatorsPayload1 = { auth, epoch: i, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false, limit: 25000 };
+            const delegatorsPayload2 = { auth, epoch: i, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false, limit: 25000 };
+            const workPayload1 = { auth, epoch: i, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false };
+            const workPayload2 = { auth, epoch: i, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false };
+
+            try {
+                  const accountResponse = await fetch(accountRoute , {
+                        method: 'POST',
+                        headers,
+                        body: JSON.stringify(accountPayload)
+                    }).then(res => res.json());        
+                  
+                  const [delegatorsResponse1, workResponse1, delegatorsResponse2, workResponse2] = await Promise.all([
+                      fetch(delegatorsRoute, {
+                          method: 'POST',
+                          headers,
+                          body: JSON.stringify(delegatorsPayload1)
+                      }).then(res => res.json()),
+                      fetch(workRoute, {
+                          method: 'POST',
+                          headers,
+                          body: JSON.stringify(workPayload1)
+                      }).then(res => res.json()),
+                      fetch(delegatorsRoute, {
+                          method: 'POST',
+                          headers,
+                          body: JSON.stringify(delegatorsPayload2)
+                      }).then(res => res.json()),
+                      fetch(workRoute, {
+                          method: 'POST',
+                          headers,
+                          body: JSON.stringify(workPayload2)
+                      }).then(res => res.json())
+                  ]);            
+          
+
+                epochList.push("Epoch " + (i-80));
+                blockCounts1.push(workResponse1.payload.work.count);
+                blockCounts2.push(workResponse2.payload.work.count);
+                delegatorsNumbers1.push(delegatorsResponse1.payload.ledger.delegators_count);
+                delegatorsNumbers2.push(delegatorsResponse2.payload.ledger.delegators_count);
+                stake1.push((delegatorsResponse1.payload.ledger.stake/1e9).toFixed(0));
+                stake2.push((delegatorsResponse2.payload.ledger.stake/1e9).toFixed(0));      
+
+                payouts1.push(computePayouts(delegatorsResponse1.payload.ledger, workResponse1.payload.work, accountResponse.payload.account, publicKey3, fee1, addBlocks1));
+                payouts2.push(computePayouts(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, publicKey3, fee2, addBlocks2));
+
+            } catch (error) {
+                console.error(`Error fetching data for epoch ${i}:`, error);
+            }
+        }
+
+        /*console.log("Epochs:", epochList);
+        console.log("Block counts from workResponse1:", blockCounts1);
+        console.log("Block counts from workResponse2:", blockCounts2);
+        console.log("Delegators number from delegatorsResponse1:", delegatorsNumbers1);
+        console.log("Delegators number from delegatorsResponse2:", delegatorsNumbers2);
+        console.log("Payout1:", payouts1);
+        console.log("Payout2:", payouts2);*/
+        
+
+        const chartData = {
+            epochs: epochList,
+            blockCounts1: blockCounts1,
+            blockCounts2: blockCounts2,
+            delegatorsNumbers1: delegatorsNumbers1,
+            delegatorsNumbers2: delegatorsNumbers2,
+            stake1: stake1,
+            stake2: stake2,
+            payouts1: payouts1, 
+            payouts2: payouts2
+        };
+        
+        updateCharts(chartData);
+    }
+  
     
-    if (cors_proxy) {
-      accountRoute = proxyUrl + encodeURIComponent(`${apiUrl}/account`);
-      delegatorsRoute = proxyUrl + encodeURIComponent(`${apiUrl}/delegators`);
-      workRoute = proxyUrl + encodeURIComponent(`${apiUrl}/work`);
-      epochRoute = proxyUrl + encodeURIComponent(`${apiUrl}/epoch`);
-      headers = {
-      'Content-Type': 'application/json',
-      'x-api-key': 'e0d9da01-c1c5-4c44-b4fa-3cbdb4982ed3',
+    function updateCharts(data) {
+        const epochs = data.epochs;
+        const naamahBlocks = data.blockCounts1;
+        const validatorBlocks = data.blockCounts2;
+        const naamahDelegators = data.delegatorsNumbers1;
+        const validatorDelegators = data.delegatorsNumbers2;
+        const naamahStake = data.stake1;
+        const validatorStake = data.stake2;
+        const naamahRewards = data.payouts1;
+        const validatorRewards = data.payouts2;
+
+        const ctx = document.getElementById('performanceChart').getContext('2d');
+
+        // Check if there is data to display
+        const hasData =
+            epochs.length > 0 &&
+            naamahBlocks.length > 0 &&
+            validatorBlocks.length > 0 &&
+            naamahDelegators.length > 0 &&
+            validatorDelegators.length > 0 &&
+            naamahStake.length > 0 &&
+            validatorStake.length > 0;
+
+        // Hide or show the chart container based on data availability
+        const chartContainer = document.querySelector('.chart-container');
+        chartContainer.style.display = hasData ? 'block' : 'none';
+
+        // Ensure previous chart instance is destroyed
+        if (performanceChart) {
+            performanceChart.destroy();
+        }
+
+        if (hasData) {
+            // Calculate the initial width based on window size
+            const width = Math.min(window.innerWidth * 0.9, 800); // Adjust as needed
+
+            // Set canvas dimensions
+            ctx.canvas.width = width;
+            ctx.canvas.height = width * 0.75; // Aspect ratio adjustment, adjust as needed
+
+            performanceChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: epochs,
+                    datasets: [
+                        {
+                            label: "Naamah's Blocks Produced",
+                            data: naamahBlocks,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Validator Blocks Produced',
+                            data: validatorBlocks,
+                            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: "Naamah's Delegators",
+                            data: naamahDelegators,
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Validator Delegators',
+                            data: validatorDelegators,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: "Naamah's Stake",
+                            data: naamahStake,
+                            yAxisID: 'stake-axis',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Validator Stake',
+                            data: validatorStake,
+                            yAxisID: 'stake-axis',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: "Naamah's Rewards",
+                            data: naamahRewards,
+                            type: 'line',
+                            yAxisID: 'reward-axis',
+                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        },
+                        {
+                            label: 'Validator Rewards',
+                            data: validatorRewards,
+                            type: 'line',
+                            yAxisID: 'reward-axis',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true, // Ensure the chart responds to resizing
+                    maintainAspectRatio: false, // Allow the chart to scale with the container
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                text: 'Blocks/Delegators',
+                                display: true
+                            }
+                        },
+                        'stake-axis': {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                text: 'Stake',
+                                display: true
+                            },
+                            grid: {
+                                drawOnChartArea: false // only want the grid lines for one axis to show up
+                            }
+                        },
+                        'reward-axis': {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                text: 'Rewards',
+                                display: true
+                            },
+                            grid: {
+                                drawOnChartArea: false // only want the grid lines for one axis to show up
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Adjust canvas size when window is resized
+            window.addEventListener('resize', () => {
+                const newWidth = Math.min(window.innerWidth * 0.9, 800); // Adjust as needed
+                ctx.canvas.width = newWidth;
+                ctx.canvas.height = newWidth * 0.75; // Adjust aspect ratio if necessary
+
+                // Update the chart
+                if (performanceChart) {
+                    performanceChart.destroy();
+                }
+
+                performanceChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: epochs,
+                        datasets: [
+                            {
+                                label: "Naamah's Blocks Produced",
+                                data: naamahBlocks,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Validator Blocks Produced',
+                                data: validatorBlocks,
+                                backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                                borderColor: 'rgba(153, 102, 255, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: "Naamah's Delegators",
+                                data: naamahDelegators,
+                                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                                borderColor: 'rgba(255, 206, 86, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Validator Delegators',
+                                data: validatorDelegators,
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: "Naamah's Stake",
+                                data: naamahStake,
+                                yAxisID: 'stake-axis',
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Validator Stake',
+                                data: validatorStake,
+                                yAxisID: 'stake-axis',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: "Naamah's Rewards",
+                                data: naamahRewards,
+                                type: 'line',
+                                yAxisID: 'reward-axis',
+                                backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                                borderColor: 'rgba(255, 159, 64, 1)',
+                                borderWidth: 1,
+                                fill: false
+                            },
+                            {
+                                label: 'Validator Rewards',
+                                data: validatorRewards,
+                                type: 'line',
+                                yAxisID: 'reward-axis',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1,
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true, // Ensure the chart responds to resizing
+                        maintainAspectRatio: false, // Allow the chart to scale with the container
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    text: 'Blocks/Delegators',
+                                    display: true
+                                }
+                            },
+                            'stake-axis': {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                title: {
+                                    text: 'Stake',
+                                    display: true
+                                },
+                                grid: {
+                                    drawOnChartArea: false // only want the grid lines for one axis to show up
+                                }
+                            },
+                            'reward-axis': {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                title: {
+                                    text: 'Rewards',
+                                    display: true
+                                },
+                                grid: {
+                                    drawOnChartArea: false // only want the grid lines for one axis to show up
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        }
+    }
+  async function fetchData() {
+      let epoch = document.getElementById('epoch').value;
+      epoch = Number(epoch)+80;
+      let epoch_since_hardfork = 0;
+      let totalCurrency=1;
+      let beforeHF = false;
+      const publicKey1 = document.getElementById('publicKey1').value;
+      const addBlocksInput1 = document.getElementById('addBlocks1');  // Get reference to publicKey2 input element
+      let addBlocks1 = document.getElementById('addBlocks1').value;
+      const addBlocksInput2 = document.getElementById('addBlocks2');  // Get reference to publicKey2 input element
+      let addBlocks2 = document.getElementById('addBlocks2').value;
+      const fee1 = document.getElementById('fee1').value;
+      let publicKey2Input = document.getElementById('publicKey2');  // Get reference to publicKey2 input element
+      let publicKey2 = publicKey2Input.value;  // Get current value of publicKey2 input field
+      const fee2 = document.getElementById('fee2').value;
+      const publicKey3 = document.getElementById('publicKey3').value;
+      const showPublicKey3 = document.getElementById('showPublicKey3').checked;
+      const cors_proxy=true;
+      
+      //if (Number(epoch) > 79) {
+        //epoch_since_hardfork = Number(epoch)-80;
+        epoch_since_hardfork = Number(epoch);
+        beforeHF=false;
+        //}
+      //else {
+        //epoch_since_hardfork = Number(epoch);
+        //beforeHF=true;
+        //}
+
+      //console.log(epoch);
+      //console.log(epoch_since_hardfork);
+
+      const auth = "my_secret";
+      const apiUrl = "https://minataur.net/api/v1";
+      const proxyUrl = "https://www.akirion.com:4664/proxy?url=";
+      let accountRoute = apiUrl + "/account";
+      let delegatorsRoute = apiUrl + "/delegators"
+      let workRoute = apiUrl + "/work";
+      let epochRoute = apiUrl + "/epoch";
+      // Headers for the proxy request
+      let headers = {
+          'Content-Type': 'application/json',
+          'Minataur-Authorization': 'minataur-token:ede9adcaec633f3290865e0f85faddbb:4d8801b69d7870786620996ddcb14e551719693200945',
       };
-    }
+      
+      if (cors_proxy) {
+        accountRoute = proxyUrl + encodeURIComponent(`${apiUrl}/account`);
+        delegatorsRoute = proxyUrl + encodeURIComponent(`${apiUrl}/delegators`);
+        workRoute = proxyUrl + encodeURIComponent(`${apiUrl}/work`);
+        epochRoute = proxyUrl + encodeURIComponent(`${apiUrl}/epoch`);
+        headers = {
+        'Content-Type': 'application/json',
+        'x-api-key': 'e0d9da01-c1c5-4c44-b4fa-3cbdb4982ed3',
+        };
+      }
 
-    const accountPayload = { auth, publicKey: publicKey3 };
-    const delegatorsPayload = { auth, epoch: Number(epoch), publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false, limit:25000 };
-    let delegatorsPayload2;
+      const accountPayload = { auth, publicKey: publicKey3 };
+      const delegatorsPayload = { auth, epoch: Number(epoch), publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false, limit:25000 };
+      let delegatorsPayload2;
 
 
 
-    // Clear existing tables before populating
-    clearTable('accountTable');
-    clearTable('delegatorsTable');
-    clearTable('delegatorsTable2');
-    clearTable('delegator1Table');
-    clearTable('delegator2Table');
-    try {
-        // Fetch account data first
-        const epochResponse = await fetch(epochRoute , {
-            method: 'GET',
-            headers
-        }).then(res => res.json());
+      // Clear existing tables before populating
+      clearTable('accountTable');
+      clearTable('delegatorsTable');
+      clearTable('delegatorsTable2');
+      clearTable('delegator1Table');
+      clearTable('delegator2Table');
+      try {
+          // Fetch account data first
+          const epochResponse = await fetch(epochRoute , {
+              method: 'GET',
+              headers
+          }).then(res => res.json());
 
-        if (epochResponse && epochResponse.payload && epochResponse.payload.epoch)
-          totalCurrency = epochResponse.payload.epoch.total_currency;
+          if (epochResponse && epochResponse.payload && epochResponse.payload.epoch)
+            totalCurrency = epochResponse.payload.epoch.total_currency;
 
-        const accountResponse = await fetch(accountRoute , {
-            method: 'POST',
-            headers,
-            body: JSON.stringify(accountPayload)
-        }).then(res => res.json());
+          const accountResponse = await fetch(accountRoute , {
+              method: 'POST',
+              headers,
+              body: JSON.stringify(accountPayload)
+          }).then(res => res.json());
 
-        // Update publicKey2 input field with delegate_key if it's empty
-        if (publicKey2 === '' || false) {
-          let delegateKey = "B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr";
-          if (accountResponse.payload.account.ledger && accountResponse.payload.account.ledger.delegate_key) {
-              delegateKey = accountResponse.payload.account.ledger.delegate_key;
+          // Update publicKey2 input field with delegate_key if it's empty
+          if (publicKey2 === '' || false) {
+            let delegateKey = "B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr";
+            if (accountResponse.payload.account.ledger && accountResponse.payload.account.ledger.delegate_key) {
+                delegateKey = accountResponse.payload.account.ledger.delegate_key;
+            }
+            publicKey2 = delegateKey;
+            publicKey2Input.value = publicKey2;  // Update the input field
           }
-          publicKey2 = delegateKey;
-          publicKey2Input.value = publicKey2;  // Update the input field
-        }
 
-        // Update delegatorsPayload2 with the correct publicKey2
-        delegatorsPayload2 = { auth, epoch: Number(epoch), publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false, limit:25000 };
+          // Update delegatorsPayload2 with the correct publicKey2
+          delegatorsPayload2 = { auth, epoch: Number(epoch), publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false, limit:25000 };
 
-        // Fetch all other necessary data
-        const [delegatorsResponse, workResponse, delegatorsResponse2, workResponse2] = await Promise.all([
-            fetch(delegatorsRoute, {
-                method: 'POST',
-                headers,
-                body: JSON.stringify(delegatorsPayload)
-            }).then(res => res.json()),
-            fetch(workRoute, {
-                method: 'POST',
-                headers,
-                body: JSON.stringify({ auth, epoch: epoch_since_hardfork, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: beforeHF })
-            }).then(res => res.json()),
-            fetch(delegatorsRoute, {
-                method: 'POST',
-                headers,
-                body: JSON.stringify(delegatorsPayload2)
-            }).then(res => res.json()),
-            fetch(workRoute, {
-                method: 'POST',
-                headers,
-                body: JSON.stringify({ auth, epoch: epoch_since_hardfork, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: beforeHF })
-            }).then(res => res.json())
-        ]);
+          // Fetch all other necessary data
+          const [delegatorsResponse, workResponse, delegatorsResponse2, workResponse2] = await Promise.all([
+              fetch(delegatorsRoute, {
+                  method: 'POST',
+                  headers,
+                  body: JSON.stringify(delegatorsPayload)
+              }).then(res => res.json()),
+              fetch(workRoute, {
+                  method: 'POST',
+                  headers,
+                  body: JSON.stringify({ auth, epoch: epoch_since_hardfork, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: beforeHF })
+              }).then(res => res.json()),
+              fetch(delegatorsRoute, {
+                  method: 'POST',
+                  headers,
+                  body: JSON.stringify(delegatorsPayload2)
+              }).then(res => res.json()),
+              fetch(workRoute, {
+                  method: 'POST',
+                  headers,
+                  body: JSON.stringify({ auth, epoch: epoch_since_hardfork, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: beforeHF })
+              }).then(res => res.json())
+          ]);
 
-        // Populate tables with fetched data
-        populateAccountTable(accountResponse.payload.account);
+          // Populate tables with fetched data
+          populateAccountTable(accountResponse.payload.account);
 
-        populateDelegatorTable('delegator1Table', delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, addBlocksInput1, publicKey1, totalCurrency);
-        populateDelegatorTable('delegator2Table', delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, addBlocksInput2, publicKey2, totalCurrency);
+          populateDelegatorTable('delegator1Table', delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, addBlocksInput1, publicKey1, totalCurrency);
+          populateDelegatorTable('delegator2Table', delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, addBlocksInput2, publicKey2, totalCurrency);
 
-        addBlocks1 = addBlocksInput1.value;
-        addBlocks2 = addBlocksInput2.value;
+          addBlocks1 = addBlocksInput1.value;
+          addBlocks2 = addBlocksInput2.value;
 
-        if (showPublicKey3) {
-            populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, showPublicKey3, fee1, addBlocks1);
-            populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, showPublicKey3, fee2, addBlocks2);
-        } else {
-            populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, false, fee1, addBlocks1);
-            populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, false, fee2, addBlocks2);
-        }
+          if (showPublicKey3) {
+              populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, showPublicKey3, fee1, addBlocks1);
+              populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, showPublicKey3, fee2, addBlocks2);
+          } else {
+              populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, false, fee1, addBlocks1);
+              populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, false, fee2, addBlocks2);
+          }
 
+           buildEpochLists();
 
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
+  }
 
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
+  function createTruncatedKeyCell(key) {
+      const fullKey = key;
+      const truncatedKey = `${fullKey.slice(0, 6)}...${fullKey.slice(-6)}`;
 
-function createTruncatedKeyCell(key) {
-    const fullKey = key;
-    const truncatedKey = `${fullKey.slice(0, 6)}...${fullKey.slice(-6)}`;
+      const cell = document.createElement('td');
+      cell.innerText = truncatedKey;
+      cell.style.whiteSpace = 'nowrap'; // Prevent wrapping of content
 
-    const cell = document.createElement('td');
-    cell.innerText = truncatedKey;
-    cell.style.whiteSpace = 'nowrap'; // Prevent wrapping of content
+      // Create a span element for the copy emoji
+      const copyEmoji = document.createElement('span');
+      copyEmoji.textContent = ' 📋';
+      copyEmoji.style.cursor = 'pointer';
+      copyEmoji.title = 'Click to copy full key';
 
-    // Create a span element for the copy emoji
-    const copyEmoji = document.createElement('span');
-    copyEmoji.textContent = ' 📋';
-    copyEmoji.style.cursor = 'pointer';
-    copyEmoji.title = 'Click to copy full key';
+      // Add click event listener to copy the full key
+      copyEmoji.addEventListener('click', () => {
+          navigator.clipboard.writeText(fullKey).then(() => {
+              alert(fullKey + ' copied to clipboard!');
+          }).catch(err => {
+              console.error('Failed to copy full key: ', err);
+          });
+      });
 
-    // Add click event listener to copy the full key
-    copyEmoji.addEventListener('click', () => {
-        navigator.clipboard.writeText(fullKey).then(() => {
-            alert(fullKey + ' copied to clipboard!');
-        }).catch(err => {
-            console.error('Failed to copy full key: ', err);
-        });
-    });
+      // Append copy emoji span to the cell
+      cell.appendChild(copyEmoji);
 
-    // Append copy emoji span to the cell
-    cell.appendChild(copyEmoji);
+      return cell;
+  }
 
-    return cell;
-}
+  function populateAccountTable(account) {
+      const accountTable = document.getElementById('accountTable');
+      const row = accountTable.insertRow();
 
-function populateAccountTable(account) {
-    const accountTable = document.getElementById('accountTable');
-    const row = accountTable.insertRow();
+      const keyCell = createTruncatedKeyCell(account.info.key);
+      row.appendChild(keyCell);
 
-    const keyCell = createTruncatedKeyCell(account.info.key);
-    row.appendChild(keyCell);
+      const balanceCell = row.insertCell(1);
+      balanceCell.innerText = (Number(account.info.balance) / 1000000000).toFixed(4);
 
-    const balanceCell = row.insertCell(1);
-    balanceCell.innerText = (Number(account.info.balance) / 1000000000).toFixed(4);
+      let delegateKeyCell;
+      if (account.ledger && account.ledger.delegate_key) {
+        delegateKeyCell = createTruncatedKeyCell(account.ledger.delegate_key);
+      }
 
-    let delegateKeyCell;
-    if (account.ledger && account.ledger.delegate_key) {
-      delegateKeyCell = createTruncatedKeyCell(account.ledger.delegate_key);
-    }
+      if (!delegateKeyCell) {
+        const cell = row.insertCell(2);
+        cell.innerHTML = "<span style='color: red;'><i>Key is not in staking ledger yet</i></span>";
+      } else {    
+        row.appendChild(delegateKeyCell);
+      }
 
-    if (!delegateKeyCell) {
-      const cell = row.insertCell(2);
-      cell.innerHTML = "<span style='color: red;'><i>Key is not in staking ledger yet</i></span>";
-    } else {    
-      row.appendChild(delegateKeyCell);
-    }
+  }
 
-}
+  function populateDelegatorsTable(ledger, work, account, tableId, publicKey3, showPublicKey3, fee, addBlocks) {
+      const delegatorsTable = document.getElementById(tableId);
+      //const totalStake = (Number(ledger.stake) + Number(account.info.balance));
+      
+      let totalStake = Number(ledger.stake);
+      if (!ledger.delegators.some(d => d.public_key === account.info.key)) {
+          totalStake += Number(account.info.balance);
+      }
+      
+      //console.log ("addBlocks=" + addBlocks)
+      
+      const addCoinbase = Number(addBlocks)*720*1e9;
+      
+      //console.log ("Added Coinbase : " + addCoinbase);
+      
+      const totalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(work.transactions_fee)) / 1000000000;
+      
+      //console.log ("Total Rewards : " + totalRewards)
 
-function populateDelegatorsTable(ledger, work, account, tableId, publicKey3, showPublicKey3, fee, addBlocks) {
-    const delegatorsTable = document.getElementById(tableId);
-    //const totalStake = (Number(ledger.stake) + Number(account.info.balance));
-    
-    let totalStake = Number(ledger.stake);
-    if (!ledger.delegators.some(d => d.public_key === account.info.key)) {
-        totalStake += Number(account.info.balance);
-    }
-    
-    console.log ("addBlocks=" + addBlocks)
-    
-    const addCoinbase = Number(addBlocks)*720*1e9;
-    
-    console.log ("Added Coinbase : " + addCoinbase);
-    
-    const totalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(work.transactions_fee)) / 1000000000;
-    
-    console.log ("Total Rewards : " + totalRewards)
+      /* Formula to compute the odds of winning a block
+        def stake_likelyhood(balance=None, total=None, c=0, f=0.75):
+            """Returns probability of stake"""
+            return 2**c * (1 - (1 - f)**(balance / total))
+      */    
 
-    /* Formula to compute the odds of winning a block
-      def stake_likelyhood(balance=None, total=None, c=0, f=0.75):
-          """Returns probability of stake"""
-          return 2**c * (1 - (1 - f)**(balance / total))
-    */    
+      // Add the third public key as a delegator only if it's not already in the list
+      const thirdDelegator = {
+          public_key: account.info.key,
+          balance: account.info.balance,
+          locked: false,
+          is_olabs: account.info.is_olabs,
+          is_found: account.info.is_found,
+          is_investor: account.info.is_investor
+      };
 
-    // Add the third public key as a delegator only if it's not already in the list
-    const thirdDelegator = {
-        public_key: account.info.key,
-        balance: account.info.balance,
-        locked: false,
-        is_olabs: account.info.is_olabs,
-        is_found: account.info.is_found,
-        is_investor: account.info.is_investor
-    };
+      if (!ledger.delegators.some(d => d.public_key === thirdDelegator.public_key)) {
+          // Add thirdDelegator to ledger.delegators
+          ledger.delegators.push(thirdDelegator);
+      }
 
-    if (!ledger.delegators.some(d => d.public_key === thirdDelegator.public_key)) {
-        // Add thirdDelegator to ledger.delegators
-        ledger.delegators.push(thirdDelegator);
-    }
+      // Sort the delegators array by balance in descending order
+      const sortedDelegators = ledger.delegators.sort((a, b) => Number(b.balance) - Number(a.balance));
 
-    // Sort the delegators array by balance in descending order
-    const sortedDelegators = ledger.delegators.sort((a, b) => Number(b.balance) - Number(a.balance));
+      let totalBalance = 0;
+      let totalShares = 0;
+      let totalDueAmount = 0;
 
-    let totalBalance = 0;
-    let totalShares = 0;
-    let totalDueAmount = 0;
+      sortedDelegators.forEach(delegator => {
+          if (!showPublicKey3 || delegator.public_key === publicKey3) { // Check if publicKey3 is empty or matches current delegator.public_key
+              const row = delegatorsTable.insertRow();
+              const keyCell = createTruncatedKeyCell(delegator.public_key); // Use createTruncatedKeyCell for public_key
+              row.appendChild(keyCell);
 
-    sortedDelegators.forEach(delegator => {
-        if (!showPublicKey3 || delegator.public_key === publicKey3) { // Check if publicKey3 is empty or matches current delegator.public_key
-            const row = delegatorsTable.insertRow();
-            const keyCell = createTruncatedKeyCell(delegator.public_key); // Use createTruncatedKeyCell for public_key
-            row.appendChild(keyCell);
+              row.insertCell(1).innerText = delegator.locked;
+              
+              const balance = (Number(delegator.balance) / 1000000000).toFixed(4);
+              const balanceCell = row.insertCell(2);
+              balanceCell.innerText = balance;
+              balanceCell.style.textAlign = 'right';
+              totalBalance += parseFloat(balance);
 
-            row.insertCell(1).innerText = delegator.locked;
-            
-            const balance = (Number(delegator.balance) / 1000000000).toFixed(4);
-            const balanceCell = row.insertCell(2);
-            balanceCell.innerText = balance;
-            balanceCell.style.textAlign = 'right';
-            totalBalance += parseFloat(balance);
+              const isO1labsCell = row.insertCell(3);
+              const isO1labsCheckbox = document.createElement('input');
+              isO1labsCheckbox.type = 'checkbox';
+              isO1labsCheckbox.checked = delegator.is_olabs;
+              isO1labsCheckbox.disabled = true;
+              isO1labsCell.appendChild(isO1labsCheckbox);
 
-            const isO1labsCell = row.insertCell(3);
-            const isO1labsCheckbox = document.createElement('input');
-            isO1labsCheckbox.type = 'checkbox';
-            isO1labsCheckbox.checked = delegator.is_olabs;
-            isO1labsCheckbox.disabled = true;
-            isO1labsCell.appendChild(isO1labsCheckbox);
+              const isFoundCell = row.insertCell(4);
+              const isFoundCheckbox = document.createElement('input');
+              isFoundCheckbox.type = 'checkbox';
+              isFoundCheckbox.checked = delegator.is_found;
+              isFoundCheckbox.disabled = true;
+              isFoundCell.appendChild(isFoundCheckbox);
 
-            const isFoundCell = row.insertCell(4);
-            const isFoundCheckbox = document.createElement('input');
-            isFoundCheckbox.type = 'checkbox';
-            isFoundCheckbox.checked = delegator.is_found;
-            isFoundCheckbox.disabled = true;
-            isFoundCell.appendChild(isFoundCheckbox);
-
-            const isInvestorCell = row.insertCell(5);
-            const isInvestorCheckbox = document.createElement('input');
-            isInvestorCheckbox.type = 'checkbox';
-            isInvestorCheckbox.checked = delegator.is_investor;
-            isInvestorCheckbox.disabled = true;
-            isInvestorCell.appendChild(isInvestorCheckbox);
+              const isInvestorCell = row.insertCell(5);
+              const isInvestorCheckbox = document.createElement('input');
+              isInvestorCheckbox.type = 'checkbox';
+              isInvestorCheckbox.checked = delegator.is_investor;
+              isInvestorCheckbox.disabled = true;
+              isInvestorCell.appendChild(isInvestorCheckbox);
 
 
-            const share = Number(delegator.balance) / Number(totalStake);
-            const sharePercent = (share * 100).toFixed(8);
-            const sharePercentCell = row.insertCell(6);
-            sharePercentCell.innerText = parseFloat(sharePercent).toFixed(2) + '%'; // Display with 2 decimal places
-            sharePercentCell.style.textAlign = 'right';
-            totalShares += parseFloat(sharePercent);
+              const share = Number(delegator.balance) / Number(totalStake);
+              const sharePercent = (share * 100).toFixed(8);
+              const sharePercentCell = row.insertCell(6);
+              sharePercentCell.innerText = parseFloat(sharePercent).toFixed(2) + '%'; // Display with 2 decimal places
+              sharePercentCell.style.textAlign = 'right';
+              totalShares += parseFloat(sharePercent);
 
-            let totalDue = totalRewards * share;
-            
-            if (delegator.is_found || delegator.is_investor) {
-                totalDue *= 0.92;
-            } else if (delegator.is_olabs) {
-                totalDue *= 0.95;
-            } else {
-                totalDue *= (100 - fee) / 100;
-            }
-            const totalDueRounded = totalDue.toFixed(4);
-            const totalDueCell = row.insertCell(7);
-            totalDueCell.innerText = totalDueRounded;
-            totalDueCell.style.textAlign = 'right';
-            totalDueAmount += parseFloat(totalDueRounded);
+              let totalDue = totalRewards * share;
+              
+              if (delegator.is_found || delegator.is_investor) {
+                  totalDue *= 0.92;
+              } else if (delegator.is_olabs) {
+                  totalDue *= 0.95;
+              } else {
+                  totalDue *= (100 - fee) / 100;
+              }
+              const totalDueRounded = totalDue.toFixed(4);
+              const totalDueCell = row.insertCell(7);
+              totalDueCell.innerText = totalDueRounded;
+              totalDueCell.style.textAlign = 'right';
+              totalDueAmount += parseFloat(totalDueRounded);
 
-            if (publicKey3 && publicKey3 === delegator.public_key) {
-                row.style.backgroundColor = 'yellow';
-            }
-        }
-    });
+              if (publicKey3 && publicKey3 === delegator.public_key) {
+                  row.style.backgroundColor = 'yellow';
+              }
+          }
+      });
 
 
     // Add the total row
@@ -683,81 +1107,144 @@ function populateDelegatorsTable(ledger, work, account, tableId, publicKey3, sho
     totalDueAmountCell.innerText = totalDueAmount.toFixed(4);
     totalDueAmountCell.style.textAlign = 'right';
 
-}
+  }
 
-function stakeLikelyhood(balance = 0, total = 1, c = 0, f = 0.75) {
-    // Vérifier que total n'est pas zéro pour éviter la division par zéro
-    if (total === 0) {
-        console.error("Le total ne peut pas être zéro.");
-        return 0;
-    }
-    // Calculer la probabilité du stake
-    const probability = Math.pow(2, c) * (1 - Math.pow((1 - f), (balance / total)));   
-    console.log ("total : " + total);
-    console.log ("stake : " + balance);    
-    console.log ("probability : " + probability);
-    return probability;
-}
-
-function populateDelegatorTable(tableId, delegators, work, account, addBlocksInput, pubkey, totalCurrency) {
-    const delegatorTable = document.getElementById(tableId);
-    const row = delegatorTable.insertRow();
-    let delegate=null;
-    let addblock="";
-    let addCoinbase="";
-    let additionalBalance=0;
-
-    console.log(account);
-
-    if (account && account.ledger) {
-      if (account.ledger.delegate_key)
-        delegate=account.ledger.delegate_key
-      additionalBalance = account.ledger.balance;
-      } else if (account && account.info)
-        additionalBalance=account.info.balance;
-      
-      
-    console.log (pubkey);
-    console.log (delegate);
-      
-    if (delegate != pubkey) {
-      if (addBlocksInput.value==="") {
-        const additionalblocks = (stakeLikelyhood(Number(additionalBalance), Number(totalCurrency))*7140).toFixed(0);
-        addBlocksInput.value=additionalblocks;
+  function computePayouts(ledger, work, account, publicKey3, fee, addBlocks) {
+      let totalStake = Number(ledger.stake);
+      if (!ledger.delegators.some(d => d.public_key === account.info.key)) {
+          totalStake += Number(account.info.balance);
       }
-      addblock= "<b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
-      addCoinbase= "<b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
-     }
+      
+      /*console.log ("************ computePayouts DEBUT ************");
+      console.log (ledger);
+      console.log (work);
+      console.log (account);
+      console.log (publicKey3);
+      console.log (fee);
+      console.log (addBlocks);
+      console.log ("************ computePayouts  FIN ************");*/
+      
+      const addCoinbase = Number(addBlocks)*720*1e9;
+      const totalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(work.transactions_fee)) / 1000000000;
+      // Add the third public key as a delegator only if it's not already in the list
+      const thirdDelegator = {
+          public_key: account.info.key,
+          balance: account.info.balance,
+          locked: false,
+          is_olabs: account.info.is_olabs,
+          is_found: account.info.is_found,
+          is_investor: account.info.is_investor
+      };
 
-    const keyCell = createTruncatedKeyCell(work.publicKey); // Use createTruncatedKeyCell for publicKey
-    row.appendChild(keyCell);
+      if (!ledger.delegators.some(d => d.public_key === thirdDelegator.public_key)) {
+          // Add thirdDelegator to ledger.delegators
+          ledger.delegators.push(thirdDelegator);
+      }
 
-    row.insertCell(1).innerHTML = work.count + addblock;
-    row.insertCell(2).innerHTML = (Number(work.rewards) / 1000000000).toFixed(0) + addCoinbase;
-    row.insertCell(3).innerText = (Number(work.snarks_fee) / 1000000000).toFixed(4);
-    row.insertCell(4).innerText = (Number(work.transactions_fee) / 1000000000).toFixed(4);
-    row.insertCell(5).innerText = delegators.delegators_count;
-    row.insertCell(6).innerText = (Number(delegators.stake) / 1000000000).toFixed(2);
+      // Sort the delegators array by balance in descending order
+      const sortedDelegators = ledger.delegators.sort((a, b) => Number(b.balance) - Number(a.balance));
 
-}
+      let totalBalance = 0;
+      let totalShares = 0;
+      let totalDueAmount = 0;
+
+      sortedDelegators.forEach(delegator => {
+      if (delegator.public_key === publicKey3) {
+          const balance = (Number(delegator.balance) / 1000000000).toFixed(4);
+          totalBalance += parseFloat(balance);
+          const share = Number(delegator.balance) / Number(totalStake);
+          const sharePercent = (share * 100).toFixed(8);
+          totalShares += parseFloat(sharePercent);
+          let totalDue = totalRewards * share;
+          
+          if (delegator.is_found || delegator.is_investor) {
+              totalDue *= 0.92;
+          } else if (delegator.is_olabs) {
+              totalDue *= 0.95;
+          } else {
+              totalDue *= (100 - fee) / 100;
+          }
+          const totalDueRounded = totalDue.toFixed(4);
+          totalDueAmount += parseFloat(totalDueRounded);
+        }
+      });
+      
+      return totalDueAmount;
+  }
+
+  function stakeLikelyhood(balance = 0, total = 1, c = 0, f = 0.75) {
+      // Vérifier que total n'est pas zéro pour éviter la division par zéro
+      if (total === 0) {
+          console.error("Le total ne peut pas être zéro.");
+          return 0;
+      }
+      // Calculer la probabilité du stake
+      const probability = Math.pow(2, c) * (1 - Math.pow((1 - f), (balance / total)));   
+      //console.log ("total : " + total);
+      //console.log ("stake : " + balance);    
+      //console.log ("probability : " + probability);
+      return probability;
+  }
+
+  function populateDelegatorTable(tableId, delegators, work, account, addBlocksInput, pubkey, totalCurrency) {
+      const delegatorTable = document.getElementById(tableId);
+      const row = delegatorTable.insertRow();
+      let delegate=null;
+      let addblock="";
+      let addCoinbase="";
+      let additionalBalance=0;
+
+      //console.log(account);
+
+      if (account && account.ledger) {
+        if (account.ledger.delegate_key)
+          delegate=account.ledger.delegate_key
+        additionalBalance = account.ledger.balance;
+        } else if (account && account.info)
+          additionalBalance=account.info.balance;
+        
+        
+      //console.log (pubkey);
+      //console.log (delegate);
+        
+      if (delegate != pubkey) {
+        if (addBlocksInput.value==="") {
+          const additionalblocks = (stakeLikelyhood(Number(additionalBalance), Number(totalCurrency))*7140).toFixed(0);
+          addBlocksInput.value=additionalblocks;
+        }
+        addblock= "<b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
+        addCoinbase= "<b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
+       }
+
+      const keyCell = createTruncatedKeyCell(work.publicKey); // Use createTruncatedKeyCell for publicKey
+      row.appendChild(keyCell);
+
+      row.insertCell(1).innerHTML = work.count + addblock;
+      row.insertCell(2).innerHTML = (Number(work.rewards) / 1000000000).toFixed(0) + addCoinbase;
+      row.insertCell(3).innerText = (Number(work.snarks_fee) / 1000000000).toFixed(4);
+      row.insertCell(4).innerText = (Number(work.transactions_fee) / 1000000000).toFixed(4);
+      row.insertCell(5).innerText = delegators.delegators_count;
+      row.insertCell(6).innerText = (Number(delegators.stake) / 1000000000).toFixed(2);
+
+  }
 
 
-function clearTable(tableId) {
-    const table = document.getElementById(tableId);
-    // Remove all rows except the header row
-    while (table.rows.length > 1) {
-        table.deleteRow(1);
-    }
-}
+  function clearTable(tableId) {
+      const table = document.getElementById(tableId);
+      // Remove all rows except the header row
+      while (table.rows.length > 1) {
+          table.deleteRow(1);
+      }
+  }
 
-function copyText() {
-    const textToCopy = document.getElementById('bp-address').textContent;
-    navigator.clipboard.writeText(textToCopy).then(() => {
-        alert(textToCopy + ' copied to clipboard');
-    }).catch(err => {
-        console.error('Failed to copy text: ', err);
-    });
-}
+  function copyText() {
+      const textToCopy = document.getElementById('bp-address').textContent;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+          alert(textToCopy + ' copied to clipboard');
+      }).catch(err => {
+          console.error('Failed to copy text: ', err);
+      });
+  }
 
 </script>
   <footer>
