@@ -514,8 +514,8 @@
         const validatorBlocks = data.blockCounts2;
         const naamahDelegators = data.delegatorsNumbers1;
         const validatorDelegators = data.delegatorsNumbers2;
-        const naamahStake = data.stake1;
-        const validatorStake = data.stake2;
+        const naamahStake = data.stake1.map(stake => stake / 1e6);;
+        const validatorStake = data.stake2.map(stake => stake / 1e6);
         const naamahRewards = data.payouts1;
         const validatorRewards = data.payouts2;
 
@@ -582,7 +582,7 @@
                             borderWidth: 1
                         },
                         {
-                            label: "Naamah's Stake",
+                            label: "Naamah's Stake (millions)",
                             data: naamahStake,
                             yAxisID: 'stake-axis',
                             backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -590,7 +590,7 @@
                             borderWidth: 1
                         },
                         {
-                            label: 'Validator Stake',
+                            label: 'Validator Stake (millions)',
                             data: validatorStake,
                             yAxisID: 'stake-axis',
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -635,7 +635,7 @@
                             display: true,
                             position: 'right',
                             title: {
-                                text: 'Stake',
+                                text: 'Stake (millions)',
                                 display: true
                             },
                             grid: {
