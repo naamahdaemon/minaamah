@@ -158,6 +158,15 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
+   plugins: [
+    [
+      '@docusaurus/plugin-google-analytics',
+      {
+        trackingID: 'G-VR50WVP209',
+        anonymizeIP: false, // Optional
+      },
+    ],
+  ],   
 };
 
 export default config;
