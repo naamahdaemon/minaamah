@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[9257],{7284:e=>{e.exports=JSON.parse('{"label":"producer","permalink":"/fr/blog/tags/producer","allTagsPath":"/fr/blog/tags","count":2,"unlisted":false}')}}]);
