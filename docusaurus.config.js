@@ -67,7 +67,7 @@ const config = {
           customCss: './src/css/custom.css',
         },
         gtag: {
-          trackingID: 'G-099BPHPNEV',
+          trackingID: 'G-VR50WVP209',
           anonymizeIP: true,
         },
       }),
