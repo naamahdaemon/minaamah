@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[3829],{79076:e=>{e.exports=JSON.parse('{"label":"delegators","permalink":"/fr/blog/tags/delegators","allTagsPath":"/fr/blog/tags","count":2,"unlisted":false}')}}]);
