@@ -66,6 +66,10 @@ const config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        gtag: {
+          trackingID: 'G-099BPHPNEV',
+          anonymizeIP: true,
+        },
       }),
     ],
   ],
@@ -157,16 +161,7 @@ const config = {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
-    }),
-   plugins: [
-    [
-      '@docusaurus/plugin-google-analytics',
-      {
-        trackingID: 'G-099BPHPNEV',
-        anonymizeIP: false, // Optional
-      },
-    ],
-  ],   
+    })  
 };
 
 export default config;
