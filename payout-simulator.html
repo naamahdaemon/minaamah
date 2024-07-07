@@ -603,9 +603,31 @@
         if (themeToggle.checked) {
             body.classList.add('dark-mode');
             localStorage.setItem('theme', 'dark');
+            
+            // Apply dark mode styles to specific row if it exists
+            const specificRows = document.querySelectorAll('.delegate-row');
+            specificRows.forEach(row => {
+                row.style.backgroundColor = '#034';
+            });     
+            // Apply dark mode styles to specific row if it exists
+            const specificRows2 = document.querySelectorAll('.additonnalblocks');
+            specificRows2.forEach(row => {
+                row.style.color = '#f77';
+            });               
         } else {
             body.classList.remove('dark-mode');
             localStorage.setItem('theme', 'light');
+            
+            // Apply light mode styles to specific row if it exists
+            const specificRows = document.querySelectorAll('.delegate-row');
+            specificRows.forEach(row => {
+                row.style.backgroundColor = 'yellow';
+              });   
+            // Apply dark mode styles to specific row if it exists
+            const specificRows2 = document.querySelectorAll('.additonnalblocks');
+            specificRows2.forEach(row => {
+                row.style.color = 'darkred';
+            });               
         }
     });
         
@@ -1320,6 +1342,7 @@
                     row.style.backgroundColor = '#034';
                   else
                     row.style.backgroundColor = 'yellow';
+                  row.classList.add('delegate-row'); // Set a specific id for this row
               }
           }
       });
@@ -1456,8 +1479,8 @@
           const additionalblocks = (stakeLikelyhood(Number(additionalBalance), Number(totalCurrency))*7140).toFixed(0);
           addBlocksInput.value=additionalblocks;
         }
-        addblock= "<b style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
-        addCoinbase= "<b style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
+        addblock= "<b class='additonnalblocks' style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
+        addCoinbase= "<b class='additonnalblocks' style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
        }
 
       const keyCell = createTruncatedKeyCell(work.publicKey); // Use createTruncatedKeyCell for publicKey
