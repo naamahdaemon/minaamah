@@ -162,7 +162,7 @@ const config = {
     [
       '@docusaurus/plugin-google-analytics',
       {
-        trackingID: 'G-VR50WVP209',
+        trackingID: 'G-099BPHPNEV',
         anonymizeIP: false, // Optional
       },
     ],
