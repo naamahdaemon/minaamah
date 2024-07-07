@@ -11,9 +11,9 @@ Have you ever wondered if your validator's performance was as good as you expect
 How does it compare with other validators?  
 What if you could compare it to another validator based on real epoch data?  
 
-:::question
+:::info  What if ?
 **How much would you have received if you had delegated to X instead of Y for this epoch?**
-!!!
+:::
 
 Stop tormenting yourself! Now you can compare your validator's performance with mine (or any other validator)!!
 
