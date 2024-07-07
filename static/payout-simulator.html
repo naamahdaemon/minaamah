@@ -11,62 +11,93 @@
 
     <style>
         body {
-            //font-family: Arial, sans-serif;
             font-family: 'Fira Code', monospace;
             background-color: #f0f8f7; /* light green background */
             margin: 5px;
             padding: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #1e1e1e; /* dark background */
+            color: #cfcfcf; /* light text */
         }
 
         h1, h2 {
             color: #0a7161; /* dark green text */
         }
 
+        body.dark-mode h1, body.dark-mode h2 {
+            color: #88c0d0; /* light blue text */
+        }
+
         .label-container {
             display: inline-flex;
             align-items: center;
-            //white-space: nowrap; /* Prevent wrapping */
         }
 
         label {
             display: inline-block;
-            //width: 300px;
             margin-bottom: 5px;
             color: #0a7161; /* dark green label */
+        }
+
+        body.dark-mode label {
+            color: #88c0d0; /* light blue label */
         }
 
         input[type="number"], input[type="text"], button {
             padding: 8px;
             font-size: 16px;
             width: 100%;
-            //max-width: 600px; /* adjust as needed */
             border: 1px solid #0a7161; /* dark green border */
             border-radius: 5px;
             box-sizing: border-box;
             margin-bottom: 10px;
             font-family: 'Fira Code', monospace;
+            transition: background-color 0.3s, color 0.3s, border 0.3s;
+        }
+
+        body.dark-mode input[type="number"], body.dark-mode input[type="text"], body.dark-mode button {
+            background-color: #2e2e2e; /* dark input background */
+            color: #cfcfcf; /* light input text */
+            border: 1px solid #88c0d0; /* light blue border */
         }
 
         .wrapped-text {
-            //max-width: 200px; /* Adjust max-width as needed */
             word-wrap: break-word;
             text-align: center;
-            border-radius: 10px; /* Adjust border-radius to control the roundness of corners */
+            border-radius: 10px;
             background-color: white;
-            padding: 10px; /* Add padding to give some space around the text */
-            margin: 0 auto; /* Centers the div horizontally */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+            padding: 10px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        
+
+        body.dark-mode .wrapped-text {
+            background-color: #2e2e2e; /* dark wrapped-text background */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* light shadow */
+        }
+
         button {
             background-color: #0a7161; /* dark green button */
             color: white;
             cursor: pointer;
             font-family: 'Fira Code', monospace;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode button {
+            background-color: #88c0d0; /* light blue button */
+            color: #1e1e1e; /* dark button text */
         }
 
         button:hover {
             background-color: #0d9c84; /* lighter green on hover */
+        }
+
+        body.dark-mode button:hover {
+            background-color: #8fbcbb; /* lighter blue on hover */
         }
 
         table {
@@ -95,52 +126,88 @@
         tr:hover {
             background-color: #d1ede1; /* light green on hover */
         }
-        
-        /* CSS for the warning box */
+
+        body.dark-mode table {
+            border: 1px solid #88c0d0; /* light blue border */
+        }
+
+        body.dark-mode th {
+            background-color: #88c0d0; /* light blue header */
+            color: #1e1e1e; /* dark header text */
+        }
+
+        body.dark-mode tr:nth-child(even) {
+            background-color: #2e2e2e; /* dark row background */
+        }
+
+        body.dark-mode tr:hover {
+            background-color: #3b4252; /* darker row on hover */
+        }
+
         .warning-box {
             background-color: #ffdddd; /* Light red background */
             border-left: 6px solid #f44336; /* Red left border */
             padding: 16px;
-            margin: 20px 0; /* Space around the warning box */
+            margin: 20px 0;
             border-radius: 4px;
             color: #333; /* Text color */
             font-family: Arial, sans-serif;
+        }
+
+        body.dark-mode .warning-box {
+            background-color: #3b4252; /* Dark red background */
+            border-left: 6px solid #bf616a; /* Darker red left border */
+            color: #cfcfcf; /* Light text color */
         }
 
         .warning-box strong {
             font-weight: bold;
             color: #d8000c; /* Darker red for emphasis */
         }
-        
-        /* CSS for the info box */
+
+        body.dark-mode .warning-box strong {
+            color: #bf616a; /* Light red for emphasis */
+        }
+
         .info-box {
             background-color: #ddffdd; /* Light green background */
             border-left: 6px solid #43f436; /* green left border */
             padding: 16px;
-            margin: 20px 0; /* Space around the warning box */
+            margin: 20px 0;
             border-radius: 4px;
             color: #333; /* Text color */
             font-family: Arial, sans-serif;
         }
 
+        body.dark-mode .info-box {
+            background-color: #3b4252; /* Dark green background */
+            border-left: 6px solid #a3be8c; /* Light green left border */
+            color: #cfcfcf; /* Light text color */
+        }
+
         .info-box strong {
             font-weight: bold;
-            color: #00880c; /* Darker red for emphasis */
-        }        
-        .table-container {
-            width: 100%; /* Set the desired width of the container */
-            overflow-x: auto; /* Enable horizontal scrolling */
+            color: #00880c; /* Darker green for emphasis */
         }
-        
+
+        body.dark-mode .info-box strong {
+            color: #a3be8c; /* Light green for emphasis */
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
         .copy-emoji {
             cursor: pointer;
             margin-left: 10px;
-        }      
+        }
 
         .tooltip {
             position: relative;
             display: inline-block;
-            margin-left: auto; /* Push the tooltip to the end of the container */
+            margin-left: auto;
         }
 
         .tooltip .tooltiptext {
@@ -154,26 +221,30 @@
             border: 1px solid #ddd;
             position: absolute;
             z-index: 1;
-            left: 100%; /* Position to the right of the emoji */
+            left: 100%;
             top: 50%;
-            transform: translateY(-50%); /* Center vertically */
-            margin-left: 10px; /* Space between emoji and tooltip */
+            transform: translateY(-50%);
+            margin-left: 10px;
             opacity: 0;
             transition: opacity 0.3s;
-            white-space: normal; /* Allow text wrapping */
-            //width: calc(100vw - 30px - 100%); /* Adjust width based on remaining space */
+            white-space: normal;
             width: auto;
-            max-width: 600px; /* Optional: limit the maximum width */
+            max-width: 600px;
+        }
+
+        body.dark-mode .tooltip .tooltiptext {
+            background-color: #2e2e2e; /* dark tooltip background */
+            color: #cfcfcf; /* light tooltip text */
+            border: 1px solid #88c0d0; /* light blue border */
         }
 
         .tooltip:hover .tooltiptext {
             visibility: visible;
-            font-size: 10px;
             opacity: 1;
         }
 
         .chart-container {
-           display: none;
+            display: none;
         }
 
         .info-emoji {
@@ -181,22 +252,129 @@
             margin-left: 5px;
         }
 
-        /* CSS for the warning box */
         .tooltip-box {
-            background-color: #ffffe0; /* Light red background */
-            border-left: 6px solid #8B8000; /* Red left border */
+            background-color: #ffffe0; /* Light yellow background */
+            border-left: 6px solid #8B8000; /* Yellow left border */
             padding: 16px;
-            margin: 20px 0; /* Space around the warning box */
+            margin: 20px 0;
             border-radius: 4px;
             color: #333; /* Text color */
             font-family: Arial, sans-serif;
             display: none;
         }
 
+        body.dark-mode .tooltip-box {
+            background-color: #3b4252; /* Dark yellow background */
+            border-left: 6px solid #ebcb8b; /* Light yellow left border */
+            color: #cfcfcf; /* Light text color */
+        }
+
         .tooltip-box strong {
             font-weight: bold;
-            color: #dddddd; /* Darker red for emphasis */
+            color: #8B8000; /* Darker yellow for emphasis */
         }
+
+        body.dark-mode .tooltip-box strong {
+            color: #ebcb8b; /* Light yellow for emphasis */
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .toggle-label {
+            margin-right: 10px;
+            color: #0a7161; /* dark green label */
+        }
+
+        body.dark-mode .toggle-label {
+            color: #88c0d0; /* light blue label */
+        }
+        
+        /* Toggle switch styling */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #0a7161;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #0a7161;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        body.dark-mode input:checked + .slider {
+            background-color: #88c0d0;
+        }
+
+        body.dark-mode input:focus + .slider {
+            box-shadow: 0 0 1px #88c0d0;
+        }     
+
+        /* Dark mode */
+        body.dark-mode #publicKey1 {
+            color: #333;
+        }     
+
+        /* Dark mode */
+        body.dark-mode #fee1 {
+            color: #333;
+        }  
+
+        /* Dark mode */
+        body.dark-mode #publicKey2 {
+            color: #333;
+        }       
+
+        body #publicKey3 {
+            border: 3px solid darkred;
+        }       
+        
+        
     </style>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -211,9 +389,39 @@
           warningBox.style.display = 'none';
         });
       });
+    
+     window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+
+        const epoch = params.get('epoch');
+        if (epoch !== null) document.getElementById('epoch').value = epoch;
+
+        const publicKey1 = params.get('publicKey1');
+        if (publicKey1 !== null) document.getElementById('publicKey1').value = publicKey1;
+
+        const fee1 = params.get('fee1');
+        if (fee1 !== null) document.getElementById('fee1').value = fee1;
+
+        const fee2 = params.get('fee2');
+        if (fee2 !== null) document.getElementById('fee2').value = fee2;
+
+        const publicKey3 = params.get('publicKey3');
+        if (publicKey3 !== null) document.getElementById('publicKey3').value = publicKey3;
+
+        const publicKey2 = params.get('publicKey2');
+        if (publicKey2 !== null) document.getElementById('publicKey2').value = publicKey2;
+     };
     </script>      
 </head>
 <body>
+    <div class="toggle-container">
+        <span class="toggle-label">Dark Mode</span>
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <div>
     <h1>NAAMAH'S BP PERFORMANCE COMPARISON</h1>
     <h2>Compare the performance of your actual validator with mine 😊</h2>
     <div class="warning-box">
@@ -359,6 +567,8 @@
 
     <hr/>
 
+    </div>
+
     <h2>Last 10 epochs comparison Chart</h2>
     <div class="chart-container">
         <canvas id="performanceChart"></canvas>
@@ -378,6 +588,26 @@
     let stake2 = [];
     let payouts1 = [];
     let payouts2 = [];
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Check the user's theme preference from localStorage
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggle.checked = true;
+    }
+
+    // Toggle theme and save preference to localStorage
+    themeToggle.addEventListener('change', () => {
+        if (themeToggle.checked) {
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme', 'light');
+        }
+    });
         
     async function buildEpochLists() {
         const cors_proxy=true;
@@ -980,6 +1210,7 @@
   }
 
   function populateDelegatorsTable(ledger, work, account, tableId, publicKey3, showPublicKey3, fee, addBlocks) {
+      const isDarkMode = document.body.classList.contains('dark-mode');
       const delegatorsTable = document.getElementById(tableId);
       //const totalStake = (Number(ledger.stake) + Number(account.info.balance));
       
@@ -1085,7 +1316,10 @@
               totalDueAmount += parseFloat(totalDueRounded);
 
               if (publicKey3 && publicKey3 === delegator.public_key) {
-                  row.style.backgroundColor = 'yellow';
+                  if (isDarkMode)
+                    row.style.backgroundColor = '#034';
+                  else
+                    row.style.backgroundColor = 'yellow';
               }
           }
       });
@@ -1193,6 +1427,11 @@
 
   function populateDelegatorTable(tableId, delegators, work, account, addBlocksInput, pubkey, totalCurrency) {
       const delegatorTable = document.getElementById(tableId);
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      const lightModeColor = 'darkred'; // Color for light mode
+      const darkModeColor = '#f77'; // Color for dark mode
+      const couleur = isDarkMode ? darkModeColor : lightModeColor;
+
       const row = delegatorTable.insertRow();
       let delegate=null;
       let addblock="";
@@ -1211,14 +1450,14 @@
         
       //console.log (pubkey);
       //console.log (delegate);
-        
+      
       if (delegate != pubkey) {
         if (addBlocksInput.value==="") {
           const additionalblocks = (stakeLikelyhood(Number(additionalBalance), Number(totalCurrency))*7140).toFixed(0);
           addBlocksInput.value=additionalblocks;
         }
-        addblock= "<b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
-        addCoinbase= "<b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
+        addblock= "<b style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
+        addCoinbase= "<b style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
        }
 
       const keyCell = createTruncatedKeyCell(work.publicKey); // Use createTruncatedKeyCell for publicKey
@@ -1230,7 +1469,6 @@
       row.insertCell(4).innerText = (Number(work.transactions_fee) / 1000000000).toFixed(4);
       row.insertCell(5).innerText = delegators.delegators_count;
       row.insertCell(6).innerText = (Number(delegators.stake) / 1000000000).toFixed(2);
-
   }
 
 
