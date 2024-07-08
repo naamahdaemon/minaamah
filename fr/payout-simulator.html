@@ -9,6 +9,7 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VR50WVP209"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"></script>
 
     <style>
         body {
@@ -387,6 +388,8 @@
       document.addEventListener('DOMContentLoaded', function() {
         var inputField = document.getElementById('addBlocks1');
         var warningBox = document.getElementById('infobulle');
+        var publicKey3Input = document.getElementById('publicKey3');
+        var addBlocks2Input = document.getElementById('addBlocks2');
 
         inputField.addEventListener('focus', function() {
           warningBox.style.display = 'block';
@@ -395,7 +398,13 @@
         inputField.addEventListener('blur', function() {
           warningBox.style.display = 'none';
         });
-      });
+        
+        publicKey3Input.addEventListener('change', function() {
+            // Mettre la valeur de 'addBlocksInput1' à une chaîne vide
+            inputField.value = '';
+            addBlocks2Input.value = '';
+        });        
+      }); 
     
      window.onload = function() {
         const params = new URLSearchParams(window.location.search);
@@ -576,16 +585,20 @@
 
     </div>
 
-    <h2>Last 10 epochs comparison Chart</h2>
+    <h2>Last 12 epochs comparison Chart</h2>
     <div class="chart-container">
         <canvas id="performanceChart"></canvas>
     </div>
-
+    <br/>
+    <div class="chart-container">
+        <canvas id="APYChart"></canvas>
+    </div>
     <hr/>
 
     <script>
 
     let performanceChart; // Declare the chart variable in a scope accessible to both the updateCharts function and destroy logic
+    let APYChart; // Declare the chart variable in a scope accessible to both the updateCharts function and destroy logic
     let epochList = [];
     let blockCounts1 = [];
     let blockCounts2 = [];
@@ -595,6 +608,8 @@
     let stake2 = [];
     let payouts1 = [];
     let payouts2 = [];
+    let apy1 = [];
+    let apy2 = [];
 
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
@@ -637,7 +652,33 @@
             });               
         }
     });
-        
+
+    function calculateAPY(interest15Days, principal) {
+        // Calculer le taux d'intérêt pour la période de 15 jours
+        let rate15Days = interest15Days / principal;
+
+        // Convertir ce taux en un taux annuel
+        let annualRate = Math.pow((1 + rate15Days), (365 / 14.875)) - 1;
+
+        // Calculer l'APY
+        let apy = Math.pow((1 + annualRate), 1) - 1;
+
+        console.log (apy * 100);
+
+        // Convertir l'APY en pourcentage
+        return apy * 100;
+    }
+
+
+
+function calculateMean(data) {
+  const mean = data.reduce((acc, value) => acc + value, 0) / data.length;
+  // Create an array filled with the mean value, same length as data
+  const meanArray = Array(data.length).fill(mean);
+  console.log (meanArray);
+  return meanArray;
+}
+       
     async function buildEpochLists() {
         const cors_proxy=true;
 
@@ -650,6 +691,8 @@
         stake2 = [];
         payouts1 = [];
         payouts2 = [];
+        apy1 = [];
+        apy2 = [];
         
         let epoch = document.getElementById('epoch').value;
         epoch = Number(epoch) + 80;
@@ -689,7 +732,7 @@
         
         const accountPayload = { auth, publicKey: publicKey3 };
 
-        for (let i = Math.max(80, epoch - 10); i <= epoch; i++) {
+        for (let i = Math.max(80, epoch - 12); i <= epoch; i++) {
             const delegatorsPayload1 = { auth, epoch: i, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false, limit: 25000 };
             const delegatorsPayload2 = { auth, epoch: i, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false, limit: 25000 };
             const workPayload1 = { auth, epoch: i, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false };
@@ -734,8 +777,22 @@
                 stake1.push((delegatorsResponse1.payload.ledger.stake/1e9).toFixed(0));
                 stake2.push((delegatorsResponse2.payload.ledger.stake/1e9).toFixed(0));      
 
-                payouts1.push(computePayouts(delegatorsResponse1.payload.ledger, workResponse1.payload.work, accountResponse.payload.account, publicKey3, fee1, addBlocks1));
-                payouts2.push(computePayouts(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, publicKey3, fee2, addBlocks2));
+                /*const payoutsJSON = {
+                    totalDelegatorDueAmount: totalDelegatorDueAmount,
+                    totalDueAmount: totalDueAmount
+                };*/ 
+
+                const payout1 = computePayouts(delegatorsResponse1.payload.ledger, workResponse1.payload.work, accountResponse.payload.account, publicKey3, fee1, addBlocks1);
+                const payout2 = computePayouts(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, publicKey3, fee2, addBlocks2);
+
+                payouts1.push(payout1.totalDelegatorDueAmount);
+                payouts2.push(payout2.totalDelegatorDueAmount);
+                
+                const tpa1 = calculateAPY(payout1.totalDueAmount, (payout1.totalDelegatorStake/1e9).toFixed(0));
+                const tpa2 = calculateAPY(payout2.totalDueAmount, (payout2.totalDelegatorStake/1e9).toFixed(0));
+                
+                apy1.push(tpa1);
+                apy2.push(tpa2);       
 
             } catch (error) {
                 console.error(`Error fetching data for epoch ${i}:`, error);
@@ -760,13 +817,15 @@
             stake1: stake1,
             stake2: stake2,
             payouts1: payouts1, 
-            payouts2: payouts2
+            payouts2: payouts2, 
+            apy1: apy1, 
+            apy2: apy2
         };
         
         updateCharts(chartData);
+        updateAPYCharts(chartData);
     }
-  
-    
+      
     function updateCharts(data) {
         const epochs = data.epochs;
         const naamahBlocks = data.blockCounts1;
@@ -791,8 +850,10 @@
             validatorStake.length > 0;
 
         // Hide or show the chart container based on data availability
-        const chartContainer = document.querySelector('.chart-container');
-        chartContainer.style.display = hasData ? 'block' : 'none';
+        const chartContainers = document.querySelectorAll('.chart-container');
+        chartContainers.forEach(container => {
+            container.style.display = hasData ? 'block' : 'none';
+        });
 
         // Ensure previous chart instance is destroyed
         if (performanceChart) {
@@ -1040,6 +1101,159 @@
             });*/
         }
     }
+    
+    function updateAPYCharts(data) {
+        const epochs = data.epochs;
+        const naamahBlocks = data.blockCounts1;
+        const validatorBlocks = data.blockCounts2;
+        const naamahDelegators = data.delegatorsNumbers1;
+        const validatorDelegators = data.delegatorsNumbers2;
+        const naamahStake = data.stake1.map(stake => stake / 1e6);;
+        const validatorStake = data.stake2.map(stake => stake / 1e6);
+        const naamahRewards = data.payouts1;
+        const validatorRewards = data.payouts2;
+        const naamahApy = data.apy1;
+        const validatorApy = data.apy2;
+
+        //const naamahAPY = calculateAPY(naamahRewards, principal);
+        //const validatorAPY = calculateAPY(validatorRewards, principal);
+
+        const naamahApyMean = calculateMean(naamahApy);
+        const validatorApyMean = calculateMean(validatorApy);
+
+        const ctx = document.getElementById('APYChart').getContext('2d');
+
+        // Check if there is data to display
+        const hasData =
+            epochs.length > 0 &&
+            naamahBlocks.length > 0 &&
+            validatorBlocks.length > 0 &&
+            naamahDelegators.length > 0 &&
+            validatorDelegators.length > 0 &&
+            naamahStake.length > 0 &&
+            validatorStake.length > 0;
+
+        // Hide or show the chart container based on data availability
+          const chartContainers = document.querySelectorAll('.chart-container');
+          chartContainers.forEach(container => {
+              container.style.display = hasData ? 'block' : 'none';
+          });
+
+        // Ensure previous chart instance is destroyed
+        if (APYChart) {
+            APYChart.destroy();
+        }
+
+        console.log ("in APYChartData");
+
+
+        if (hasData) {
+            // Calculate the initial width based on window size
+            const width = Math.min(window.innerWidth * 0.9, 800); // Adjust as needed
+            console.log ("in APYChartData has Data");
+
+            // Set canvas dimensions
+            ctx.canvas.width = width;
+            ctx.canvas.height = width * 0.75; // Aspect ratio adjustment, adjust as needed
+
+            APYChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: epochs,
+                    datasets: [
+                        {
+                            label: "Naamah's Stake (millions)",
+                            data: naamahStake,
+                            yAxisID: 'stake-axis',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Validator Stake (millions)',
+                            data: validatorStake,
+                            yAxisID: 'stake-axis',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: "Naamah's APY",
+                            data: naamahApy,
+                            type: 'line',
+                            yAxisID: 'reward-axis',
+                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        },
+                        {
+                            label: 'Validator APY',
+                            data: validatorApy,
+                            type: 'line',
+                            yAxisID: 'reward-axis',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            fill: false
+                        },
+                        {
+                          label: "Naamah's Mean APY",
+                          data: naamahApyMean,  // This is a single value representing the mean
+                          type: 'line',
+                          yAxisID: 'reward-axis',
+                          backgroundColor: 'rgba(255, 159, 64, 0.2)',  // Adjust color as needed
+                          borderColor: 'rgba(255, 159, 64, 1)',  // Adjust color as needed
+                          borderWidth: 3,
+                          borderDash: [5, 5],                          fill: false
+                        },
+                        {
+                          label: 'Validator Mean APY',
+                          data: validatorApyMean, // This is a single value representing the mean
+                          type: 'line',
+                          yAxisID: 'reward-axis',
+                          backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Adjust color as needed
+                          borderColor: 'rgba(75, 192, 192, 1)',  // Adjust color as needed
+                          borderWidth: 3,
+                          borderDash: [5, 5],
+                          fill: false
+                        },
+                    ]
+                },
+                options: {
+                    responsive: true, // Ensure the chart responds to resizing
+                    maintainAspectRatio: false, // Allow the chart to scale with the container
+                    scales: {
+                        'stake-axis': {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                text: 'Stake (millions)',
+                                display: true
+                            },
+                            grid: {
+                                drawOnChartArea: false // only want the grid lines for one axis to show up
+                            }
+                        },
+                        'reward-axis': {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                text: 'APY',
+                                display: true
+                            },
+                            grid: {
+                                drawOnChartArea: false // only want the grid lines for one axis to show up
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }    
+    
   async function fetchData() {
       let epoch = document.getElementById('epoch').value;
       epoch = Number(epoch)+80;
@@ -1379,9 +1593,10 @@
   }
 
   function computePayouts(ledger, work, account, publicKey3, fee, addBlocks) {
-      let totalStake = Number(ledger.stake);
+      let totalDelegatorStake = Number(ledger.stake);
+      let totalValidatorStake = Number(ledger.stake);
       if (!ledger.delegators.some(d => d.public_key === account.info.key)) {
-          totalStake += Number(account.info.balance);
+          totalDelegatorStake += Number(account.info.balance);
       }
       
       /*console.log ("************ computePayouts DEBUT ************");
@@ -1394,7 +1609,9 @@
       console.log ("************ computePayouts  FIN ************");*/
       
       const addCoinbase = Number(addBlocks)*720*1e9;
-      const totalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(work.transactions_fee)) / 1000000000;
+      const validatorTotalrewards = (Number(work.rewards) + Number(work.transactions_fee)) / 1000000000;
+      const delegatorTotalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(work.transactions_fee)) / 1000000000;
+      
       // Add the third public key as a delegator only if it's not already in the list
       const thirdDelegator = {
           public_key: account.info.key,
@@ -1416,15 +1633,25 @@
       let totalBalance = 0;
       let totalShares = 0;
       let totalDueAmount = 0;
+      let totalDelegatorDueAmount = 0;
 
+      let unlockedBalance = 0;
+      let unblockedTotal = 0;      
+
+      // Compute payouts
       sortedDelegators.forEach(delegator => {
-      if (delegator.public_key === publicKey3) {
-          const balance = (Number(delegator.balance) / 1000000000).toFixed(4);
+      //if (delegator.public_key === publicKey3) {
+          const balance = (Number(delegator.balance) / 1000000000).toFixed(4);            // balance du staker
+          const delegatorShare = Number(delegator.balance) / Number(totalDelegatorStake); // Share du staker sur le total simulé
+          const delegatorSharePercent = (delegatorShare * 100).toFixed(8);                // Share du staker sur le total simulé en pourcent
+
+          const share = Number(delegator.balance) / Number(totalValidatorStake);          // Share du staker sur le total non simulé
+          const sharePercent = (share * 100).toFixed(8);                                  // Share du staker sur le total non simulé en pourcent
+
           totalBalance += parseFloat(balance);
-          const share = Number(delegator.balance) / Number(totalStake);
-          const sharePercent = (share * 100).toFixed(8);
-          totalShares += parseFloat(sharePercent);
-          let totalDue = totalRewards * share;
+          totalShares += parseFloat(delegatorSharePercent);
+          let totalDue = delegatorTotalRewards * delegatorShare;
+
           
           if (delegator.is_found || delegator.is_investor) {
               totalDue *= 0.92;
@@ -1435,10 +1662,21 @@
           }
           const totalDueRounded = totalDue.toFixed(4);
           totalDueAmount += parseFloat(totalDueRounded);
-        }
+          
+          if (delegator.public_key === publicKey3)
+            totalDelegatorDueAmount = parseFloat(totalDueRounded);
+        //}
       });
       
-      return totalDueAmount;
+      const payoutsJSON = {
+          totalDelegatorDueAmount: totalDelegatorDueAmount,
+          totalDueAmount: totalDueAmount,
+          totalDelegatorStake: totalDelegatorStake
+      };      
+      
+      console.log(payoutsJSON);
+      
+      return payoutsJSON;
   }
 
   function stakeLikelyhood(balance = 0, total = 1, c = 0, f = 0.75) {
