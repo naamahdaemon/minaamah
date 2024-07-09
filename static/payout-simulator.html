@@ -134,8 +134,23 @@
         }
 
         body.dark-mode th {
-            background-color: #88c0d0; /* light blue header */
-            color: #1e1e1e; /* dark header text */
+            //background-color: #88c0d0; /* light blue header */
+            //color: #1e1e1e; /* dark header text */
+            background-color: #1e1e1e; /* black header */
+            color: white; /* white text */            
+        }
+
+        a {
+            color: #0a7161; /* dark green links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        body.dark-mode a {
+            color: white; /* white links in dark mode */
         }
 
         body.dark-mode tr:nth-child(even) {
@@ -630,7 +645,7 @@
             // Apply dark mode styles to specific row if it exists
             const specificRows = document.querySelectorAll('.delegate-row');
             specificRows.forEach(row => {
-                row.style.backgroundColor = '#034';
+                row.style.backgroundColor = '#1a8870';
             });     
             // Apply dark mode styles to specific row if it exists
             const specificRows2 = document.querySelectorAll('.additonnalblocks');
@@ -1561,7 +1576,7 @@ function calculateMean(data) {
 
               if (publicKey3 && publicKey3 === delegator.public_key) {
                   if (isDarkMode)
-                    row.style.backgroundColor = '#034';
+                    row.style.backgroundColor = '#1a8870';
                   else
                     row.style.backgroundColor = 'yellow';
                   row.classList.add('delegate-row'); // Set a specific id for this row
