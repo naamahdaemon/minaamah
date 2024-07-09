@@ -21,6 +21,9 @@ const FeatureList = [
         <br/>
         <br/>
         <b>NEW here ?</b>&nbsp;<Link to="/blog/welcome"> READ THIS </Link>
+        <br/>
+        <br/>
+        <b><Translate>Looking for my payout simulator ?</Translate></b>&nbsp;<Link to="https://mina.naamahdaemon.eu/payout-simulator?epoch=2"> CLICK HERE </Link>        
       </>
     ),
   }
