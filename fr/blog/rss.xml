@@ -4,10 +4,42 @@
         <title>Naamah Mina Stake Blog</title>
         <link>https://naamahdaemon.github.io/fr/blog</link>
         <description>Naamah Mina Stake Blog</description>
-        <lastBuildDate>Sun, 07 Jul 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 09 Jul 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>fr</language>
+        <item>
+            <title><![CDATA[Colis Surprise de Mina]]></title>
+            <link>https://naamahdaemon.github.io/fr/blog/Mina Surprise Package</link>
+            <guid>https://naamahdaemon.github.io/fr/blog/Mina Surprise Package</guid>
+            <pubDate>Tue, 09 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Aujourd'hui, j'ai reçu un colis spécial de l'équipe Mina 😊]]></description>
+            <content:encoded><![CDATA[<p>Aujourd'hui, j'ai reçu un colis spécial de l'équipe Mina 😊</p>
+<br>
+<div class="text--center"><img src="https://naamahdaemon.github.io/fr/assets/images/mina-package-87292cf44c847358966d23eca310255b.jpg" alt="Colis Cadeau de Mina" style="width:480px"></div>
+<br>
+<p>Cette boîte a été envoyée à tous les membres de la communauté qui ont aidé à la transition de Mina Berkeley.</p>
+<p>Et ce que nous avions dans la boîte :</p>
+<br>
+<div class="text--center"><img src="https://naamahdaemon.github.io/fr/assets/images/package-content-5d44dec576e8f6d47b2edcf152081e58.jpg" alt="Contenu du Colis" style="width:480px"></div>
+<br>
+<p><strong>Merci à l'équipe Mina et à toute la formidable communauté Mina 🎉</strong></p>
+<hr>
+<h1>Outil de simulation de paiement de Naamah mis à jour</h1>
+<p>Cette semaine, j'ai également mis à jour mon outil de simulation de paiement Mina.
+Ajout de la comparaison des APY des Block Producers.</p>
+<br>
+<p><img loading="lazy" alt="Payout Simulator APY" src="https://naamahdaemon.github.io/fr/assets/images/payout-simulator-apy-de1393be5ad913bfc1c2e77add9f4221.png" width="855" height="898" class="img_ev3q"></p>
+<br>
+<p>Voyez par vous-même :</p>
+<p><a href="https://mina.naamahdaemon.eu/payout-simulator" target="_blank" rel="noopener noreferrer">https://mina.naamahdaemon.eu/payout-simulator</a></p>
+<br>
+<h1>Soutenez-moi en déléguant à mon Block Producer !</h1>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>Adresse de mon validateur</div><div class="admonitionContent_BuS1"><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copier le code" title="Copier" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div class="text--center"><img src="https://naamahdaemon.github.io/fr/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div></div></div>]]></content:encoded>
+            <category>mina</category>
+            <category>berkeley</category>
+            <category>package</category>
+        </item>
         <item>
             <title><![CDATA[Epoch 1 Mina Payouts]]></title>
             <link>https://naamahdaemon.github.io/fr/blog/Mina Payouts for Epoch 1</link>

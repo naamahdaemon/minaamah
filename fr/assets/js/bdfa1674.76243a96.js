@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[2565],{28306:e=>{e.exports=JSON.parse('{"label":"berkeley","permalink":"/fr/blog/tags/berkeley","allTagsPath":"/fr/blog/tags","count":1,"unlisted":false}')}}]);
