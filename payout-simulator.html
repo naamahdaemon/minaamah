@@ -395,8 +395,54 @@
         body #publicKey3 {
             border: 3px solid darkred;
         }       
-        
-        
+
+        //Handle +/- button for epoch
+        .input-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-container input {
+            flex: 1;
+            margin-right: 5px;
+        }
+
+        .input-container button {
+            padding: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #0a7161; /* dark green button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .input-container button {
+            background-color: #88c0d0; /* light blue button */
+            color: #1e1e1e; /* dark button text */
+        }
+
+        .input-container button:hover {
+            background-color: #0d9c84; /* lighter green on hover */
+        }
+
+        body.dark-mode .input-container button:hover {
+            background-color: #8fbcbb; /* lighter blue on hover */
+        }   
+
+      .table-zero {
+          margin: 0px !important;
+          border: 0 !important;
+          border-spacing: 0px !important;
+          border-collapse: collapse !important;
+      }
+
+      .table-zero th,
+      .table-zero td {
+          border: 0 !important;
+          padding: 3px !important;
+      }        
     </style>
     <script>
       <!-- Google tag (gtag.js) -->
@@ -430,7 +476,12 @@
         const params = new URLSearchParams(window.location.search);
 
         const epoch = params.get('epoch');
-        if (epoch !== null) document.getElementById('epoch').value = epoch;
+        if (epoch !== null) 
+          document.getElementById('epoch').value = epoch;
+        else {
+          console.log ("get current epoch");
+          getEpoch();
+        }
 
         const publicKey1 = params.get('publicKey1');
         if (publicKey1 !== null) document.getElementById('publicKey1').value = publicKey1;
@@ -447,6 +498,15 @@
         const publicKey2 = params.get('publicKey2');
         if (publicKey2 !== null) document.getElementById('publicKey2').value = publicKey2;
      };
+     
+    function changeValue(inputId, delta) {
+        const input = document.getElementById(inputId);
+        const currentValue = parseInt(input.value) || 0;
+        const newValue = currentValue + delta;
+        if (newValue >= parseInt(input.min)) {
+            input.value = newValue;
+        }
+    }     
     </script>      
 </head>
 <body>
@@ -466,8 +526,19 @@
         <b>Computations will only be accurate for epochs after the hardfork (&ge;0)</b><br/>
         <i>⚠️ The result of the calculation is provided for informational purposes and cannot be opposed or claimed against your block producer.</i>
     </div>    
+    <!--
     <label for="epoch">Epoch (since hardfork)</label>
     <input type="number" id="epoch" value="1" min="0"><br>
+    -->
+    
+    <div class="input-container">
+        <label for="epoch">Epoch (since hardfork)</label>
+        <table class="table-zero"><tr>
+        <td><input type="number" id="epoch" value="1" min="0"></td>
+        <td><button type="button" onclick="changeValue('epoch', -1)">-</button></td>
+        <td><button type="button" onclick="changeValue('epoch', 1)">+</button></td>
+        </table>
+    </div>    
 
     <label for="publicKey1">Naamah's validator</label>
     <input type="text" id="publicKey1" value="B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr" style="background-color:lightgrey"><br>
@@ -699,6 +770,73 @@ function calculateMean(data) {
   console.log (meanArray);
   return meanArray;
 }
+
+    async function getEpoch() {
+        const cors_proxy=true;
+
+        let epochField = document.getElementById('epoch');
+        
+        const auth = "my_secret";
+        const apiUrl = "https://minataur.net/api/v1";
+        const proxyUrl = "https://www.akirion.com:4664/proxy?url=";
+        let epochRoute = apiUrl + "/epoch";
+        
+        // Headers for the proxy request
+        let headers = {
+            'Content-Type': 'application/json',
+            'Minataur-Authorization': 'minataur-token:ede9adcaec633f3290865e0f85faddbb:4d8801b69d7870786620996ddcb14e551719693200945',
+        };
+        
+        if (cors_proxy) {
+          epochRoute = proxyUrl + encodeURIComponent(`${apiUrl}/epoch`);
+          headers = {
+          'Content-Type': 'application/json',
+          'x-api-key': 'e0d9da01-c1c5-4c44-b4fa-3cbdb4982ed3',
+          };
+        }
+
+        try {
+              const epochResponse = await fetch(epochRoute , {
+                    method: 'GET',
+                    headers
+                }).then(res => res.json());        
+              
+              //update epoch information
+              /*
+                {
+                    "api": {
+                        "version": "1.0",
+                        "format": "json",
+                        "name": "api:minataur",
+                        "url": "https://minataur.net/api/v1"
+                    },
+                    "payload": {
+                        "epoch": {
+                            "height": "369333",
+                            "global_slot_since_genesis": "581422",
+                            "global_slot_since_hard_fork": "16942",
+                            "epoch_since_genesis": 82,
+                            "epoch_since_hard_fork": 2,
+                            "current_slot": 2662,
+                            "epoch_start_block": "367838",
+                            "epoch_blocks": "1496",
+                            "block_time": "1720594980000",
+                            "active_producers": "319",
+                            "total_currency": "1172947738840039233",
+                            "hard_fork_stop_slot": 564280,
+                            "hard_fork_start_slot": 564480,
+                            "hard_fork_slot_align": 6720
+                        }
+                    }
+                }
+              */             
+
+              epochField.value = epochResponse.payload.epoch.epoch_since_hard_fork;
+
+        } catch (error) {
+            console.error(`Error fetching data for epoch`, error);
+        }
+    }
        
     async function buildEpochLists() {
         const cors_proxy=true;
