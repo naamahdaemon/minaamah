@@ -1706,11 +1706,14 @@ function calculateMean(data) {
               
               if (delegator.is_found || delegator.is_investor) {
                   totalDue *= 0.92;
+                  console.log(totalRewards + "x" + share + "x0.92 = " + totalDue);
               } else if (delegator.is_olabs) {
                   totalDue *= 0.95;
+                  console.log(totalRewards + "x" + share + "x0.95 = " + totalDue);
               } else {
                   totalDue *= (100 - fee) / 100;
-              }
+                  console.log(totalRewards + "x" + share + "x" + (100 - fee) / 100 + " = " + totalDue);
+              }             
               const totalDueRounded = totalDue.toFixed(4);
               const totalDueCell = row.insertCell(7);
               totalDueCell.innerText = totalDueRounded;
