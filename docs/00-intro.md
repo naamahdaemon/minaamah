@@ -65,7 +65,7 @@ B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr
 You can find my node address on any mina explorer available for more information.  
 
 **minataur.net**  
-https://minataur.net/address/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr#overview
+https://minataur.net/account/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr
 
 **minaexplorer.com**  
 https://minaexplorer.com/wallet/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr
