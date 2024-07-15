@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Naamah Mina Stake Blog</title>
-        <link>https://naamahdaemon.github.io/blog</link>
+        <link>https://mina.naamahdaemon.eu/blog</link>
         <description>Naamah Mina Stake Blog</description>
         <lastBuildDate>Tue, 09 Jul 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -10,18 +10,18 @@
         <language>en</language>
         <item>
             <title><![CDATA[Mina Surprise Package]]></title>
-            <link>https://naamahdaemon.github.io/blog/Mina Surprise Package</link>
-            <guid>https://naamahdaemon.github.io/blog/Mina Surprise Package</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Mina Surprise Package</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Mina Surprise Package</guid>
             <pubDate>Tue, 09 Jul 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Today, I received a special package from Mina team 😊]]></description>
             <content:encoded><![CDATA[<p>Today, I received a special package from Mina team 😊</p>
 <br>
-<div class="text--center"><img src="https://naamahdaemon.github.io/assets/images/mina-package-87292cf44c847358966d23eca310255b.jpg" alt="Mina's Gift package" style="width:480px"></div>
+<div class="text--center"><img src="https://mina.naamahdaemon.eu/assets/images/mina-package-87292cf44c847358966d23eca310255b.jpg" alt="Mina's Gift package" style="width:480px"></div>
 <br>
 <p>This box was sent to all the community members who helped on the mina berkeley transition.</p>
 <p>And what we had in the box :</p>
 <br>
-<div class="text--center"><img src="https://naamahdaemon.github.io/assets/images/package-content-5d44dec576e8f6d47b2edcf152081e58.jpg" alt="Package Content" style="width:480px"></div>
+<div class="text--center"><img src="https://mina.naamahdaemon.eu/assets/images/package-content-5d44dec576e8f6d47b2edcf152081e58.jpg" alt="Package Content" style="width:480px"></div>
 <br>
 <p><strong>Thanks to the Mina team and all the awesome Mina community !! 🎉</strong></p>
 <hr>
@@ -29,21 +29,21 @@
 <p>This week, I also updated my Mina Payout Simulator tool.
 Added Block Producer APY comparison.</p>
 <br>
-<p><img loading="lazy" alt="Payout Simulator APY" src="https://naamahdaemon.github.io/assets/images/payout-simulator-apy-de1393be5ad913bfc1c2e77add9f4221.png" width="855" height="898" class="img_ev3q"></p>
+<p><img loading="lazy" alt="Payout Simulator APY" src="https://mina.naamahdaemon.eu/assets/images/payout-simulator-apy-de1393be5ad913bfc1c2e77add9f4221.png" width="855" height="898" class="img_ev3q"></p>
 <br>
 <p>See by yourself :</p>
 <p><a href="https://mina.naamahdaemon.eu/payout-simulator" target="_blank" rel="noopener noreferrer">https://mina.naamahdaemon.eu/payout-simulator</a></p>
 <hr>
 <h1>Support me by delegating to my Block Producer !</h1>
-<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>My Validator Address</div><div class="admonitionContent_BuS1"><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div class="text--center"><img src="https://naamahdaemon.github.io/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div></div></div>]]></content:encoded>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>My Validator Address</div><div class="admonitionContent_BuS1"><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div class="text--center"><img src="https://mina.naamahdaemon.eu/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div></div></div>]]></content:encoded>
             <category>mina</category>
             <category>berkeley</category>
             <category>package</category>
         </item>
         <item>
             <title><![CDATA[Epoch 1 Mina Payouts]]></title>
-            <link>https://naamahdaemon.github.io/blog/Mina Payouts for Epoch 1</link>
-            <guid>https://naamahdaemon.github.io/blog/Mina Payouts for Epoch 1</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Mina Payouts for Epoch 1</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Mina Payouts for Epoch 1</guid>
             <pubDate>Sun, 07 Jul 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Epoch 1 payouts have been sent]]></description>
             <content:encoded><![CDATA[<p>Epoch 1 payouts have been sent</p>
@@ -84,15 +84,15 @@ Added Block Producer APY comparison.</p>
 <br>
 <h1>Support me by delegating to my Block Producer !</h1>
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>My Validator Address</div><div class="admonitionContent_BuS1"><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div></div>
-<div class="text--center"><img src="https://naamahdaemon.github.io/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div>]]></content:encoded>
+<div class="text--center"><img src="https://mina.naamahdaemon.eu/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div>]]></content:encoded>
             <category>mina</category>
             <category>payouts</category>
             <category>July</category>
         </item>
         <item>
             <title><![CDATA[Payout Simulator tool available]]></title>
-            <link>https://naamahdaemon.github.io/blog/Payout Simulator Tool</link>
-            <guid>https://naamahdaemon.github.io/blog/Payout Simulator Tool</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Payout Simulator Tool</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Payout Simulator Tool</guid>
             <pubDate>Sun, 30 Jun 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Have you ever wondered if your validator's performance was as good as you expected?]]></description>
             <content:encoded><![CDATA[<p>Have you ever wondered if your validator's performance was as good as you expected?<br>
@@ -101,7 +101,7 @@ Added Block Producer APY comparison.</p>
 <div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>What if ?</div><div class="admonitionContent_BuS1"><p><strong>How much would you have received if you had delegated to X instead of Y for this epoch?</strong></p></div></div>
 <p>Stop tormenting yourself! Now you can compare your validator's performance with mine (or any other validator)!!</p>
 <p>I've made this tool available to you.</p>
-<p><img loading="lazy" alt="Mina Payout Simulator" src="https://naamahdaemon.github.io/assets/images/payout-simulator-8f35d898d1ba917c856d005766fa37fb.png" width="854" height="1160" class="img_ev3q"></p>
+<p><img loading="lazy" alt="Mina Payout Simulator" src="https://mina.naamahdaemon.eu/assets/images/payout-simulator-8f35d898d1ba917c856d005766fa37fb.png" width="854" height="1160" class="img_ev3q"></p>
 <p>Enter your key, click on <strong>compare</strong>, and you're good to go!</p>
 <p>Find the tool here:</p>
 <p><a href="https://naamahdaemon.github.io/payout.html" target="_blank" rel="noopener noreferrer">https://naamahdaemon.github.io/payout.html</a></p>
@@ -122,15 +122,15 @@ I have tested it though, and the results look reliable to me.</p></div></div>
 <br>
 <h1>Support me by delegating to my Block Producer !</h1>
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>My Validator Address</div><div class="admonitionContent_BuS1"><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div></div>
-<div class="text--center"><img src="https://naamahdaemon.github.io/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div>]]></content:encoded>
+<div class="text--center"><img src="https://mina.naamahdaemon.eu/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div>]]></content:encoded>
             <category>mina</category>
             <category>payout</category>
             <category>tool</category>
         </item>
         <item>
             <title><![CDATA[Mina Pool Payout script updated]]></title>
-            <link>https://naamahdaemon.github.io/blog/Updated Mina Pool Payout Script</link>
-            <guid>https://naamahdaemon.github.io/blog/Updated Mina Pool Payout Script</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Updated Mina Pool Payout Script</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Updated Mina Pool Payout Script</guid>
             <pubDate>Sat, 22 Jun 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[The Jonathan's Mina Pool Payout Script has been updated.]]></description>
             <content:encoded><![CDATA[<p>The Jonathan's Mina Pool Payout Script has been updated.<br>
@@ -151,15 +151,15 @@ I have tested it though, and the results look reliable to me.</p></div></div>
         </item>
         <item>
             <title><![CDATA[Epoch 0 Mina Payouts]]></title>
-            <link>https://naamahdaemon.github.io/blog/Mina Payouts for Epoch 0</link>
-            <guid>https://naamahdaemon.github.io/blog/Mina Payouts for Epoch 0</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Mina Payouts for Epoch 0</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Mina Payouts for Epoch 0</guid>
             <pubDate>Thu, 20 Jun 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Epoch 0 payouts have been sent]]></description>
             <content:encoded><![CDATA[<p>Epoch 0 payouts have been sent</p>
 <p>9 blocks have been produced this epoch.</p>
 <p>As a reminder, you can find all payouts in realtime on this page :</p>
 <ul>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/payouts">Payouts</a></li>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/payouts">Payouts</a></li>
 </ul>]]></content:encoded>
             <category>mina</category>
             <category>payouts</category>
@@ -167,8 +167,8 @@ I have tested it though, and the results look reliable to me.</p></div></div>
         </item>
         <item>
             <title><![CDATA[Epoch Calculator tool available]]></title>
-            <link>https://naamahdaemon.github.io/blog/Epoch Calculator Tool</link>
-            <guid>https://naamahdaemon.github.io/blog/Epoch Calculator Tool</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Epoch Calculator Tool</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Epoch Calculator Tool</guid>
             <pubDate>Thu, 20 Jun 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[You need some information about the ongoing epoch ?]]></description>
             <content:encoded><![CDATA[<p>You need some information about the ongoing epoch ?</p>
@@ -179,7 +179,7 @@ I have tested it though, and the results look reliable to me.</p></div></div>
 <li>Current epoch block height</li>
 <li>Current epoch end date and remaining time</li>
 </ul>
-<p><img loading="lazy" alt="Mina Epoch Calculator" src="https://naamahdaemon.github.io/assets/images/epoch-787a4abb464dbea7500e0fc8dc6a4c17.png" width="650" height="751" class="img_ev3q"></p>
+<p><img loading="lazy" alt="Mina Epoch Calculator" src="https://mina.naamahdaemon.eu/assets/images/epoch-787a4abb464dbea7500e0fc8dc6a4c17.png" width="650" height="751" class="img_ev3q"></p>
 <p>Find the tool here :</p>
 <p><a href="https://naamahdaemon.github.io/mina_epoch.html" target="_blank" rel="noopener noreferrer">https://naamahdaemon.github.io/mina_epoch.html</a></p>]]></content:encoded>
             <category>mina</category>
@@ -188,18 +188,18 @@ I have tested it though, and the results look reliable to me.</p></div></div>
         </item>
         <item>
             <title><![CDATA[Mina Payout Calculator updated]]></title>
-            <link>https://naamahdaemon.github.io/blog/Mina Payout Calculator updated</link>
-            <guid>https://naamahdaemon.github.io/blog/Mina Payout Calculator updated</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Mina Payout Calculator updated</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Mina Payout Calculator updated</guid>
             <pubDate>Mon, 10 Jun 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[The payout calculator has been updated and delivers consistant results again for the new chain (forked from the old one) :]]></description>
             <content:encoded><![CDATA[<p>The payout calculator has been updated and delivers consistant results again for the new chain (forked from the old one) :</p>
 <ul>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/payouts">Payouts</a></li>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/payouts">Payouts</a></li>
 </ul>
 <p>You'll find also additional realtime information on my Block Producer here :</p>
 <ul>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/block_production">Block Production</a></li>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/delegations">Delegations</a></li>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/block_production">Block Production</a></li>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/delegations">Delegations</a></li>
 </ul>
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>The payout calculator may not output the exact same results as the payout script.<br>
 <!-- -->Rules for computing payout have changed (no more supercharged, no more burn, ..) and thus some discrepancies may occur between my computations and those from the payout script.<br>
@@ -212,8 +212,8 @@ I have tested it though, and the results look reliable to me.</p></div></div>
         </item>
         <item>
             <title><![CDATA[Mina Payouts]]></title>
-            <link>https://naamahdaemon.github.io/blog/Mina Payouts for Epoch 78 &amp; 79</link>
-            <guid>https://naamahdaemon.github.io/blog/Mina Payouts for Epoch 78 &amp; 79</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Mina Payouts for Epoch 78 &amp; 79</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Mina Payouts for Epoch 78 &amp; 79</guid>
             <pubDate>Fri, 07 Jun 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[On June, 4th the mina Blockchain has undergone its biggest upgrade ao far.]]></description>
             <content:encoded><![CDATA[<p>On June, 4th the mina Blockchain has undergone its biggest upgrade ao far.<br>
@@ -242,8 +242,8 @@ I'll do my best to restore it as fast as possible</p></div></div>]]></content:en
         </item>
         <item>
             <title><![CDATA[Mina Hard Fork coming]]></title>
-            <link>https://naamahdaemon.github.io/blog/Mina Hard Fork</link>
-            <guid>https://naamahdaemon.github.io/blog/Mina Hard Fork</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Mina Hard Fork</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Mina Hard Fork</guid>
             <pubDate>Fri, 31 May 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[On June, 4th the mina Blockchain will undergo its biggest upgrade ao far.]]></description>
             <content:encoded><![CDATA[<p>On June, 4th the mina Blockchain will undergo its biggest upgrade ao far.</p>
@@ -297,8 +297,8 @@ I'll do my best to restore it as fast as possible</p></div></div>]]></content:en
         </item>
         <item>
             <title><![CDATA[Epoch 78 Payouts]]></title>
-            <link>https://naamahdaemon.github.io/blog/Epoch 78 Payouts</link>
-            <guid>https://naamahdaemon.github.io/blog/Epoch 78 Payouts</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Epoch 78 Payouts</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Epoch 78 Payouts</guid>
             <pubDate>Fri, 31 May 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Epoch 78 payouts may be a little late this Time.]]></description>
             <content:encoded><![CDATA[<p>Epoch 78 payouts may be a little late this Time.</p>
@@ -308,7 +308,7 @@ I'll do my best to restore it as fast as possible</p></div></div>]]></content:en
 <p>Until now 7 blocks have been won (on 11 assigned block production slots). That's better than last epoch 😉</p>
 <p>As a reminder, you can find all payouts in realtime on this page :</p>
 <ul>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/payouts">Payouts</a></li>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/payouts">Payouts</a></li>
 </ul>]]></content:encoded>
             <category>mina</category>
             <category>payouts</category>
@@ -316,15 +316,15 @@ I'll do my best to restore it as fast as possible</p></div></div>]]></content:en
         </item>
         <item>
             <title><![CDATA[Epoch 75 Payouts]]></title>
-            <link>https://naamahdaemon.github.io/blog/Epoch 75 Payouts</link>
-            <guid>https://naamahdaemon.github.io/blog/Epoch 75 Payouts</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Epoch 75 Payouts</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Epoch 75 Payouts</guid>
             <pubDate>Mon, 22 Apr 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Epoch 75 payouts have been sent on April, 21th.]]></description>
             <content:encoded><![CDATA[<p>Epoch 75 payouts have been sent on April, 21th.
 Only 5 slots were assigned this epoch but hopefully all of the 5 blocks have been successfully included into the canonical chain.</p>
 <p>As a reminder, you can find all payouts in realtime on this page :</p>
 <ul>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/payouts">Payouts</a></li>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/payouts">Payouts</a></li>
 </ul>]]></content:encoded>
             <category>mina</category>
             <category>payouts</category>
@@ -332,8 +332,8 @@ Only 5 slots were assigned this epoch but hopefully all of the 5 blocks have bee
         </item>
         <item>
             <title><![CDATA[Join my discord server]]></title>
-            <link>https://naamahdaemon.github.io/blog/Join my discord server</link>
-            <guid>https://naamahdaemon.github.io/blog/Join my discord server</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Join my discord server</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Join my discord server</guid>
             <pubDate>Thu, 28 Mar 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Stay in touch.]]></description>
             <content:encoded><![CDATA[<p>Stay in touch.
@@ -348,8 +348,8 @@ People all around the world welcome !</p>
         </item>
         <item>
             <title><![CDATA[Follow me on twitter]]></title>
-            <link>https://naamahdaemon.github.io/blog/Follow me on twitter</link>
-            <guid>https://naamahdaemon.github.io/blog/Follow me on twitter</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Follow me on twitter</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Follow me on twitter</guid>
             <pubDate>Wed, 27 Mar 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Like this website ?]]></description>
             <content:encoded><![CDATA[<p>Like this website ?
@@ -362,18 +362,18 @@ Follow me on twitter to get some live news on mina protocol.</p>
         </item>
         <item>
             <title><![CDATA[Mina Payout Calculator added]]></title>
-            <link>https://naamahdaemon.github.io/blog/Mina Payout Calculator added</link>
-            <guid>https://naamahdaemon.github.io/blog/Mina Payout Calculator added</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Mina Payout Calculator added</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Mina Payout Calculator added</guid>
             <pubDate>Tue, 26 Mar 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[You can now retieve the current (or selected) epooch due payouts to my delegators in real time here :]]></description>
             <content:encoded><![CDATA[<p>You can now retieve the current (or selected) epooch due payouts to my delegators in real time here :</p>
 <ul>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/payouts">Payouts</a></li>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/payouts">Payouts</a></li>
 </ul>
 <p>You'll find also additional realtime information on my Block Producer here :</p>
 <ul>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/block_production">Block Production</a></li>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/delegations">Delegations</a></li>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/block_production">Block Production</a></li>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/delegations">Delegations</a></li>
 </ul>]]></content:encoded>
             <category>mina</category>
             <category>payouts</category>
@@ -383,14 +383,14 @@ Follow me on twitter to get some live news on mina protocol.</p>
         </item>
         <item>
             <title><![CDATA[Mina Contributions]]></title>
-            <link>https://naamahdaemon.github.io/blog/Mina Contributions</link>
-            <guid>https://naamahdaemon.github.io/blog/Mina Contributions</guid>
+            <link>https://mina.naamahdaemon.eu/blog/Mina Contributions</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Mina Contributions</guid>
             <pubDate>Sat, 24 Feb 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Very proud to be able to contribute to the amazing Mina community !!]]></description>
             <content:encoded><![CDATA[<p>Very proud to be able to contribute to the amazing Mina community !!</p>
 <p><a href="https://discord.com/channels/484437221055922177/601171209287368715/1210579464891801630" target="_blank" rel="noopener noreferrer">https://discord.com/channels/484437221055922177/601171209287368715/1210579464891801630</a></p>
-<p><img loading="lazy" alt="Mina Contribution" src="https://naamahdaemon.github.io/assets/images/mina_contribution-4aa464a3b33bf0ed856e6a9c2522ef6b.png" width="1412" height="112" class="img_ev3q"></p>
-<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span><strong>SUPPORT ME</strong></div><div class="admonitionContent_BuS1"><p>Support me by delegating to my Block Producer !</p><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div class="text--center"><img src="https://naamahdaemon.github.io/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div><blockquote>
+<p><img loading="lazy" alt="Mina Contribution" src="https://mina.naamahdaemon.eu/assets/images/mina_contribution-4aa464a3b33bf0ed856e6a9c2522ef6b.png" width="1412" height="112" class="img_ev3q"></p>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span><strong>SUPPORT ME</strong></div><div class="admonitionContent_BuS1"><p>Support me by delegating to my Block Producer !</p><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div><div class="text--center"><img src="https://mina.naamahdaemon.eu/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div><blockquote>
 <p>My commission fees for regular blocks will be <strong>as low as 1%</strong> until total independent delegators stake reach <strong>500k</strong> Mina.</p>
 </blockquote></div></div>]]></content:encoded>
             <category>mina</category>
@@ -400,8 +400,8 @@ Follow me on twitter to get some live news on mina protocol.</p>
         </item>
         <item>
             <title><![CDATA[Welcome]]></title>
-            <link>https://naamahdaemon.github.io/blog/welcome</link>
-            <guid>https://naamahdaemon.github.io/blog/welcome</guid>
+            <link>https://mina.naamahdaemon.eu/blog/welcome</link>
+            <guid>https://mina.naamahdaemon.eu/blog/welcome</guid>
             <pubDate>Wed, 10 Jan 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[As an active participant in the Mina Protocol community, I take great pride in operating a validation node.]]></description>
             <content:encoded><![CDATA[<p>As an active participant in the Mina Protocol community, I take great pride in operating a validation node.<br>
@@ -458,19 +458,19 @@ Follow me on twitter to get some live news on mina protocol.</p>
 <h1>Node Real Time information</h1>
 <p>You will also find some real time information on my nodes on this web site !</p>
 <ul>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/payouts">Payouts</a><br>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/payouts">Payouts</a><br>
 <!-- -->Real time due payouts</li>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/block_production">Block Production</a><br>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/block_production">Block Production</a><br>
 <!-- -->Real time block production</li>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/epoch_stats">Epoch Calculator</a><br>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/epoch_stats">Epoch Calculator</a><br>
 <!-- -->Real time epoch statistics</li>
-<li><a href="https://naamahdaemon.github.io/docs/Node%20Statistics/delegations">Delegations</a><br>
+<li><a href="https://mina.naamahdaemon.eu/docs/Node%20Statistics/delegations">Delegations</a><br>
 <!-- -->Real Time delegations (number of delegates / amount)</li>
 </ul>
 <br>
 <h1>Support me by delegating to my Block Producer !</h1>
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>My Validator Address</div><div class="admonitionContent_BuS1"><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div></div>
-<div class="text--center"><img src="https://naamahdaemon.github.io/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div>
+<div class="text--center"><img src="https://mina.naamahdaemon.eu/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div>
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>Fees</div><div class="admonitionContent_BuS1"><p>My commission fees for regular blocks will be <strong>as low as 1%</strong> until total independent delegators stake reach <strong>500k</strong> Mina.</p></div></div>]]></content:encoded>
             <category>hello</category>
             <category>mina</category>
