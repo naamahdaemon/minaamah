@@ -83,11 +83,11 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/naamah-card.png',
       navbar: {
         title: 'Naamah Mina Stake',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Naamah Staking Pool',
           src: 'img/logo.png',
         },
         items: [
