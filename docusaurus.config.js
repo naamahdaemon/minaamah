@@ -19,7 +19,8 @@ const config = {
   
   plugins: [[ require.resolve('docusaurus-lunr-search'), {
       languages: ['en', 'de'] // language codes
-  }]],
+      }],
+  ],
   
   // Set the production url of your site here
   url: 'https://naamahdaemon.github.io',
@@ -70,6 +71,10 @@ const config = {
           trackingID: 'G-VR50WVP209',
           anonymizeIP: true,
         },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+        },        
       }),
     ],
   ],
