@@ -442,8 +442,8 @@
       .table-zero td {
           border: 0 !important;
           padding: 3px !important;
-      }        
-    </style>
+      }      
+   </style>
     <script>
       <!-- Google tag (gtag.js) -->
       window.dataLayer = window.dataLayer || [];
@@ -451,11 +451,19 @@
       gtag('js', new Date());
       gtag('config', 'G-VR50WVP209');
 
+      const params = new URLSearchParams(window.location.search);
+
+      const pubkey3 = params.get('publicKey3');
+
       document.addEventListener('DOMContentLoaded', function() {
         var inputField = document.getElementById('addBlocks1');
         var warningBox = document.getElementById('infobulle');
+        var pubkey3tip = document.getElementById('pubkey3tip');
         var publicKey3Input = document.getElementById('publicKey3');
         var addBlocks2Input = document.getElementById('addBlocks2');
+        var compareButton = document.getElementById('compare');
+        var pubkey3TooltipShown = true;
+        var compareToolTipShown = false;
 
         inputField.addEventListener('focus', function() {
           warningBox.style.display = 'block';
@@ -469,7 +477,23 @@
             // Mettre la valeur de 'addBlocksInput1' à une chaîne vide
             inputField.value = '';
             addBlocks2Input.value = '';
+        }); 
+        // Tooltip for publicKey3
+        publicKey3Input.addEventListener('focus', function() {
+          if (pubkey3TooltipShown && pubkey3===null)
+            pubkey3tip.style.display = 'block';
+          pubkey3TooltipShown = false;
+        });
+        
+        publicKey3Input.addEventListener('blur', function() {
+          pubkey3tip.style.display = 'none';
+          compareToolTipShown = true;
         });        
+        // Set focus to publicKey3 on page load
+        if (pubkey3===null)
+          publicKey3Input.focus();   
+         else 
+          compareButton.focus();
       }); 
     
      window.onload = function() {
@@ -549,6 +573,10 @@
     <label for="fee2">Enter your validator's fee (%)</label>
     <input type="number" id="fee2" value=5 value="5" min="0" max="100"><br>
 
+    <div class="tooltip-box" id="pubkey3tip">
+      <p><b style="font-size:24px">ENTER YOUR PUBLIC KEY HERE AND CLICK ON COMPARE</b></p>
+    </div>    
+
     <label for="publicKey3">Enter your public Key</label>
     <input type="text" id="publicKey3"><br/>
 
@@ -597,7 +625,7 @@
     <input type="checkbox" id="showPublicKey3" checked onchange="fetchData()">Filter to display your public key only<br>
     <br/><br/>
     
-    <center><button onclick="fetchData()">Compare</button></center>
+    <center><button id="compare" onclick="fetchData()">Compare</button></center>
 
     <hr/>
 
