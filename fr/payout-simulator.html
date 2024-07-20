@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAAMAH'S BP PERFORMANCE COMPARISON</title>
+	<meta name="description" content="Mina Protocol block producer comparison tool, payouts, APY, rewards and more">
+	<meta name="robots" content="index, follow">
+    <title>Naamah's Mina Protocol Block Producers comparison tool</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
@@ -31,7 +33,7 @@
 
         h2 {
             color: #0a7161; /* dark green text */
-            font-size: 20px; /* reduced font size */
+            font-size: 18px; /* reduced font size */
         }
 
         body.dark-mode h1, body.dark-mode h2 {
@@ -542,8 +544,8 @@
         </label>
     </div>
     <div>
-    <h1>NAAMAH'S BP PERFORMANCE COMPARISON</h1>
-    <h2>Compare the performance of your actual validator with mine 😊</h2>
+    <h1>Mina Protocol Validator comparison tool</h1>
+    <h2>Compare the performance of your actual Mina Protocol validator with mine (or any other 😊)</h2>
     <div class="warning-box">
         <!--<strong>🚨 Warning!</strong><br/>
         This is an early pre-release that may be unstable, stop working or deliver innacurate results.<br/>-->
@@ -564,13 +566,13 @@
         </table>
     </div>    
 
-    <label for="publicKey1">Naamah's validator</label>
+    <label for="publicKey1">1st Validator (Default : naamah)</label>
     <input type="text" id="publicKey1" value="B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr" style="background-color:lightgrey"><br>
 
-    <label for="fee1">Naamah's Fees (%)</label>
+    <label for="fee1">1st Validator's Fees (%)</label>
     <input type="number" style="background-color:lightgrey" id="fee1" value=1 min="0" max="100"><br>
 
-    <label for="fee2">Enter your validator's fee (%)</label>
+    <label for="fee2">2d Validator's fee (%)</label>
     <input type="number" id="fee2" value=5 value="5" min="0" max="100"><br>
 
     <div class="tooltip-box" id="pubkey3tip">
@@ -581,7 +583,7 @@
     <input type="text" id="publicKey3"><br/>
 
    
-    <label for="publicKey2">Your current validator address</label>
+    <label for="publicKey2">2d Validator</label>
     <input type="text" id="publicKey2" style="background-color:lightgrey"><br>    
     
     <!--<div class="label-container">-->
@@ -595,7 +597,7 @@
           where c=0, f=0.75, balance is the balance of the delegate, total is the total amount of mina staked.<br/>
           <p><b>Leave blank to let the simulator automatically compute or choose a value</b></p>
         </div>    
-        <label for="addBlocks1" id="warning-label">Naamah's additional expected blocks</label>
+        <label for="addBlocks1" id="warning-label">1st validator additional expected blocks</label>
     <!--    <div class="tooltip">
             <span class="info-emoji">ℹ️</span>
             <div class="tooltiptext">This field computes additional blocks that would have been produced by the validator if the additional public key had delegated to the validator.<br/>
@@ -612,7 +614,7 @@
     <input type="number" min=0 id="addBlocks1"><br/>
 
     <!--<div class="label-container">-->
-        <label for="addBlocks2" id="warning-label">Your validator additional expected blocks</label>
+        <label for="addBlocks2" id="warning-label">2d validator additional expected blocks</label>
     <!--    <div class="tooltip">
             <span class="info-emoji">ℹ️</span>
             <div class="tooltiptext">See Above. Same thing for the other validator.</div>
