@@ -4,10 +4,64 @@
         <title>Naamah Mina Stake Blog</title>
         <link>https://mina.naamahdaemon.eu/blog</link>
         <description>Naamah Mina Stake Blog</description>
-        <lastBuildDate>Tue, 09 Jul 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 20 Jul 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[Epoch 2 Mina Payouts]]></title>
+            <link>https://mina.naamahdaemon.eu/blog/Mina Payouts for Epoch 2</link>
+            <guid>https://mina.naamahdaemon.eu/blog/Mina Payouts for Epoch 2</guid>
+            <pubDate>Sat, 20 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Epoch 2 payouts have been sent]]></description>
+            <content:encoded><![CDATA[<p>Epoch 2 payouts have been sent</p>
+<p>12 blocks have been produced this epoch.</p>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>ALL BLOCKS PRODUCED !!</div><div class="admonitionContent_BuS1"><p>All assigned slots for epoch 2 lead to a cannonical Block !!<br>
+<!-- -->While this is mainly luck, it puts my validator once again on top of block producers performance this epoch with a 25% APY return rate !!</p></div></div>
+<p>If you don't believe me use my BP performance tool to compare with other validators !</p>
+<p><a href="https://mina.naamahdaemon.eu/payout-simulator" target="_blank" rel="noopener noreferrer">https://mina.naamahdaemon.eu/payout-simulator</a></p>
+<p>Put your public address in the dedicated fields and compare with top validators found on minascan :</p>
+<p><a href="https://minascan.io/mainnet/validators/leaderboard" target="_blank" rel="noopener noreferrer">https://minascan.io/mainnet/validators/leaderboard</a></p>
+<h1>Example</h1>
+<p>If this key delegating to me had delegated to Auro Wallet instead, its return would have been 12 minas instead of 32 minas while delegating to me !!</p>
+<p><img loading="lazy" alt="Payout comparison" src="https://mina.naamahdaemon.eu/assets/images/epoch2_payouts-fdfea5219341ac3f40141f86d63ebb9a.png" width="1207" height="658" class="img_ev3q"></p>
+<p>Auro Wallet mean APY is 9.4% compared to 19.8% for my own validator !!</p>
+<p><img loading="lazy" alt="Payout APY" src="https://mina.naamahdaemon.eu/assets/images/epoch2_apy-15bdf652668306976160cbf47d5d59ef.png" width="1204" height="506" class="img_ev3q"></p>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>See by yourself</div><div class="admonitionContent_BuS1"><p><strong>Click on the links below to compare to Mina top block producers</strong></p></div></div>
+<ul>
+<li>
+<p>Minascan - B62qqV16g8s744GHM6Dph1uhW4fggYwyvtDnVSoRUyYqNvTir3Rqqzx<br>
+<a href="https://mina.naamahdaemon.eu/payout-simulator?epoch=2&amp;publicKey2=B62qqV16g8s744GHM6Dph1uhW4fggYwyvtDnVSoRUyYqNvTir3Rqqzx&amp;fee2=7" target="_blank" rel="noopener noreferrer">Compare with minascan</a></p>
+</li>
+<li>
+<p>MinaExplorer - B62qpge4uMq4Vv5Rvc8Gw9qSquUYd6xoW1pz7HQkMSHm6h1o7pvLPAN<br>
+<a href="https://mina.naamahdaemon.eu/payout-simulator?epoch=2&amp;publicKey2=B62qpge4uMq4Vv5Rvc8Gw9qSquUYd6xoW1pz7HQkMSHm6h1o7pvLPAN&amp;fee2=5" target="_blank" rel="noopener noreferrer">Compare with MinaExplorer</a></p>
+</li>
+<li>
+<p>Auro Wallet - B62qq3TQ8AP7MFYPVtMx5tZGF3kWLJukfwG1A1RGvaBW1jfTPTkDBW6<br>
+<a href="https://mina.naamahdaemon.eu/payout-simulator?epoch=2&amp;publicKey2=B62qq3TQ8AP7MFYPVtMx5tZGF3kWLJukfwG1A1RGvaBW1jfTPTkDBW6&amp;fee2=5" target="_blank" rel="noopener noreferrer">Compare with Auro Wallet</a></p>
+</li>
+<li>
+<p>InfStones - B62qopHVr6nGCsQgrvsBsoxDm1E5CEdMkDSN3jneRnxKpR5iiXnTbas<br>
+<a href="https://mina.naamahdaemon.eu/payout-simulator?epoch=2&amp;publicKey2=B62qopHVr6nGCsQgrvsBsoxDm1E5CEdMkDSN3jneRnxKpR5iiXnTbas&amp;fee2=10" target="_blank" rel="noopener noreferrer">Compare with InfStones</a></p>
+</li>
+<li>
+<p>Piconbello - B62qrQiw9JhUumq457sMxicgQ94Z1WD9JChzJu19kBE8Szb5T8tcUAC<br>
+<a href="https://mina.naamahdaemon.eu/payout-simulator?epoch=2&amp;publicKey2=B62qrQiw9JhUumq457sMxicgQ94Z1WD9JChzJu19kBE8Szb5T8tcUAC&amp;fee2=4" target="_blank" rel="noopener noreferrer">Compare with Piconbello</a></p>
+</li>
+<li>
+<p>Carbonara 🍝- WeStake.club⚡️ - B62qq6ZYPG5JsjZnGJ3pADmRn6hU6qy13EhraTSymjSgyEDwoDR9Gd6<br>
+<a href="https://mina.naamahdaemon.eu/payout-simulator?epoch=2&amp;publicKey2=B62qq6ZYPG5JsjZnGJ3pADmRn6hU6qy13EhraTSymjSgyEDwoDR9Gd6&amp;fee2=2" target="_blank" rel="noopener noreferrer">Compare with Carbonara</a></p>
+</li>
+</ul>
+<br>
+<h1>Support me by delegating to my Block Producer !</h1>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>My Validator Address</div><div class="admonitionContent_BuS1"><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div></div>
+<div class="text--center"><img src="https://mina.naamahdaemon.eu/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div>]]></content:encoded>
+            <category>mina</category>
+            <category>payouts</category>
+            <category>July</category>
+        </item>
         <item>
             <title><![CDATA[Mina Surprise Package]]></title>
             <link>https://mina.naamahdaemon.eu/blog/Mina Surprise Package</link>
