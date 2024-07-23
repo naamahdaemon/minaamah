@@ -512,7 +512,7 @@
     
      window.onload = function() {
         const params = new URLSearchParams(window.location.search);
-
+        const validate = params.get('validate');
         const epoch = params.get('epoch');
         if (epoch !== null) 
           document.getElementById('epoch').value = epoch;
@@ -535,6 +535,8 @@
 
         const publicKey2 = params.get('publicKey2');
         if (publicKey2 !== null) document.getElementById('publicKey2').value = publicKey2;
+        
+        if (validate !== null) fetchData();
      };
      
     function changeValue(inputId, delta) {
