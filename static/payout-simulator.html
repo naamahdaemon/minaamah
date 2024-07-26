@@ -654,6 +654,7 @@
             <th>Delegate Key</th>
         </tr>
     </table>
+    <img id="accountTableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />
     </div>
 
     <h2>1st Validator Block Stats</h2>
@@ -669,6 +670,7 @@
             <th>Stake</th>
         </tr>
     </table>
+    <img id="delegator1TableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />    
     </div>
 
     <h2>2d Validator Block Stats</h2>
@@ -684,6 +686,7 @@
             <th>Stake</th>            
         </tr>
     </table>
+    <img id="delegator2TableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />    
     </div>
     <h2>1st Validator Payouts</h2>
     <div class="table-container">
@@ -699,6 +702,7 @@
             <th>Payout</th>
         </tr>
     </table>
+    <img id="delegatorsTableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />        
     </div>
 
     <h2>2d Validator Payouts</h2>
@@ -715,6 +719,7 @@
             <th>Payout</th>
         </tr>
     </table>
+    <img id="delegatorsTable2Loader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />        
     </div>
 
     <hr/>
@@ -722,10 +727,12 @@
     </div>
 
     <h2>Last 12 epochs comparison Chart</h2>
+    <img id="performanceChartLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />        
     <div class="chart-container">
         <canvas id="performanceChart"></canvas>
     </div>
     <br/>
+    <img id="APYChartLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;"" />        
     <div class="chart-container">
         <canvas id="APYChart"></canvas>
     </div>
@@ -899,6 +906,10 @@ function calculateMean(data) {
         
         let epoch = document.getElementById('epoch').value;
         epoch = Number(epoch) + 80;
+
+        document.getElementById('performanceChartLoader').style.display = 'block';
+        //document.getElementById('APYChartLoader').style.display = 'block';
+
         
         const auth = "my_secret";
         const apiUrl = "https://minataur.net/api/v1";
@@ -1027,6 +1038,8 @@ function calculateMean(data) {
         
         updateCharts(chartData);
         updateAPYCharts(chartData);
+        document.getElementById('performanceChartLoader').style.display = 'none';
+        //document.getElementById('APYChartLoader').style.display = 'none';        
     }
       
     function updateCharts(data) {
@@ -1476,6 +1489,24 @@ function calculateMean(data) {
       const showPublicKey3 = document.getElementById('showPublicKey3').checked;
       const cors_proxy=true;
       
+      document.getElementById('accountTableLoader').style.display = 'block';
+      document.getElementById('delegator1TableLoader').style.display = 'block';
+      document.getElementById('delegator2TableLoader').style.display = 'block';
+      document.getElementById('delegatorsTableLoader').style.display = 'block';
+      document.getElementById('delegatorsTable2Loader').style.display = 'block';
+      
+      // Destroy existing chart instances if they exist
+      if (performanceChart) {
+          performanceChart.destroy();
+          performanceChart = null;
+      }
+      
+      if (APYChart) {
+          APYChart.destroy();
+          APYChart = null;
+      }
+      
+      
       //if (Number(epoch) > 79) {
         //epoch_since_hardfork = Number(epoch)-80;
         epoch_since_hardfork = Number(epoch);
@@ -1582,7 +1613,9 @@ function calculateMean(data) {
           populateAccountTable(accountResponse.payload.account);
 
           populateDelegatorTable('delegator1Table', delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, addBlocksInput1, publicKey1, totalCurrency);
+          document.getElementById('delegator1TableLoader').style.display = 'none';
           populateDelegatorTable('delegator2Table', delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, addBlocksInput2, publicKey2, totalCurrency);
+          document.getElementById('delegator2TableLoader').style.display = 'none';
 
           addBlocks1 = addBlocksInput1.value;
           addBlocks2 = addBlocksInput2.value;
@@ -1594,6 +1627,10 @@ function calculateMean(data) {
               populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, false, fee1, addBlocks1);
               populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, false, fee2, addBlocks2);
           }
+
+          document.getElementById('delegatorsTableLoader').style.display = 'none';
+          document.getElementById('delegatorsTable2Loader').style.display = 'none';
+
 
            buildEpochLists();
 
@@ -1652,6 +1689,8 @@ function calculateMean(data) {
       } else {    
         row.appendChild(delegateKeyCell);
       }
+      
+      document.getElementById('accountTableLoader').style.display = 'none';
 
   }
 
