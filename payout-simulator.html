@@ -510,7 +510,7 @@
           compareButton.focus();
       }); 
     
-     window.onload = function() {
+     window.onload = async function() {
         const params = new URLSearchParams(window.location.search);
         const validate = params.get('validate');
         const epoch = params.get('epoch');
@@ -518,7 +518,7 @@
           document.getElementById('epoch').value = epoch;
         else {
           console.log ("get current epoch");
-          getEpoch();
+          await getEpoch();
         }
 
         const publicKey1 = params.get('publicKey1');
