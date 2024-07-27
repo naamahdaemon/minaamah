@@ -580,7 +580,9 @@
         </table>
     </div>    
 
-    <label for="publicKey1">1st Validator (Default : naamah)</label>
+    <label for="publicKey1">1st Validator (Default : naamah)
+    <br/><a style="font-size:9px;" href="https://minascan.io/mainnet/validators/leaderboard" target=_blank>(get the list of available validators on minascan.io)</a>
+    </label>
     <input type="text" id="publicKey1" value="B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr" style="background-color:lightgrey"><br>
 
     <label for="fee1">1st Validator's Fees (%)</label>
@@ -597,7 +599,9 @@
     <input type="text" id="publicKey3"><br/>
 
    
-    <label for="publicKey2">2d Validator</label>
+    <label for="publicKey2">2d Validator
+    <br/><a style="font-size:9px;" href="https://minascan.io/mainnet/validators/leaderboard" target=_blank>(get the list of available validators on minascan.io)</a>
+    </label>
     <input type="text" id="publicKey2" style="background-color:lightgrey"><br>    
     
     <!--<div class="label-container">-->
@@ -1639,12 +1643,12 @@ function calculateMean(data) {
       }
   }
 
-  function createTruncatedKeyCell(key) {
+  function createTruncatedKeyCell(key, type="account") {
       const fullKey = key;
       const truncatedKey = `${fullKey.slice(0, 6)}...${fullKey.slice(-6)}`;
 
       const cell = document.createElement('td');
-      cell.innerText = truncatedKey;
+      cell.innerHTML = "<a href=\"https://minascan.io/mainnet/"+type+"/"+fullKey+"\" target=_blank>"+truncatedKey+"</a>";
       cell.style.whiteSpace = 'nowrap'; // Prevent wrapping of content
 
       // Create a span element for the copy emoji
@@ -1680,7 +1684,7 @@ function calculateMean(data) {
 
       let delegateKeyCell;
       if (account.ledger && account.ledger.delegate_key) {
-        delegateKeyCell = createTruncatedKeyCell(account.ledger.delegate_key);
+        delegateKeyCell = createTruncatedKeyCell(account.ledger.delegate_key, "validator");
       }
 
       if (!delegateKeyCell) {
@@ -1973,7 +1977,7 @@ function calculateMean(data) {
         addCoinbase= "<b class='additonnalblocks' style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
        }
 
-      const keyCell = createTruncatedKeyCell(work.publicKey); // Use createTruncatedKeyCell for publicKey
+      const keyCell = createTruncatedKeyCell(work.publicKey, "validator"); // Use createTruncatedKeyCell for publicKey
       row.appendChild(keyCell);
 
       row.insertCell(1).innerHTML = work.count + addblock;
