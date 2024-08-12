@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[8529],{9742:e=>{e.exports=JSON.parse('{"label":"mina","permalink":"/blog/tags/mina","allTagsPath":"/blog/tags","count":18,"unlisted":false}')}}]);
