@@ -3,124 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Mina Protocol block producer comparison tool, payouts, APY, rewards and more">
-	<meta name="robots" content="index, follow">
-	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
-
-	<meta property="og:title" content="Naamah's Mina Protocol Validator Comparison Tool">
-	<meta property="og:description" content="Compare any mina protocol validator with each other and choose the best one ! ">
-	<meta property="og:image" content="https://mina.naamahdaemon.eu/naamah-card.png">
-	<meta property="og:url" content="https://mina.naamahdaemon.eu">
-
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content="https://mina.naamahdaemon.eu/img/naamah-card.png">
-	<meta name="twitter:title" content="Naamah's Mina Protocol Validator Comparison Tool">
-	<meta name="twitter:description" content="Compare any mina protocol validator with each other and choose the best one ! ">
-
-    <title>Naamah's Mina Protocol Block Producers comparison tool</title>
+    <title>NAAMAH'S BP PERFORMANCE COMPARISON</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VR50WVP209"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-
 
     <style>
         body {
+            //font-family: Arial, sans-serif;
             font-family: 'Fira Code', monospace;
             background-color: #f0f8f7; /* light green background */
             margin: 5px;
             padding: 5px;
-            transition: background-color 0.3s, color 0.3s;
         }
 
-        body.dark-mode {
-            background-color: #1e1e1e; /* dark background */
-            color: #cfcfcf; /* light text */
-        }
-
-        h1 {
+        h1, h2 {
             color: #0a7161; /* dark green text */
-        }
-
-        h2 {
-            color: #0a7161; /* dark green text */
-            font-size: 18px; /* reduced font size */
-        }
-
-        body.dark-mode h1, body.dark-mode h2 {
-            color: #88c0d0; /* light blue text */
         }
 
         .label-container {
             display: inline-flex;
             align-items: center;
+            //white-space: nowrap; /* Prevent wrapping */
         }
 
         label {
             display: inline-block;
+            //width: 300px;
             margin-bottom: 5px;
             color: #0a7161; /* dark green label */
-        }
-
-        body.dark-mode label {
-            color: #88c0d0; /* light blue label */
         }
 
         input[type="number"], input[type="text"], button {
             padding: 8px;
             font-size: 16px;
             width: 100%;
+            //max-width: 600px; /* adjust as needed */
             border: 1px solid #0a7161; /* dark green border */
             border-radius: 5px;
             box-sizing: border-box;
             margin-bottom: 10px;
             font-family: 'Fira Code', monospace;
-            transition: background-color 0.3s, color 0.3s, border 0.3s;
-        }
-
-        body.dark-mode input[type="number"], body.dark-mode input[type="text"], body.dark-mode button {
-            background-color: #2e2e2e; /* dark input background */
-            color: #cfcfcf; /* light input text */
-            border: 1px solid #88c0d0; /* light blue border */
         }
 
         .wrapped-text {
+            //max-width: 200px; /* Adjust max-width as needed */
             word-wrap: break-word;
             text-align: center;
-            border-radius: 10px;
+            border-radius: 10px; /* Adjust border-radius to control the roundness of corners */
             background-color: white;
-            padding: 10px;
-            margin: 0 auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px; /* Add padding to give some space around the text */
+            margin: 0 auto; /* Centers the div horizontally */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
         }
-
-        body.dark-mode .wrapped-text {
-            background-color: #2e2e2e; /* dark wrapped-text background */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* light shadow */
-        }
-
+        
         button {
             background-color: #0a7161; /* dark green button */
             color: white;
             cursor: pointer;
             font-family: 'Fira Code', monospace;
-            transition: background-color 0.3s;
-        }
-
-        body.dark-mode button {
-            background-color: #88c0d0; /* light blue button */
-            color: #1e1e1e; /* dark button text */
         }
 
         button:hover {
             background-color: #0d9c84; /* lighter green on hover */
-        }
-
-        body.dark-mode button:hover {
-            background-color: #8fbcbb; /* lighter blue on hover */
         }
 
         table {
@@ -149,103 +95,52 @@
         tr:hover {
             background-color: #d1ede1; /* light green on hover */
         }
-
-        body.dark-mode table {
-            border: 1px solid #88c0d0; /* light blue border */
-        }
-
-        body.dark-mode th {
-            //background-color: #88c0d0; /* light blue header */
-            //color: #1e1e1e; /* dark header text */
-            background-color: #1e1e1e; /* black header */
-            color: white; /* white text */            
-        }
-
-        a {
-            color: #0a7161; /* dark green links */
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        body.dark-mode a {
-            color: white; /* white links in dark mode */
-        }
-
-        body.dark-mode tr:nth-child(even) {
-            background-color: #2e2e2e; /* dark row background */
-        }
-
-        body.dark-mode tr:hover {
-            background-color: #3b4252; /* darker row on hover */
-        }
-
+        
+        /* CSS for the warning box */
         .warning-box {
             background-color: #ffdddd; /* Light red background */
             border-left: 6px solid #f44336; /* Red left border */
             padding: 16px;
-            margin: 20px 0;
+            margin: 20px 0; /* Space around the warning box */
             border-radius: 4px;
             color: #333; /* Text color */
             font-family: Arial, sans-serif;
-        }
-
-        body.dark-mode .warning-box {
-            background-color: #3b4252; /* Dark red background */
-            border-left: 6px solid #bf616a; /* Darker red left border */
-            color: #cfcfcf; /* Light text color */
         }
 
         .warning-box strong {
             font-weight: bold;
             color: #d8000c; /* Darker red for emphasis */
         }
-
-        body.dark-mode .warning-box strong {
-            color: #bf616a; /* Light red for emphasis */
-        }
-
+        
+        /* CSS for the info box */
         .info-box {
             background-color: #ddffdd; /* Light green background */
             border-left: 6px solid #43f436; /* green left border */
             padding: 16px;
-            margin: 20px 0;
+            margin: 20px 0; /* Space around the warning box */
             border-radius: 4px;
             color: #333; /* Text color */
             font-family: Arial, sans-serif;
         }
 
-        body.dark-mode .info-box {
-            background-color: #3b4252; /* Dark green background */
-            border-left: 6px solid #a3be8c; /* Light green left border */
-            color: #cfcfcf; /* Light text color */
-        }
-
         .info-box strong {
             font-weight: bold;
-            color: #00880c; /* Darker green for emphasis */
-        }
-
-        body.dark-mode .info-box strong {
-            color: #a3be8c; /* Light green for emphasis */
-        }
-
+            color: #00880c; /* Darker red for emphasis */
+        }        
         .table-container {
-            width: 100%;
-            overflow-x: auto;
+            width: 100%; /* Set the desired width of the container */
+            overflow-x: auto; /* Enable horizontal scrolling */
         }
-
+        
         .copy-emoji {
             cursor: pointer;
             margin-left: 10px;
-        }
+        }      
 
         .tooltip {
             position: relative;
             display: inline-block;
-            margin-left: auto;
+            margin-left: auto; /* Push the tooltip to the end of the container */
         }
 
         .tooltip .tooltiptext {
@@ -259,30 +154,26 @@
             border: 1px solid #ddd;
             position: absolute;
             z-index: 1;
-            left: 100%;
+            left: 100%; /* Position to the right of the emoji */
             top: 50%;
-            transform: translateY(-50%);
-            margin-left: 10px;
+            transform: translateY(-50%); /* Center vertically */
+            margin-left: 10px; /* Space between emoji and tooltip */
             opacity: 0;
             transition: opacity 0.3s;
-            white-space: normal;
+            white-space: normal; /* Allow text wrapping */
+            //width: calc(100vw - 30px - 100%); /* Adjust width based on remaining space */
             width: auto;
-            max-width: 600px;
-        }
-
-        body.dark-mode .tooltip .tooltiptext {
-            background-color: #2e2e2e; /* dark tooltip background */
-            color: #cfcfcf; /* light tooltip text */
-            border: 1px solid #88c0d0; /* light blue border */
+            max-width: 600px; /* Optional: limit the maximum width */
         }
 
         .tooltip:hover .tooltiptext {
             visibility: visible;
+            font-size: 10px;
             opacity: 1;
         }
 
         .chart-container {
-            display: none;
+           display: none;
         }
 
         .info-emoji {
@@ -290,196 +181,27 @@
             margin-left: 5px;
         }
 
+        /* CSS for the warning box */
         .tooltip-box {
-            background-color: #ffffe0; /* Light yellow background */
-            border-left: 6px solid #8B8000; /* Yellow left border */
+            background-color: #ffffe0; /* Light red background */
+            border-left: 6px solid #8B8000; /* Red left border */
             padding: 16px;
-            margin: 20px 0;
+            margin: 20px 0; /* Space around the warning box */
             border-radius: 4px;
             color: #333; /* Text color */
             font-family: Arial, sans-serif;
             display: none;
         }
 
-        body.dark-mode .tooltip-box {
-            background-color: #3b4252; /* Dark yellow background */
-            border-left: 6px solid #ebcb8b; /* Light yellow left border */
-            color: #cfcfcf; /* Light text color */
-        }
-
         .tooltip-box strong {
             font-weight: bold;
-            color: #8B8000; /* Darker yellow for emphasis */
+            color: #dddddd; /* Darker red for emphasis */
         }
-
-        body.dark-mode .tooltip-box strong {
-            color: #ebcb8b; /* Light yellow for emphasis */
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .toggle-container {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 10px;
-        }
-
-        .toggle-label {
-            margin-right: 10px;
-            color: #0a7161; /* dark green label */
-        }
-
-        body.dark-mode .toggle-label {
-            color: #88c0d0; /* light blue label */
-        }
-        
-        /* Toggle switch styling */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: 0.4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background-color: #0a7161;
-        }
-
-        input:focus + .slider {
-            box-shadow: 0 0 1px #0a7161;
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-
-        body.dark-mode input:checked + .slider {
-            background-color: #88c0d0;
-        }
-
-        body.dark-mode input:focus + .slider {
-            box-shadow: 0 0 1px #88c0d0;
-        }     
-
-        /* Dark mode */
-        body.dark-mode #publicKey1 {
-            color: #333;
-        }     
-
-        /* Dark mode */
-        body.dark-mode #fee1 {
-            color: #333;
-        }  
-
-        /* Dark mode */
-        body.dark-mode #publicKey2 {
-            color: #333;
-        }       
-
-        body #publicKey3 {
-            border: 3px solid darkred;
-        }       
-
-        //Handle +/- button for epoch
-        .input-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .input-container input {
-            flex: 1;
-            margin-right: 5px;
-        }
-
-        .input-container button {
-            padding: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #0a7161; /* dark green button */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        body.dark-mode .input-container button {
-            background-color: #88c0d0; /* light blue button */
-            color: #1e1e1e; /* dark button text */
-        }
-
-        .input-container button:hover {
-            background-color: #0d9c84; /* lighter green on hover */
-        }
-
-        body.dark-mode .input-container button:hover {
-            background-color: #8fbcbb; /* lighter blue on hover */
-        }   
-
-      .table-zero {
-          margin: 0px !important;
-          border: 0 !important;
-          border-spacing: 0px !important;
-          border-collapse: collapse !important;
-      }
-
-      .table-zero th,
-      .table-zero td {
-          border: 0 !important;
-          padding: 3px !important;
-      }      
-   </style>
+    </style>
     <script>
-      <!-- Google tag (gtag.js) -->
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-VR50WVP209');
-
-      const params = new URLSearchParams(window.location.search);
-
-      const pubkey3 = params.get('publicKey3');
-
       document.addEventListener('DOMContentLoaded', function() {
         var inputField = document.getElementById('addBlocks1');
         var warningBox = document.getElementById('infobulle');
-        var pubkey3tip = document.getElementById('pubkey3tip');
-        var publicKey3Input = document.getElementById('publicKey3');
-        var addBlocks2Input = document.getElementById('addBlocks2');
-        var compareButton = document.getElementById('compare');
-        var pubkey3TooltipShown = true;
-        var compareToolTipShown = false;
 
         inputField.addEventListener('focus', function() {
           warningBox.style.display = 'block';
@@ -488,122 +210,34 @@
         inputField.addEventListener('blur', function() {
           warningBox.style.display = 'none';
         });
-        
-        publicKey3Input.addEventListener('change', function() {
-            // Mettre la valeur de 'addBlocksInput1' à une chaîne vide
-            inputField.value = '';
-            addBlocks2Input.value = '';
-        }); 
-        // Tooltip for publicKey3
-        publicKey3Input.addEventListener('focus', function() {
-          if (pubkey3TooltipShown && pubkey3===null)
-            pubkey3tip.style.display = 'block';
-          pubkey3TooltipShown = false;
-        });
-        
-        publicKey3Input.addEventListener('blur', function() {
-          pubkey3tip.style.display = 'none';
-          compareToolTipShown = true;
-        });        
-        // Set focus to publicKey3 on page load
-        if (pubkey3===null)
-          publicKey3Input.focus();   
-         else 
-          compareButton.focus();
-      }); 
-    
-     window.onload = async function() {
-        const params = new URLSearchParams(window.location.search);
-        const validate = params.get('validate');
-        const epoch = params.get('epoch');
-        if (epoch !== null) 
-          document.getElementById('epoch').value = epoch;
-        else {
-          console.log ("get current epoch");
-          await getEpoch();
-        }
-
-        const publicKey1 = params.get('publicKey1');
-        if (publicKey1 !== null) document.getElementById('publicKey1').value = publicKey1;
-
-        const fee1 = params.get('fee1');
-        if (fee1 !== null) document.getElementById('fee1').value = fee1;
-
-        const fee2 = params.get('fee2');
-        if (fee2 !== null) document.getElementById('fee2').value = fee2;
-
-        const publicKey3 = params.get('publicKey3');
-        if (publicKey3 !== null) document.getElementById('publicKey3').value = publicKey3;
-
-        const publicKey2 = params.get('publicKey2');
-        if (publicKey2 !== null) document.getElementById('publicKey2').value = publicKey2;
-        
-        if (validate !== null) fetchData();
-     };
-     
-    function changeValue(inputId, delta) {
-        const input = document.getElementById(inputId);
-        const currentValue = parseInt(input.value) || 0;
-        const newValue = currentValue + delta;
-        if (newValue >= parseInt(input.min)) {
-            input.value = newValue;
-        }
-    }     
+      });
     </script>      
 </head>
 <body>
-    <div class="toggle-container">
-        <span class="toggle-label">Dark Mode</span>
-        <label class="switch">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider"></span>
-        </label>
-    </div>
-    <div>
-    <h1>Mina Protocol Validator comparison tool</h1>
-    <h2>Compare the performance of your actual Mina Protocol validator with mine (or any other 😊)</h2>
+    <h1>NAAMAH'S BP PERFORMANCE COMPARISON</h1>
+    <h2>Compare the performance of your actual validator with mine 😊</h2>
     <div class="warning-box">
         <!--<strong>🚨 Warning!</strong><br/>
         This is an early pre-release that may be unstable, stop working or deliver innacurate results.<br/>-->
-        <b>Computations will only be accurate for epochs after the hardfork (&ge;0)</b><br/>
-        <i>⚠️ The result of the calculation is provided for informational purposes and cannot be opposed or claimed against your block producer.</i>
+        <b>Computations will only be accurate for epochs after the hardfork (&ge;0)</b>
     </div>    
-    <!--
     <label for="epoch">Epoch (since hardfork)</label>
     <input type="number" id="epoch" value="1" min="0"><br>
-    -->
-    
-    <div class="input-container">
-        <label for="epoch">Epoch (since hardfork)</label>
-        <table class="table-zero"><tr>
-        <td><input type="number" id="epoch" value="1" min="0"></td>
-        <td><button type="button" onclick="changeValue('epoch', -1)">-</button></td>
-        <td><button type="button" onclick="changeValue('epoch', 1)">+</button></td>
-        </table>
-    </div>    
 
-    <label for="publicKey1">1st Validator (Default : naamah)
-    <br/><a style="font-size:9px;" href="https://minascan.io/mainnet/validators/leaderboard" target=_blank>(get the list of available validators on minascan.io)</a>
-    </label>
+    <label for="publicKey1">Naamah's validator</label>
     <input type="text" id="publicKey1" value="B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr" style="background-color:lightgrey"><br>
 
-    <label for="fee1">1st Validator's Fees (%)</label>
+    <label for="fee1">Naamah's Fees (%)</label>
     <input type="number" style="background-color:lightgrey" id="fee1" value=1 min="0" max="100"><br>
 
-    <label for="fee2">2d Validator's fee (%)</label>
+    <label for="fee2">Enter your validator's fee (%)</label>
     <input type="number" id="fee2" value=5 value="5" min="0" max="100"><br>
-
-    <div class="tooltip-box" id="pubkey3tip">
-      <p><b style="font-size:24px">ENTER YOUR PUBLIC KEY HERE AND CLICK ON COMPARE</b></p>
-    </div>    
 
     <label for="publicKey3">Enter your public Key</label>
     <input type="text" id="publicKey3"><br/>
 
    
-    <label for="publicKey2">2d Validator
-    <br/><a style="font-size:9px;" href="https://minascan.io/mainnet/validators/leaderboard" target=_blank>(get the list of available validators on minascan.io)</a>
-    </label>
+    <label for="publicKey2">Your current validator address</label>
     <input type="text" id="publicKey2" style="background-color:lightgrey"><br>    
     
     <!--<div class="label-container">-->
@@ -617,7 +251,7 @@
           where c=0, f=0.75, balance is the balance of the delegate, total is the total amount of mina staked.<br/>
           <p><b>Leave blank to let the simulator automatically compute or choose a value</b></p>
         </div>    
-        <label for="addBlocks1" id="warning-label">1st validator add. expected blocks</label>
+        <label for="addBlocks1" id="warning-label">Naamah's additional expected blocks</label>
     <!--    <div class="tooltip">
             <span class="info-emoji">ℹ️</span>
             <div class="tooltiptext">This field computes additional blocks that would have been produced by the validator if the additional public key had delegated to the validator.<br/>
@@ -634,7 +268,7 @@
     <input type="number" min=0 id="addBlocks1"><br/>
 
     <!--<div class="label-container">-->
-        <label for="addBlocks2" id="warning-label">2d validator add. expected blocks</label>
+        <label for="addBlocks2" id="warning-label">Your validator additional expected blocks</label>
     <!--    <div class="tooltip">
             <span class="info-emoji">ℹ️</span>
             <div class="tooltiptext">See Above. Same thing for the other validator.</div>
@@ -647,9 +281,13 @@
     <input type="checkbox" id="showPublicKey3" checked onchange="fetchData()">Filter to display your public key only<br>
     <br/><br/>
     
-    <center><button id="compare" onclick="fetchData()">Compare</button></center>
+    <center><button onclick="fetchData()">Compare</button></center>
 
     <hr/>
+
+    <div class="chart-container">
+        <canvas id="performanceChart"></canvas>
+    </div>
 
     <h2>Account Information</h2>
     <div class="table-container">
@@ -660,10 +298,9 @@
             <th>Delegate Key</th>
         </tr>
     </table>
-    <img id="accountTableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />
     </div>
 
-    <h2>1st Validator Block Stats</h2>
+    <h2>Naamah's Block Stats</h2>
     <div class="table-container">
     <table id="delegator1Table">
         <tr>
@@ -676,10 +313,9 @@
             <th>Stake</th>
         </tr>
     </table>
-    <img id="delegator1TableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />    
     </div>
 
-    <h2>2d Validator Block Stats</h2>
+    <h2>Your Validator Block Stats</h2>
     <div class="table-container">
     <table id="delegator2Table">
         <tr>
@@ -692,9 +328,8 @@
             <th>Stake</th>            
         </tr>
     </table>
-    <img id="delegator2TableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />    
     </div>
-    <h2>1st Validator Payouts</h2>
+    <h2>Naamah's Validator</h2>
     <div class="table-container">
     <table id="delegatorsTable">
         <tr>
@@ -708,10 +343,9 @@
             <th>Payout</th>
         </tr>
     </table>
-    <img id="delegatorsTableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />        
     </div>
 
-    <h2>2d Validator Payouts</h2>
+    <h2>Your current validator</h2>
     <div class="table-container">
     <table id="delegatorsTable2">
         <tr>
@@ -725,31 +359,11 @@
             <th>Payout</th>
         </tr>
     </table>
-    <img id="delegatorsTable2Loader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />        
     </div>
-
-    <hr/>
-
-    </div>
-
-    <h2>Last 12 epochs comparison Chart</h2>
-    <input type="checkbox" id="showDataLabels" checked onchange="toggleDataLabels(performanceChart, document.getElementById('showDataLabels').checked);toggleDataLabels(APYChart, document.getElementById('showDataLabels').checked);">Display Data Labels on Charts<br/><br/>
-   
-    <img id="performanceChartLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />        
-    <div class="chart-container">
-        <canvas id="performanceChart"></canvas>
-    </div>
-    <br/>
-    <img id="APYChartLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;"" />        
-    <div class="chart-container">
-        <canvas id="APYChart"></canvas>
-    </div>
-    <hr/>
 
     <script>
 
     let performanceChart; // Declare the chart variable in a scope accessible to both the updateCharts function and destroy logic
-    let APYChart; // Declare the chart variable in a scope accessible to both the updateCharts function and destroy logic
     let epochList = [];
     let blockCounts1 = [];
     let blockCounts2 = [];
@@ -759,158 +373,9 @@
     let stake2 = [];
     let payouts1 = [];
     let payouts2 = [];
-    let apy1 = [];
-    let apy2 = [];
-
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Check the user's theme preference from localStorage
-    if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
-        themeToggle.checked = true;
-    }
-
-    // Toggle theme and save preference to localStorage
-    themeToggle.addEventListener('change', () => {
-        if (themeToggle.checked) {
-            body.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark');
-            
-            // Apply dark mode styles to specific row if it exists
-            const specificRows = document.querySelectorAll('.delegate-row');
-            specificRows.forEach(row => {
-                row.style.backgroundColor = '#1a8870';
-            });     
-            // Apply dark mode styles to specific row if it exists
-            const specificRows2 = document.querySelectorAll('.additonnalblocks');
-            specificRows2.forEach(row => {
-                row.style.color = '#f77';
-            });       
-            // Update chart label background for dark mode
-            performanceChart.options.plugins.datalabels.backgroundColor = 'white'; //'#def4ef';
-            performanceChart.options.plugins.datalabels.color = '#0a7161';
-            performanceChart.update();            
-        } else {
-            body.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
-            
-            // Apply light mode styles to specific row if it exists
-            const specificRows = document.querySelectorAll('.delegate-row');
-            specificRows.forEach(row => {
-                row.style.backgroundColor = 'yellow';
-              });   
-            // Apply dark mode styles to specific row if it exists
-            const specificRows2 = document.querySelectorAll('.additonnalblocks');
-            specificRows2.forEach(row => {
-                row.style.color = 'darkred';
-            });       
-            performanceChart.options.plugins.datalabels.backgroundColor = 'white'; //'#def4ef';
-            performanceChart.options.plugins.datalabels.color = '#0a7161';
-            performanceChart.update();                 
-        }
-    });
-
-    function calculateAPY(interest15Days, principal) {
-        // Calculer le taux d'intérêt pour la période de 15 jours
-        let rate15Days = interest15Days / principal;
-
-        // Convertir ce taux en un taux annuel
-        let annualRate = Math.pow((1 + rate15Days), (365 / 14.875)) - 1;
-
-        // Calculer l'APY
-        let apy = Math.pow((1 + annualRate), 1) - 1;
-
-        console.log (apy * 100);
-
-        // Convertir l'APY en pourcentage
-        return apy * 100;
-    }
-
-    function toggleDataLabels(chart, enable) {
-        if (chart && chart.options && chart.options.plugins && chart.options.plugins.datalabels) {
-          chart.options.plugins.datalabels.display = enable ? true : false;
-          chart.update(); // Update the chart to reflect changes
-        }
-    }
-
-function calculateMean(data) {
-  const mean = data.reduce((acc, value) => acc + value, 0) / data.length;
-  // Create an array filled with the mean value, same length as data
-  const meanArray = Array(data.length).fill(mean).map(value => parseFloat(value.toFixed(2)));
-  console.log (meanArray);
-  return meanArray;
-}
-
-    async function getEpoch() {
-        const cors_proxy=true;
-
-        let epochField = document.getElementById('epoch');
         
-        const auth = "my_secret";
-        const apiUrl = "https://minataur.net/api/v1";
-        const proxyUrl = "https://www.akirion.com:4664/proxy?url=";
-        let epochRoute = apiUrl + "/epoch";
-        
-        // Headers for the proxy request
-        let headers = {
-            'Content-Type': 'application/json',
-            'Minataur-Authorization': 'minataur-token:ede9adcaec633f3290865e0f85faddbb:4d8801b69d7870786620996ddcb14e551719693200945',
-        };
-        
-        if (cors_proxy) {
-          epochRoute = proxyUrl + encodeURIComponent(`${apiUrl}/epoch`);
-          headers = {
-          'Content-Type': 'application/json',
-          'x-api-key': 'e0d9da01-c1c5-4c44-b4fa-3cbdb4982ed3',
-          };
-        }
-
-        try {
-              const epochResponse = await fetch(epochRoute , {
-                    method: 'GET',
-                    headers
-                }).then(res => res.json());        
-              
-              //update epoch information
-              /*
-                {
-                    "api": {
-                        "version": "1.0",
-                        "format": "json",
-                        "name": "api:minataur",
-                        "url": "https://minataur.net/api/v1"
-                    },
-                    "payload": {
-                        "epoch": {
-                            "height": "369333",
-                            "global_slot_since_genesis": "581422",
-                            "global_slot_since_hard_fork": "16942",
-                            "epoch_since_genesis": 82,
-                            "epoch_since_hard_fork": 2,
-                            "current_slot": 2662,
-                            "epoch_start_block": "367838",
-                            "epoch_blocks": "1496",
-                            "block_time": "1720594980000",
-                            "active_producers": "319",
-                            "total_currency": "1172947738840039233",
-                            "hard_fork_stop_slot": 564280,
-                            "hard_fork_start_slot": 564480,
-                            "hard_fork_slot_align": 6720
-                        }
-                    }
-                }
-              */             
-
-              epochField.value = epochResponse.payload.epoch.epoch_since_hard_fork;
-
-        } catch (error) {
-            console.error(`Error fetching data for epoch`, error);
-        }
-    }
-       
     async function buildEpochLists() {
-        const cors_proxy=true;
+        const cors_proxy=false;
 
         epochList = [];
         blockCounts1 = [];
@@ -921,15 +386,9 @@ function calculateMean(data) {
         stake2 = [];
         payouts1 = [];
         payouts2 = [];
-        apy1 = [];
-        apy2 = [];
         
         let epoch = document.getElementById('epoch').value;
         epoch = Number(epoch) + 80;
-
-        document.getElementById('performanceChartLoader').style.display = 'block';
-        //document.getElementById('APYChartLoader').style.display = 'block';
-
         
         const auth = "my_secret";
         const apiUrl = "https://minataur.net/api/v1";
@@ -966,7 +425,7 @@ function calculateMean(data) {
         
         const accountPayload = { auth, publicKey: publicKey3 };
 
-        for (let i = Math.max(80, epoch - 12); i <= epoch; i++) {
+        for (let i = Math.max(80, epoch - 10); i <= epoch; i++) {
             const delegatorsPayload1 = { auth, epoch: i, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false, limit: 25000 };
             const delegatorsPayload2 = { auth, epoch: i, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false, limit: 25000 };
             const workPayload1 = { auth, epoch: i, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false };
@@ -1011,24 +470,8 @@ function calculateMean(data) {
                 stake1.push((delegatorsResponse1.payload.ledger.stake/1e9).toFixed(0));
                 stake2.push((delegatorsResponse2.payload.ledger.stake/1e9).toFixed(0));      
 
-                /*const payoutsJSON = {
-                    totalDelegatorDueAmount: totalDelegatorDueAmount,
-                    totalDueAmount: totalDueAmount
-                };*/ 
-
-                const payout1 = computePayouts(delegatorsResponse1.payload.ledger, workResponse1.payload.work, accountResponse.payload.account, publicKey3, fee1, addBlocks1);
-                const payout2 = computePayouts(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, publicKey3, fee2, addBlocks2);
-
-                payouts1.push(payout1.totalDelegatorDueAmount);
-                payouts2.push(payout2.totalDelegatorDueAmount);
-                
-                const tpa1 = calculateAPY(payout1.totalDueAmount, (payout1.totalDelegatorStake/1e9).toFixed(0));
-                const tpa2 = calculateAPY(payout2.totalDueAmount, (payout2.totalDelegatorStake/1e9).toFixed(0));
-                
-                //apy1.push(tpa1.toFixed(4));
-                //apy2.push(tpa2.toFixed(4));       
-                apy1.push(tpa1);
-                apy2.push(tpa2);       
+                payouts1.push(computePayouts(delegatorsResponse1.payload.ledger, workResponse1.payload.work, accountResponse.payload.account, publicKey3, fee1, addBlocks1));
+                payouts2.push(computePayouts(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, publicKey3, fee2, addBlocks2));
 
             } catch (error) {
                 console.error(`Error fetching data for epoch ${i}:`, error);
@@ -1053,36 +496,23 @@ function calculateMean(data) {
             stake1: stake1,
             stake2: stake2,
             payouts1: payouts1, 
-            payouts2: payouts2, 
-            apy1: apy1, 
-            apy2: apy2
+            payouts2: payouts2
         };
         
         updateCharts(chartData);
-        updateAPYCharts(chartData);
-        document.getElementById('performanceChartLoader').style.display = 'none';
-        toggleDataLabels(performanceChart, document.getElementById('showDataLabels').checked);
-        //document.getElementById('APYChartLoader').style.display = 'none';        
     }
-      
+  
+    
     function updateCharts(data) {
         const epochs = data.epochs;
         const naamahBlocks = data.blockCounts1;
         const validatorBlocks = data.blockCounts2;
         const naamahDelegators = data.delegatorsNumbers1;
         const validatorDelegators = data.delegatorsNumbers2;
-        const naamahStake = data.stake1.map(stake => stake / 1e6);;
-        const validatorStake = data.stake2.map(stake => stake / 1e6);
+        const naamahStake = data.stake1;
+        const validatorStake = data.stake2;
         const naamahRewards = data.payouts1;
         const validatorRewards = data.payouts2;
-        const isDarkMode = document.body.classList.contains('dark-mode');        
-        const lightModeBgColor = 'white'; //'#def4ef'; // Color for light mode
-        const darkModeBgColor = 'white'; //'#def4ef'; // Color for dark mode
-        const lightModeFgColor = '#0a7161'; // Color for light mode
-        const darkModeFgColor = '#0a7161'; // Color for dark mode
-        const BgColor = isDarkMode ? darkModeBgColor : lightModeBgColor;        
-        const FgColor = isDarkMode ? darkModeFgColor : lightModeFgColor;        
-
 
         const ctx = document.getElementById('performanceChart').getContext('2d');
 
@@ -1097,10 +527,8 @@ function calculateMean(data) {
             validatorStake.length > 0;
 
         // Hide or show the chart container based on data availability
-        const chartContainers = document.querySelectorAll('.chart-container');
-        chartContainers.forEach(container => {
-            container.style.display = hasData ? 'block' : 'none';
-        });
+        const chartContainer = document.querySelector('.chart-container');
+        chartContainer.style.display = hasData ? 'block' : 'none';
 
         // Ensure previous chart instance is destroyed
         if (performanceChart) {
@@ -1121,35 +549,35 @@ function calculateMean(data) {
                     labels: epochs,
                     datasets: [
                         {
-                            label: "1st Validator Blocks Produced",
+                            label: "Naamah's Blocks Produced",
                             data: naamahBlocks,
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
                         },
                         {
-                            label: '2d Validator Blocks Produced',
+                            label: 'Validator Blocks Produced',
                             data: validatorBlocks,
                             backgroundColor: 'rgba(153, 102, 255, 0.2)',
                             borderColor: 'rgba(153, 102, 255, 1)',
                             borderWidth: 1
                         },
                         {
-                            label: "1st Validator Delegators",
+                            label: "Naamah's Delegators",
                             data: naamahDelegators,
                             backgroundColor: 'rgba(255, 206, 86, 0.2)',
                             borderColor: 'rgba(255, 206, 86, 1)',
                             borderWidth: 1
                         },
                         {
-                            label: '2d Validator Delegators',
+                            label: 'Validator Delegators',
                             data: validatorDelegators,
                             backgroundColor: 'rgba(54, 162, 235, 0.2)',
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1
                         },
                         {
-                            label: "1st Validator Stake (millions)",
+                            label: "Naamah's Stake",
                             data: naamahStake,
                             yAxisID: 'stake-axis',
                             backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -1157,7 +585,7 @@ function calculateMean(data) {
                             borderWidth: 1
                         },
                         {
-                            label: '2d Validator Stake (millions)',
+                            label: 'Validator Stake',
                             data: validatorStake,
                             yAxisID: 'stake-axis',
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -1165,7 +593,7 @@ function calculateMean(data) {
                             borderWidth: 1
                         },
                         {
-                            label: "1st Validator Rewards",
+                            label: "Naamah's Rewards",
                             data: naamahRewards,
                             type: 'line',
                             yAxisID: 'reward-axis',
@@ -1175,7 +603,7 @@ function calculateMean(data) {
                             fill: false
                         },
                         {
-                            label: '2d Validator Rewards',
+                            label: 'Validator Rewards',
                             data: validatorRewards,
                             type: 'line',
                             yAxisID: 'reward-axis',
@@ -1202,7 +630,7 @@ function calculateMean(data) {
                             display: true,
                             position: 'right',
                             title: {
-                                text: 'Stake (millions)',
+                                text: 'Stake',
                                 display: true
                             },
                             grid: {
@@ -1221,27 +649,12 @@ function calculateMean(data) {
                                 drawOnChartArea: false // only want the grid lines for one axis to show up
                             }
                         }
-                    },
-                    plugins: {
-                        datalabels: {
-                            color: FgColor, // Set the text color
-                            backgroundColor: BgColor, // Set the box background color
-                            borderRadius: 3, // Add a slight border radius to the box
-                            padding: 3, // Padding inside the label box
-                            anchor: 'end',
-                            align: 'top',
-                            offset: -30,
-                            formatter: function(value) {
-                                return value; // Customize how the value is displayed, if necessary
-                            }
-                        }
                     }
-                },
-                plugins: [ChartDataLabels] // Enable the datalabels plugin
+                }
             });
 
             // Adjust canvas size when window is resized
-/*            window.addEventListener('resize', () => {
+            window.addEventListener('resize', () => {
                 const newWidth = Math.min(window.innerWidth * 0.9, 800); // Adjust as needed
                 ctx.canvas.width = newWidth;
                 ctx.canvas.height = newWidth * 0.75; // Adjust aspect ratio if necessary
@@ -1360,186 +773,9 @@ function calculateMean(data) {
                         }
                     }
                 });
-            });*/
-        }
-    }
-    
-    function updateAPYCharts(data) {
-        const epochs = data.epochs;
-        const naamahBlocks = data.blockCounts1;
-        const validatorBlocks = data.blockCounts2;
-        const naamahDelegators = data.delegatorsNumbers1;
-        const validatorDelegators = data.delegatorsNumbers2;
-        const naamahStake = data.stake1.map(stake => stake / 1e6);;
-        const validatorStake = data.stake2.map(stake => stake / 1e6);
-        const naamahRewards = data.payouts1;
-        const validatorRewards = data.payouts2;
-        const naamahApy = data.apy1;
-        const roundedNaamahApy = naamahApy.map(value => parseFloat(value.toFixed(2)));
-        const validatorApy = data.apy2;
-        const roundedvalidatorApy = validatorApy.map(value => parseFloat(value.toFixed(2)));        
-        const isDarkMode = document.body.classList.contains('dark-mode');        
-        const lightModeBgColor = 'white'; //'#def4ef'; // Color for light mode
-        const darkModeBgColor = 'white'; //'#def4ef'; // Color for dark mode
-        const lightModeFgColor = '#0a7161'; // Color for light mode
-        const darkModeFgColor = '#0a7161'; // Color for dark mode
-        const BgColor = isDarkMode ? darkModeBgColor : lightModeBgColor;        
-        const FgColor = isDarkMode ? darkModeFgColor : lightModeFgColor;             
-
-        //const naamahAPY = calculateAPY(naamahRewards, principal);
-        //const validatorAPY = calculateAPY(validatorRewards, principal);
-
-        const naamahApyMean = calculateMean(naamahApy);
-        const validatorApyMean = calculateMean(validatorApy);
-
-        const ctx = document.getElementById('APYChart').getContext('2d');
-
-        // Check if there is data to display
-        const hasData =
-            epochs.length > 0 &&
-            naamahBlocks.length > 0 &&
-            validatorBlocks.length > 0 &&
-            naamahDelegators.length > 0 &&
-            validatorDelegators.length > 0 &&
-            naamahStake.length > 0 &&
-            validatorStake.length > 0;
-
-        // Hide or show the chart container based on data availability
-          const chartContainers = document.querySelectorAll('.chart-container');
-          chartContainers.forEach(container => {
-              container.style.display = hasData ? 'block' : 'none';
-          });
-
-        // Ensure previous chart instance is destroyed
-        if (APYChart) {
-            APYChart.destroy();
-        }
-
-        console.log ("in APYChartData");
-
-
-        if (hasData) {
-            // Calculate the initial width based on window size
-            const width = Math.min(window.innerWidth * 0.9, 800); // Adjust as needed
-            console.log ("in APYChartData has Data");
-
-            // Set canvas dimensions
-            ctx.canvas.width = width;
-            ctx.canvas.height = width * 0.75; // Aspect ratio adjustment, adjust as needed
-
-            APYChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: epochs,
-                    datasets: [
-                        {
-                            label: "1st Validator Stake (millions)",
-                            data: naamahStake,
-                            yAxisID: 'stake-axis',
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: '2d Validator Stake (millions)',
-                            data: validatorStake,
-                            yAxisID: 'stake-axis',
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: "1st Validator APY",
-                            data: roundedNaamahApy,
-                            type: 'line',
-                            yAxisID: 'reward-axis',
-                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                            borderColor: 'rgba(255, 159, 64, 1)',
-                            borderWidth: 1,
-                            fill: false
-                        },
-                        {
-                            label: '2d Validator APY',
-                            data: roundedvalidatorApy,
-                            type: 'line',
-                            yAxisID: 'reward-axis',
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1,
-                            fill: false
-                        },
-                        {
-                          label: "1st Validator Mean APY",
-                          data: naamahApyMean,  // This is a single value representing the mean
-                          type: 'line',
-                          yAxisID: 'reward-axis',
-                          backgroundColor: 'rgba(255, 159, 64, 0.2)',  // Adjust color as needed
-                          borderColor: 'rgba(255, 159, 64, 1)',  // Adjust color as needed
-                          borderWidth: 3,
-                          borderDash: [5, 5],                          fill: false
-                        },
-                        {
-                          label: '2d Validator Mean APY',
-                          data: validatorApyMean, // This is a single value representing the mean
-                          type: 'line',
-                          yAxisID: 'reward-axis',
-                          backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Adjust color as needed
-                          borderColor: 'rgba(75, 192, 192, 1)',  // Adjust color as needed
-                          borderWidth: 3,
-                          borderDash: [5, 5],
-                          fill: false
-                        },
-                    ]
-                },
-                options: {
-                    responsive: true, // Ensure the chart responds to resizing
-                    maintainAspectRatio: false, // Allow the chart to scale with the container
-                    scales: {
-                        'stake-axis': {
-                            type: 'linear',
-                            display: true,
-                            position: 'left',
-                            title: {
-                                text: 'Stake (millions)',
-                                display: true
-                            },
-                            grid: {
-                                drawOnChartArea: false // only want the grid lines for one axis to show up
-                            }
-                        },
-                        'reward-axis': {
-                            type: 'linear',
-                            display: true,
-                            position: 'right',
-                            title: {
-                                text: 'APY',
-                                display: true
-                            },
-                            grid: {
-                                drawOnChartArea: false // only want the grid lines for one axis to show up
-                            }
-                        }
-                    },
-                    plugins: {
-                        datalabels: {
-                            color: FgColor, // Set the text color
-                            backgroundColor: BgColor, // Set the box background color
-                            borderRadius: 3, // Add a slight border radius to the box
-                            padding: 3, // Padding inside the label box
-                            anchor: 'end',
-                            align: 'top',
-                            offset: -30,
-                            formatter: function(value) {
-                                return value; // Customize how the value is displayed, if necessary
-                            }
-                        }
-                    }
-                },
-                plugins: [ChartDataLabels] // Enable the datalabels plugin
             });
         }
-    }    
-    
+    }
   async function fetchData() {
       let epoch = document.getElementById('epoch').value;
       epoch = Number(epoch)+80;
@@ -1557,25 +793,7 @@ function calculateMean(data) {
       const fee2 = document.getElementById('fee2').value;
       const publicKey3 = document.getElementById('publicKey3').value;
       const showPublicKey3 = document.getElementById('showPublicKey3').checked;
-      const cors_proxy=true;
-      
-      document.getElementById('accountTableLoader').style.display = 'block';
-      document.getElementById('delegator1TableLoader').style.display = 'block';
-      document.getElementById('delegator2TableLoader').style.display = 'block';
-      document.getElementById('delegatorsTableLoader').style.display = 'block';
-      document.getElementById('delegatorsTable2Loader').style.display = 'block';
-      
-      // Destroy existing chart instances if they exist
-      if (performanceChart) {
-          performanceChart.destroy();
-          performanceChart = null;
-      }
-      
-      if (APYChart) {
-          APYChart.destroy();
-          APYChart = null;
-      }
-      
+      const cors_proxy=false;
       
       //if (Number(epoch) > 79) {
         //epoch_since_hardfork = Number(epoch)-80;
@@ -1683,9 +901,7 @@ function calculateMean(data) {
           populateAccountTable(accountResponse.payload.account);
 
           populateDelegatorTable('delegator1Table', delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, addBlocksInput1, publicKey1, totalCurrency);
-          document.getElementById('delegator1TableLoader').style.display = 'none';
           populateDelegatorTable('delegator2Table', delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, addBlocksInput2, publicKey2, totalCurrency);
-          document.getElementById('delegator2TableLoader').style.display = 'none';
 
           addBlocks1 = addBlocksInput1.value;
           addBlocks2 = addBlocksInput2.value;
@@ -1698,10 +914,6 @@ function calculateMean(data) {
               populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, false, fee2, addBlocks2);
           }
 
-          document.getElementById('delegatorsTableLoader').style.display = 'none';
-          document.getElementById('delegatorsTable2Loader').style.display = 'none';
-
-
            buildEpochLists();
 
       } catch (error) {
@@ -1709,12 +921,12 @@ function calculateMean(data) {
       }
   }
 
-  function createTruncatedKeyCell(key, type="account") {
+  function createTruncatedKeyCell(key) {
       const fullKey = key;
       const truncatedKey = `${fullKey.slice(0, 6)}...${fullKey.slice(-6)}`;
 
       const cell = document.createElement('td');
-      cell.innerHTML = "<a href=\"https://minascan.io/mainnet/"+type+"/"+fullKey+"\" target=_blank>"+truncatedKey+"</a>";
+      cell.innerText = truncatedKey;
       cell.style.whiteSpace = 'nowrap'; // Prevent wrapping of content
 
       // Create a span element for the copy emoji
@@ -1750,7 +962,7 @@ function calculateMean(data) {
 
       let delegateKeyCell;
       if (account.ledger && account.ledger.delegate_key) {
-        delegateKeyCell = createTruncatedKeyCell(account.ledger.delegate_key, "validator");
+        delegateKeyCell = createTruncatedKeyCell(account.ledger.delegate_key);
       }
 
       if (!delegateKeyCell) {
@@ -1759,13 +971,10 @@ function calculateMean(data) {
       } else {    
         row.appendChild(delegateKeyCell);
       }
-      
-      document.getElementById('accountTableLoader').style.display = 'none';
 
   }
 
   function populateDelegatorsTable(ledger, work, account, tableId, publicKey3, showPublicKey3, fee, addBlocks) {
-      const isDarkMode = document.body.classList.contains('dark-mode');
       const delegatorsTable = document.getElementById(tableId);
       //const totalStake = (Number(ledger.stake) + Number(account.info.balance));
       
@@ -1859,14 +1068,11 @@ function calculateMean(data) {
               
               if (delegator.is_found || delegator.is_investor) {
                   totalDue *= 0.92;
-                  console.log(totalRewards + "x" + share + "x0.92 = " + totalDue);
               } else if (delegator.is_olabs) {
                   totalDue *= 0.95;
-                  console.log(totalRewards + "x" + share + "x0.95 = " + totalDue);
               } else {
                   totalDue *= (100 - fee) / 100;
-                  console.log(totalRewards + "x" + share + "x" + (100 - fee) / 100 + " = " + totalDue);
-              }             
+              }
               const totalDueRounded = totalDue.toFixed(4);
               const totalDueCell = row.insertCell(7);
               totalDueCell.innerText = totalDueRounded;
@@ -1874,11 +1080,7 @@ function calculateMean(data) {
               totalDueAmount += parseFloat(totalDueRounded);
 
               if (publicKey3 && publicKey3 === delegator.public_key) {
-                  if (isDarkMode)
-                    row.style.backgroundColor = '#1a8870';
-                  else
-                    row.style.backgroundColor = 'yellow';
-                  row.classList.add('delegate-row'); // Set a specific id for this row
+                  row.style.backgroundColor = 'yellow';
               }
           }
       });
@@ -1908,10 +1110,9 @@ function calculateMean(data) {
   }
 
   function computePayouts(ledger, work, account, publicKey3, fee, addBlocks) {
-      let totalDelegatorStake = Number(ledger.stake);
-      let totalValidatorStake = Number(ledger.stake);
+      let totalStake = Number(ledger.stake);
       if (!ledger.delegators.some(d => d.public_key === account.info.key)) {
-          totalDelegatorStake += Number(account.info.balance);
+          totalStake += Number(account.info.balance);
       }
       
       /*console.log ("************ computePayouts DEBUT ************");
@@ -1924,9 +1125,7 @@ function calculateMean(data) {
       console.log ("************ computePayouts  FIN ************");*/
       
       const addCoinbase = Number(addBlocks)*720*1e9;
-      const validatorTotalrewards = (Number(work.rewards) + Number(work.transactions_fee)) / 1000000000;
-      const delegatorTotalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(work.transactions_fee)) / 1000000000;
-      
+      const totalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(work.transactions_fee)) / 1000000000;
       // Add the third public key as a delegator only if it's not already in the list
       const thirdDelegator = {
           public_key: account.info.key,
@@ -1948,25 +1147,15 @@ function calculateMean(data) {
       let totalBalance = 0;
       let totalShares = 0;
       let totalDueAmount = 0;
-      let totalDelegatorDueAmount = 0;
 
-      let unlockedBalance = 0;
-      let unblockedTotal = 0;      
-
-      // Compute payouts
       sortedDelegators.forEach(delegator => {
-      //if (delegator.public_key === publicKey3) {
-          const balance = (Number(delegator.balance) / 1000000000).toFixed(4);            // balance du staker
-          const delegatorShare = Number(delegator.balance) / Number(totalDelegatorStake); // Share du staker sur le total simulé
-          const delegatorSharePercent = (delegatorShare * 100).toFixed(8);                // Share du staker sur le total simulé en pourcent
-
-          const share = Number(delegator.balance) / Number(totalValidatorStake);          // Share du staker sur le total non simulé
-          const sharePercent = (share * 100).toFixed(8);                                  // Share du staker sur le total non simulé en pourcent
-
+      if (delegator.public_key === publicKey3) {
+          const balance = (Number(delegator.balance) / 1000000000).toFixed(4);
           totalBalance += parseFloat(balance);
-          totalShares += parseFloat(delegatorSharePercent);
-          let totalDue = delegatorTotalRewards * delegatorShare;
-
+          const share = Number(delegator.balance) / Number(totalStake);
+          const sharePercent = (share * 100).toFixed(8);
+          totalShares += parseFloat(sharePercent);
+          let totalDue = totalRewards * share;
           
           if (delegator.is_found || delegator.is_investor) {
               totalDue *= 0.92;
@@ -1977,21 +1166,10 @@ function calculateMean(data) {
           }
           const totalDueRounded = totalDue.toFixed(4);
           totalDueAmount += parseFloat(totalDueRounded);
-          
-          if (delegator.public_key === publicKey3)
-            totalDelegatorDueAmount = parseFloat(totalDueRounded);
-        //}
+        }
       });
       
-      const payoutsJSON = {
-          totalDelegatorDueAmount: totalDelegatorDueAmount,
-          totalDueAmount: totalDueAmount,
-          totalDelegatorStake: totalDelegatorStake
-      };      
-      
-      console.log(payoutsJSON);
-      
-      return payoutsJSON;
+      return totalDueAmount;
   }
 
   function stakeLikelyhood(balance = 0, total = 1, c = 0, f = 0.75) {
@@ -2010,11 +1188,6 @@ function calculateMean(data) {
 
   function populateDelegatorTable(tableId, delegators, work, account, addBlocksInput, pubkey, totalCurrency) {
       const delegatorTable = document.getElementById(tableId);
-      const isDarkMode = document.body.classList.contains('dark-mode');
-      const lightModeColor = 'darkred'; // Color for light mode
-      const darkModeColor = '#f77'; // Color for dark mode
-      const couleur = isDarkMode ? darkModeColor : lightModeColor;
-
       const row = delegatorTable.insertRow();
       let delegate=null;
       let addblock="";
@@ -2033,17 +1206,17 @@ function calculateMean(data) {
         
       //console.log (pubkey);
       //console.log (delegate);
-      
+        
       if (delegate != pubkey) {
         if (addBlocksInput.value==="") {
           const additionalblocks = (stakeLikelyhood(Number(additionalBalance), Number(totalCurrency))*7140).toFixed(0);
           addBlocksInput.value=additionalblocks;
         }
-        addblock= "<b class='additonnalblocks' style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
-        addCoinbase= "<b class='additonnalblocks' style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
+        addblock= "<b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
+        addCoinbase= "<b style='color:darkred;font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
        }
 
-      const keyCell = createTruncatedKeyCell(work.publicKey, "validator"); // Use createTruncatedKeyCell for publicKey
+      const keyCell = createTruncatedKeyCell(work.publicKey); // Use createTruncatedKeyCell for publicKey
       row.appendChild(keyCell);
 
       row.insertCell(1).innerHTML = work.count + addblock;
@@ -2052,6 +1225,7 @@ function calculateMean(data) {
       row.insertCell(4).innerText = (Number(work.transactions_fee) / 1000000000).toFixed(4);
       row.insertCell(5).innerText = delegators.delegators_count;
       row.insertCell(6).innerText = (Number(delegators.stake) / 1000000000).toFixed(2);
+
   }
 
 
