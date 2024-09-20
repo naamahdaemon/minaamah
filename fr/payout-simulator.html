@@ -24,6 +24,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VR50WVP209"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
 
     <style>
         body {
@@ -731,6 +733,8 @@
     </div>
 
     <h2>Last 12 epochs comparison Chart</h2>
+    <input type="checkbox" id="showDataLabels" checked onchange="toggleDataLabels(performanceChart, document.getElementById('showDataLabels').checked);toggleDataLabels(APYChart, document.getElementById('showDataLabels').checked);">Display Data Labels on Charts<br/><br/>
+   
     <img id="performanceChartLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />        
     <div class="chart-container">
         <canvas id="performanceChart"></canvas>
@@ -782,7 +786,11 @@
             const specificRows2 = document.querySelectorAll('.additonnalblocks');
             specificRows2.forEach(row => {
                 row.style.color = '#f77';
-            });               
+            });       
+            // Update chart label background for dark mode
+            performanceChart.options.plugins.datalabels.backgroundColor = 'white'; //'#def4ef';
+            performanceChart.options.plugins.datalabels.color = '#0a7161';
+            performanceChart.update();            
         } else {
             body.classList.remove('dark-mode');
             localStorage.setItem('theme', 'light');
@@ -796,7 +804,10 @@
             const specificRows2 = document.querySelectorAll('.additonnalblocks');
             specificRows2.forEach(row => {
                 row.style.color = 'darkred';
-            });               
+            });       
+            performanceChart.options.plugins.datalabels.backgroundColor = 'white'; //'#def4ef';
+            performanceChart.options.plugins.datalabels.color = '#0a7161';
+            performanceChart.update();                 
         }
     });
 
@@ -816,12 +827,17 @@
         return apy * 100;
     }
 
-
+    function toggleDataLabels(chart, enable) {
+        if (chart && chart.options && chart.options.plugins && chart.options.plugins.datalabels) {
+          chart.options.plugins.datalabels.display = enable ? true : false;
+          chart.update(); // Update the chart to reflect changes
+        }
+    }
 
 function calculateMean(data) {
   const mean = data.reduce((acc, value) => acc + value, 0) / data.length;
   // Create an array filled with the mean value, same length as data
-  const meanArray = Array(data.length).fill(mean);
+  const meanArray = Array(data.length).fill(mean).map(value => parseFloat(value.toFixed(2)));
   console.log (meanArray);
   return meanArray;
 }
@@ -1009,6 +1025,8 @@ function calculateMean(data) {
                 const tpa1 = calculateAPY(payout1.totalDueAmount, (payout1.totalDelegatorStake/1e9).toFixed(0));
                 const tpa2 = calculateAPY(payout2.totalDueAmount, (payout2.totalDelegatorStake/1e9).toFixed(0));
                 
+                //apy1.push(tpa1.toFixed(4));
+                //apy2.push(tpa2.toFixed(4));       
                 apy1.push(tpa1);
                 apy2.push(tpa2);       
 
@@ -1043,6 +1061,7 @@ function calculateMean(data) {
         updateCharts(chartData);
         updateAPYCharts(chartData);
         document.getElementById('performanceChartLoader').style.display = 'none';
+        toggleDataLabels(performanceChart, document.getElementById('showDataLabels').checked);
         //document.getElementById('APYChartLoader').style.display = 'none';        
     }
       
@@ -1056,6 +1075,14 @@ function calculateMean(data) {
         const validatorStake = data.stake2.map(stake => stake / 1e6);
         const naamahRewards = data.payouts1;
         const validatorRewards = data.payouts2;
+        const isDarkMode = document.body.classList.contains('dark-mode');        
+        const lightModeBgColor = 'white'; //'#def4ef'; // Color for light mode
+        const darkModeBgColor = 'white'; //'#def4ef'; // Color for dark mode
+        const lightModeFgColor = '#0a7161'; // Color for light mode
+        const darkModeFgColor = '#0a7161'; // Color for dark mode
+        const BgColor = isDarkMode ? darkModeBgColor : lightModeBgColor;        
+        const FgColor = isDarkMode ? darkModeFgColor : lightModeFgColor;        
+
 
         const ctx = document.getElementById('performanceChart').getContext('2d');
 
@@ -1194,8 +1221,23 @@ function calculateMean(data) {
                                 drawOnChartArea: false // only want the grid lines for one axis to show up
                             }
                         }
+                    },
+                    plugins: {
+                        datalabels: {
+                            color: FgColor, // Set the text color
+                            backgroundColor: BgColor, // Set the box background color
+                            borderRadius: 3, // Add a slight border radius to the box
+                            padding: 3, // Padding inside the label box
+                            anchor: 'end',
+                            align: 'top',
+                            offset: -30,
+                            formatter: function(value) {
+                                return value; // Customize how the value is displayed, if necessary
+                            }
+                        }
                     }
-                }
+                },
+                plugins: [ChartDataLabels] // Enable the datalabels plugin
             });
 
             // Adjust canvas size when window is resized
@@ -1333,7 +1375,16 @@ function calculateMean(data) {
         const naamahRewards = data.payouts1;
         const validatorRewards = data.payouts2;
         const naamahApy = data.apy1;
+        const roundedNaamahApy = naamahApy.map(value => parseFloat(value.toFixed(2)));
         const validatorApy = data.apy2;
+        const roundedvalidatorApy = validatorApy.map(value => parseFloat(value.toFixed(2)));        
+        const isDarkMode = document.body.classList.contains('dark-mode');        
+        const lightModeBgColor = 'white'; //'#def4ef'; // Color for light mode
+        const darkModeBgColor = 'white'; //'#def4ef'; // Color for dark mode
+        const lightModeFgColor = '#0a7161'; // Color for light mode
+        const darkModeFgColor = '#0a7161'; // Color for dark mode
+        const BgColor = isDarkMode ? darkModeBgColor : lightModeBgColor;        
+        const FgColor = isDarkMode ? darkModeFgColor : lightModeFgColor;             
 
         //const naamahAPY = calculateAPY(naamahRewards, principal);
         //const validatorAPY = calculateAPY(validatorRewards, principal);
@@ -1399,7 +1450,7 @@ function calculateMean(data) {
                         },
                         {
                             label: "1st Validator APY",
-                            data: naamahApy,
+                            data: roundedNaamahApy,
                             type: 'line',
                             yAxisID: 'reward-axis',
                             backgroundColor: 'rgba(255, 159, 64, 0.2)',
@@ -1409,7 +1460,7 @@ function calculateMean(data) {
                         },
                         {
                             label: '2d Validator APY',
-                            data: validatorApy,
+                            data: roundedvalidatorApy,
                             type: 'line',
                             yAxisID: 'reward-axis',
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -1468,8 +1519,23 @@ function calculateMean(data) {
                                 drawOnChartArea: false // only want the grid lines for one axis to show up
                             }
                         }
+                    },
+                    plugins: {
+                        datalabels: {
+                            color: FgColor, // Set the text color
+                            backgroundColor: BgColor, // Set the box background color
+                            borderRadius: 3, // Add a slight border radius to the box
+                            padding: 3, // Padding inside the label box
+                            anchor: 'end',
+                            align: 'top',
+                            offset: -30,
+                            formatter: function(value) {
+                                return value; // Customize how the value is displayed, if necessary
+                            }
+                        }
                     }
-                }
+                },
+                plugins: [ChartDataLabels] // Enable the datalabels plugin
             });
         }
     }    
