@@ -122,7 +122,7 @@ mina daemon --peer-list-url https://storage.googleapis.com/mina-seed-lists/mainn
 --coinbase-receiver B62qr1kSFmLBtFbx22VwX2m9WWHVLziYUXNnY8413dsTAfsChHjTM2S \ 
 --uptime-submitter-key /keys/my-wallet \ 
 --uptime-url https://uptime-backend.minaprotocol.com/v1/submit \ 
---external-ip 65.108.142.213 \ 
+--external-ip ***.***.***.*** \ 
 --insecure-rest-server
 ```
 :::
