@@ -6,7 +6,7 @@ tags: [mina, payouts, october, news]
 ---
 import bp from './naamah_bp_qrcode.png';
 import apy from './apy.png';
-import minacon from './minacon.png';
+import minacon from './Minacon.png';
 
 # Some news about my BP
 Hello There !  
