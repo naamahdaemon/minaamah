@@ -329,7 +329,7 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
 
   const getDelegations = async (currentEpoch = currentEpoch, param = paramData) => {
     //await getEpoch();
-    const burnt_pk = ["B62qn9zWo5HcC2RRRi5P8278Hq5RoKgQWqFvXRYxsbVQeDCsAJP7aop", "B62qjeFLiBdA94f9AAznCqBUJKNpo5BEYf5hUydp1sXyLwic6RQWMg2", "B62qrzDMYjLf2opTM3KSozahGGKkQhVhQmiAfVZ39FZoKa4WGgcdaAq", "B62qjmFWHTMqtXby9FnwxNh1qoaRMMCsTp2TZuSgM94jJE6B6V278NR", "B62qimKm1pqwrR9yYBrdPVS8Cb3PU3RV9pd4gzBk9qyxtYUuxFGdovf"];
+    const burnt_pk = ["B62qn9zWo5HcC2RRRi5P8278Hq5RoKgQWqFvXRYxsbVQeDCsAJP7aop", "B62qjeFLiBdA94f9AAznCqBUJKNpo5BEYf5hUydp1sXyLwic6RQWMg2", "B62qrzDMYjLf2opTM3KSozahGGKkQhVhQmiAfVZ39FZoKa4WGgcdaAq", "B62qjmFWHTMqtXby9FnwxNh1qoaRMMCsTp2TZuSgM94jJE6B6V278NR", "B62qimKm1pqwrR9yYBrdPVS8Cb3PU3RV9pd4gzBk9qyxtYUuxFGdovf","B62qkcBfRcKCWgVTDfrRPzx9j6t3WB4uXqAGsecyXfEeki8b5y45KdF","B62qk4dMFUML6Ape99PGF5sg6Sv7FD9p7u9oq1MWy61zryownHVGh8E"];
 
     //console.log ("**************************** getDelegations epoch = " + currentEpoch + " / param = " + JSON.stringify(param, null, 2) + "****************************");
    
