@@ -2,11 +2,34 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mina.naamahdaemon.eu/fr/blog</id>
     <title>Naamah Mina Stake Blog</title>
-    <updated>2024-10-03T00:00:00.000Z</updated>
+    <updated>2024-10-19T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mina.naamahdaemon.eu/fr/blog"/>
     <subtitle>Naamah Mina Stake Blog</subtitle>
     <icon>https://mina.naamahdaemon.eu/fr/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Epoch 8 Payouts]]></title>
+        <id>https://mina.naamahdaemon.eu/fr/blog/Epoch 8 Payouts</id>
+        <link href="https://mina.naamahdaemon.eu/fr/blog/Epoch 8 Payouts"/>
+        <updated>2024-10-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Hello There !]]></summary>
+        <content type="html"><![CDATA[<p>Hello There !<br>
+<!-- -->Epoch 8 recently ended.</p>
+<p>This epoch was better than the previous one !</p>
+<p>On 7 slots assigned, 6 blocks have been produced for an APY of 11.08%.</p>
+<p>Compare it with other BPs using my validator comparison tool as always :</p>
+<p><a href="https://mina.naamahdaemon.eu/payout-simulator" target="_blank" rel="noopener noreferrer">https://mina.naamahdaemon.eu/payout-simulator</a></p>
+<h1>Support me by delegating to my Block Producer !</h1>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>My Validator Address</div><div class="admonitionContent_BuS1"><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copier le code" title="Copier" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div></div>
+<div class="text--center"><img src="https://mina.naamahdaemon.eu/fr/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div>]]></content>
+        <author>
+            <name>Naamah</name>
+            <uri>https://github.com/naamahdaemon</uri>
+        </author>
+        <category label="mina" term="mina"/>
+        <category label="payouts" term="payouts"/>
+        <category label="october" term="october"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Some News - Epoch 7 BP performance - Epoch 8 expected performance - Minacon]]></title>
         <id>https://mina.naamahdaemon.eu/fr/blog/Some News</id>
