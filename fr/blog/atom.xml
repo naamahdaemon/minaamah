@@ -2,11 +2,49 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://mina.naamahdaemon.eu/fr/blog</id>
     <title>Naamah Mina Stake Blog</title>
-    <updated>2024-10-19T00:00:00.000Z</updated>
+    <updated>2024-11-03T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://mina.naamahdaemon.eu/fr/blog"/>
     <subtitle>Naamah Mina Stake Blog</subtitle>
     <icon>https://mina.naamahdaemon.eu/fr/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Epoch 9 Payouts]]></title>
+        <id>https://mina.naamahdaemon.eu/fr/blog/Epoch 9 Payouts</id>
+        <link href="https://mina.naamahdaemon.eu/fr/blog/Epoch 9 Payouts"/>
+        <updated>2024-11-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Hello There !]]></summary>
+        <content type="html"><![CDATA[<p>Hello There !<br>
+<!-- -->Epoch 9 recently ended.</p>
+<p>3 blocks were produced on 6 slots assigned.
+Not the best epoch so far.</p>
+<p>Epoch 10 should be better with 11 slots assigned and already 4 blocks produced.</p>
+<p>You may have noticed something special happened during epoch 9.<br>
+<!-- -->My BP produced a block including a delegation transaction with a huge erroneous amount of fees (27477 minas !!).</p>
+<p>You can see this transaction in this block :</p>
+<p><a href="https://minascan.io/mainnet/block/3NKQkodGBduoupbcpi4yLGwrxshe7FymWkr1giqCBLu83ESdq6KX/txs" target="_blank" rel="noopener noreferrer">https://minascan.io/mainnet/block/3NKQkodGBduoupbcpi4yLGwrxshe7FymWkr1giqCBLu83ESdq6KX/txs</a></p>
+<p>Of course, it was an error from the delegator who thought he should specify the amount to be delegated in the fees.
+I returned the funds to the sender (Being honest as a BP is not an option).</p>
+<p>It means that fees will not be shared amongst delegators for epoch 9 (as I would have to pay more than 27000 mina from my own wallet !).  It does not make a big difference though as fees are most of the time very low.</p>
+<p>Compare it with other BPs using my validator comparison tool as always :</p>
+<p><a href="https://mina.naamahdaemon.eu/payout-simulator" target="_blank" rel="noopener noreferrer">https://mina.naamahdaemon.eu/payout-simulator</a></p>
+<h1>The good news</h1>
+<p>The rules for next delegation cycle for mina foundation and o1labs have changed.
+The number of elligible BPs to foundation was reduced from 240 to 80.
+The number of elligible BPs to o1labs delegation program was reduced from 120 to 64.</p>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>❤️</div><div class="admonitionContent_BuS1"><p>My BP was choosen amongst hundred of others to be part of the new delegation program for both mina foundation and o1labs.</p></div></div>
+<div class="theme-admonition theme-admonition-important admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>What does it mean for you ?</div><div class="admonitionContent_BuS1"><p>It means that the stake delegated to my BP will be 3 times the previous delegated stake !!!
+It also means that we can expect much more slots assigned and much more blocks produced and thus, more rewards for you my fellow delegators !!</p><p>Next epoch (11) total stake will be up from ~900k minas delegated to 2,6M Minas delegated ! with a block production rate expected to be 3 times what it was before !!</p></div></div>
+<h1>Support me by delegating to my Block Producer !</h1>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>My Validator Address</div><div class="admonitionContent_BuS1"><div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copier le code" title="Copier" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div></div></div>
+<div class="text--center"><img src="https://mina.naamahdaemon.eu/fr/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div>]]></content>
+        <author>
+            <name>Naamah</name>
+            <uri>https://github.com/naamahdaemon</uri>
+        </author>
+        <category label="mina" term="mina"/>
+        <category label="payouts" term="payouts"/>
+        <category label="November" term="November"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Epoch 8 Payouts]]></title>
         <id>https://mina.naamahdaemon.eu/fr/blog/Epoch 8 Payouts</id>
@@ -626,86 +664,5 @@ Follow me on twitter to get some live news on mina protocol.</p>
         <category label="contributions" term="contributions"/>
         <category label="support" term="support"/>
         <category label="discord" term="discord"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Bienvenue]]></title>
-        <id>https://mina.naamahdaemon.eu/fr/blog/welcome</id>
-        <link href="https://mina.naamahdaemon.eu/fr/blog/welcome"/>
-        <updated>2024-01-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[En tant que participant actif de la communauté Mina Protocol, je suis très fier d'exploiter un nœud de validation.]]></summary>
-        <content type="html"><![CDATA[<p>En tant que participant actif de la communauté Mina Protocol, je suis très fier d'exploiter un nœud de validation.<br>
-<!-- -->Mon implication va bien au-delà de la simple maintenance du nœud ; je suis un membre actif de la communauté Discord, toujours prêt à offrir mon aide à ceux qui en ont besoin.<br>
-<!-- -->En partageant mes connaissances et en fournissant un soutien, je m'efforce de contribuer à la croissance et au succès de l'écosystème Mina Protocol.</p>
-<h1>Qu'est-ce que Mina Protocol ?</h1>
-<p>Mina Protocol est une plateforme blockchain révolutionnaire conçue pour offrir évolutivité et sécurité grâce à sa technologie de blockchain succincte unique.<br>
-<!-- -->Contrairement aux blockchains traditionnelles, qui augmentent en taille à mesure que davantage de transactions sont ajoutées, Mina maintient une taille constante de seulement quelques kilooctets, grâce à l'utilisation innovante des zk-SNARKs (arguments de connaissance succincts non interactifs de connaissance zéro).<br>
-<!-- -->Cela garantit que Mina reste légère et accessible, permettant à quiconque d'exploiter un nœud complet sans nécessiter de ressources informatiques étendues.</p>
-<h1>Programmabilité ZK et SDK o1js</h1>
-<p>L'une des caractéristiques distinctives de Mina Protocol est sa programmabilité à connaissance zéro (ZK).<br>
-<!-- -->Cela permet aux développeurs de créer et de déployer des contrats intelligents qui préservent la confidentialité et la sécurité tout en restant efficaces et évolutifs.<br>
-<!-- -->Le SDK o1js (Kit de Développement Logiciel) est un outil puissant qui permet aux développeurs de créer facilement des applications alimentées par ZK sur Mina.<br>
-<!-- -->Avec ce SDK, la création d'applications décentralisées sécurisées, privées et performantes devient simple, permettant aux développeurs d'innover sans les limitations typiques des plateformes blockchain traditionnelles.</p>
-<h1>À propos de ce site</h1>
-<p>Ce site est une ressource complète pour tout ce qui concerne Mina Protocol. Vous y trouverez :</p>
-<p><strong>Informations générales :</strong><br>
-<!-- -->Un aperçu de Mina Protocol, de ses fonctionnalités uniques et des avantages qu'il offre.</p>
-<p><strong>Détails techniques :</strong><br>
-<!-- -->Des guides approfondis et une documentation pour les personnes intéressées par l'exécution de leur propre nœud de validation Mina, couvrant tout, de la configuration à la maintenance.</p>
-<p><strong>Blog :</strong><br>
-<!-- -->Des mises à jour régulières sur les dernières nouvelles concernant Mina Protocol, ainsi que des aperçus et des rapports d'avancement sur mon nœud de validation.<br>
-<!-- -->Que vous soyez un développeur chevronné ou un nouveau venu dans la technologie blockchain, ce site vise à fournir des informations précieuses pour vous aider à naviguer dans l'écosystème Mina Protocol.</p>
-<h1>Conditions de délégation</h1>
-<p>J'offre un service de délégation très compétitif avec des frais de seulement 1%, l'un des taux les plus bas disponibles.</p>
-<p>En déléguant à mon nœud, vous pouvez maximiser vos récompenses tout en soutenant un validateur dédié et axé sur la communauté.</p>
-<p>Mon engagement à maintenir une haute disponibilité et à fournir un soutien continu garantit que votre délégation est entre de bonnes mains.</p>
-<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>Performance de mon Validateur</div><div class="admonitionContent_BuS1"><p><strong>Comparez la performance de votre Validateur actuel avec le mien grâce à mon outil de comparaison des payout ici :</strong></p><p><a href="https://naamahdaemon.github.io/payout.html" target="_blank" rel="noopener noreferrer">https://naamahdaemon.github.io/payout.html</a></p></div></div>
-<h1>Contactez-moi</h1>
-<p>N'hésitez pas à me contacter si vous avez des questions.</p>
-<p><strong>Réseaux sociaux</strong></p>
-<ul>
-<li>Discord<br>
-<!-- -->naamah#8064</li>
-<li>Serveur Discord de Naamah<br>
-<a href="https://discord.com/invite/ZkqQw8dK4E" target="_blank" rel="noopener noreferrer">https://discord.com/invite/ZkqQw8dK4E</a></li>
-<li>Telegram<br>
-<a href="https://t.me/naamahdaemon" target="_blank" rel="noopener noreferrer">https://t.me/naamahdaemon</a></li>
-<li>Github<br>
-<a href="https://github.com/naamahdaemon" target="_blank" rel="noopener noreferrer">https://github.com/naamahdaemon</a></li>
-<li>Twitter<br>
-<a href="https://twitter.com/NaamahDaemon" target="_blank" rel="noopener noreferrer">https://twitter.com/NaamahDaemon</a></li>
-</ul>
-<p><strong>Explorateurs de blocs</strong><br>
-<!-- -->Vous pouvez consulter les informations de mon validateur sur n'importe quel explorateur Mina disponible :</p>
-<ul>
-<li>Mina Explorer<br>
-<a href="https://minaexplorer.com/wallet/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr" target="_blank" rel="noopener noreferrer">https://minaexplorer.com/wallet/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</a></li>
-<li>Minascan<br>
-<a href="https://minascan.io/mainnet/validator/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr/delegations" target="_blank" rel="noopener noreferrer">https://minascan.io/mainnet/validator/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr/delegations</a></li>
-<li>Minataur<br>
-<a href="https://minataur.net/account/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr" target="_blank" rel="noopener noreferrer">https://minataur.net/account/B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</a></li>
-</ul>
-<h1>Informations en temps réel sur le nœud</h1>
-<p>Vous trouverez également des informations en temps réel sur mes nœuds sur ce site web !</p>
-<ul>
-<li><a href="https://mina.naamahdaemon.eu/fr/docs/Node%20Statistics/payouts">Paiements</a><br>
-<!-- -->Paiements dus en temps réel</li>
-<li><a href="https://mina.naamahdaemon.eu/fr/docs/Node%20Statistics/block_production">Production de blocs</a><br>
-<!-- -->Production de blocs en temps réel</li>
-<li><a href="https://mina.naamahdaemon.eu/fr/docs/Node%20Statistics/epoch_stats">Calculateur d'époque</a><br>
-<!-- -->Statistiques d'époque en temps réel</li>
-<li><a href="https://mina.naamahdaemon.eu/fr/docs/Node%20Statistics/delegations">Délégations</a><br>
-<!-- -->Délégations en temps réel (nombre de délégués / montant)</li>
-</ul>
-<br>
-<h1>Soutenez-moi en déléguant à mon producteur de blocs !</h1>
-<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>Adresse de mon validateur</div><div class="admonitionContent_BuS1"><p>B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</p></div></div>
-<div class="text--center"><img src="https://mina.naamahdaemon.eu/fr/assets/images/naamah_bp_qrcode-ddc332b55a7d2d9f129288e3097eb5e8.png" alt="Naamah BP" style="width:240px"></div>
-<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>Frais</div><div class="admonitionContent_BuS1"><p>Mes frais de commission pour les blocs réguliers seront <strong>aussi bas que 1%</strong> jusqu'à ce que le total des mises des délégués indépendants atteigne <strong>500k</strong> Mina.</p></div></div>]]></content>
-        <author>
-            <name>Naamah</name>
-            <uri>https://github.com/naamahdaemon</uri>
-        </author>
-        <category label="hello" term="hello"/>
-        <category label="mina" term="mina"/>
     </entry>
 </feed>
