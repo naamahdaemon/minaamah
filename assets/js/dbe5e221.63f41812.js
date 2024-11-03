@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[187],{98963:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/mina","page":1,"postsPerPage":10,"totalPages":2,"totalCount":20,"nextPage":"/blog/tags/mina/page/2","blogDescription":"Blog","blogTitle":"Blog"}')}}]);
