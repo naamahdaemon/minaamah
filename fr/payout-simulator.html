@@ -1769,6 +1769,9 @@ function calculateMean(data) {
       const isDarkMode = document.body.classList.contains('dark-mode');
       const delegatorsTable = document.getElementById(tableId);
       //const totalStake = (Number(ledger.stake) + Number(account.info.balance));
+	  let transaction_fees = work.transactions_fee;
+	  if (work.epoch === 89)
+		transaction_fees = 0;
       
       let totalStake = Number(ledger.stake);
       if (!ledger.delegators.some(d => d.public_key === account.info.key)) {
@@ -1781,7 +1784,7 @@ function calculateMean(data) {
       
       //console.log ("Added Coinbase : " + addCoinbase);
       
-      const totalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(work.transactions_fee)) / 1000000000;
+      const totalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(transaction_fees)) / 1000000000;
       
       //console.log ("Total Rewards : " + totalRewards)
 
@@ -1914,6 +1917,9 @@ function calculateMean(data) {
       if (!ledger.delegators.some(d => d.public_key === account.info.key)) {
           totalDelegatorStake += Number(account.info.balance);
       }
+	  let transaction_fees = work.transactions_fee;
+	  if (work.epoch === 89)
+		transaction_fees = 0;	  
       
       /*console.log ("************ computePayouts DEBUT ************");
       console.log (ledger);
@@ -1925,8 +1931,8 @@ function calculateMean(data) {
       console.log ("************ computePayouts  FIN ************");*/
       
       const addCoinbase = Number(addBlocks)*720*1e9;
-      const validatorTotalrewards = (Number(work.rewards) + Number(work.transactions_fee)) / 1000000000;
-      const delegatorTotalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(work.transactions_fee)) / 1000000000;
+      const validatorTotalrewards = (Number(work.rewards) + Number(transaction_fees)) / 1000000000;
+      const delegatorTotalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(transaction_fees)) / 1000000000;
       
       // Add the third public key as a delegator only if it's not already in the list
       const thirdDelegator = {
@@ -2022,6 +2028,10 @@ function calculateMean(data) {
       let addCoinbase="";
       let additionalBalance=0;
 
+	  let transaction_fees = work.transactions_fee;
+	  if (work.epoch === 89)
+		transaction_fees = 0;
+
       //console.log(account);
 
       if (account && account.ledger) {
@@ -2050,7 +2060,7 @@ function calculateMean(data) {
       row.insertCell(1).innerHTML = work.count + addblock;
       row.insertCell(2).innerHTML = (Number(work.rewards) / 1000000000).toFixed(0) + addCoinbase;
       row.insertCell(3).innerText = (Number(work.snarks_fee) / 1000000000).toFixed(4);
-      row.insertCell(4).innerText = (Number(work.transactions_fee) / 1000000000).toFixed(4);
+      row.insertCell(4).innerText = (Number(transaction_fees) / 1000000000).toFixed(4);
       row.insertCell(5).innerText = delegators.delegators_count;
       row.insertCell(6).innerText = (Number(delegators.stake) / 1000000000).toFixed(2);
   }
