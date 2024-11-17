@@ -310,7 +310,8 @@ const NodePayouts = ({ apiUrl, isRelative }) => {
       numberOfBlocks: numBlocks,
       sumCoinbase: sumCoinbase,
       sumFeeTransferViaCoinbase: sumFeeTransferViaCoinbase / 1e9,
-      sumToBurn: epoch <= 10 ? 0 : sumCoinbase / 2,
+      //sumToBurn: epoch <= 10 ? 0 : sumCoinbase / 2,
+      sumToBurn: 0,
       sumSnarkFees: sumSnarkFees,
       sumTxFees: sumTxFees
     };    
