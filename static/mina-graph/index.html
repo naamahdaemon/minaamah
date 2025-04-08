@@ -693,7 +693,7 @@
         const limit = (publicKey === BASE_KEY) ? FIRST_ITERATION_LIMIT : LIMIT;
 
         try {
-            const res = await fetch("https://www.akirion.com:4664/proxy?url=minataur.net/api/v1/transactions", {
+            const res = await fetch("https://www.akirion.com:4664/proxy?url=https://minataur.net/api/v1/transactions", {
                 method: "POST",
                 headers: {
                     "Minataur-Authorization": API_TOKEN,
