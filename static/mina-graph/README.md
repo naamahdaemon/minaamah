@@ -88,7 +88,13 @@ You need a **Minataur API key** to fetch blockchain data.
 
 ## 🖼️ Screenshots
 
-> _(Add screenshots here if available: UI, graph examples, tooltips, etc.)_
+![](./0.png)
+![](./1.png)
+![](./2.png)
+![](./3.png)
+![](./4.png)
+![](./5.png)
+![](./6.png)
 
 ---
 
