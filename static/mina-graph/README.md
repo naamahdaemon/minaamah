@@ -7,7 +7,7 @@
 ## 🌐 Live Demo
 
 You can try the tool here:  
-👉 [mina.naamahdaemon.eu](https://mina.naamahdaemon.eu)
+👉 [mina.naamahdaemon.eu/mina-graph](https://mina.naamahdaemon.eu/mina-graph)
 
 ---
 
