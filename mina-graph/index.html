@@ -190,10 +190,44 @@ body.fullscreen-mode #legend.legend-box {
   margin-left: 20px;
 }
 
+#date-slicer-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 400px;
+  background: #1e1e1e;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.4);
+  z-index: 9999;
+}
+
+#slicer-container {
+  position: relative; /* 👈 no longer absolute! */
+  height: auto;
+}
+
+#slicer-container canvas {
+  width: 100% !important;
+  height: 150px !important;
+}
+
+#slicer-range {
+  margin-top: 10px;
+}
+
+
+
     
   </style>
   <script src="https://cdn.jsdelivr.net/npm/sigma@2.4.0/build/sigma.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/graphology@0.26.0/dist/graphology.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-dragdata@2.0.0"></script>  
+  <link href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
+  
 </head>
 <body>
   <div id="left-sidebar" style="
@@ -334,7 +368,41 @@ body.fullscreen-mode #legend.legend-box {
  </div>
  
  
-  <div id="sigma-container" style="margin-left: 320px;"></div>
+  <div id="sigma-container" style="
+    margin-left: 320px;
+    position: relative;
+    height: calc(100vh - 64px); /* Or whatever height you're using */
+  ">
+  </div>  
+
+    <!-- SLICER CONTAINER -->
+    <div id="date-slicer-container" style="
+      position: absolute;
+      bottom: 60px;
+      right: 30px;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 14px;
+      border-radius: 8px;
+      color: white;
+      font-size: 13px;
+      z-index: 9999;
+      width: 360px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    ">
+      <strong style="display: block; margin-bottom: 8px;">Filter by Transaction Date</strong>
+      
+      <div id="slicer-container" style="width: 100%; height: 140px;">
+        <canvas id="slicer-chart" style="width: 100%; height: 100%; display: block;"></canvas>    
+      </div>
+
+      <div id="slicer-range" style="margin-top: 12px;"></div>  
+
+      <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px;">
+        <span id="slicer-start-label">From: --</span>
+        <span id="slicer-end-label">To: --</span>
+      </div>
+    </div>
+
   <footer style=" margin-left: 280px; margin-top: 30px; font-size: 12px; color: #888; text-align: center; border-top: 1px solid #333; padding-top: 10px;">
     &copy; naamahdaemon – <a href="https://mina.naamahdaemon.eu" target="_blank" style="color: #4fc3f7; text-decoration: none;">mina.naamahdaemon.eu</a><br/>
     Minataur API by Serhii Pimenov - <a href="https://minataur.net/api/restful" target="_blank" style="color: #4fc3f7; text-decoration: none;">minataur.net/api/restful</a>
@@ -822,9 +890,11 @@ body.fullscreen-mode #legend.legend-box {
 
         const edgeId = tx.hash || `${sender}-${receiver}-${tx.nonce}`;
         if (!graph.hasEdge(edgeId)) {
+          const timestamp = parseInt(tx.timestamp); // parse to ensure it's a number
           graph.addEdgeWithKey(edgeId, sender, receiver, {
             label: tx.command_type,
             status: tx.chain_status,
+            timestamp: timestamp, // ✅ Add timestamp here
             color: tx.chain_status === "canonical" ? "#ccc" : "#f66"
           });
         }
@@ -1280,6 +1350,9 @@ body.fullscreen-mode #legend.legend-box {
       hideLoader(); // ✅ hide modal
       
       setTimeout(() => updateProgressBar(0, 1), 500); // clear bar after delay
+      
+      setupDateSlicer();  // 👈 à ajouter à la fin de main()
+      
     }
 
 
@@ -1699,7 +1772,157 @@ body.fullscreen-mode #legend.legend-box {
   exitFullscreenBtn.addEventListener("click", () => toggleFullscreen(true));
 </script>
 
+<script>
+let allTimestamps = [];  // 🔁 collected from edges
+let currentRange = [0, 0];
+let histogramChart;
 
+function setupDateSlicer() {
+  if (!graph || !graph.edges) return;
+
+  const timestamps = graph.edges().map(id => {
+    const ts = graph.getEdgeAttribute(id, "timestamp");
+    return typeof ts === "string" ? parseInt(ts) : ts;
+  }).filter(t => !isNaN(t)).sort((a, b) => a - b);
+
+  if (!timestamps.length) return;
+
+  allTimestamps = timestamps;
+
+  const minTimestamp = Math.min(...timestamps);
+  const maxTimestamp = Math.max(...timestamps);
+  const binCount = 20;
+  const binSize = Math.ceil((maxTimestamp - minTimestamp) / binCount);
+  currentRange = [minTimestamp, maxTimestamp];
+
+  const bins = new Array(binCount).fill(0);
+  timestamps.forEach(ts => {
+    const index = Math.min(Math.floor((ts - minTimestamp) / binSize), binCount - 1);
+    bins[index]++;
+  });
+
+  const ctx = document.getElementById("slicer-chart").getContext("2d");
+  if (histogramChart) histogramChart.destroy();
+
+  histogramChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: bins.map((_, i) => {
+        const d = new Date(minTimestamp + i * binSize);
+        return d.toLocaleDateString(); // or d.toISOString().slice(0, 10)
+      }),
+      datasets: [{
+        label: 'Tx Count',
+        data: bins,
+        backgroundColor: '#4fc3f7'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: (tooltipItems) => {
+              const index = tooltipItems[0].dataIndex;
+              const startDate = new Date(minTimestamp + index * binSize);
+              const endDate = new Date(minTimestamp + (index + 1) * binSize);
+              return `${startDate.toLocaleDateString()} – ${endDate.toLocaleDateString()}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'Transaction Date'
+          }
+        },
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Count'
+          }
+        }
+      }
+    }
+  });
+
+  // Create noUiSlider range control
+  const slider = document.getElementById("slicer-range");
+  slider.innerHTML = ""; // Clear any previous
+
+  // 💥 Prevent re-initialization
+  if (slider.noUiSlider) {
+    slider.noUiSlider.destroy();
+  }
+
+  noUiSlider.create(slider, {
+    start: [minTimestamp, maxTimestamp],
+    connect: true,
+    range: {
+      min: minTimestamp,
+      max: maxTimestamp
+    },
+    step: 24 * 60 * 60 * 1000, // 1 day in ms
+    tooltips: [
+      {
+        to: value => new Date(+value).toLocaleDateString(),
+        from: Number
+      },
+      {
+        to: value => new Date(+value).toLocaleDateString(),
+        from: Number
+      }
+    ],
+    format: {
+      to: value => Math.round(value),
+      from: Number
+    }
+  });
+
+  // Update range filter
+  slider.noUiSlider.on("update", function (values) {
+    currentRange = values.map(v => parseInt(v));
+    applyDateFilter(); // filter the graph dynamically
+  });
+
+
+  applyDateFilter(); // Initial filtering
+}
+
+
+function applyDateFilter() {
+  const [min, max] = currentRange;
+
+  const formatter = ts => new Date(ts).toLocaleDateString();
+  document.getElementById("slicer-start-label").textContent = `From: ${formatter(min)}`;
+  document.getElementById("slicer-end-label").textContent = `To: ${formatter(max)}`;
+
+  graph.forEachEdge((e, attrs) => {
+    const ts = parseInt(attrs.timestamp);
+    const keep = ts >= min && ts <= max;
+    graph.setEdgeAttribute(e, "hidden", !keep);
+  });
+
+  const visibleNodes = new Set();
+  graph.forEachEdge((e) => {
+    if (!graph.getEdgeAttribute(e, "hidden")) {
+      visibleNodes.add(graph.source(e));
+      visibleNodes.add(graph.target(e));
+    }
+  });
+
+  graph.forEachNode((n) => {
+    graph.setNodeAttribute(n, "hidden", !visibleNodes.has(n));
+  });
+
+  renderer.refresh();
+}
+</script>
 
    
    
