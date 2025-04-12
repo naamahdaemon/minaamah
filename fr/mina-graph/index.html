@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <title>Mina Graph Explorer</title>
   <link href="https://fonts.googleapis.com/css2?family=Coda&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#000000">
   
   <style>
     html, body {
@@ -508,6 +510,17 @@ body.fullscreen-mode #legend.legend-box {
   </div>
  
   <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js").then(
+          (reg) => console.log("ServiceWorker registered", reg),
+          (err) => console.log("ServiceWorker registration failed", err)
+        );
+      });
+    }
+  </script>
+ 
+ <script>
     const { Graph } = graphology;
     let currentTheme = "dark"; // 👈 Declare it globally so reducers and other functions can use it
     let API_TOKEN = "minataur-token:your_minataur_token_here";
