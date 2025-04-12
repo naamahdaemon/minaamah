@@ -883,7 +883,7 @@ body.fullscreen-mode #legend.legend-box {
 
       transactionsByNeighbor[publicKey] = transactions; // ✅ ici
 
-      appendLoaderLog(`🔄 Loaded ${transactions.length} tx for ${publicKey.slice(0, 10)}… at depth ${level}`);
+      appendLoaderLog(`🔄 Loaded ${transactions.length} tx for ${publicKey.slice(0, 6)}…${publicKey.slice(-6)} at depth ${level}`);
 
 
       for (const tx of transactions) {
@@ -894,7 +894,7 @@ body.fullscreen-mode #legend.legend-box {
 
         if (!graph.hasNode(sender)) {
           graph.addNode(sender, {
-            label: `${senderName !== "noname" ? senderName : "Sender"} (${sender.slice(0, 10)}…)`,
+            label: `${senderName !== "noname" ? senderName : "Sender"} (${sender.slice(0, 6)}…${sender.slice(-6)})`,
             name: senderName,
             color: getBrightColorByName(senderName),
             x: Math.random() * 1000, // ← assure une position aléatoire
@@ -904,7 +904,7 @@ body.fullscreen-mode #legend.legend-box {
 
         if (!graph.hasNode(receiver)) {
           graph.addNode(receiver, {
-            label: `${receiverName !== "noname" ? receiverName : "Receiver"} (${receiver.slice(0, 10)}…)`,
+            label: `${receiverName !== "noname" ? receiverName : "Receiver"} (${receiver.slice(0, 6)}…${receiver.slice(-6)})`,
             name: receiverName,
             color: getBrightColorByName(receiverName),
             x: Math.random() * 1000,
