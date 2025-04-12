@@ -77,6 +77,15 @@
       font-size: 13px !important;
     }
     
+    #date-slicer-container.on-left {
+      left: auto !important;
+      right: 780px !important; /* 👈 positions the slicer just left of the side panel */
+    }
+
+    #date-slicer-container {
+      transition: right 0.3s ease, left 0.3s ease;
+    }
+    
     .linked-node {
       cursor: pointer;
       color: #4fc3f7;
@@ -417,7 +426,7 @@ body.fullscreen-mode #legend.legend-box {
     Minataur API by Serhii Pimenov - <a href="https://minataur.net/api/restful" target="_blank" style="color: #4fc3f7; text-decoration: none;">minataur.net/api/restful</a>
   </footer>  
   <div id="side-panel">
-    <button id="close-panel-btn" onclick="document.getElementById('side-panel').style.display='none'">&times;</button>
+    <button id="close-panel-btn" onclick="hideNodePanel()">&times;</button>
     <div id="node-details"></div>
   </div>
   <div id="tooltip"></div>
@@ -1090,6 +1099,7 @@ body.fullscreen-mode #legend.legend-box {
       `;
       details.innerHTML = html;
       panel.style.display = "flex";
+      document.getElementById("date-slicer-container").classList.add("on-left");
       
       renderer.refresh(); // ✅ ensures selection is visible immediately
 
@@ -1336,9 +1346,7 @@ body.fullscreen-mode #legend.legend-box {
       });
 
       renderer.on("clickStage", () => {
-        selectedNode = null;
-        panel.style.display = "none";
-        renderer.refresh();
+        hideNodePanel();
       });
       
       if (renderer) {
@@ -2003,6 +2011,19 @@ function applyDateFilter() {
 
   renderer.refresh();
 }
+
+function hideNodePanel() {
+  const panel = document.getElementById("side-panel");
+  const slicer = document.getElementById("date-slicer-container");
+
+  panel.style.display = "none";
+  slicer.classList.remove("on-left");
+
+  selectedNode = null;
+  renderer.refresh();
+}
+
+
 </script>
 
    
