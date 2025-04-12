@@ -46,7 +46,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      width: 600px;
+      width: 700px;
       height: 100%;
       background: #1c1c1c;
       color: white;
@@ -68,6 +68,15 @@
       right: 15px;
       cursor: pointer;
     }
+    
+    #side-panel .mono,
+    #side-panel .mono table,
+    #side-panel .mono th,
+    #side-panel .mono td {
+      font-family: monospace !important;
+      font-size: 13px !important;
+    }
+    
     .linked-node {
       cursor: pointer;
       color: #4fc3f7;
@@ -503,6 +512,10 @@ body.fullscreen-mode #legend.legend-box {
     const HEIGHT = 3000;
     const visitedKeys = new Set();
     const nameColorMap = new Map();
+    
+    const transactionsByNeighbor = {};
+
+    
     let totalSteps = 0;
     let currentStep = 0;
     let pause = false;
@@ -859,6 +872,8 @@ body.fullscreen-mode #legend.legend-box {
       while (pause) await new Promise(r => setTimeout(r, 100));
       const transactions = await fetchTransactionsForKey(publicKey);
 
+      transactionsByNeighbor[publicKey] = transactions; // ✅ ici
+
       appendLoaderLog(`🔄 Loaded ${transactions.length} tx for ${publicKey.slice(0, 10)}… at depth ${level}`);
 
 
@@ -971,6 +986,15 @@ body.fullscreen-mode #legend.legend-box {
       return currentTheme === "light";
     }
 
+    function formatTimestamp(timestamp) {
+      var t = Number(timestamp);
+      if (isNaN(t)) return "-";
+      var date = new Date(t);
+      if (isNaN(date.getTime())) return "-";
+      return date.toISOString().replace(/:\d{2}\.\d{3}Z$/, "Z");
+    }
+
+
 
     function showNodePanel(node) {
       const data = graph.getNodeAttributes(node);
@@ -1002,10 +1026,67 @@ body.fullscreen-mode #legend.legend-box {
         <p><strong>#Transactions:</strong> ${tx}</p>
         <p><strong>#Delegations:</strong> ${del}</p>
         <p><strong>#Failed Transactions:</strong> ${failed}</p>
-        <p><strong>Linked Nodes:</strong></p>
+        <p><strong>Linked Nodes & Transactions:</strong></p>
         <div>
-          ${neighbors.map(n => `<div class="linked-node" onclick="showNodePanel('${n}')">${graph.getNodeAttribute(n, 'label')}</div>`).join('')}
+          ${neighbors.map(n => {
+            const label = graph.getNodeAttribute(n, 'label');
+
+            // Transactions initiées par le voisin vers le nœud sélectionné
+            const fromNeighbor = (transactionsByNeighbor[n] || []).filter(tx =>
+              tx.sender_key === n && tx.receiver_key === node ||
+              tx.receiver_key === n && tx.sender_key === node
+            );
+
+            // Transactions initiées par le nœud sélectionné vers ce voisin
+            const fromNode = (transactionsByNeighbor[node] || []).filter(tx =>
+              tx.sender_key === n && tx.receiver_key === node ||
+              tx.receiver_key === n && tx.sender_key === node
+            );
+
+            // Concatène et déduplique (via hash par exemple si dispo)
+            const interactions = [...fromNeighbor, ...fromNode];
+            const unique = Array.from(new Map(interactions.map(tx => [tx.hash, tx])).values());
+
+            const txTable = unique.length > 0 ? `
+              <table style="width:100%; border-collapse: collapse; font-size: 13px; margin-bottom: 20px;">
+                <thead>
+                  <tr>
+                    <th style="text-align:left;">Timestamp</th>
+                    <th>Block</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Fee</th>
+                    <th>Status</th>
+                    <th>Chain</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${unique.map(tx => `
+                    <tr title="${tx.memo || ''}">
+                      <td>${formatTimestamp(tx.timestamp)}</td>
+                      <td>${tx.block_id || "-"}</td>
+                      <td>${tx.command_type || tx.label || "-"}</td>
+                      <td>${tx.amount ? (parseFloat(tx.amount) / 1e9).toFixed(6) + " Mina" : "-"}</td>
+                      <td>${tx.fee ? (parseFloat(tx.fee) / 1e9).toFixed(6) + " Mina" : "-"}</td>
+                      <td>${tx.status || "-"}</td>
+                      <td>${tx.chain_status || "-"}</td>
+                    </tr>
+                    `).join("")}
+                </tbody>
+              </table>
+            ` : `<p style="color:#888; margin-bottom: 16px;">No direct interactions.</p>`;
+
+            return `
+              <div style="margin-bottom: 20px;">
+                <div class="linked-node" onclick="showNodePanel('${n}')">${label}</div>
+                <div class="mono">
+                  ${txTable}
         </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+
       `;
       details.innerHTML = html;
       panel.style.display = "flex";
@@ -1018,7 +1099,7 @@ body.fullscreen-mode #legend.legend-box {
       const container = document.getElementById("sigma-container");
       graph = new Graph({ multi: true });
       //console.log("Dans InitRenderer - isLightTheme = " + isLightTheme())
-      param = {labelColor: {color: isLightTheme() ? "#000" : "#f00"}}
+      param = {labelColor: {color: isLightTheme() ? "#000" : "#9999ff"}}
       
       //renderer = new Sigma(graph, container);
 
@@ -1332,7 +1413,7 @@ body.fullscreen-mode #legend.legend-box {
       hoveredNode = null;
       selectedNode = null;      
 
-      param = {labelColor: {color: isLightTheme() ? "#000" : "#fff"}}
+      param = {labelColor: {color: isLightTheme() ? "#000" : "#9999ff"}}
       
       //renderer = new Sigma(graph, container);
 
@@ -1583,8 +1664,8 @@ body.fullscreen-mode #legend.legend-box {
       // Apply to Sigma renderer
       if (typeof renderer !== "undefined") {
         //console.log("Inside applyTheme");
-        renderer.setSetting("labelColor", {color: isLightTheme() ? "#000" : "#fff"});
-        renderer.setSetting("labelBackground", {color: isLightTheme() ? "#000" : "#fff"});
+        renderer.setSetting("labelColor", {color: isLightTheme() ? "#000" : "#9999ff"});
+        renderer.setSetting("labelBackground", {color: isLightTheme() ? "#fff" : "#000"});
         //console.log(isLight ? "Label Color switched to #000" : "Label Color switched to #fff");
         renderer.setSetting("defaultNodeColor", isLight ? "#444" : "#ccc");
         renderer.setSetting("defaultEdgeColor", isLight ? "#aaa" : "#555");
