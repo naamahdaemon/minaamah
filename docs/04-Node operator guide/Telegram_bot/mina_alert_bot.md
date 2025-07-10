@@ -242,7 +242,7 @@ Provide Block detailed information if used with a `block_height` argument.
 `/get_block`  
 
 > ```
-> 🟢 We are at block height `464299` (epoch `26`, slot `6603`)  
+> 🟢 We are at block height `464299` (epoch 26, slot 6603)  
 > ```
   
 `/get_block 464299`  
@@ -266,14 +266,13 @@ Return the full validator address from a short validator address returned by `/v
 `/get_full_address B62qpge...7pvLPAN`  
 
 > ```
-> 🔎 Full Address Matches:  
-B62qpge4uMq4Vv5Rvc8Gw9qSquUYd6xoW1pz7HQkMSHm6h1o7pvLPAN  
-🔗 https://minascan.io/mainnet/account/B62qpge4uMq4Vv5Rvc8Gw9qSquUYd6xoW1pz7HQkMSHm6h1o7pvLPAN/blocks  
+> 🔎 Full Address Matches: B62qpge4uMq4Vv5Rvc8Gw9qSquUYd6xoW1pz7HQkMSHm6h1o7pvLPAN  
+> 🔗 https://minascan.io/mainnet/account/B62qpge4uMq4Vv5Rvc8Gw9qSquUYd6xoW1pz7HQkMSHm6h1o7pvLPAN/blocks  
 > ```
 :::
 
 ---    
-## Get calaculated rewards payout estimation
+## Get calculated rewards payout estimation
 ### `/get_payouts epoch=<num> publicKey=<validator> delegatePubkey=<delegator> [poolFee=5] [foundFee=8] [o1labsFee=5] [shareTxFee=0|1|2]`  
 This command returns the expected payouts for an epoch and a validator.  
 Used with only `epoch=<num>` `publicKey=<validator>` parameters, it will return the detailed block production, total coinbase, .. stats for this epoch and this validator.  
