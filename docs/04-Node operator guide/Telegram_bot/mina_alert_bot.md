@@ -281,7 +281,7 @@ Requires DM confirmation (password). Summary posted in group.
 > Players must have wallets & will **confirm in DM** before any transfer/signing.  
 > First, users may need to opt-in to games (e.g. via a private `/game` toggle if you keep that anti-spam switch).  
 
-:::failure  IMPORTANT
+:::warning  IMPORTANT
 Games are only available on testnets/devnets.
 :::
 
