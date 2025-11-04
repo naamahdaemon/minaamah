@@ -1,312 +1,412 @@
----
-sidebar_position: 14
-sidebar_label: Mina Alert Bot
-sidebar_class_name: green
----
+---  
+sidebar_position: 14  
+sidebar_label: Mina Wallet Bot  
+sidebar_class_name: green  
+---  
 
-# Mina Telegram Bot
-I would like to introduce my new tool dedicated to every Mina Protocol user :   
-  
-**Mina Alert Bot**  
+# Mina Telegram Bot  
 
-![START PAGE](Assets/start.png)
+**Mina Wallet & Alerts on Telegram**  
+A Telegram bot that brings Mina blockchain features right where your community already is.  
 
-**Mina Alert Bot** 
-is a telegram bot that bring the power of a Mina blockchain explorer right in your Telegram application.  
-  
-Add the bot to your telegram by clicking on :  
-  
-:::tip  MINA_ALERT_BOT
+Add the bot to Telegram:  
+:::tip MINA_WALLET_BOT  
 [https://t.me/mina_monitor_bot](https://t.me/mina_monitor_bot)  
 :::  
- 
----  
-## Wallet Watch list
-You can add, name, remove, rename any mina wallet address you want to watch for any transaction occuring on that address including :  
-  
-  * Payment transaction in/out
-  * Stake delegation transaction in/out
-  * zkApps transactions
-  * Token transfers
+
+![START PAGE](Assets/start.png)  
 
 ---  
-### `/watch <address> [<name>]`
-**Enable watch on `<address>`**  
-  
-:::info  Example  
-`/watch B62qrmRJosdwWKwFXjfLEA7fNaPDkAiSkGmGDLiPQkphCcnC7agyYEZ MY_WALLET`  
-  
-> ```
-> 🆕 User `xxxxxxxxxx` added address `B62qrmRJosdwWKwFXjfLEA7fNaPDkAiSkGmGDLiPQkphCcnC7agyYEZ` to their watchlist  
-> 👁️ Address added : `B62qrmRJosdwWKwFXjfLEA7fNaPDkAiSkGmGDLiPQkphCcnC7agyYEZ (MY_WALLET)`  
-> ```
-:::
 
-You will then receive alert notification messages whenever a transfer occur on this address.
+## What the bot can do  
 
-:::info  Example  
-> ```
-> 📦 `B62qrmRJosdwWKwFXjfLEA7fNaPDkAiSkGmGDLiPQkphCcnC7agyYEZ` →  
-> 📦 `B62qrmRJosdwWKwFXjfLEA7fNaPDkAiSkGmGDLiPQkphCcnC7agyYEZ` ←  
-> 💸 Amount: 0.010 MINA  
-> 💰 Fee: 0.010 MINA  
-> 🧾 Kind: PAYMENT  
-> 📝 Memo:    zkdev-tx-generator  
-> 🔗 Voir sur Minascan  
-> ```
-:::
+- **Wallets in Telegram**: create, encrypt & store, list, set default, reveal private key (with password), delegate stake, send payments, tip users, claim faucets, and run **rain** distributions  
+- **Address & Validator Watching**: get alerts on transactions, delegations, zkApps, token transfers; get notified on validator block production (canonical/orphan)  
+- **On-chain Insights**: get current block/epoch, resolve truncated addresses, validator stats, payout estimations per epoch  
+- **Leaderboards & Referrals**: tips leaderboard and referrer leaderboard (public groups) + personal referral settings  
+- **Mini-Games** *(public groups)*: **/dice_roll** and **/guess** (configurable tries & bet multiplier) with token stakes  
+- **Mina Price Chart**: view a quick price chart via `/pc`  
+- **Faucet Claim**: get 5 test MINA on **zeko_testnet** or **devnet** via `/faucet`  
+- **Multi-Network**: `mainnet | devnet | zeko_testnet` (defaults indicated per command)  
+
+> 🧭 **Convention**  
+> - Angled brackets `<...>` = required  
+> - Square brackets `[...]` = optional  
+> - `_italics_` = default value  
+> - Aliases are shown with a pipe: `/command | /alias`  
 
 ---  
-### `/unwatch <address>`
-**Remove `<address>` from watchlist**  
 
-:::info  Example
-`/unwatch B62qrmRJosdwWKwFXjfLEA7fNaPDkAiSkGmGDLiPQkphCcnC7agyYEZ`  
-  
-> ```
-> ❌ Stopped watching: `B62qrmRJosdwWKwFXjfLEA7fNaPDkAiSkGmGDLiPQkphCcnC7agyYEZ`
-> ```
-:::
+## Security & Custody Model  
 
----  
-## Validator watch list
-You can add any validator address to a dedicated watch list so that you will be alerted whenever your validator create a new block and include it on the blockchain.  
- 
- * Canonical Blocks
- * Orphan Blocks
+Your private key is securely encrypted and stored on our servers using modern cryptography (**AES-GCM**) and a password known **only to you**.  
+We **never store your password**, and it is **never logged or sent anywhere** beyond the secure Telegram channel you use to communicate with the bot.  
 
----  
-### `watch_validator <validator_address> [<name>]`
-**Enable watch on validator/block producer**  
-  
-:::info  Example  
-`/watch_validator B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr Naamah`  
-  
-> ```
-> 🆕 User `xxxxxxxxxx` added validator `B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr` to their watchlist  
-> ✅ Validator added : `B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr` (`Naamah`)  
-> ```
-:::  
-  
-You will then receive alert notification messages whenever a Block is produced by this validator  
-  
-:::info  Example - Canonical Block  
-> ```
-> 🟢 Canonical block (height 464142)  
-> 🕒 Epoch: 26, Slot: 6273  
-> ⛏️ BP `B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr`  
-> 💰 Coinbase: 720.00 MINA  
-> 🎯 Receiver: `B62qr1kSFmLBtFbx22VwX2m9WWHVLziYUXNnY8413dsTAfsChHjTM2S`  
-> 🔗 See on Minascan  
-> ```
-:::  
+When you perform an action that requires your private key (such as signing a transaction), the bot **temporarily decrypts your key in memory only**, using your password, to sign the requested operation.  
+Immediately afterward, the key and decrypted data are **permanently wiped from memory**.  
 
-:::info  Example - Orphan Block  
-> ```
-> 🔴 Orphan block (height 464273)  
-> 🕒 Epoch: 26, Slot: 6536  
-> ⛏️ BP `B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr`  
-> 💰 Coinbase: 720.00 MINA  
-> 🎯 Receiver: `B62qr1kSFmLBtFbx22VwX2m9WWHVLziYUXNnY8413dsTAfsChHjTM2S`  
-> 🔗 See on Minascan  
-> ```
-:::
+Even in the event of a **data breach or database leak**, your encrypted keys would remain **mathematically unusable** without your password.  
+
+The bot server itself is **not directly reachable from the Internet** — it communicates exclusively through **Telegram’s secure API channels**.  
+
+### What This Means  
+
+- Only **you** can use your key — nobody else knows your password.  
+- Your key **never leaves** the secure server environment in decrypted form.  
+- The server **cannot access or recover** your key without your password.  
+- The system provides a **level of protection comparable to local non-custodial wallets**.  
+
+However, because decryption and signing occur on the server (under your explicit command), this wallet is **not strictly “non-custodial”** in the pure cryptographic sense.  
+It is best described as a **secure custodial wallet with zero-knowledge encryption** — combining **strong security**, **simplicity**, and **user control**.  
+
+#### Summary  
+
+| **Aspect** | **Description** |  
+| --- | --- |  
+| **Encryption** | AES-GCM with Argon2 password-derived key |  
+| **Password** | Known only by the user, never stored or logged |  
+| **Decryption** | Performed temporarily in memory for each operation |  
+| **Exposure** | No inbound ports, Telegram API only |  
+| **Custody classification** | Secure custodial (zero-knowledge) |  
+| **External attack surface** | Extremely low |  
 
 ---  
-### `/unwatch_validator <validator_address>`
-**Remove `<address>` from validator watchlist**  
-  
-:::info  Example
-`/unwatch_validator B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr`  
-  
-> ```
-> ❌ Stopped watching validator: `B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr`
-> ```
-:::
+
+## Private Chat Commands  
+
+> DM the bot to manage your wallets, watchlists, referrals, and alerts.  
+> Some commands have aliases for convenience.  
+
+### Watchlists  
+
+#### Watch a wallet address  
+`/watch | /wa <address> <label>`  
+Receive alerts for:  
+- Payment in/out  
+- Delegation in/out  
+- zkApps  
+- Token transfers  
+
+**Example**  
+```
+/watch B62qrmRJ...C7agyYEZ MY_WALLET
+```  
+
+#### Unwatch a wallet address  
+`/unwatch | /ua <address>`  
+
+#### Watch a validator (block producer)  
+`/watch_validator | /wv <validator_address> <label>`  
+
+**Example**  
+```
+/watch_validator B62qpsyB...a9fFnWr Naamah
+```  
+
+#### Unwatch a validator  
+`/unwatch_validator | /uv <validator_address>`  
+
+#### Rename any watched entry (address or validator)  
+`/rename | /rn <address_or_validator> <label>`  
+
+#### List all watched items  
+`/list | /l`  
 
 ---  
-### `/rename <address_or_validator> <label>`
-**Rename a watched address or a validator address**  
-  
-:::info  Example
-`/rename B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr Naamah BP`  
 
-> ```
-> ✏️ Updated Label for  address and validator `B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr` → `Naamah BP`  
-> ```
-:::
+### Wallet Management  
 
----  
-## Empty Coinbase
-### `/alert_coinbase <on>|<off>`  
-**enable/disable empty coinbase alert**
-If you run a validator, then you may have heard about the Empty Coinbase problem !
-This setting allows you to be alerted in real time whenever a block is produced and included in the main chain with an empty coinbase transaction.  
-  
-:::info  Example
-`/alert_coinbase on`
+#### Create wallet  
+`/create_wallet | /cw`  
+Prompts for a password, creates a keypair, encrypts the private key, and stores it securely.  
 
-> ```  
-> Empty Coinbase Alert activée ✅  
-> ```
-  
-`/alert_coinbase off`  
+#### Delete a wallet  
+`/user_delete_wallet`  
+Removes a Mina wallet from your list.  
 
-> ```
-> Empty Coinbase Alert désactivée ❌  
-> ```
-:::
+#### List your wallets  
+`/list_wallets | /lw`  
+Shows your public addresses. The **default** one is marked.  
+
+#### Set default wallet  
+`/set_default | /sd <wallet_address>`  
+Sets `<wallet_address>` as your default for tip/send operations.  
+
+#### Show private key  
+`/show_private_key | /spk [<public_key>]`  
+Reveals your private key after password verification. If you have multiple wallets, specify the public key.  
+
+#### Delegate stake (from your Telegram wallets)  
+`/delegate`  
+Interactive flow to delegate the stake of your Telegram-managed wallets.  
 
 ---  
-## Validator Statistics
-### `/validator_stats [<epoch>] [<validator>]`  
-**dispay validators statistics**  
-This command will display validator statistics.  
-Running without any parameters will display all validators statistics for all epochs.  
-You can optionnaly specify a validator and / or an epoch to filter accordingly.  
-  
-:::info  Example
-`/validator_stats`  
-> ```
-> 📊 Validator Stats — Epoch 26:  
-> B62qpge...7pvLPAN | 90 blocks |  10.71%  
-> B62qq3T...PTkDBW6 | 77 blocks |  9.17%   
-> B62qj28...zXdsYLP | 61 blocks |  7.26%   
-> B62qrYi...tTiKhDe | 49 blocks |  5.83%   
-> B62qpbp...wfpKvXs | 43 blocks |  5.12%     
-> B62qoA5...tG3MQk9 | 40 blocks |  4.76%   
-> B62qoiM...xi9ywk2 | 26 blocks |  3.10%   
-> B62qmFf...nGBtkBD | 25 blocks |  2.98%   
-> B62qq6Z...oDR9Gd6 | 19 blocks |  2.26%   
-> B62qmkG...7j2X5zp | 18 blocks |  2.14%   
-> B62qopH...iXnTbas | 15 blocks |  1.79%   
-> B62qrQi...T8tcUAC | 13 blocks |  1.55%   
-> B62qpsi...PWPHxPe | 10 blocks |  1.19%   
-> B62qrae...WtfUPm3 | 9 blocks  |  1.07%   
-> B62qqV1...r3Rqqzx | 9 blocks  |  1.07%   
-> B62qmpS...8XezSuG | 8 blocks  |  0.95%   
-> B62qj9S...7dfW4AP | 7 blocks  |  0.83%   
-> B62qmM9...kSUGug5 | 7 blocks  |  0.83%   
-> B62qrHz...JZA4ECj | 7 blocks  |  0.83%   
-> B62qnSj...ynxXZZF | 7 blocks  |  0.83%   
-> B62qn7H...K5biQef | 6 blocks  |  0.71%   
-> B62qqKo...kC8KZqs | 6 blocks  |  0.71%   
-> B62qnxH...9p3kE3b | 6 blocks  |  0.71%   
-> B62qkCB...HJjtiX4 | 6 blocks  |  0.71%   
-> B62qn7K...EkPsSmJ | 6 blocks  |  0.71%   
-> ```
-:::
 
-:::info  Example
-`/validator_stats 26 B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr`  
+### Transfers & Tools (DM)  
 
-> ```
-> 📊 Validator Stats — Epoch 26:  
-> `B62qpsy...a9fFnWr` | 2 blocks |  100.00%  
-> ```
-:::
+> Unless stated otherwise, **default network is _mainnet_**.  
+> You can override with `devnet` or `zeko_testnet` when supported.  
+
+#### Build & send with Auro (deeplink)  
+`/send <recipient_address> <amount> <fee> [memo] [network_id (**mainnet**|devnet|zeko_testnet)]`  
+Builds a payment link and opens Auro for signing/broadcast.  
+
+#### Tip from your wallet(s)  
+- Single-wallet flow:  
+  `/tip <to> <amount> <fee> [memo] [*mainnet*|devnet|zeko_testnet]`  
+- Multi-wallet flow (explicit source):  
+  `/tip <from> <to> <amount> <fee> [memo] [*mainnet*|devnet|zeko_testnet]`  
+
+> `to` can be a **B62** address or an **@username** (if they have a registered wallet).  
+
+#### Faucet (DM)  
+`/faucet [devnet|zeko_testnet]`  
+Claim a **5 MINA faucet** on `zeko_testnet` or `mina devnet` (limited to **1 faucet per user**).  
+
+#### Check balances  
+- Address:  
+  `/balance | /b <address> [*mainnet*|devnet|zeko_testnet]`  
+- All wallets of an @username:  
+  `/balance | /b <@username> [*mainnet*|devnet|zeko_testnet]`  
+
+#### Price chart  
+`/pc` – Displays Mina price chart.  
 
 ---  
-## List watched addresses
-### `/list`
-**display the list of watched addresses and validators**  
-Provide the list of all watched addresses and watched validators.  
 
-:::info  Example  
-`/list`  
+### Alerts & Stats (DM)  
 
-> ```
-> 👁️  Watched Addresses :  
-> - B62.................................................... (Address 1)  
-> - B62.................................................... (Address 2)  
-> - B62.................................................... (Address 3)  
-> - B62.................................................... (Address 4)  
-> 
-> ✅ Watched Validators :  
-> - B62.................................................... (Validator 1)  
-> - B62.................................................... (Validator 2)  
-> - B62.................................................... (Validator 3) 
->  
-> 🔔 Empty Coinbase Alert : ✅ ON  
-> ```
-:::
+#### Empty coinbase alert  
+`/alert_coinbase | /ac on|off`  
+Enable/disable global alerts when a block is produced with **empty coinbase**.  
+
+#### Validator stats  
+`/validator_stats | /vs [epoch] [validator]`  
+- No args → show global stats (current epoch)  
+- With `epoch`/`validator` → filter results  
+
+#### Resolve truncated address  
+`/get_full_address | /gf <short_address>`  
+Resolve `B62...abcd` → full address  
+
+#### Block & epoch info  
+- Current block/epoch/slot:  
+  `/get_block | /gb`  
+- Specific block:  
+  `/get_block | /gb <height>`  
+
+#### Show all blocks (live scroll)  
+`/show_all` – Live stream of produced blocks (use with care).  
 
 ---  
-## Get Epoch and Block information
-### `get_block [\<block_height\>}]`  
-**display current epoch information or specific Block information**  
-Provide epoch information if used without any argument.  
-Provide Block detailed information if used with a `block_height` argument.  
-  
-:::info  Example
-`/get_block`  
 
-> ```
-> 🟢 We are at block height `464299` (epoch 26, slot 6603)  
-> ```
-  
-`/get_block 464299`  
+### Referrals (DM)  
 
-> ```
-> 🟢 Canonical block (height 464299)  
-> 🕒 Epoch: `26`, Slot: `6603`  
-> ⛏️ BP `B62qrYipbTfEx5GoJf99uU2iAcW2jgAvnoy1Wrj4WeMEnnZutTiKhDe`  
-> 💰 Coinbase: 720.00 MINA  
-> 🎯 Receiver: `B62qp3LaAUKQ76DdFYaQ7bj46HDTgpCaFpwhDqbjNJUC79Rf6x8CxV3`  
-> 🔗 See on Minascan  
-> ```
+#### Show / update my referral  
+`/my_referral | /mr`  
+View or set your referrer code/username to participate in **referral leaderboards**.  
+
+---  
+
+### Help & Menus (DM)  
+
+#### Help  
+`/help` – Displays this help menu with all available commands.  
+
+#### Menu  
+`/menu` – Opens the interactive button-based menu for quick access to main bot functions.  
+
+You can trigger the **menu** at any time to quickly access the main sections of the bot such as wallet management, delegation, epoch info, or watchlist.  
+
+![Menu Example](Assets/menu.png)  
+
+> The menu allows users to easily navigate core features without remembering all command names.  
+> Each button corresponds to one of the major functional areas:  
+> - ❓ **Help** — Displays the list of all available commands  
+> - 📦 **Epoch** — Shows current epoch, slot, and block information  
+> - 🗒️ **Watchlist** — Manage your watched addresses and validators  
+> - 💰 **Wallets** — Manage your Mina wallets (create, list, set default, etc.)  
+> - 🧭 **Delegate** — Delegate your stake to a validator  
+> - 🆕 **Wallet** — Quickly create a new Mina wallet  
+
+---  
+
+## Public Group Commands  
+
+> Use these in public groups. Some actions (like **rain** or **games**) will require a **DM confirmation** (password) by involved players for security.  
+
+### Info & Tools  
+
+- `/pc` — Show Mina Price Chart  
+- `/get_block | /gb` — Current block height, epoch, slot  
+- `/get_block | /gb <height>` — Show block info for `<height>`  
+- `/help` — Quick help  
+- `/menu` — Open quick access menu  
+- `/balance | /b <address>` — Show balance in MINA  
+- `/balance | /b <@username> [mainnet|devnet|zeko_testnet]` — Show all balances of an @user (default: mainnet)  
+- `/faucet [devnet|zeko_testnet]` — Claim a **5 MINA faucet** on zeko_testnet or mina devnet (1 faucet per user)  
+
+---  
+
+### Wallet Actions in Group  
+
+> These actions will ask the **sender** to confirm in **DM** (password) if they require signing.  
+
+#### Create wallet (guided in DM)  
+`/create_wallet | /cw`  
+Starts wallet creation flow (continues in DM).  
+
+#### Tip a user  
+`/tip @telegram_user <amount> [fee] [memo] [*mainnet*|devnet|zeko_testnet]`  
+Sends a tip from your **default** wallet. DM confirmation may be required.  
+
+#### Rain (random distribution)  
+`/rain <amount> <nb_users> [fee] [memo] [network_id (**mainnet**|devnet|zeko_testnet)]`  
+Randomly distribute `<amount>` among `<nb_users>` **eligible** members (must have a wallet & be in this group).  
+Requires DM confirmation (password). Summary posted in group.  
+
+---  
+
+### Leaderboards (Group)  
+
+- `/leaderboard | /lb [*mainnet*|devnet|zeko_testnet] [YYYY-MM-DD] [YYYY-MM-DD]`  
+  Tip leaderboard over an optional date range and network.  
+- `/reflb`  
+  Referrer leaderboard.  
+
+---  
+
+### Mini-Games (Group)  
+
+> Players must have wallets & will **confirm in DM** before any transfer/signing.  
+> First, users may need to opt-in to games (e.g. via a private `/game` toggle if you keep that anti-spam switch).  
+
+:::failure  IMPORTANT
+Games are only available on testnets/devnets.
 :::
 
----    
-## Get Full Address from a shortened address
-### `get_full_address <short_address>`  
-Return the full validator address from a short validator address returned by `/validator_stats` command.  
-  
-:::info  Example
-`/get_full_address B62qpge...7pvLPAN`  
+#### Dice Roll  
+`/dice_roll @username <amount> [network_id (devnet|**zeko_testnet**)]`  
+Challenge another user to a dice roll. Highest roll wins the pot.  
 
-> ```
-> 🔎 Full Address Matches: B62qpge4uMq4Vv5Rvc8Gw9qSquUYd6xoW1pz7HQkMSHm6h1o7pvLPAN  
-> 🔗 https://minascan.io/mainnet/account/B62qpge4uMq4Vv5Rvc8Gw9qSquUYd6xoW1pz7HQkMSHm6h1o7pvLPAN/blocks  
-> ```
-:::
+- Bot DM flow: both players confirm with password  
+- On success: winner receives `<amount>` from the loser (or split pot if you configured a pot logic)  
 
----    
-## Get calculated rewards payout estimation
-### `/get_payouts epoch=<num> publicKey=<validator> delegatePubkey=<delegator> [poolFee=5] [foundFee=8] [o1labsFee=5] [shareTxFee=0|1|2]`  
-This command returns the expected payouts for an epoch and a validator.  
-Used with only `epoch=<num>` `publicKey=<validator>` parameters, it will return the detailed block production, total coinbase, .. stats for this epoch and this validator.  
-Used with a wallet address that delegates to this validator `delegatePubkey=<delegator>`, it will return an estimated amount of expected return from this validator to this delegate.  
+**Example**  
+```
+/dice_roll @alice 1
+```  
+
+#### Guess My Number  
+`/guess @username <amount> [number_of_tries(_default: 5_)] [bet_multiplier(_default: 1_)] [network_id (devnet|**zeko_testnet**)]`  
+Challenge another player to guess a number between **1 and 100**.  
+
+- `number_of_tries`: how many guesses the opponent gets (default **5**)  
+- `bet_multiplier`: if the opponent finds the number, they win **multiplier × amount**; if not, the starter wins **1 × amount**  
+
+**Examples**  
+```
+/guess @alice 2
+/guess @alice 2 7 3
+/guess @alice 2 7 3 zeko_testnet
+```  
+
+> The final DM result message includes the **secret number** for transparency.  
+
+---  
+
+## Examples (Copy-Paste Ready)  
+
+### Watch a wallet & get alerts (DM)  
+```
+/wa B62qrmRJ...C7agyYEZ MY_WALLET
+```  
+
+### Watch a validator & get block alerts (DM)  
+```
+/wv B62qpsyB...a9fFnWr Naamah
+```  
+
+### Enable Empty Coinbase alerts (DM)  
+```
+/ac on
+```  
+
+### Get validator stats for an epoch (DM)  
+```
+/vs 106 B62qrYi...tTiKhDe
+```  
+
+### Resolve a short address (DM)  
+```
+/gf B62qpge...7pvLPAN
+```  
+
+### Claim faucet (DM or Group)  
+```
+/faucet zeko_testnet
+```  
   
-:::info  Example
-`/get_payouts epoch=106 publicKey=B62qrYipbTfEx5GoJf99uU2iAcW2jgAvnoy1Wrj4WeMEnnZutTiKhDe`  
-> ```
-> Epoch: 106  
-> Validator: `B62qrYipbTfEx5GoJf99uU2iAcW2jgAvnoy1Wrj4WeMEnnZutTiKhDe`  
-> Validator Stake: 32700110.91 MINA  
-> Blocks Produced: 176  
-> Coinbase: 126720.000 MINA  
-> Transaction Fees: 60.14433  
-> Snark Fees: 0.00000  
-> Empty Coinbase Blocks: 0  
-> ```
-  
-`/get_payouts epoch=106 publicKey=B62qrYipbTfEx5GoJf99uU2iAcW2jgAvnoy1Wrj4WeMEnnZutTiKhDe delegatePubkey=B62qrYipbTfEx5GoJf99uU2iAcW2jgAvnoy1Wrj4WeMEnnZutTiKhDe`  
-> ```
-> Epoch: 106  
-> Validator: `B62qrYipbTfEx5GoJf99uU2iAcW2jgAvnoy1Wrj4WeMEnnZutTiKhDe`  
-> Validator Stake: 32700110.91 MINA  
-> Blocks Produced: 176  
-> Coinbase: 126720.000 MINA  
-> Transaction Fees: 60.14433  
-> Snark Fees: 0.00000  
-> Empty Coinbase Blocks: 0  
->  
-> 🚨 FOR INFORMATION ONLY 🚨  
-> 🔹 Key: `B62qrYipbTfEx5GoJf99uU2iAcW2jgAvnoy1Wrj4WeMEnnZutTiKhDe`  
-> 📦 Stake: 7200.59 MINA  
-> 📊 Share: 0.02%  
-> 💰 Due Amount: 26.484 MINA  
-> 🏷️  Account Type: Regular  
-> ```
-:::
+### Open menu (DM or Group)  
+```
+/menu
+```  
+
+### Show current block (Group or DM)  
+```
+/gb
+```  
+
+### Show a specific block (Group or DM)  
+```
+/gb 464299
+```  
+
+### Tip a user in group  
+```
+/tip @alice 1 0.01 gz for testing zeko_testnet
+```  
+
+### Rain 10 MINA over 5 users in group (mainnet default)  
+```
+/rain 10 5 0.01 Party time!
+```  
+
+### Create a wallet (Group → continues in DM)  
+```
+/cw
+```  
+
+### Dice Roll (Group)  
+```
+/dice_roll @alice 1 zeko_testnet
+```  
+
+### Guess My Number (Group)  
+```
+/guess @alice 2 7 3 zeko_testnet
+```  
+
+---  
+
+## Payout Estimator (DM)  
+
+`/get_payouts epoch=<num> publicKey=<validator> delegatePubkey=<delegator> [poolFee=5] [foundFee=8] [o1labsFee=5] [shareTxFee=0|1|2]`  
+
+- With only `epoch` & `publicKey`: validator’s production & rewards for the epoch  
+- Add `delegatePubkey` to estimate **delegator** returns  
+
+**Example**  
+```
+/get_payouts epoch=106 publicKey=B62qrYi...tTiKhDe
+```  
+
+---  
+
+## Notes & Best Practices  
+
+- **Security first**: The bot will **always** ask for your password in DM before any action requiring your private key.  
+- **Networks**: Many commands default to **mainnet**; specify `devnet` or `zeko_testnet` when needed.  
+- **Aliases**: Use the short forms (`/wa`, `/wv`, `/uv`, `/rn`, `/lw`, `/sd`, `/spk`, `/vs`, `/gf`, `/gb`, `/ac`, `/lb`) for faster typing.  
+- **Gaming opt-in**: If enabled in your deployment, users must first opt-in via a private `/game` toggle to avoid spam.  
+- **Group eligibility** (rain/games): Users must have a wallet registered and be present in the group.  
