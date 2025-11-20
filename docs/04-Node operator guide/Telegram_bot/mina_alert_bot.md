@@ -70,6 +70,82 @@ It is best described as a **secure custodial wallet with zero-knowledge encrypti
 | **Custody classification** | Secure custodial (zero-knowledge) |  
 | **External attack surface** | Extremely low |  
 
+---
+## How to Start
+
+Getting started with the Mina Wallet Bot only takes a few minutes.  
+Follow these 4 simple steps:
+
+### 1. Start a private chat with the bot  
+Open this link and press **Start**:  
+👉 [https://t.me/mina_monitor_bot](https://t.me/mina_monitor_bot)
+
+All sensitive actions (password, private key, signing) **must** be done in private DM for security.
+
+Upon start, you will be asked if you want to create your wallet (you can delay your wallet creation and create it later (See 2).
+
+![Create Wallet](Assets/create_wallet.png)
+
+---
+
+### 2. Create your first Mina wallet  
+In DM, type:
+
+```
+/create_wallet
+```
+
+After having accepted the disclaimer :
+
+![Disclaimer](Assets/disclaimer.png)
+
+
+You will be asked to choose a **password**.  
+This password encrypts your private key and is **never stored anywhere**.  
+
+![Password](Assets/password.png)
+
+After confirming, the bot creates your wallet and displays your **public address**.
+
+![Password](Assets/wallet_created.png)
+
+---
+
+### 3. Claim a faucet (testnet only)  
+To get 5 test MINA on **devnet** or **zeko_testnet**, type:
+
+```
+/faucet devnet
+```
+
+or
+
+```
+/faucet zeko_testnet
+```
+
+![Faucet](Assets/faucet.png)
+
+You can use these funds to test tips, games, or payments safely.
+
+---
+
+### 4. Send your first MINA (tip someone)  
+Once you have testnet MINA, try sending some:
+
+```
+/tip B62qqxVafmoBataYLwazvkWEFKWsjPG8ajYEG9aSUpVkpos3XCWYbzw 1 0.01 zeko_testnet
+```
+
+The bot will ask for your **password** so it can decrypt your key in memory and sign the transaction.
+
+![Payment](Assets/send_payment.png)
+
+---
+
+**You’re ready!**  
+You now have a working wallet, funds, and the ability to send and receive MINA or use all the bot’s advanced features.
+
 ---  
 
 ## Private Chat Commands  
