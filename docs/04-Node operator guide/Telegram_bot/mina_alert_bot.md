@@ -137,6 +137,12 @@ Once you have testnet MINA, try sending some:
 /tip B62qqxVafmoBataYLwazvkWEFKWsjPG8ajYEG9aSUpVkpos3XCWYbzw 1 0.01 zeko_testnet
 ```
 
+or 
+
+```
+/tip @telegram_username 1 0.01 zeko_testnet
+```
+
 The bot will ask for your **password** so it can decrypt your key in memory and sign the transaction.
 
 ![Payment](Assets/send_payment.png)
