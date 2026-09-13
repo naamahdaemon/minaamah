@@ -18,447 +18,13 @@
 	<meta name="twitter:description" content="Compare any mina protocol validator with each other and choose the best one ! ">
 
     <title>Naamah's Mina Protocol Block Producers comparison tool</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VR50WVP209"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.2/dist/chartjs-plugin-annotation.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
 
-    <style>
-        body {
-            font-family: 'Fira Code', monospace;
-            background-color: #f0f8f7; /* light green background */
-            margin: 5px;
-            padding: 5px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body.dark-mode {
-            background-color: #1e1e1e; /* dark background */
-            color: #cfcfcf; /* light text */
-        }
-
-        h1 {
-            color: #0a7161; /* dark green text */
-        }
-
-        h2 {
-            color: #0a7161; /* dark green text */
-            font-size: 18px; /* reduced font size */
-        }
-
-        body.dark-mode h1, body.dark-mode h2 {
-            color: #88c0d0; /* light blue text */
-        }
-
-        .label-container {
-            display: inline-flex;
-            align-items: center;
-        }
-
-        label {
-            display: inline-block;
-            margin-bottom: 5px;
-            color: #0a7161; /* dark green label */
-        }
-
-        body.dark-mode label {
-            color: #88c0d0; /* light blue label */
-        }
-
-        input[type="number"], input[type="text"], button {
-            padding: 8px;
-            font-size: 16px;
-            width: 100%;
-            border: 1px solid #0a7161; /* dark green border */
-            border-radius: 5px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-            font-family: 'Fira Code', monospace;
-            transition: background-color 0.3s, color 0.3s, border 0.3s;
-        }
-
-        body.dark-mode input[type="number"], body.dark-mode input[type="text"], body.dark-mode button {
-            background-color: #2e2e2e; /* dark input background */
-            color: #cfcfcf; /* light input text */
-            border: 1px solid #88c0d0; /* light blue border */
-        }
-
-        .wrapped-text {
-            word-wrap: break-word;
-            text-align: center;
-            border-radius: 10px;
-            background-color: white;
-            padding: 10px;
-            margin: 0 auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        body.dark-mode .wrapped-text {
-            background-color: #2e2e2e; /* dark wrapped-text background */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* light shadow */
-        }
-
-        button {
-            background-color: #0a7161; /* dark green button */
-            color: white;
-            cursor: pointer;
-            font-family: 'Fira Code', monospace;
-            transition: background-color 0.3s;
-        }
-
-        body.dark-mode button {
-            background-color: #88c0d0; /* light blue button */
-            color: #1e1e1e; /* dark button text */
-        }
-
-        button:hover {
-            background-color: #0d9c84; /* lighter green on hover */
-        }
-
-        body.dark-mode button:hover {
-            background-color: #8fbcbb; /* lighter blue on hover */
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-bottom: 20px;
-            border: 1px solid #0a7161; /* dark green border */
-            border-radius: 5px;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border: 1px solid #0a7161; /* dark green border */
-        }
-
-        th {
-            background-color: #0d9c84; /* lighter green header */
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #e6f3f0; /* very light green */
-        }
-
-        tr:hover {
-            background-color: #d1ede1; /* light green on hover */
-        }
-
-        body.dark-mode table {
-            border: 1px solid #88c0d0; /* light blue border */
-        }
-
-        body.dark-mode th {
-            //background-color: #88c0d0; /* light blue header */
-            //color: #1e1e1e; /* dark header text */
-            background-color: #1e1e1e; /* black header */
-            color: white; /* white text */            
-        }
-
-        a {
-            color: #0a7161; /* dark green links */
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        body.dark-mode a {
-            color: white; /* white links in dark mode */
-        }
-
-        body.dark-mode tr:nth-child(even) {
-            background-color: #2e2e2e; /* dark row background */
-        }
-
-        body.dark-mode tr:hover {
-            background-color: #3b4252; /* darker row on hover */
-        }
-
-        .warning-box {
-            background-color: #ffdddd; /* Light red background */
-            border-left: 6px solid #f44336; /* Red left border */
-            padding: 16px;
-            margin: 20px 0;
-            border-radius: 4px;
-            color: #333; /* Text color */
-            font-family: Arial, sans-serif;
-        }
-
-        body.dark-mode .warning-box {
-            background-color: #3b4252; /* Dark red background */
-            border-left: 6px solid #bf616a; /* Darker red left border */
-            color: #cfcfcf; /* Light text color */
-        }
-
-        .warning-box strong {
-            font-weight: bold;
-            color: #d8000c; /* Darker red for emphasis */
-        }
-
-        body.dark-mode .warning-box strong {
-            color: #bf616a; /* Light red for emphasis */
-        }
-
-        .info-box {
-            background-color: #ddffdd; /* Light green background */
-            border-left: 6px solid #43f436; /* green left border */
-            padding: 16px;
-            margin: 20px 0;
-            border-radius: 4px;
-            color: #333; /* Text color */
-            font-family: Arial, sans-serif;
-        }
-
-        body.dark-mode .info-box {
-            background-color: #3b4252; /* Dark green background */
-            border-left: 6px solid #a3be8c; /* Light green left border */
-            color: #cfcfcf; /* Light text color */
-        }
-
-        .info-box strong {
-            font-weight: bold;
-            color: #00880c; /* Darker green for emphasis */
-        }
-
-        body.dark-mode .info-box strong {
-            color: #a3be8c; /* Light green for emphasis */
-        }
-
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-        }
-
-        .copy-emoji {
-            cursor: pointer;
-            margin-left: 10px;
-        }
-
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            margin-left: auto;
-        }
-
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            background-color: #f9f9f9;
-            color: #333;
-            text-align: left;
-            font-size: 10px;
-            border-radius: 5px;
-            padding: 5px;
-            border: 1px solid #ddd;
-            position: absolute;
-            z-index: 1;
-            left: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-            margin-left: 10px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            white-space: normal;
-            width: auto;
-            max-width: 600px;
-        }
-
-        body.dark-mode .tooltip .tooltiptext {
-            background-color: #2e2e2e; /* dark tooltip background */
-            color: #cfcfcf; /* light tooltip text */
-            border: 1px solid #88c0d0; /* light blue border */
-        }
-
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .chart-container {
-            display: none;
-        }
-
-        .info-emoji {
-            cursor: pointer;
-            margin-left: 5px;
-        }
-
-        .tooltip-box {
-            background-color: #ffffe0; /* Light yellow background */
-            border-left: 6px solid #8B8000; /* Yellow left border */
-            padding: 16px;
-            margin: 20px 0;
-            border-radius: 4px;
-            color: #333; /* Text color */
-            font-family: Arial, sans-serif;
-            display: none;
-        }
-
-        body.dark-mode .tooltip-box {
-            background-color: #3b4252; /* Dark yellow background */
-            border-left: 6px solid #ebcb8b; /* Light yellow left border */
-            color: #cfcfcf; /* Light text color */
-        }
-
-        .tooltip-box strong {
-            font-weight: bold;
-            color: #8B8000; /* Darker yellow for emphasis */
-        }
-
-        body.dark-mode .tooltip-box strong {
-            color: #ebcb8b; /* Light yellow for emphasis */
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .toggle-container {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 10px;
-        }
-
-        .toggle-label {
-            margin-right: 10px;
-            color: #0a7161; /* dark green label */
-        }
-
-        body.dark-mode .toggle-label {
-            color: #88c0d0; /* light blue label */
-        }
-        
-        /* Toggle switch styling */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: 0.4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: 0.4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background-color: #0a7161;
-        }
-
-        input:focus + .slider {
-            box-shadow: 0 0 1px #0a7161;
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-
-        body.dark-mode input:checked + .slider {
-            background-color: #88c0d0;
-        }
-
-        body.dark-mode input:focus + .slider {
-            box-shadow: 0 0 1px #88c0d0;
-        }     
-
-        /* Dark mode */
-        body.dark-mode #publicKey1 {
-            color: #333;
-        }     
-
-        /* Dark mode */
-        body.dark-mode #fee1 {
-            color: #333;
-        }  
-
-        /* Dark mode */
-        body.dark-mode #publicKey2 {
-            color: #333;
-        }       
-
-        body #publicKey3 {
-            border: 3px solid darkred;
-        }       
-
-        //Handle +/- button for epoch
-        .input-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .input-container input {
-            flex: 1;
-            margin-right: 5px;
-        }
-
-        .input-container button {
-            padding: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #0a7161; /* dark green button */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        body.dark-mode .input-container button {
-            background-color: #88c0d0; /* light blue button */
-            color: #1e1e1e; /* dark button text */
-        }
-
-        .input-container button:hover {
-            background-color: #0d9c84; /* lighter green on hover */
-        }
-
-        body.dark-mode .input-container button:hover {
-            background-color: #8fbcbb; /* lighter blue on hover */
-        }   
-
-      .table-zero {
-          margin: 0px !important;
-          border: 0 !important;
-          border-spacing: 0px !important;
-          border-collapse: collapse !important;
-      }
-
-      .table-zero th,
-      .table-zero td {
-          border: 0 !important;
-          padding: 3px !important;
-      }      
-   </style>
+    <link rel="stylesheet" href="/payout-simulator.css">
     <script>
       <!-- Google tag (gtag.js) -->
       window.dataLayer = window.dataLayer || [];
@@ -470,57 +36,10 @@
 
       const pubkey3 = params.get('publicKey3');
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var inputField = document.getElementById('addBlocks1');
-        var warningBox = document.getElementById('infobulle');
-        var pubkey3tip = document.getElementById('pubkey3tip');
-        var publicKey3Input = document.getElementById('publicKey3');
-        var addBlocks2Input = document.getElementById('addBlocks2');
-        var compareButton = document.getElementById('compare');
-        var pubkey3TooltipShown = true;
-        var compareToolTipShown = false;
-
-        inputField.addEventListener('focus', function() {
-          warningBox.style.display = 'block';
-        });
-
-        inputField.addEventListener('blur', function() {
-          warningBox.style.display = 'none';
-        });
-        
-        publicKey3Input.addEventListener('change', function() {
-            // Mettre la valeur de 'addBlocksInput1' à une chaîne vide
-            inputField.value = '';
-            addBlocks2Input.value = '';
-        }); 
-        // Tooltip for publicKey3
-        publicKey3Input.addEventListener('focus', function() {
-          if (pubkey3TooltipShown && pubkey3===null)
-            pubkey3tip.style.display = 'block';
-          pubkey3TooltipShown = false;
-        });
-        
-        publicKey3Input.addEventListener('blur', function() {
-          pubkey3tip.style.display = 'none';
-          compareToolTipShown = true;
-        });        
-        // Set focus to publicKey3 on page load
-        if (pubkey3===null)
-          publicKey3Input.focus();   
-         else 
-          compareButton.focus();
-      }); 
-    
      window.onload = async function() {
         const params = new URLSearchParams(window.location.search);
         const validate = params.get('validate');
-        const epoch = params.get('epoch');
-        if (epoch !== null) 
-          document.getElementById('epoch').value = epoch;
-        else {
-          console.log ("get current epoch");
-          await getEpoch();
-        }
+        await initializeSimulator(params);
 
         const publicKey1 = params.get('publicKey1');
         if (publicKey1 !== null) document.getElementById('publicKey1').value = publicKey1;
@@ -544,127 +63,61 @@
         const input = document.getElementById(inputId);
         const currentValue = parseInt(input.value) || 0;
         const newValue = currentValue + delta;
-        if (newValue >= parseInt(input.min)) {
+        if (newValue >= Number(input.min) && (input.max === '' || newValue <= Number(input.max))) {
             input.value = newValue;
+            input.dispatchEvent(new Event('change'));
         }
     }     
     </script>      
 </head>
+
 <body>
-    <div class="toggle-container">
-        <span class="toggle-label">Dark Mode</span>
-        <label class="switch">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider"></span>
-        </label>
-    </div>
-    <div>
-    <h1>Mina Protocol Validator comparison tool</h1>
-    <h2>Compare the performance of your actual Mina Protocol validator with mine (or any other 😊)</h2>
-    <div class="warning-box">
-        <!--<strong>🚨 Warning!</strong><br/>
-        This is an early pre-release that may be unstable, stop working or deliver innacurate results.<br/>-->
-        <b>Computations will only be accurate for epochs after the hardfork (&ge;0)</b><br/>
-        <i>⚠️ The result of the calculation is provided for informational purposes and cannot be opposed or claimed against your block producer.</i>
-    </div>    
-    <!--
-    <label for="epoch">Epoch (since hardfork)</label>
-    <input type="number" id="epoch" value="1" min="0"><br>
-    -->
-    
-    <div class="input-container">
-        <label for="epoch">Epoch (since hardfork)</label>
-        <table class="table-zero"><tr>
-        <td><input type="number" id="epoch" value="1" min="0"></td>
-        <td><button type="button" onclick="changeValue('epoch', -1)">-</button></td>
-        <td><button type="button" onclick="changeValue('epoch', 1)">+</button></td>
-        </table>
-    </div>    
-
-    <label for="publicKey1">1st Validator (Default : naamah)
-    <br/><a style="font-size:9px;" href="https://minascan.io/mainnet/validators/leaderboard" target=_blank>(get the list of available validators on minascan.io)</a>
-    </label>
-    <input type="text" id="publicKey1" value="B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr" style="background-color:lightgrey"><br>
-
-    <label for="fee1">1st Validator's Fees (%)</label>
-    <input type="number" style="background-color:lightgrey" id="fee1" value=1 min="0" max="100"><br>
-
-    <label for="fee2">2d Validator's fee (%)</label>
-    <input type="number" id="fee2" value=5 value="5" min="0" max="100"><br>
-
-    <div class="tooltip-box" id="pubkey3tip">
-      <p><b style="font-size:24px">ENTER YOUR PUBLIC KEY HERE AND CLICK ON COMPARE</b></p>
-    </div>    
-
-    <label for="publicKey3">Enter your public Key</label>
-    <input type="text" id="publicKey3"><br/>
-
-   
-    <label for="publicKey2">2d Validator
-    <br/><a style="font-size:9px;" href="https://minascan.io/mainnet/validators/leaderboard" target=_blank>(get the list of available validators on minascan.io)</a>
-    </label>
-    <input type="text" id="publicKey2" style="background-color:lightgrey"><br>    
-    
-    <!--<div class="label-container">-->
-        <div class="tooltip-box" id="infobulle">
-          The two fields below compute additional blocks that would have been produced by the validator if the additional public key had delegated to the validator.<br/>
-          They are used to calculate additional validator blocks and coinbase, which are taken into account in the rewards/payouts computations.<br/>
-          This calculation is based on the probability of winning a block from the following formula: : 
-          <p>
-              \( 2^{c} \cdot \left( 1 - (1 - f)^{\frac{\text{balance}}{\text{total}}} \right) \)
-          </p>   
-          where c=0, f=0.75, balance is the balance of the delegate, total is the total amount of mina staked.<br/>
-          <p><b>Leave blank to let the simulator automatically compute or choose a value</b></p>
-        </div>    
-        <label for="addBlocks1" id="warning-label">1st validator add. expected blocks</label>
-    <!--    <div class="tooltip">
-            <span class="info-emoji">ℹ️</span>
-            <div class="tooltiptext">This field computes additional blocks that would have been produced by the validator if the additional public key had delegated to the validator.<br/>
-            It is used to calculate additional validator blocks and coinbase, which are taken into account in the rewards/payouts computations.<br/>
-            This calculation is based on the probability of winning a block from the following formula: : 
-            <p>
-                \( 2^{c} \cdot \left( 1 - (1 - f)^{\frac{\text{balance}}{\text{total}}} \right) \)
-            </p>   
-            where c=0, f=0.75, balance is the balance of the delegate, total is the total amount of mina staked.<br/>
-            <p><b>Leave blank to let the simulator automatically compute or choose a value</b></p>
-            </div>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="https://mina.naamahdaemon.eu"><span class="brand-mark" aria-hidden="true">N</span>Naamah · Mina tools</a>
+      <label class="theme-control"><span>Dark mode</span><span class="switch"><input type="checkbox" id="theme-toggle" role="switch" aria-label="Dark mode"><span class="slider"></span></span></label>
+    </header>
+    <main>
+      <section class="hero"><p class="eyebrow"><span class="network-dot"></span>Mina mainnet · Payout simulator</p>
+        <h1>Compare your staking rewards.</h1>
+        <p>Two validators. One clear comparison of block production, estimated payouts and performance over time.</p>
+      </section>
+      <section class="panel setup" aria-labelledby="setup-heading">
+        <div class="section-heading"><div><h2 id="setup-heading">Build your comparison</h2><p>Start with your wallet and the epoch you want to explore.</p></div><span class="badge">Berkeley + Mesa</span></div>
+        <div class="context-grid">
+          <div class="field wallet-field"><label class="field-label" for="publicKey3">Your wallet public key</label><input type="text" id="publicKey3" placeholder="B62…" spellcheck="false" autocomplete="off" aria-describedby="wallet-help"><span class="helper" id="wallet-help">Public key only. No wallet connection required.</span></div>
+          <div class="field"><label class="field-label" for="era">Protocol era</label><select id="era"><option value="mesa">Mesa</option><option value="berkeley">Berkeley</option></select><span class="helper">Each era starts at epoch 0.</span></div>
+          <div class="field"><label class="field-label" for="epoch">Epoch</label><div class="epoch-stepper"><button type="button" aria-label="Previous epoch" onclick="changeValue('epoch', -1)">−</button><input type="number" id="epoch" value="0" min="0" step="1"><button type="button" aria-label="Next epoch" onclick="changeValue('epoch', 1)">+</button></div><span class="helper">Latest completed by default.</span></div>
         </div>
-    </div>   -->
-    <input type="number" min=0 id="addBlocks1"><br/>
-
-    <!--<div class="label-container">-->
-        <label for="addBlocks2" id="warning-label">2d validator add. expected blocks</label>
-    <!--    <div class="tooltip">
-            <span class="info-emoji">ℹ️</span>
-            <div class="tooltiptext">See Above. Same thing for the other validator.</div>
+        <div class="validator-grid">
+          <section class="validator" aria-labelledby="validator-one"><div class="validator-title"><span class="number">01</span><h3 id="validator-one">First validator</h3></div>
+            <div class="field"><label class="field-label" for="publicKey1">Validator public key</label><input type="text" id="publicKey1" spellcheck="false" value="B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr"><span class="helper">Naamah by default. You can choose any validator.</span></div>
+            <div class="validator-bottom"><div class="field fee"><label class="field-label" for="fee1">Pool fee (%)</label><input type="number" id="fee1" value="1" min="0" max="100" step="0.1"></div><a class="directory-link" href="https://minascan.io/mainnet/validators/leaderboard" target="_blank" rel="noopener noreferrer">Find a validator ↗</a></div>
+          </section>
+          <section class="validator second" aria-labelledby="validator-two"><div class="validator-title"><span class="number">02</span><h3 id="validator-two">Second validator</h3></div>
+            <div class="field"><label class="field-label" for="publicKey2">Validator public key</label><input type="text" id="publicKey2" placeholder="Automatic: your epoch delegate" spellcheck="false"><span class="helper">Leave blank to use your delegate for this epoch.</span></div>
+            <div class="validator-bottom"><div class="field fee"><label class="field-label" for="fee2">Pool fee (%)</label><input type="number" id="fee2" value="5" min="0" max="100" step="0.1"></div><a class="directory-link" href="https://minascan.io/mainnet/validators/leaderboard" target="_blank" rel="noopener noreferrer">Find a validator ↗</a></div>
+          </section>
         </div>
-    </div>       -->
-    
-    <input type="number" min=0 id="addBlocks2"><br/>
-     
-    <br/><br/>
-    <input type="checkbox" id="showPublicKey3" checked onchange="fetchData()">Filter to display your public key only<br>
-    <br/><br/>
-    
-    <center><button id="compare" onclick="fetchData()">Compare</button></center>
-
-    <hr/>
-
-    <h2>Account Information</h2>
-    <div class="table-container">
-    <table id="accountTable">
+        <details class="advanced"><summary>Advanced simulation options</summary><p class="helper">Estimate the additional blocks your stake could bring to each validator. Leave blank for automatic estimates, or enter a whole number (including 0).</p>
+          <div class="advanced-grid"><div class="field"><label class="field-label" for="addBlocks1">First validator · additional blocks</label><input type="number" id="addBlocks1" min="0" step="1" placeholder="Automatic"></div><div class="field"><label class="field-label" for="addBlocks2">Second validator · additional blocks</label><input type="number" id="addBlocks2" min="0" step="1" placeholder="Automatic"></div></div>
+          <p class="helper">The automatic estimate uses slot probability 1 − 0.25<sup>stake / total currency</sup>. Manual overrides apply throughout the comparison history.</p>
+        </details>
+        <div class="actions"><label class="check-label"><input type="checkbox" id="showPublicKey3" checked onchange="fetchData()">Show only my wallet in payout tables</label><button class="primary" type="button" id="compare" onclick="fetchData()">Compare validators</button></div>
+        <p class="disclaimer">Estimates are for information only and do not constitute a payout commitment from a validator.</p>
+      </section>
+      <div id="simulationStatus" role="status" aria-live="polite" hidden></div>
+      <section class="empty-state" id="resultsEmpty"><h2>Your comparison starts here</h2><p>Enter your public key and compare validators to see your results.</p></section>
+      <section class="results" id="results" hidden aria-labelledby="results-heading">
+        <div class="section-heading"><div><p class="eyebrow">The selected epoch</p><h2 id="results-heading">Your comparison</h2></div><span class="badge">Values in MINA</span></div>
+        <article class="panel result-panel"><div class="panel-heading"><h3>Your account</h3></div><div class="table-container" tabindex="0" role="region" aria-label="Your account"><table id="accountTable">
         <tr>
             <th>Public Key</th>
             <th>Balance</th>
             <th>Delegate Key</th>
         </tr>
-    </table>
-    <img id="accountTableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />
-    </div>
-
-    <h2>1st Validator Block Stats</h2>
-    <div class="table-container">
-    <table id="delegator1Table">
+    </table></div><div class="loader" id="accountTableLoader" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading data…</span></div></article>
+        <div class="results-grid"><article class="panel result-panel"><div class="panel-heading"><span class="number">01</span><h3>First validator · production</h3></div><div class="table-container" tabindex="0" role="region" aria-label="First validator · production"><table id="delegator1Table">
         <tr>
             <th>Key</th>
             <th>#Blocks</th>
@@ -674,13 +127,7 @@
             <th>#Del</th>
             <th>Stake</th>
         </tr>
-    </table>
-    <img id="delegator1TableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />    
-    </div>
-
-    <h2>2d Validator Block Stats</h2>
-    <div class="table-container">
-    <table id="delegator2Table">
+    </table></div><div class="loader" id="delegator1TableLoader" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading data…</span></div></article><article class="panel result-panel"><div class="panel-heading"><span class="number">02</span><h3>Second validator · production</h3></div><div class="table-container" tabindex="0" role="region" aria-label="Second validator · production"><table id="delegator2Table">
         <tr>
             <th>Key</th>
             <th>#Blocks</th>
@@ -690,12 +137,7 @@
             <th>#Del</th>
             <th>Stake</th>            
         </tr>
-    </table>
-    <img id="delegator2TableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />    
-    </div>
-    <h2>1st Validator Payouts</h2>
-    <div class="table-container">
-    <table id="delegatorsTable">
+    </table></div><div class="loader" id="delegator2TableLoader" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading data…</span></div></article><article class="panel result-panel"><div class="panel-heading"><span class="number">01</span><h3>First validator · payouts</h3></div><div class="table-container" tabindex="0" role="region" aria-label="First validator · payouts"><table id="delegatorsTable">
         <tr>
             <th>Key</th>
             <th>Lock</th>
@@ -706,13 +148,7 @@
             <th>Share</th>
             <th>Payout</th>
         </tr>
-    </table>
-    <img id="delegatorsTableLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />        
-    </div>
-
-    <h2>2d Validator Payouts</h2>
-    <div class="table-container">
-    <table id="delegatorsTable2">
+    </table></div><div class="loader" id="delegatorsTableLoader" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading data…</span></div></article><article class="panel result-panel"><div class="panel-heading"><span class="number">02</span><h3>Second validator · payouts</h3></div><div class="table-container" tabindex="0" role="region" aria-label="Second validator · payouts"><table id="delegatorsTable2">
         <tr>
             <th>Key</th>
             <th>Lock</th>
@@ -723,28 +159,15 @@
             <th>Share</th>
             <th>Payout</th>
         </tr>
-    </table>
-    <img id="delegatorsTable2Loader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />        
-    </div>
-
-    <hr/>
-
-    </div>
-
-    <h2>Last 12 epochs comparison Chart</h2>
-    <input type="checkbox" id="showDataLabels" onchange="toggleDataLabels(performanceChart, document.getElementById('showDataLabels').checked);toggleDataLabels(APYChart, document.getElementById('showDataLabels').checked);">Display Data Labels on Charts<br/><br/>
-   
-    <img id="performanceChartLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;" />        
-    <div class="chart-container">
-        <canvas id="performanceChart"></canvas>
-    </div>
-    <br/>
-    <img id="APYChartLoader" src="img/waiter.gif" style="width: 50px; height: 50px; margin: auto; display: none;"" />        
-    <div class="chart-container">
-        <canvas id="APYChart"></canvas>
-    </div>
-    <hr/>
-
+    </table></div><div class="loader" id="delegatorsTable2Loader" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading data…</span></div></article></div>
+        <div class="section-heading"><div><p class="eyebrow">A longer perspective</p><h2>Performance over 12 epochs</h2><p>Up to 12 epochs, including the selected epoch.</p></div><label class="check-label"><input type="checkbox" id="showDataLabels" onchange="toggleDataLabels(performanceChart, this.checked);toggleDataLabels(APYChart, this.checked);">Show chart values</label></div>
+        <article class="panel chart-panel"><h3>Rewards over time</h3><p class="helper">Compare payouts and cumulative rewards. Click a legend item to show or hide a series.</p><div class="loader" id="performanceChartLoader" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading data…</span></div><div class="chart-container"><canvas id="performanceChart" role="img" aria-label="Validator rewards over the comparison period"></canvas></div></article>
+        <article class="panel chart-panel"><h3>Annualized yield &amp; stake</h3><p class="helper">Current and truncated epochs are excluded from APY and its mean.</p><div class="loader" id="APYChartLoader" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading data…</span></div><div class="chart-container"><canvas id="APYChart" role="img" aria-label="Annualized yield and stake for both validators"></canvas></div></article>
+      </section>
+      <details class="support"><summary>Support Naamah · validator public key</summary><div class="support-body"><span id="bp-address">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</span> <button type="button" onclick="copyText()" aria-label="Copy Naamah validator public key">Copy</button><img src="/naamah_bp_qrcode.png" alt="Naamah validator public key QR code" loading="lazy"></div></details>
+    </main>
+    <footer class="footer"><p>Built by <a href="https://mina.naamahdaemon.eu">Naamah</a> for Mina delegators.</p><p>Chain data by <a href="https://minataur.net" target="_blank" rel="noopener noreferrer">Minataur ↗</a></p></footer>
+  </div>
     <script>
 
     let performanceChart; // Declare the chart variable in a scope accessible to both the updateCharts function and destroy logic
@@ -764,69 +187,40 @@
     let apy2 = [];
 
     const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Check the user's theme preference from localStorage
-    if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
-        themeToggle.checked = true;
+    let savedTheme;
+    try { savedTheme = localStorage.getItem('theme'); } catch (_) {}
+    document.body.classList.toggle('dark-mode', savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+    themeToggle.checked = document.body.classList.contains('dark-mode');
+    function applyChartTheme() {
+      const styles = getComputedStyle(document.body);
+      const color = styles.getPropertyValue('--muted').trim();
+      const grid = styles.getPropertyValue('--border').trim();
+      [performanceChart, APYChart].forEach(chart => {
+        if (!chart) return;
+        chart.options.color = color;
+        chart.options.plugins.legend.labels.color = color;
+        chart.options.plugins.legend.labels.boxWidth = 12;
+        chart.options.plugins.legend.labels.boxHeight = 8;
+        chart.options.plugins.legend.labels.padding = 10;
+        chart.options.plugins.legend.labels.font = { size: 11 };
+        chart.data.datasets.forEach(dataset => {
+          dataset.label = dataset.label.replace(/^1st Validator /, '01 · ').replace(/^2d Validator /, '02 · ');
+        });
+        chart.options.plugins.datalabels.color = styles.getPropertyValue('--text').trim();
+        chart.options.plugins.datalabels.backgroundColor = styles.getPropertyValue('--surface').trim();
+        Object.values(chart.options.scales).forEach(scale => {
+          scale.ticks = { ...scale.ticks, color };
+          scale.title = { ...scale.title, color };
+          scale.grid = { ...scale.grid, color: grid };
+        });
+        chart.update('none');
+      });
     }
-
-    // Toggle theme and save preference to localStorage
     themeToggle.addEventListener('change', () => {
-        if (themeToggle.checked) {
-            body.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark');
-            
-            // Apply dark mode styles to specific row if it exists
-            const specificRows = document.querySelectorAll('.delegate-row');
-            specificRows.forEach(row => {
-                row.style.backgroundColor = '#1a8870';
-            });     
-            // Apply dark mode styles to specific row if it exists
-            const specificRows2 = document.querySelectorAll('.additonnalblocks');
-            specificRows2.forEach(row => {
-                row.style.color = '#f77';
-            });       
-            // Update chart label background for dark mode
-            performanceChart.options.plugins.datalabels.backgroundColor = 'white'; //'#def4ef';
-            performanceChart.options.plugins.datalabels.color = '#0a7161';
-            performanceChart.update();            
-        } else {
-            body.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
-            
-            // Apply light mode styles to specific row if it exists
-            const specificRows = document.querySelectorAll('.delegate-row');
-            specificRows.forEach(row => {
-                row.style.backgroundColor = 'yellow';
-              });   
-            // Apply dark mode styles to specific row if it exists
-            const specificRows2 = document.querySelectorAll('.additonnalblocks');
-            specificRows2.forEach(row => {
-                row.style.color = 'darkred';
-            });       
-            performanceChart.options.plugins.datalabels.backgroundColor = 'white'; //'#def4ef';
-            performanceChart.options.plugins.datalabels.color = '#0a7161';
-            performanceChart.update();                 
-        }
+      document.body.classList.toggle('dark-mode', themeToggle.checked);
+      try { localStorage.setItem('theme', themeToggle.checked ? 'dark' : 'light'); } catch (_) {}
+      applyChartTheme();
     });
-
-    function calculateAPY(interest15Days, principal) {
-        // Calculer le taux d'intérêt pour la période de 15 jours
-        let rate15Days = interest15Days / principal;
-
-        // Convertir ce taux en un taux annuel
-        let annualRate = Math.pow((1 + rate15Days), (365 / 14.875)) - 1;
-
-        // Calculer l'APY
-        let apy = Math.pow((1 + annualRate), 1) - 1;
-
-        console.log (apy * 100);
-
-        // Convertir l'APY en pourcentage
-        return apy * 100;
-    }
 
     function toggleDataLabels(chart, enable) {
         if (chart && chart.options && chart.options.plugins && chart.options.plugins.datalabels) {
@@ -836,253 +230,14 @@
     }
 
 function calculateMean(data) {
-  const mean = data.reduce((acc, value) => acc + value, 0) / data.length;
+  const valid = data.filter(Number.isFinite);
+  const mean = valid.length ? valid.reduce((acc, value) => acc + value, 0) / valid.length : null;
   // Create an array filled with the mean value, same length as data
-  const meanArray = Array(data.length).fill(mean).map(value => parseFloat(value.toFixed(2)));
+  const meanArray = Array(data.length).fill(mean).map(value => value == null ? null : parseFloat(value.toFixed(2)));
   console.log (meanArray);
   return meanArray;
 }
 
-    async function getEpoch() {
-        const cors_proxy=true;
-
-        let epochField = document.getElementById('epoch');
-        
-        const auth = "my_secret";
-        const apiUrl = "https://minataur.net/api/v1";
-        const proxyUrl = "https://www.akirion.com:4664/proxy?url=";
-        let epochRoute = apiUrl + "/epoch";
-        
-        // Headers for the proxy request
-        let headers = {
-            'Content-Type': 'application/json',
-            'Minataur-Authorization': 'minataur-token:ede9adcaec633f3290865e0f85faddbb:4d8801b69d7870786620996ddcb14e551719693200945',
-        };
-        
-        if (cors_proxy) {
-          epochRoute = proxyUrl + encodeURIComponent(`${apiUrl}/epoch`);
-          headers = {
-          'Content-Type': 'application/json',
-          'x-api-key': 'e0d9da01-c1c5-4c44-b4fa-3cbdb4982ed3',
-          };
-        }
-
-        try {
-              const epochResponse = await fetch(epochRoute , {
-                    method: 'GET',
-                    headers
-                }).then(res => res.json());        
-              
-              //update epoch information
-              /*
-                {
-                    "api": {
-                        "version": "1.0",
-                        "format": "json",
-                        "name": "api:minataur",
-                        "url": "https://minataur.net/api/v1"
-                    },
-                    "payload": {
-                        "epoch": {
-                            "height": "369333",
-                            "global_slot_since_genesis": "581422",
-                            "global_slot_since_hard_fork": "16942",
-                            "epoch_since_genesis": 82,
-                            "epoch_since_hard_fork": 2,
-                            "current_slot": 2662,
-                            "epoch_start_block": "367838",
-                            "epoch_blocks": "1496",
-                            "block_time": "1720594980000",
-                            "active_producers": "319",
-                            "total_currency": "1172947738840039233",
-                            "hard_fork_stop_slot": 564280,
-                            "hard_fork_start_slot": 564480,
-                            "hard_fork_slot_align": 6720
-                        }
-                    }
-                }
-              */             
-
-              epochField.value = epochResponse.payload.epoch.epoch_since_hard_fork;
-
-        } catch (error) {
-            console.error(`Error fetching data for epoch`, error);
-        }
-    }
-       
-    async function buildEpochLists() {
-        const cors_proxy=true;
-
-        epochList = [];
-        blockCounts1 = [];
-        blockCounts2 = [];
-        delegatorsNumbers1 = [];
-        delegatorsNumbers2 = [];
-        stake1 = [];
-        stake2 = [];
-        payouts1 = [];
-        payouts2 = [];
-		cumul1 = [];
-		cumul2 = [];
-        apy1 = [];
-        apy2 = [];
-        
-        let epoch = document.getElementById('epoch').value;
-        epoch = Number(epoch) + 80;
-
-        document.getElementById('performanceChartLoader').style.display = 'block';
-        //document.getElementById('APYChartLoader').style.display = 'block';
-
-        
-        const auth = "my_secret";
-        const apiUrl = "https://minataur.net/api/v1";
-        const proxyUrl = "https://www.akirion.com:4664/proxy?url=";
-        let accountRoute = apiUrl + "/account";
-        let delegatorsRoute = apiUrl + "/delegators"
-        let workRoute = apiUrl + "/work";
-        let epochRoute = apiUrl + "/epoch";
-        // Headers for the proxy request
-        let headers = {
-            'Content-Type': 'application/json',
-            'Minataur-Authorization': 'minataur-token:ede9adcaec633f3290865e0f85faddbb:4d8801b69d7870786620996ddcb14e551719693200945',
-        };
-        
-        if (cors_proxy) {
-          accountRoute = proxyUrl + encodeURIComponent(`${apiUrl}/account`);
-          delegatorsRoute = proxyUrl + encodeURIComponent(`${apiUrl}/delegators`);
-          workRoute = proxyUrl + encodeURIComponent(`${apiUrl}/work`);
-          epochRoute = proxyUrl + encodeURIComponent(`${apiUrl}/epoch`);
-          headers = {
-          'Content-Type': 'application/json',
-          'x-api-key': 'e0d9da01-c1c5-4c44-b4fa-3cbdb4982ed3',
-          };
-        }
-
-
-        const publicKey1 = document.getElementById('publicKey1').value;
-        const publicKey2 = document.getElementById('publicKey2').value;
-        const publicKey3 = document.getElementById('publicKey3').value;
-        const addBlocks1 = document.getElementById('addBlocks1').value;
-        const addBlocks2 = document.getElementById('addBlocks2').value;  
-        const fee1 = document.getElementById('fee1').value;
-        const fee2 = document.getElementById('fee2').value;        
-        
-        const accountPayload = { auth, publicKey: publicKey3 };
-
-        for (let i = Math.max(80, epoch - 12); i <= epoch; i++) {
-            const delegatorsPayload1 = { auth, epoch: i, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false, limit: 25000 };
-            const delegatorsPayload2 = { auth, epoch: i, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false, limit: 25000 };
-            const workPayload1 = { auth, epoch: i, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false };
-            const workPayload2 = { auth, epoch: i, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false };
-
-            try {
-                  const accountResponse = await fetch(accountRoute , {
-                        method: 'POST',
-                        headers,
-                        body: JSON.stringify(accountPayload)
-                    }).then(res => res.json());        
-                  
-                  const [delegatorsResponse1, workResponse1, delegatorsResponse2, workResponse2] = await Promise.all([
-                      fetch(delegatorsRoute, {
-                          method: 'POST',
-                          headers,
-                          body: JSON.stringify(delegatorsPayload1)
-                      }).then(res => res.json()),
-                      fetch(workRoute, {
-                          method: 'POST',
-                          headers,
-                          body: JSON.stringify(workPayload1)
-                      }).then(res => res.json()),
-                      fetch(delegatorsRoute, {
-                          method: 'POST',
-                          headers,
-                          body: JSON.stringify(delegatorsPayload2)
-                      }).then(res => res.json()),
-                      fetch(workRoute, {
-                          method: 'POST',
-                          headers,
-                          body: JSON.stringify(workPayload2)
-                      }).then(res => res.json())
-                  ]);            
-          
-
-                epochList.push("Epoch " + (i-80));
-                blockCounts1.push(workResponse1.payload.work.count);
-                blockCounts2.push(workResponse2.payload.work.count);
-                delegatorsNumbers1.push(delegatorsResponse1.payload.ledger.delegators_count);
-                delegatorsNumbers2.push(delegatorsResponse2.payload.ledger.delegators_count);
-                stake1.push((delegatorsResponse1.payload.ledger.stake/1e9).toFixed(0));
-                stake2.push((delegatorsResponse2.payload.ledger.stake/1e9).toFixed(0));      
-
-                /*const payoutsJSON = {
-                    totalDelegatorDueAmount: totalDelegatorDueAmount,
-                    totalDueAmount: totalDueAmount
-                };*/ 
-
-                const payout1 = computePayouts(delegatorsResponse1.payload.ledger, workResponse1.payload.work, accountResponse.payload.account, publicKey3, fee1, addBlocks1);
-                const payout2 = computePayouts(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, publicKey3, fee2, addBlocks2);
-
-                payouts1.push(payout1.totalDelegatorDueAmount);
-                payouts2.push(payout2.totalDelegatorDueAmount);
-                
-				// Calculate cumulative sums for cumul1 and cumul2
-				cumul1.push(
-				  parseFloat(
-					((cumul1.length ? cumul1[cumul1.length - 1] : 0) + payout1.totalDelegatorDueAmount).toFixed(2)
-				  )
-				);
-				cumul2.push(
-				  parseFloat(
-					((cumul2.length ? cumul2[cumul2.length - 1] : 0) + payout2.totalDelegatorDueAmount).toFixed(2)
-				  )
-				);
-				
-                const tpa1 = calculateAPY(payout1.totalDueAmount, (payout1.totalDelegatorStake/1e9).toFixed(0));
-                const tpa2 = calculateAPY(payout2.totalDueAmount, (payout2.totalDelegatorStake/1e9).toFixed(0));
-                
-                //apy1.push(tpa1.toFixed(4));
-                //apy2.push(tpa2.toFixed(4));       
-                apy1.push(tpa1);
-                apy2.push(tpa2);       
-
-            } catch (error) {
-                console.error(`Error fetching data for epoch ${i}:`, error);
-            }
-        }
-
-        /*console.log("Epochs:", epochList);
-        console.log("Block counts from workResponse1:", blockCounts1);
-        console.log("Block counts from workResponse2:", blockCounts2);
-        console.log("Delegators number from delegatorsResponse1:", delegatorsNumbers1);
-        console.log("Delegators number from delegatorsResponse2:", delegatorsNumbers2);
-        console.log("Payout1:", payouts1);
-        console.log("Payout2:", payouts2);*/
-        
-
-        const chartData = {
-            epochs: epochList,
-            blockCounts1: blockCounts1,
-            blockCounts2: blockCounts2,
-            delegatorsNumbers1: delegatorsNumbers1,
-            delegatorsNumbers2: delegatorsNumbers2,
-            stake1: stake1,
-            stake2: stake2,
-            payouts1: payouts1, 
-            payouts2: payouts2, 
-			cumul1: cumul1,
-			cumul2: cumul2,
-            apy1: apy1, 
-            apy2: apy2
-        };
-        
-        updateCharts(chartData);
-        updateAPYCharts(chartData);
-        document.getElementById('performanceChartLoader').style.display = 'none';
-        toggleDataLabels(performanceChart, document.getElementById('showDataLabels').checked);
-        toggleDataLabels(APYChart, document.getElementById('showDataLabels').checked);
-        //document.getElementById('APYChartLoader').style.display = 'none';        
-    }
-      
     function updateCharts(data) {
         const epochs = data.epochs;
         const naamahBlocks = data.blockCounts1;
@@ -1239,6 +394,7 @@ function calculateMean(data) {
                     maintainAspectRatio: false, // Allow the chart to scale with the container
                     scales: {
                         y: {
+                            display: 'auto',
                             beginAtZero: true,
                             title: {
                                 text: 'Blocks/Delegators',
@@ -1247,7 +403,7 @@ function calculateMean(data) {
                         },
                         'stake-axis': {
                             type: 'linear',
-                            display: true,
+                            display: 'auto',
                             position: 'right',
                             title: {
                                 text: 'Stake (millions)',
@@ -1423,9 +579,9 @@ function calculateMean(data) {
         const naamahRewards = data.payouts1;
         const validatorRewards = data.payouts2;
         const naamahApy = data.apy1;
-        const roundedNaamahApy = naamahApy.map(value => parseFloat(value.toFixed(2)));
+        const roundedNaamahApy = naamahApy.map(value => value == null ? null : parseFloat(value.toFixed(2)));
         const validatorApy = data.apy2;
-        const roundedvalidatorApy = validatorApy.map(value => parseFloat(value.toFixed(2)));        
+        const roundedvalidatorApy = validatorApy.map(value => value == null ? null : parseFloat(value.toFixed(2)));
         const isDarkMode = document.body.classList.contains('dark-mode');        
         const lightModeBgColor = 'white'; //'#def4ef'; // Color for light mode
         const darkModeBgColor = 'white'; //'#def4ef'; // Color for dark mode
@@ -1588,175 +744,6 @@ function calculateMean(data) {
         }
     }    
     
-  async function fetchData() {
-      let epoch = document.getElementById('epoch').value;
-      epoch = Number(epoch)+80;
-      let epoch_since_hardfork = 0;
-      let totalCurrency=1;
-      let beforeHF = false;
-      const publicKey1 = document.getElementById('publicKey1').value;
-      const addBlocksInput1 = document.getElementById('addBlocks1');  // Get reference to publicKey2 input element
-      let addBlocks1 = document.getElementById('addBlocks1').value;
-      const addBlocksInput2 = document.getElementById('addBlocks2');  // Get reference to publicKey2 input element
-      let addBlocks2 = document.getElementById('addBlocks2').value;
-      const fee1 = document.getElementById('fee1').value;
-      let publicKey2Input = document.getElementById('publicKey2');  // Get reference to publicKey2 input element
-      let publicKey2 = publicKey2Input.value;  // Get current value of publicKey2 input field
-      const fee2 = document.getElementById('fee2').value;
-      const publicKey3 = document.getElementById('publicKey3').value;
-      const showPublicKey3 = document.getElementById('showPublicKey3').checked;
-      const cors_proxy=true;
-      
-      document.getElementById('accountTableLoader').style.display = 'block';
-      document.getElementById('delegator1TableLoader').style.display = 'block';
-      document.getElementById('delegator2TableLoader').style.display = 'block';
-      document.getElementById('delegatorsTableLoader').style.display = 'block';
-      document.getElementById('delegatorsTable2Loader').style.display = 'block';
-      
-      // Destroy existing chart instances if they exist
-      if (performanceChart) {
-          performanceChart.destroy();
-          performanceChart = null;
-      }
-      
-      if (APYChart) {
-          APYChart.destroy();
-          APYChart = null;
-      }
-      
-      
-      //if (Number(epoch) > 79) {
-        //epoch_since_hardfork = Number(epoch)-80;
-        epoch_since_hardfork = Number(epoch);
-        beforeHF=false;
-        //}
-      //else {
-        //epoch_since_hardfork = Number(epoch);
-        //beforeHF=true;
-        //}
-
-      //console.log(epoch);
-      //console.log(epoch_since_hardfork);
-
-      const auth = "my_secret";
-      const apiUrl = "https://minataur.net/api/v1";
-      const proxyUrl = "https://www.akirion.com:4664/proxy?url=";
-      let accountRoute = apiUrl + "/account";
-      let delegatorsRoute = apiUrl + "/delegators"
-      let workRoute = apiUrl + "/work";
-      let epochRoute = apiUrl + "/epoch";
-      // Headers for the proxy request
-      let headers = {
-          'Content-Type': 'application/json',
-          'Minataur-Authorization': 'minataur-token:ede9adcaec633f3290865e0f85faddbb:4d8801b69d7870786620996ddcb14e551719693200945',
-      };
-      
-      if (cors_proxy) {
-        accountRoute = proxyUrl + encodeURIComponent(`${apiUrl}/account`);
-        delegatorsRoute = proxyUrl + encodeURIComponent(`${apiUrl}/delegators`);
-        workRoute = proxyUrl + encodeURIComponent(`${apiUrl}/work`);
-        epochRoute = proxyUrl + encodeURIComponent(`${apiUrl}/epoch`);
-        headers = {
-        'Content-Type': 'application/json',
-        'x-api-key': 'e0d9da01-c1c5-4c44-b4fa-3cbdb4982ed3',
-        };
-      }
-
-      const accountPayload = { auth, publicKey: publicKey3 };
-      const delegatorsPayload = { auth, epoch: Number(epoch), publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: false, limit:25000 };
-      let delegatorsPayload2;
-
-
-
-      // Clear existing tables before populating
-      clearTable('accountTable');
-      clearTable('delegatorsTable');
-      clearTable('delegatorsTable2');
-      clearTable('delegator1Table');
-      clearTable('delegator2Table');
-      try {
-          // Fetch account data first
-          const epochResponse = await fetch(epochRoute , {
-              method: 'GET',
-              headers
-          }).then(res => res.json());
-
-          if (epochResponse && epochResponse.payload && epochResponse.payload.epoch)
-            totalCurrency = epochResponse.payload.epoch.total_currency;
-
-          const accountResponse = await fetch(accountRoute , {
-              method: 'POST',
-              headers,
-              body: JSON.stringify(accountPayload)
-          }).then(res => res.json());
-
-          // Update publicKey2 input field with delegate_key if it's empty
-          if (publicKey2 === '' || false) {
-            let delegateKey = "B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr";
-            if (accountResponse.payload.account.ledger && accountResponse.payload.account.ledger.delegate_key) {
-                delegateKey = accountResponse.payload.account.ledger.delegate_key;
-            }
-            publicKey2 = delegateKey;
-            publicKey2Input.value = publicKey2;  // Update the input field
-          }
-
-          // Update delegatorsPayload2 with the correct publicKey2
-          delegatorsPayload2 = { auth, epoch: Number(epoch), publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: false, limit:25000 };
-
-          // Fetch all other necessary data
-          const [delegatorsResponse, workResponse, delegatorsResponse2, workResponse2] = await Promise.all([
-              fetch(delegatorsRoute, {
-                  method: 'POST',
-                  headers,
-                  body: JSON.stringify(delegatorsPayload)
-              }).then(res => res.json()),
-              fetch(workRoute, {
-                  method: 'POST',
-                  headers,
-                  body: JSON.stringify({ auth, epoch: epoch_since_hardfork, publicKey: publicKey1, includeOrphanBlocks: false, beforeHardFork: beforeHF })
-              }).then(res => res.json()),
-              fetch(delegatorsRoute, {
-                  method: 'POST',
-                  headers,
-                  body: JSON.stringify(delegatorsPayload2)
-              }).then(res => res.json()),
-              fetch(workRoute, {
-                  method: 'POST',
-                  headers,
-                  body: JSON.stringify({ auth, epoch: epoch_since_hardfork, publicKey: publicKey2, includeOrphanBlocks: false, beforeHardFork: beforeHF })
-              }).then(res => res.json())
-          ]);
-
-          // Populate tables with fetched data
-          populateAccountTable(accountResponse.payload.account);
-
-          populateDelegatorTable('delegator1Table', delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, addBlocksInput1, publicKey1, totalCurrency);
-          document.getElementById('delegator1TableLoader').style.display = 'none';
-          populateDelegatorTable('delegator2Table', delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, addBlocksInput2, publicKey2, totalCurrency);
-          document.getElementById('delegator2TableLoader').style.display = 'none';
-
-          addBlocks1 = addBlocksInput1.value;
-          addBlocks2 = addBlocksInput2.value;
-
-          if (showPublicKey3) {
-              populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, showPublicKey3, fee1, addBlocks1);
-              populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, showPublicKey3, fee2, addBlocks2);
-          } else {
-              populateDelegatorsTable(delegatorsResponse.payload.ledger, workResponse.payload.work, accountResponse.payload.account, 'delegatorsTable', publicKey3, false, fee1, addBlocks1);
-              populateDelegatorsTable(delegatorsResponse2.payload.ledger, workResponse2.payload.work, accountResponse.payload.account, 'delegatorsTable2', publicKey3, false, fee2, addBlocks2);
-          }
-
-          document.getElementById('delegatorsTableLoader').style.display = 'none';
-          document.getElementById('delegatorsTable2Loader').style.display = 'none';
-
-
-           buildEpochLists();
-
-      } catch (error) {
-          console.error('Error fetching data:', error);
-      }
-  }
-
   function createTruncatedKeyCell(key, type="account") {
       const fullKey = key;
       const truncatedKey = `${fullKey.slice(0, 6)}...${fullKey.slice(-6)}`;
@@ -1827,7 +814,7 @@ function calculateMean(data) {
       
       //console.log ("addBlocks=" + addBlocks)
       
-      const addCoinbase = Number(addBlocks)*720*1e9;
+      const addCoinbase = Number(addBlocks)*work.coinbaseAmount*1e9;
       
       //console.log ("Added Coinbase : " + addCoinbase);
       
@@ -1925,10 +912,6 @@ function calculateMean(data) {
               totalDueAmount += parseFloat(totalDueRounded);
 
               if (publicKey3 && publicKey3 === delegator.public_key) {
-                  if (isDarkMode)
-                    row.style.backgroundColor = '#1a8870';
-                  else
-                    row.style.backgroundColor = 'yellow';
                   row.classList.add('delegate-row'); // Set a specific id for this row
               }
           }
@@ -1977,7 +960,7 @@ function calculateMean(data) {
       console.log (addBlocks);
       console.log ("************ computePayouts  FIN ************");*/
       
-      const addCoinbase = Number(addBlocks)*720*1e9;
+      const addCoinbase = Number(addBlocks)*work.coinbaseAmount*1e9;
       const validatorTotalrewards = (Number(work.rewards) + Number(transaction_fees)) / 1000000000;
       const delegatorTotalRewards = (Number(work.rewards) + Number(addCoinbase) + Number(transaction_fees)) / 1000000000;
       
@@ -2092,13 +1075,9 @@ function calculateMean(data) {
       //console.log (pubkey);
       //console.log (delegate);
       
-      if (delegate != pubkey) {
-        if (addBlocksInput.value==="") {
-          const additionalblocks = (stakeLikelyhood(Number(additionalBalance), Number(totalCurrency))*7140).toFixed(0);
-          addBlocksInput.value=additionalblocks;
-        }
+      if (!delegators.delegators.some(d => d.public_key === account.info.key)) {
         addblock= "<b class='additonnalblocks' style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value + ")</b>"; 
-        addCoinbase= "<b class='additonnalblocks' style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value*720 + ")</b>"; 
+        addCoinbase= "<b class='additonnalblocks' style='color:" + couleur + ";font-size:14px'>(+" + addBlocksInput.value*work.coinbaseAmount + ")</b>";
        }
 
       const keyCell = createTruncatedKeyCell(work.publicKey, "validator"); // Use createTruncatedKeyCell for publicKey
@@ -2131,16 +1110,7 @@ function calculateMean(data) {
   }
 
 </script>
-  <footer>
-      <p><center>&copy; 2024 Naamah - <a href='https://mina.naamahdaemon.eu/blog/welcome' target=_blank>https://mina.naamahdaemon.eu</a></center></p>
-      <br/>
-      <center><img src="./naamah_bp_qrcode.png" width=240/></center><br/>
-      <div class="wrapped-text">
-          <b id="bp-address">B62qpsyB3gCndt8sNz4GRwusBtg9U72TNiL4mxmcQfWKZ5noa9fFnWr</b><span class="copy-emoji" onclick="copyText()">📋</span>
-      </div><br/><br/>
-      <div class="info-box">
-          Big 👍 to Serhii Pimenov for providing the API and for his great work on Minataur mina explorer : <a href='https://minataur.net' target=_blank>https://minataur.net</a>
-      </div>  
-  </footer>
+<script src="/payout-model.js"></script>
+<script src="/payout-client.js"></script>
 </body>
 </html>

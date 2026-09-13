@@ -3,14 +3,12 @@ title: Payout Simulator
 sidebar_label: Payouts Simulator
 hide_table_of_contents: true
 ---
-import PayoutSimulator from "@site/src/components/PayoutSimulator"
-
 # NAAMAH'S BP PERFORMANCE COMPARISON
 *Compare the performance of your actual validator with mine 😊*  
 :::warning  notice
-Only the epochs post hardfork (>0) on the new chain are taken into account.
+Select Berkeley or Mesa in the simulator. Epoch numbering starts at 0 in each era.
+Current and truncated epochs are excluded from APY calculations.
 :::
 
-<PayoutSimulator>
-</PayoutSimulator>
+[Open the payout simulator](https://mina.naamahdaemon.eu/payout-simulator.html)
 
