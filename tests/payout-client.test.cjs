@@ -53,6 +53,48 @@ function harness(fail = false, pause = async () => {}) {
 test('all inline HTML scripts parse', () => {
   for (const match of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)) new vm.Script(match[1]);
 });
+
+test('sharing preserves completed parameters, manual zero and falls back when clipboard is unavailable', async () => {
+  const elements = new Map();
+  const element = id => {
+    if (!elements.has(id)) elements.set(id, { value: '', checked: false, hidden: true,
+      addEventListener(type, callback) { this[type] = callback; }, focus() {}, select() {} });
+    return elements.get(id);
+  };
+  const navigator = { clipboard: { writeText: async url => { navigator.copied = url; } },
+    share: async data => { navigator.shared = data; } };
+  const context = vm.createContext({ URL, navigator, document: { getElementById: element } });
+  context.window = context;
+  vm.runInContext(fs.readFileSync('static/payout-share.js', 'utf8'), context);
+  for (const [id, value] of Object.entries({ era: 'mesa', epoch: '0', publicKey1: key,
+    publicKey2: key, publicKey3: key, fee1: '1.5', fee2: '5', addBlocks1: '0' })) element(id).value = value;
+  context.captureComparisonShare();
+  element('fee1').value = '99'; // Unsubmitted edits must not change the shared comparison.
+  element('showDataLabels').checked = true;
+  await element('copyComparison').click();
+  const params = new URL(navigator.copied).searchParams;
+  assert.equal(params.get('fee1'), '1.5');
+  assert.equal(params.get('addBlocks1'), '0');
+  assert.equal(params.has('addBlocks2'), false);
+  assert.equal(params.get('showDataLabels'), '1');
+  assert.equal(params.get('showPublicKey3'), '0');
+  assert.equal(params.get('validate'), '1');
+  await element('nativeShare').click();
+  assert.equal(navigator.shared.url, navigator.copied);
+  navigator.share = async () => { throw Object.assign(new Error(), { name: 'AbortError' }); };
+  element('shareStatus').textContent = '';
+  await element('nativeShare').click();
+  assert.equal(element('shareStatus').textContent, '');
+  delete navigator.clipboard;
+  await element('copyComparison').click();
+  assert.equal(element('comparisonLink').hidden, false);
+  assert.equal(element('comparisonLink').value, navigator.copied);
+  delete navigator.share;
+  context.captureComparisonShare();
+  assert.equal(element('nativeShare').hidden, true);
+  context.resetComparisonShare();
+  assert.equal(element('comparisonShare').hidden, true);
+});
 test('bookmarks keep Berkeley numbering; no-parameter default selects completed Mesa epoch', async () => {
   const h = harness();
   await h.context.initializeSimulator(new URLSearchParams('epoch=54'));
