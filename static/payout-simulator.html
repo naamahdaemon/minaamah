@@ -56,6 +56,12 @@
         const publicKey2 = params.get('publicKey2');
         if (publicKey2 !== null) document.getElementById('publicKey2').value = publicKey2;
         
+        ['addBlocks1', 'addBlocks2'].forEach(id => {
+          if (params.has(id)) document.getElementById(id).value = params.get(id);
+        });
+        ['showPublicKey3', 'showDataLabels'].forEach(id => {
+          if (params.has(id)) document.getElementById(id).checked = params.get(id) === '1';
+        });
         if (validate !== null) fetchData();
      };
      
@@ -160,6 +166,12 @@
             <th>Payout</th>
         </tr>
     </table></div><div class="loader" id="delegatorsTable2Loader" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading data…</span></div></article></div>
+        <section class="panel share-panel" id="comparisonShare" hidden aria-labelledby="share-heading">
+          <div><h3 id="share-heading">Share this comparison</h3><p class="helper">Open the same comparison and charts with these parameters. The link includes the public wallet and validator addresses. Live data may change.</p></div>
+          <div class="share-actions"><button type="button" class="primary" id="nativeShare" hidden>Share…</button><button type="button" class="primary" id="copyComparison">Copy comparison link</button></div>
+          <p id="shareStatus" role="status" aria-live="polite"></p>
+          <input id="comparisonLink" type="text" readonly hidden aria-label="Comparison link — copy manually">
+        </section>
         <div class="section-heading"><div><p class="eyebrow">A longer perspective</p><h2>Performance over 12 epochs</h2><p>Up to 12 epochs, including the selected epoch.</p></div><label class="check-label"><input type="checkbox" id="showDataLabels" onchange="toggleDataLabels(performanceChart, this.checked);toggleDataLabels(APYChart, this.checked);">Show chart values</label></div>
         <article class="panel chart-panel"><h3>Rewards over time</h3><p class="helper">Compare payouts and cumulative rewards. Click a legend item to show or hide a series.</p><div class="loader" id="performanceChartLoader" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading data…</span></div><div class="chart-container"><canvas id="performanceChart" role="img" aria-label="Validator rewards over the comparison period"></canvas></div></article>
         <article class="panel chart-panel"><h3>Annualized yield &amp; stake</h3><p class="helper">Current and truncated epochs are excluded from APY and its mean.</p><div class="loader" id="APYChartLoader" role="status"><span class="spinner" aria-hidden="true"></span><span>Loading data…</span></div><div class="chart-container"><canvas id="APYChart" role="img" aria-label="Annualized yield and stake for both validators"></canvas></div></article>
@@ -1111,6 +1123,7 @@ function calculateMean(data) {
 
 </script>
 <script src="/payout-model.js"></script>
+<script src="/payout-share.js"></script>
 <script src="/payout-client.js"></script>
 </body>
 </html>
