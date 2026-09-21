@@ -101,6 +101,7 @@
   window.fetchData = async function () {
     if (running) return;
     running = true;
+    if (typeof resetComparisonShare === 'function') resetComparisonShare();
     const controls = [...document.querySelectorAll('input:not(#theme-toggle), select, button')];
     const disabled = controls.map(control => control.disabled);
     controls.forEach(control => { control.disabled = true; });
@@ -161,6 +162,7 @@
       comparisonLoaded = true;
       message(`${s.label}: comparison loaded. Loading history…`);
       await charts(s, keys, account, fees, manuals, now);
+      if (typeof captureComparisonShare === 'function') captureComparisonShare();
       const partial = s.era === now.era && s.epoch === now.epoch;
       message(`${s.label}${partial ? ' — in progress (APY excluded)' : ''}. ` +
         'History uses epoch ledger balances; absent accounts use their current balance. ' +
